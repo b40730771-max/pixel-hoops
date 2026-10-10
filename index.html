@@ -1725,6 +1725,14 @@ table.bx td{text-align:right;padding:5px 4px;border-bottom:1px solid rgba(142,16
 .pllist{display:flex;flex-direction:column;gap:6px;max-height:320px;overflow:auto}
 .plrow{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--ink);border:1px solid var(--line)}
 .plrow b{font-weight:400;font-size:18px}
+#banBlock{position:fixed;inset:0;z-index:2147483646;background:rgba(3,6,18,.96);display:grid;place-items:center;text-align:center;padding:24px}
+#banBlock div{display:flex;flex-direction:column;gap:12px;align-items:center;max-width:520px;padding:26px 30px;border:3px solid var(--pink);background:#0b1430;box-shadow:6px 6px 0 #000}
+#banBlock b{font-size:28px;font-weight:400;color:var(--pink)}
+#banBlock span{font-size:17px;color:#d9e6ff;line-height:1.5}
+.admbox{display:flex;flex-direction:column;gap:10px}
+.admlist{display:flex;flex-direction:column;gap:6px;max-height:min(46vh,380px);overflow:auto}
+.admrow{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--ink);border:1px solid var(--line)}
+.admrow b{font-weight:400;font-size:17px}
 #devBlock{position:fixed;inset:0;z-index:2147483647;background:rgba(3,6,18,.94);display:grid;place-items:center;text-align:center;padding:24px}
 #devBlock div{display:flex;flex-direction:column;gap:12px;max-width:520px;padding:24px 28px;border:3px solid var(--pink);background:#0b1430;box-shadow:6px 6px 0 #000}
 #devBlock b{font-size:28px;font-weight:400;color:var(--pink)}
@@ -3426,7 +3434,7 @@ document.addEventListener('click',e=>{
     case'mplay':{const m=UI.mode||'chance';const r=S.rank[m];if(S.lineup.some(u=>!u)){toast('선발 5명을 모두 채워 주세요');go('squad');break}if(typeof mmOk==='function'&&mmOk()){mmStart(m);break}prepMatch({kind:'rank',mode:m,modeFixed:true,opp:genOpp(rankOvr(r.div)),label:`${MODES[m].n} · ${RANKS[r.div]}`});break}
     case'mquick':{const m=UI.mode||'chance';prepMatch({kind:'quick',mode:m,modeFixed:true,opp:genOpp(teamOvr()||60),label:`${MODES[m].n} · 비랭크`});break}
     case'pvwalk':{if(!woonnBP())break;const [pid,ev]=String(v).split('@');previewWalk({pid,evo:+ev||0,enh:0});break}
-    case'authmode':case'authgo':case'authopen':case'authskip':case'ststart':case'logout':case'syncnow':case'plsearch':case'pladd':case'pldeck':case'rkboard':case'mmcancel':onlAct(a,v);break;
+    case'authmode':case'authgo':case'authopen':case'authskip':case'ststart':case'logout':case'syncnow':case'plsearch':case'pladd':case'pldeck':case'rkboard':case'mmcancel':case'admopen':case'admban':case'admunban':case'admtab':case'admfill':onlAct(a,v);break;
     case'rmtab':UI.rmtab=v;render();break;
     case'rmsel':UI.rmsel=v;UI.rmtab='up';render();$('#zoomer').scrollTop=0;break;
     case'rmpick':UI.rmsel=v;render();break;
@@ -4184,7 +4192,7 @@ async function onlPush(){
     if(r2.error)throw r2.error;
     await onlAdmCheck();
     ONL.lastPush=Date.now();ONL.status='';
-  }catch(e){ONL.status='저장 실패 · '+onlErr(e);if(/banned/i.test((e&&e.message)||'')&&!ONL.banT){ONL.banT=1;toast('이용이 정지된 계정이에요 · 진행 상황이 저장되지 않아요')}}
+  }catch(e){ONL.status='저장 실패 · '+onlErr(e);if(/banned/i.test((e&&e.message)||''))onlBanCheck()}
 }
 document.addEventListener('visibilitychange',()=>{if(!ONL.user)return;if(document.visibilityState==='hidden')onlPush();else onlAdmCheck()});
 async function onlAdmCheck(){
@@ -4205,6 +4213,7 @@ async function onlBoot(after){
     if(!ss){openAuth('login');return}
     ONL.user=ss.user;const pr=await ONL.sb.from('profiles').select('name').eq('id',ss.user.id).maybeSingle();
     if(pr.data&&pr.data.name)ONL.name=pr.data.name;else{openAuth('login');return}
+    if(await onlBanCheck())return;
     const sv=await ONL.sb.from('saves').select('data,updated_at').eq('id',ss.user.id).maybeSingle();
     if(sv.data&&sv.data.data){const st=Date.parse(sv.data.updated_at)||0;if(!(S.name===ONL.name&&(S._ts||0)>st&&(+S._adm||0)>=(+sv.data.data._adm||0)))onlApply(sv.data.data);else onlSchedule()}
     else if(S.name!==ONL.name){chooseStart();return}
@@ -4243,6 +4252,7 @@ async function authGo(){
     ONL.name=(pr.data&&pr.data.name)||name;if(!pr.data)await ONL.sb.from('profiles').insert({id:ONL.user.id,name:ONL.name});
     const sv=await ONL.sb.from('saves').select('data').eq('id',ONL.user.id).maybeSingle();
     ONL.busy=false;
+    if(await onlBanCheck())return;
     if(sv.data&&sv.data.data){onlApply(sv.data.data);closeModal();UI.view='home';render();toast(`${ONL.name} 로그인`);ONL.boot0&&ONL.boot0()}
     else chooseStart();
   }catch(e){ONL.busy=false;auMsg(onlErr(e))}
@@ -4285,12 +4295,13 @@ function onlAct(a,v){
   if(a==='authmode'){openAuth(v);return}if(a==='authgo'){authGo();return}if(a==='authopen'){openAuth('login');return}
   if(a==='authskip'){closeModal();if(!S.name)openOnboard();else{render();ONL.boot0&&ONL.boot0()}return}
   if(a==='ststart'){stStart(v);return}if(a==='logout'){onlLogout();return}if(a==='syncnow'){onlPush().then(()=>toast(ONL.status||'서버에 저장했어요'));return}
+  if(a==='admopen'){admOpen();return}if(a==='admban'){admBan();return}if(a==='admunban'){admUnban(v);return}if(a==='admtab'){UI.admTab=v;admDraw();return}if(a==='admfill'){const i=$('#admName');if(i)i.value=v;return}
   if(a==='plsearch'){plSearch();return}if(a==='rkboard'){openRkBoard(UI.mode||'chance');return}if(a==='mmcancel'){mmCancel();return}if(a==='pladd'||a==='pldeck'){plAct(a,v);return}
 }
 function onlSettingsRow(){
   if(!ONL.on)return '';
-  return ONL.user?`<div class="row"><span class="grow">온라인 계정<br><small class="muted" style="font-size:13px">${esc(ONL.name)} · ${ONL.status||'자동으로 서버에 저장돼요'}</small></span><button class="btn sm teal" data-a="syncnow">지금 저장</button><button class="btn sm ghost" data-a="logout">로그아웃</button></div>`
-    :`<div class="row"><span class="grow">온라인 계정<br><small class="muted" style="font-size:13px">로그인 안 함 · 이 기기에만 저장돼요</small></span><button class="btn sm" data-a="authopen">로그인</button></div>`;
+  return (onlIsAdmin()?`<div class="row"><span class="grow" style="color:var(--gold)">관리자<br><small class="muted" style="font-size:13px">계정 정지·해제, 치트 기록</small></span><button class="btn sm gold" data-a="admopen">관리자 메뉴</button></div>`:'')+(ONL.user?`<div class="row"><span class="grow">온라인 계정<br><small class="muted" style="font-size:13px">${esc(ONL.name)} · ${ONL.status||'자동으로 서버에 저장돼요'}</small></span><button class="btn sm teal" data-a="syncnow">지금 저장</button><button class="btn sm ghost" data-a="logout">로그아웃</button></div>`
+    :`<div class="row"><span class="grow">온라인 계정<br><small class="muted" style="font-size:13px">로그인 안 함 · 이 기기에만 저장돼요</small></span><button class="btn sm" data-a="authopen">로그인</button></div>`);
 }
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target&&(e.target.id==='auPw'||e.target.id==='auPw2'||e.target.id==='auName')){e.preventDefault();authGo()}if(e.key==='Enter'&&e.target&&e.target.id==='plQ'){e.preventDefault();plSearch()}});
 
@@ -4429,6 +4440,64 @@ function devShow(on){
   setInterval(()=>{const t=performance.now();debugger;const d=performance.now()-t>100;
     if(d){clean=0;if(!ONL.dev)devShow(true)}else if(ONL.dev&&++clean>=2)devShow(false)},1000);
 })();
+
+function onlIsAdmin(){return !!(ONL.user&&(ONL.name||'').trim().toLowerCase()==='woonn')}
+async function onlBanCheck(){
+  if(!ONL.user||!ONL.sb)return false;
+  try{const r=await ONL.sb.from('banned').select('reason,at').eq('id',ONL.user.id).maybeSingle();if(r.data){banShow(r.data);return true}}catch(e){}
+  return false;
+}
+function banShow(b){
+  ONL.banned=true;clearTimeout(ONL.pushT);closeModal();
+  let o=$('#banBlock');if(!o){o=document.createElement('div');o.id='banBlock';document.body.appendChild(o)}
+  o.innerHTML=`<div><b>이용이 정지된 계정이에요</b><span>${esc(ONL.name)}${b&&b.reason?`<br>사유 · ${esc(b.reason)}`:''}${b&&b.at?`<br>${new Date(b.at).toLocaleString('ko-KR')}`:''}</span><span class="muted" style="font-size:14px">관리자에게 문의하세요</span><button class="btn ghost" id="banOut">로그아웃</button></div>`;
+  $('#banOut').onclick=async()=>{o.remove();ONL.banned=false;await onlLogout()};
+}
+async function admOpen(){if(!onlIsAdmin())return;UI.admTab=UI.admTab||'ban';ADM.ban=null;ADM.log=null;admDraw();admLoad()}
+const ADM={ban:null,log:null,err:''};
+async function admLoad(){
+  ADM.err='';
+  try{const b=await ONL.sb.from('banned').select('id,reason,at').order('at',{ascending:false}).limit(100);if(b.error)throw b.error;
+    const ids=(b.data||[]).map(x=>x.id);let names={};
+    if(ids.length){const p=await ONL.sb.from('profiles').select('id,name').in('id',ids);(p.data||[]).forEach(x=>names[x.id]=x.name)}
+    ADM.ban=(b.data||[]).map(x=>Object.assign({name:names[x.id]||'(알 수 없음)'},x));
+    const l=await ONL.sb.from('cheat_log').select('uid,name,what,old_bp,new_bp,old_gp,new_gp,at').order('at',{ascending:false}).limit(40);
+    ADM.log=l.error?[]:(l.data||[]);
+  }catch(e){ADM.err=/permission|policy|row-level|42501|relation|does not exist/i.test((e&&e.message)||'')?'관리자 SQL을 먼저 실행해 주세요':onlErr(e);ADM.ban=ADM.ban||[];ADM.log=ADM.log||[]}
+  if($('#admBox'))admDraw();
+}
+function admNum(v){if(v==null)return '-';const n=+v;return n>=1e8?n.toExponential(1).replace('e+','e'):fmt(n)}
+function admDraw(){
+  const t=UI.admTab||'ban';
+  const ban=ADM.ban==null?'<p class="muted">불러오는 중…</p>':ADM.ban.length?`<div class="admlist">${ADM.ban.map(b=>`<div class="admrow"><div class="grow"><b>${esc(b.name)}</b><div class="muted" style="font-size:13px">${esc(b.reason||'사유 없음')} · ${new Date(b.at).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}</div></div><button class="btn sm teal" data-a="admunban" data-v="${esc(b.id)}">정지 해제</button></div>`).join('')}</div>`:'<p class="muted">정지된 계정이 없어요.</p>';
+  const log=ADM.log==null?'<p class="muted">불러오는 중…</p>':ADM.log.length?`<div class="admlist">${ADM.log.map(l=>`<div class="admrow"><div class="grow"><b>${esc(l.name||'?')}</b> <span class="tag2 sell">${esc(l.what)}</span><div class="muted" style="font-size:13px">${l.new_bp!=null?`BP ${admNum(l.old_bp)} → ${admNum(l.new_bp)} · GP ${admNum(l.old_gp)} → ${admNum(l.new_gp)} · `:''}${new Date(l.at).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}</div></div><button class="btn sm ghost" data-a="admfill" data-v="${esc(l.name||'')}">선택</button></div>`).join('')}</div>`:'<p class="muted">기록이 없어요.</p>';
+  openModal(`<div class="mh"><h3>관리자 메뉴</h3><button class="icon-btn" data-a="settings">X</button></div>
+    <div id="admBox" class="admbox">
+      <div class="row" style="gap:8px"><input id="admName" class="grow" maxlength="14" placeholder="구단 이름" value="${esc(ADM.pick||'')}"><input id="admWhy" class="grow" maxlength="40" placeholder="사유 (선택)"><button class="btn pink" data-a="admban">정지</button></div>
+      <i id="admMsg" class="aumsg">${esc(ADM.err||'')}</i>
+      <div class="authtab"><button class="${t==='ban'?'on':''}" data-a="admtab" data-v="ban">정지된 계정</button><button class="${t==='log'?'on':''}" data-a="admtab" data-v="log">치트 기록</button></div>
+      ${t==='ban'?ban:log}
+    </div>`,true);
+}
+function admMsg(m){const e=$('#admMsg');if(e)e.textContent=m}
+async function admFind(n){
+  const r=await ONL.sb.from('profiles').select('id,name').ilike('name',onlLike(n)).limit(2);if(r.error)throw r.error;
+  return (r.data||[]).find(p=>p.name.toLowerCase()===n.toLowerCase())||null;
+}
+async function admBan(){
+  const n=(($('#admName')||{}).value||'').trim(),why=(($('#admWhy')||{}).value||'').trim();ADM.pick=n;
+  if(!n){admMsg('구단 이름을 입력해 주세요');return}
+  if(n.toLowerCase()===ONL.name.toLowerCase()){admMsg('내 계정은 정지할 수 없어요');return}
+  admMsg('처리 중…');
+  try{const p=await admFind(n);if(!p){admMsg('그 이름의 구단이 없어요');return}
+    const r=await ONL.sb.from('banned').upsert({id:p.id,reason:why||null,at:new Date().toISOString()});if(r.error)throw r.error;
+    toast(`${p.name} 정지 완료`);ADM.pick='';UI.admTab='ban';await admLoad();admDraw();
+  }catch(e){admMsg(/permission|policy|row-level|42501/i.test((e&&e.message)||'')?'관리자 권한이 없어요 · 관리자 SQL을 확인해 주세요':onlErr(e))}
+}
+async function admUnban(id){
+  try{const r=await ONL.sb.from('banned').delete().eq('id',id);if(r.error)throw r.error;toast('정지 해제 완료');await admLoad();admDraw()}
+  catch(e){admMsg(onlErr(e))}
+}
 let AC=null;
 function audioInit(){if(AC)return;try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}
 function tone(f,d,type='square',v=0.05,f2=null,delay=0){
