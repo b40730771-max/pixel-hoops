@@ -4167,7 +4167,7 @@ function onlErr(e){const m=(e&&(e.message||e.msg||e.error_description))||String(
 function onlSchedule(){if(!ONL.user)return;clearTimeout(ONL.pushT);ONL.pushT=setTimeout(onlPush,2500)}
 async function onlPush(){
   if(!ONL.user||!ONL.sb)return;clearTimeout(ONL.pushT);
-  try{S.name=ONL.name;const now=new Date().toISOString();
+  try{if(await onlAdmCheck())return;S.name=ONL.name;const now=new Date().toISOString();
     const r1=await ONL.sb.from('saves').upsert({id:ONL.user.id,data:S,updated_at:now});if(r1.error)throw r1.error;
     let deck='';try{deck=myCode()}catch(e){}
     const row={id:ONL.user.id,name:ONL.name,abbr:S.abbr,ovr:teamOvr()||0,lvl:S.lvl||1,wins:(S.rec&&S.rec.w)||0,losses:(S.rec&&S.rec.l)||0,deck,updated_at:now};
@@ -4178,7 +4178,15 @@ async function onlPush(){
     ONL.lastPush=Date.now();ONL.status='';
   }catch(e){ONL.status='저장 실패 · '+onlErr(e)}
 }
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'&&ONL.user)onlPush()});
+document.addEventListener('visibilitychange',()=>{if(!ONL.user)return;if(document.visibilityState==='hidden')onlPush();else onlAdmCheck()});
+async function onlAdmCheck(){
+  if(!ONL.user||!ONL.sb)return false;
+  try{const r=await ONL.sb.from('saves').select('adm:data->_adm').eq('id',ONL.user.id).maybeSingle();const a=+((r.data&&r.data.adm)||0);
+    if(!(a>(+S._adm||0)))return false;
+    if(M){clearTimeout(ONL.admT);ONL.admT=setTimeout(onlAdmCheck,3000);return true}
+    const sv=await ONL.sb.from('saves').select('data').eq('id',ONL.user.id).maybeSingle();if(!sv.data||!sv.data.data)return false;
+    onlApply(sv.data.data);closeModal();if(typeof poClose==='function')poClose();UI.view='home';render();toast('관리자가 계정 정보를 바꿨어요');return true}catch(e){return false}
+}
 function onlApply(data){
   try{localStorage.setItem(SAVE_KEY,JSON.stringify(data))}catch(e){}
   S=defaultState();load();S.name=ONL.name;save();
@@ -4190,7 +4198,7 @@ async function onlBoot(after){
     ONL.user=ss.user;const pr=await ONL.sb.from('profiles').select('name').eq('id',ss.user.id).maybeSingle();
     if(pr.data&&pr.data.name)ONL.name=pr.data.name;else{openAuth('login');return}
     const sv=await ONL.sb.from('saves').select('data,updated_at').eq('id',ss.user.id).maybeSingle();
-    if(sv.data&&sv.data.data){const st=Date.parse(sv.data.updated_at)||0;if(!(S.name===ONL.name&&(S._ts||0)>st))onlApply(sv.data.data);else onlSchedule()}
+    if(sv.data&&sv.data.data){const st=Date.parse(sv.data.updated_at)||0;if(!(S.name===ONL.name&&(S._ts||0)>st&&(+S._adm||0)>=(+sv.data.data._adm||0)))onlApply(sv.data.data);else onlSchedule()}
     else if(S.name!==ONL.name){chooseStart();return}
     render();after();
   }catch(e){console.log('onl boot',e&&e.message);toast('서버에 연결하지 못했어요 · 이 기기 기록으로 진행해요');render();after()}
