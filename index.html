@@ -1831,6 +1831,45 @@ button.psit{cursor:pointer}button.psit:disabled{opacity:.42;cursor:default}
 .psslot b{display:block;font-weight:400;font-size:18px}
 .psslot b em{font-style:normal;font-family:var(--px);font-size:10px;color:var(--gold);margin-left:6px}
 .psslot span{display:block;font-size:13px;line-height:1.35}
+.pse{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:16px;align-items:start;background:radial-gradient(ellipse 60% 50% at 25% 30%,rgba(120,180,255,.12),transparent 70%)}
+@container app (max-width:760px){.pse{grid-template-columns:1fr}}
+.pse-l{display:flex;flex-direction:column;align-items:center;gap:10px;min-width:0}
+.pse-cw{display:flex;align-items:center;gap:14px}
+.pse-c{width:190px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.6))}
+.psenav{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.25);color:#fff;font-size:34px;line-height:1;display:grid;place-items:center;padding-bottom:4px;cursor:pointer}
+.psenav:disabled{opacity:.3}
+.pse-nm{display:flex;flex-direction:column;align-items:center;gap:2px}
+.pse-nm b{font-weight:400;font-size:22px}
+.pse-nm span{font-size:13px}
+.pse-sl{display:flex;gap:12px;justify-content:center;padding-top:10px;border-top:2px solid rgba(255,255,255,.15);width:100%;max-width:380px}
+.pses{width:100px;display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 4px 10px;background:none;border:0;border-bottom:4px solid transparent;color:#cfd8ec;font-family:inherit;cursor:pointer}
+.pses .psi{width:76px;height:76px;filter:drop-shadow(0 4px 0 rgba(0,0,0,.4))}
+.pses b{font-weight:400;font-size:14px}
+.pses.on{border-bottom-color:var(--lime);background:linear-gradient(180deg,transparent,rgba(200,242,58,.16))}
+.pses.on b{color:var(--lime)}
+.pseplus{width:76px;height:76px;display:grid;place-items:center;font-size:40px;color:#fff;background:linear-gradient(160deg,#3a4a66,#141c2e);clip-path:polygon(50% 3%,93% 21%,93% 60%,50% 98%,7% 60%,7% 21%);box-shadow:inset 0 0 0 3px #8ea2c4}
+.pses.empty .pseplus{background:linear-gradient(160deg,#5a6c8c,#1c2638)}
+.pse-info{display:flex;align-items:center;gap:10px;min-height:52px;max-width:380px;width:100%;font-size:14px}
+.pse-d{flex:1;display:flex;flex-direction:column;gap:2px}
+.pse-d b{font-weight:400;font-size:17px}
+.pse-d span{font-size:13px;color:#cfd8ec;line-height:1.35}
+.pse-r{padding:14px 16px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,rgba(10,20,40,.92),rgba(5,10,24,.92));border-color:#2fd3c2}
+.pse-rh{display:flex;align-items:baseline;gap:10px}
+.pse-rh b{font-weight:400;font-size:20px}
+.pse-rh span{font-size:13px}
+.psegh{display:flex;align-items:center;gap:10px;font-family:var(--px);font-size:11px;color:#9fb0cc}
+.psegh::before,.psegh::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.2)}
+.pseg{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px}
+.psei{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 6px;background:rgba(255,255,255,.04);border:2px solid transparent;border-radius:12px;color:inherit;font-family:inherit;cursor:pointer}
+.psei:hover{background:rgba(255,255,255,.08)}
+.psei .psi{width:78px;height:78px;filter:drop-shadow(0 4px 0 rgba(0,0,0,.4))}
+.psei i{position:absolute;right:10px;top:56px;font-style:normal;font-size:17px;color:#fff;text-shadow:2px 2px 0 #000}
+.psei b{font-weight:400;font-size:14px;text-align:center}
+.psei small{font-size:11px;color:var(--lime)}
+.psei.cur{border-color:var(--lime);background:rgba(200,242,58,.1)}
+.psei:disabled{opacity:.4;cursor:default}
+.psei.t0 .psi{animation:pgglow 1s steps(3) infinite alternate}
+.pseempty{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 0}
 #banBlock{position:fixed;inset:0;z-index:2147483646;background:rgba(3,6,18,.96);display:grid;place-items:center;text-align:center;padding:24px}
 #banBlock div{display:flex;flex-direction:column;gap:12px;align-items:center;max-width:520px;padding:26px 30px;border:3px solid var(--pink);background:#0b1430;box-shadow:6px 6px 0 #000}
 #banBlock b{font-size:28px;font-weight:400;color:var(--pink)}
@@ -2314,7 +2353,7 @@ function render(){
   ensureDaily();mkUpdate();checkListings();renderTop();
   const navMap={home:'home',missions:'missions',login:'missions',market:'market',exchange:'exchange',shop:'shop',rmx:'rmx'};
   document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===navMap[UI.view]));
-  const V={friends:vFriends,home:vHome,team:vTeam,squad:vSquad,players:vPlayers,mode:vMode,event:vEvent,rmx:vRmx,rkrew:vRkRew,locker:vLocker,badge:vBadge,style:vStyle,play:vPlay,market:vMarket,exchange:vExchange,shop:vShop,missions:vMissions,login:vMissions,pass:vPass}[UI.view]||vHome;
+  const V={friends:vFriends,home:vHome,team:vTeam,squad:vSquad,players:vPlayers,mode:vMode,event:vEvent,rmx:vRmx,rkrew:vRkRew,locker:vLocker,badge:vBadge,style:vStyle,play:vPlay,market:vMarket,exchange:vExchange,shop:vShop,missions:vMissions,login:vMissions,pass:vPass,psedit:vPsEdit}[UI.view]||vHome;
   $('#view').innerHTML=V();updNav();
   save();
 }
@@ -3104,6 +3143,8 @@ function vExchange(){
       <button class="btn sm ${x.id==='rep'?'gold':''}" data-a="exch" data-v="${x.id}" ${have<x.need?'disabled':''}>교환</button></div>`}).join('')}
     <div class="panel exrow"><div class="need"><i class="chipr" style="background:linear-gradient(135deg,#9aa4b5,#ff9f43,#3d7bff)"></i><div><div style="font-size:21px">아무 선수 1장</div><div class="muted">선수 가치에 따라 BP 지급 · 강화 +0 선수만</div></div></div>
       <span class="arrow">▶</span><div><span class="rw"><i class="bp"></i>BP</span></div><button class="btn sm" data-a="exone" ${freeCards().some(c=>!c.enh)?'':'disabled'}>선수 고르기</button></div>
+    <div class="panel exrow"><div class="need"><i class="chipr" style="background:linear-gradient(135deg,#ff3bd4,#8a4bff,#3d7bff,#d8e4f0)"></i><div><div style="font-size:21px">플레이스타일 1개</div><div class="muted">보관함에 있는 것만 · 보유 ${typeof psCount==='function'?psCount():0}개</div></div></div>
+      <span class="arrow">▶</span><div><span class="rw"><i class="bp"></i>${typeof PS_EX!=='undefined'?PS_EX:30} BP</span></div><button class="btn sm" data-a="psex" ${typeof psCount==='function'&&psCount()?'':'disabled'}>고르기</button></div>
   </div>`;
 }
 function doExchange(id){
@@ -3639,7 +3680,7 @@ document.addEventListener('click',e=>{
     case'cmplink':UI.cmpLink=!UI.cmpLink;if(UI.cmpLink&&cmpSide(0)&&cmpSide(1))UI.cmpOpt[1]={...UI.cmpOpt[0]};render();break;
     case'pdetail':{const i=v.indexOf(':');openPDV(v.slice(0,i),v.slice(i+1));break}
     case'pdtab':UI.pdv.tab=v;drawPDV();break;
-    case'psfree':case'psbuy':case'psopen':case'psok':case'pstoshop':case'psequip':case'psoff':psAct(a,v);break;
+    case'psfree':case'psbuy':case'psopen':case'psok':case'pstoshop':case'psequip':case'psoff':case'pseopen':case'psenav':case'psesl':case'psepick':case'pseoff':case'psex':case'psexgo':psAct(a,v);break;
     case'pdbase':UI.pdv.base=!UI.pdv.base;drawPDV();break;
     case'pdclose':closePDV();break;
     case'xfpick':UI.xf.dst=+v;drawXfer();break;
@@ -4309,7 +4350,7 @@ const PS=[
 ];
 const PSI=Object.fromEntries(PS.map(x=>[x.id,x]));
 const PS_TIER=[{n:'LEGEND',a:'#ff3bd4',b:'#ffd23f',k:'#5a0a4a'},{n:'EPIC',a:'#c08bff',b:'#6a2bd0',k:'#2a0f5a'},{n:'RARE',a:'#7fc8ff',b:'#2a6bd8',k:'#0a2a5a'},{n:'NORMAL',a:'#d8e4f0',b:'#7c90a8',k:'#1e2a3a'}];
-const PS_COST=50;
+const PS_COST=50,PS_EX=30;
 const PSX=(p,id)=>!!(p&&p.c&&p.c.ps&&p.c.ps.indexOf(id)>=0);
 const PSG={
   zone:'<path d="M50 20c11 14 19 22 16 37-2 11-9 18-16 18-11 0-18-8-17-19 1-8 8-13 10-21 4 6 6 10 8 12 2-9 0-17-1-27z" fill="#fff"/><path d="M50 50c5 6 7 10 6 15-1 4-3 6-6 6-4 0-7-3-6-7 0-4 4-6 6-14z" fill="var(--pc)"/>',
@@ -4391,22 +4432,54 @@ function vPsShop(){
       </div></div>
     <div class="panel pad16"><div class="h" style="margin:0">보유 플레이스타일 ${psCount()}개</div>
       ${inv.length?`<div class="psinv">${inv.map(x=>`<div class="psit t${x.t}">${psIcon(x.id)}<b>${esc(x.n)}</b><i>x${R.inv[x.id]}</i></div>`).join('')}</div>`:'<p class="muted" style="margin:0">아직 없어요. 캡슐을 뽑아 보세요.</p>'}
-      <p class="muted" style="margin:8px 0 0;font-size:13px">선수 카드 → 플레이스타일 탭에서 달 수 있어요. 노멀 0칸 · 시즌 카드 1칸 · 스페셜 2칸 · RM 아이콘 120~130 1칸, 135~145 2칸, 150 3칸. 카드를 팔거나 재료로 쓰면 달려 있던 플레이스타일은 보관함으로 돌아와요.</p></div>`;
+      <div class="row" style="margin-top:8px;gap:8px"><button class="btn sm gold" data-a="pseopen" data-v="">플레이스타일 장착하러 가기</button><button class="btn sm ghost" data-a="psex">BP로 바꾸기 (1개 ${PS_EX} BP)</button></div>
+      <p class="muted" style="margin:8px 0 0;font-size:13px">선수 카드 → 플레이스타일 탭에서도 갈 수 있어요. 노멀 0칸 · 시즌 카드 1칸 · 스페셜 2칸 · RM 아이콘 120~130 1칸, 135~145 2칸, 150 3칸. 카드를 팔거나 재료로 쓰면 달려 있던 플레이스타일은 보관함으로 돌아와요.</p></div>`;
 }
 function psTab(x){
   const {c,p}=x;const n=psSlots(c||p);
   const why=p.cls==='normal'?'노멀 카드는 플레이스타일을 달 수 없어요.':p.cls==='rmi'?`RM 아이콘은 레벨에 따라 칸이 늘어나요 · 120~130 1칸 · 135~145 2칸 · 150 3칸 (지금 ${n}칸)`:p.special?'스페셜 카드는 2칸이에요.':'시즌 카드는 1칸이에요.';
   if(!c)return `<div class="pv-trade"><p class="muted" style="margin:0">${why}</p><p class="muted" style="margin:0">보유한 카드에만 달 수 있어요.</p></div>`;
   if(!n)return `<div class="pv-trade"><p class="muted" style="margin:0">${why}</p></div>`;
-  const on=psOf(c);const R=psS();
-  const slots=Array.from({length:n},(_,i)=>{const id=on[i];if(!id)return `<div class="psslot empty"><div class="psbig"><i>+</i></div><div class="grow"><b>빈 칸</b><span class="muted">아래 보관함에서 골라 달아요</span></div></div>`;
-    const s=PSI[id];return `<div class="psslot t${s.t}"><div class="psbig">${psIcon(id)}</div><div class="grow"><b>${esc(s.n)} <em>${PS_TIER[s.t].n}</em></b><span class="muted">${esc(s.d)}</span></div><button class="btn sm ghost" data-a="psoff" data-v="${c.uid}|${i}">빼기</button></div>`}).join('');
-  const full=on.length>=n;
-  const can=PS.filter(s=>R.inv[s.id]>0);
-  return `<div class="pstab"><p class="muted" style="margin:0;font-size:14px">${why}</p>${slots}
-    <div class="h" style="margin:4px 0 0">보관함</div>
-    ${can.length?`<div class="psinv">${can.map(s=>{const dup=on.includes(s.id);return `<button class="psit t${s.t}" data-a="psequip" data-v="${c.uid}|${s.id}" ${full||dup?'disabled':''} title="${esc(s.d)}">${psIcon(s.id)}<b>${esc(s.n)}</b><i>x${R.inv[s.id]}</i>${dup?'<small>장착 중</small>':''}</button>`}).join('')}</div>`:'<p class="muted" style="margin:0">보관함이 비어 있어요. 상점 → 플레이스타일에서 뽑을 수 있어요.</p><button class="btn sm" data-a="pstoshop">상점으로</button>'}
-    ${full&&can.length?'<p class="muted" style="margin:0;font-size:13px">칸이 다 찼어요. 바꾸려면 먼저 빼 주세요.</p>':''}</div>`;
+  const on=psOf(c);
+  const slots=Array.from({length:n},(_,i)=>{const id=on[i];if(!id)return `<div class="psslot empty"><div class="psbig"><i>+</i></div><div class="grow"><b>빈 슬롯</b><span class="muted">플레이스타일 교체에서 달 수 있어요</span></div></div>`;
+    const s=PSI[id];return `<div class="psslot t${s.t}"><div class="psbig">${psIcon(id)}</div><div class="grow"><b>${esc(s.n)} <em>${PS_TIER[s.t].n}</em></b><span class="muted">${esc(s.d)}</span></div></div>`}).join('');
+  return `<div class="pstab"><p class="muted" style="margin:0;font-size:14px">${why}</p>${slots}<button class="btn gold wide" data-a="pseopen" data-v="${c.uid}">플레이스타일 교체</button></div>`;
+}
+function psCards(){
+  const ord=u=>{const i=S.lineup.indexOf(u);if(i>=0)return i;const j=S.bench.indexOf(u);return j>=0?10+j:100};
+  return S.cards.filter(c=>psSlots(c)>0).sort((a,b)=>ord(a.uid)-ord(b.uid)||cardOvr(b)-cardOvr(a));
+}
+function vPsEdit(){
+  const R=psS();const list=psCards();
+  if(!list.length)return subHead('플레이스타일 교체')+`<div class="panel pad16"><p class="muted" style="margin:0">플레이스타일을 달 수 있는 카드가 없어요. 시즌 카드(1칸)·스페셜 카드(2칸)·RM 아이콘이 필요해요.</p></div>`;
+  UI.pse=UI.pse||{};let c=card(UI.pse.uid);if(!c||psSlots(c)<1){c=list[0];UI.pse.uid=c.uid;UI.pse.slot=0}
+  const n=psSlots(c);const on=psOf(c);if(UI.pse.slot==null||UI.pse.slot>=n)UI.pse.slot=on.length<n?on.length:0;const sel=UI.pse.slot;
+  const idx=list.findIndex(x=>x.uid===c.uid);const w=where(c.uid);
+  const slots=Array.from({length:n},(_,i)=>{const id=on[i];return `<button class="pses ${i===sel?'on':''} ${id?'t'+PSI[id].t:'empty'}" data-a="psesl" data-v="${i}">${id?psIcon(id):'<span class="pseplus">+</span>'}<b>${id?esc(PSI[id].n):'장착 슬롯'}</b></button>`}).join('');
+  const cur=on[sel];
+  const own=PS.filter(x=>R.inv[x.id]>0);
+  const grid=own.length?PS_TIER.map((T,t)=>{const l=own.filter(x=>x.t===t);if(!l.length)return '';return `<div class="psegh"><span>${T.n}</span></div><div class="pseg">${l.map(x=>{const dup=on.includes(x.id)&&on[sel]!==x.id;return `<button class="psei t${x.t} ${cur===x.id?'cur':''}" data-a="psepick" data-v="${x.id}" ${dup?'disabled':''}>${psIcon(x.id)}<i>x${R.inv[x.id]}</i><b>${esc(x.n)}</b>${dup?'<small>장착 중</small>':''}</button>`}).join('')}</div>`}).join(''):`<div class="pseempty"><p class="muted">보관함이 비어 있어요.</p><button class="btn gold" data-a="pstoshop">플레이스타일 뽑으러 가기</button></div>`;
+  return subHead('플레이스타일 교체',`<span class="cur"><i class="bp"></i>${fmtBP(S.bp)}</span>`)+`<div class="pse">
+    <div class="pse-l">
+      <div class="pse-cw"><button class="psenav" data-a="psenav" data-v="-1" aria-label="이전 카드" ${list.length<2?'disabled':''}>‹</button><div class="pse-c">${cardHTML(c)}</div><button class="psenav" data-a="psenav" data-v="1" aria-label="다음 카드" ${list.length<2?'disabled':''}>›</button></div>
+      <div class="pse-nm"><b>${esc(P(c).name)}</b><span class="muted">${w?(w.t==='lineup'?'선발':w.t==='bench'?'벤치':'판매 중'):'보관'} · ${idx+1}/${list.length} · 슬롯 ${on.length}/${n}</span></div>
+      <div class="pse-sl">${slots}</div>
+      <div class="pse-info">${cur?`<div class="pse-d"><b>${esc(PSI[cur].n)}</b><span>${esc(PSI[cur].d)}</span></div><button class="btn sm ghost" data-a="pseoff">빼기</button>`:`<span class="muted">${sel+1}번 슬롯을 골랐어요 · 오른쪽에서 달 플레이스타일을 눌러요</span>`}</div>
+    </div>
+    <div class="panel pse-r"><div class="pse-rh"><b>보관함</b><span class="muted">${psCount()}개 · 누르면 ${sel+1}번 슬롯에 장착</span></div>${grid}</div>
+  </div>`;
+}
+function psEquipTo(c,slot,id){
+  const R=psS();if(!(R.inv[id]>0))return false;const n=psSlots(c);const l=(S.psOn[c.uid]||[]).slice(0,n);
+  if(l.includes(id)&&l[slot]!==id)return false;if(l[slot]===id)return false;
+  const old=l[slot];if(slot>=l.length)l.push(id);else l[slot]=id;
+  R.inv[id]--;if(!R.inv[id])delete R.inv[id];if(old)R.inv[old]=(R.inv[old]||0)+1;
+  S.psOn[c.uid]=l;return true;
+}
+function psExOpen(){
+  const R=psS();const own=PS.filter(x=>R.inv[x.id]>0);
+  openModal(`<div class="mh"><h3>플레이스타일 → BP</h3><button class="icon-btn" data-a="close">X</button></div><p class="muted" style="margin:0">보관함의 플레이스타일 1개를 누를 때마다 ${PS_EX} BP로 바꿔요. 카드에 달려 있는 건 바뀌지 않아요.</p>
+    ${own.length?`<div class="pseg">${own.map(x=>`<button class="psei t${x.t}" data-a="psexgo" data-v="${x.id}">${psIcon(x.id)}<i>x${R.inv[x.id]}</i><b>${esc(x.n)}</b><small>+${PS_EX} BP</small></button>`).join('')}</div>`:'<p class="muted">바꿀 플레이스타일이 없어요.</p>'}`,true);
 }
 function psAct(a,v){
   const R=psS();
@@ -4415,6 +4488,13 @@ function psAct(a,v){
   if(a==='psopen'){psOpen();return}
   if(a==='psok'){UI.gc={ph:'idle'};closeModal();render();return}
   if(a==='pstoshop'){UI.pdv=null;closeModal();UI.scat='ps';go('shop');return}
+  if(a==='pseopen'){UI.pse={uid:+v,slot:null};UI.pdv=null;closeModal();go('psedit');return}
+  if(a==='psenav'){const l=psCards();if(!l.length)return;let k=l.findIndex(x=>x.uid===(UI.pse&&UI.pse.uid));k=(k+(+v)+l.length)%l.length;UI.pse={uid:l[k].uid,slot:null};sfx('flip');render();return}
+  if(a==='psesl'){UI.pse.slot=+v;render();return}
+  if(a==='psepick'){const c=card(UI.pse&&UI.pse.uid);if(!c)return;const sl=UI.pse.slot||0;if(psEquipTo(c,sl,v)){save();sfx('good');toast(`${PSI[v].n} 장착`);const on=psOf(c);const n=psSlots(c);if(on.length<n)UI.pse.slot=on.length;render()}return}
+  if(a==='pseoff'){const c=card(UI.pse&&UI.pse.uid);if(!c)return;const l=S.psOn[c.uid]||[];const id=l[UI.pse.slot];if(!id)return;l.splice(UI.pse.slot,1);if(l.length)S.psOn[c.uid]=l;else delete S.psOn[c.uid];R.inv[id]=(R.inv[id]||0)+1;UI.pse.slot=l.length;save();sfx('flip');render();return}
+  if(a==='psex'){psExOpen();return}
+  if(a==='psexgo'){if(!(R.inv[v]>0))return;R.inv[v]--;if(!R.inv[v])delete R.inv[v];S.bp+=PS_EX;save();renderTop();sfx('good');toast(`${PSI[v].n} → BP +${PS_EX}`);psExOpen();if(UI.view==='exchange')render();return}
   if(a==='psequip'){const [u,id]=String(v).split('|');const c=card(+u);if(!c||!(R.inv[id]>0))return;const l=S.psOn[c.uid]||[];if(l.length>=psSlots(c)||l.includes(id))return;
     R.inv[id]--;if(!R.inv[id])delete R.inv[id];S.psOn[c.uid]=l.concat(id);save();sfx('good');toast(`${PSI[id].n} 장착`);drawPDV();return}
   if(a==='psoff'){const [u,i]=String(v).split('|');const c=card(+u);const l=(c&&S.psOn[c.uid])||[];const id=l[+i];if(!id)return;l.splice(+i,1);if(l.length)S.psOn[c.uid]=l;else delete S.psOn[c.uid];R.inv[id]=(R.inv[id]||0)+1;save();sfx('flip');drawPDV();return}
