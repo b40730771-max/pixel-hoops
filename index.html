@@ -4314,9 +4314,9 @@ async function rkLoad(m,full){
   try{
     if(ONL.lastPush<Date.now()-20000)await onlPush();
     const top=await ONL.sb.from('profiles').select(`id,name,abbr,ovr,${c}`).order(c,{ascending:false}).order('ovr',{ascending:false}).limit(full?50:3);if(top.error)throw top.error;
-    const mine=rkVal(m);const ab=await ONL.sb.from('profiles').select('id',{count:'exact',head:true}).gt(c,mine);
+    const my=await ONL.sb.from('profiles').select(c).eq('id',ONL.user.id).maybeSingle();const mine=my.data&&my.data[c]!=null?+my.data[c]:rkVal(m);const ab=await ONL.sb.from('profiles').select('id',{count:'exact',head:true}).gt(c,mine);
     const all=await ONL.sb.from('profiles').select('id',{count:'exact',head:true});
-    UI.rkb[k]={t:Date.now(),list:(top.data||[]).map(p=>({id:p.id,name:p.name,abbr:p.abbr,ovr:p.ovr,v:p[c]||0})),me:ab.error?null:(ab.count||0)+1,n:all.error?null:all.count};
+    UI.rkb[k]={t:Date.now(),mine,list:(top.data||[]).map(p=>({id:p.id,name:p.name,abbr:p.abbr,ovr:p.ovr,v:p[c]||0})),me:ab.error?null:(ab.count||0)+1,n:all.error?null:all.count};
   }catch(e){UI.rkb[k]={t:Date.now(),err:/r_(chance|full|auto)|column/.test((e&&e.message)||'')?'sql':onlErr(e)}}
   if(full){if(UI.rkOpen===m)drawRkBoard(m)}else if(UI.view==='mode'&&UI.mode===m&&$('#modal').hidden)render();
 }
@@ -4334,7 +4334,7 @@ function drawRkBoard(m){
   const b=(UI.rkb||{})[m+'F'];
   const rows=!b||(!b.list&&!b.err)?'<p class="muted">불러오는 중…</p>':b.err?`<p class="muted">${b.err==='sql'?'Supabase SQL Editor에서 랭킹용 SQL을 실행하면 순위가 보여요.':esc(b.err)}</p>`
     :`<div class="rklist">${b.list.map((p,i)=>{const [d,pt]=rkDiv(p.v);const me=p.id===ONL.user.id;return `<div class="rkrow ${me?'me':''} ${i<3?'top':''}"><b class="no">${i+1}</b>${rankBadge(d)}<div class="grow"><div class="nm">${esc(p.name)} <span class="muted">${esc(p.abbr||'')}</span></div><div class="muted" style="font-size:13px">${RANKS[d]} · 승점 ${pt} · OVR ${p.ovr||'-'}</div></div></div>`}).join('')||'<p class="muted">아직 랭킹에 오른 플레이어가 없어요.</p>'}</div>`;
-  const [md,mp]=rkDiv(rkVal(m));
+  const [md,mp]=rkDiv(b&&b.mine!=null?b.mine:rkVal(m));
   openModal(`<div class="mh"><h3>${MODES[m].n} 플레이어 랭킹</h3><button class="icon-btn" data-a="close">X</button></div>
     <div class="rkrow me mine"><b class="no">${b&&b.me?'#'+b.me:'-'}</b>${rankBadge(md)}<div class="grow"><div class="nm">${esc(ONL.name)} <span class="muted">나</span></div><div class="muted" style="font-size:13px">${RANKS[md]} · 승점 ${mp}${b&&b.n?` · 전체 ${b.n}명`:''}</div></div></div>
     ${rows}`,true);
