@@ -3322,14 +3322,16 @@ const u8e=(u8)=>{let s='';for(let i=0;i<u8.length;i+=0x8000)s+=String.fromCharCo
 const u8d=(t)=>{const s=atob(t);const u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u};
 async function zstream(u8,C){const st=new Blob([u8]).stream().pipeThrough(new C('gzip'));return new Uint8Array(await new Response(st).arrayBuffer())}
 async function saveCode(){
-  save();const js=JSON.stringify(S);const raw=new TextEncoder().encode(js);
+  myFid();save();const js=JSON.stringify(S);const raw=new TextEncoder().encode(js);
   try{if(typeof CompressionStream!=='undefined')return SV_PRE+'g.'+u8e(await zstream(raw,CompressionStream))}catch(e){}
   return SV_PRE+'j.'+u8e(raw);
 }
 async function readSaveCode(t){
   t=(t||'').replace(/\s+/g,'');const i=t.indexOf(SV_PRE);if(i<0)throw 0;t=t.slice(i+SV_PRE.length);
   let u8;if(t.startsWith('g.')){if(typeof DecompressionStream==='undefined')throw 1;u8=await zstream(u8d(t.slice(2)),DecompressionStream)}else if(t.startsWith('j.'))u8=u8d(t.slice(2));else throw 0;
-  const o=JSON.parse(new TextDecoder().decode(u8));if(!o||typeof o!=='object'||!o.name||!Array.isArray(o.cards))throw 0;return o;
+  const txt=new TextDecoder().decode(u8);const o=JSON.parse(txt);if(!o||typeof o!=='object'||!o.name||!Array.isArray(o.cards))throw 0;
+  if(!o.fid){try{const h=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(txt));o.fid='H'+[...new Uint8Array(h)].slice(0,6).map(b=>b.toString(16).padStart(2,'0')).join('')}catch(e){}}
+  return o;
 }
 let SVIMP=null;
 async function openSaveExp(){
@@ -3355,8 +3357,9 @@ async function svCheck(){
     info.innerHTML=`<b style="color:var(--lime)">${esc(o.name)}</b> · 카드 ${o.cards.length}장 · ${(o.gp||0).toLocaleString()} GP <button class="btn sm pink" data-a="svgo">이 데이터로 바꾸기</button>`;
   }catch(e){SVIMP=null;info.textContent=e===1?'이 브라우저는 압축 코드를 못 읽어요':'올바른 저장 코드가 아니에요'}
 }
-function svApply(){
+async function svApply(){
   if(!SVIMP)return;
+  if(typeof rkCanOnline==='function'&&rkCanOnline()){const c=await onlClaim(SVIMP.fid,true);if(c!=='ok'){toast(c==='used'?'이미 사용된 저장 코드예요':'저장 코드를 확인하지 못했어요');return}ONL.claimFid=SVIMP.fid}
   try{localStorage.setItem(SAVE_KEY,JSON.stringify(SVIMP))}catch(e){toast('저장 공간에 쓰지 못했어요');return}
   S=defaultState();load();if(typeof processOrders==='function'){try{processOrders()}catch(e){}}save();SVIMP=null;closeModal();UI.view='home';UI.prev=[];render();toast('저장 데이터를 불러왔어요');
 }
@@ -4167,7 +4170,7 @@ function onlErr(e){const m=(e&&(e.message||e.msg||e.error_description))||String(
 function onlSchedule(){if(!ONL.user)return;clearTimeout(ONL.pushT);ONL.pushT=setTimeout(onlPush,2500)}
 async function onlPush(){
   if(!ONL.user||!ONL.sb)return;clearTimeout(ONL.pushT);
-  try{if(await onlAdmCheck())return;S.name=ONL.name;const now=new Date().toISOString();
+  try{if(await onlAdmCheck())return;await onlOwnClaim();S.name=ONL.name;const now=new Date().toISOString();
     const r1=await ONL.sb.from('saves').upsert({id:ONL.user.id,data:S,updated_at:now});if(r1.error)throw r1.error;
     let deck='';try{deck=myCode()}catch(e){}
     const row={id:ONL.user.id,name:ONL.name,abbr:S.abbr,ovr:teamOvr()||0,lvl:S.lvl||1,wins:(S.rec&&S.rec.w)||0,losses:(S.rec&&S.rec.l)||0,deck,updated_at:now};
@@ -4247,8 +4250,10 @@ function chooseStart(){
     <button class="panel stbtn" data-a="ststart" data-v="new"><b>새로 시작</b><span>새 구단을 창단해요</span></button>`);
 }
 async function stStart(v){
-  if(v==='local'){S.name=ONL.name;save();await onlPush();closeModal();UI.view='home';render();toast('이 기기 기록을 서버에 올렸어요');ONL.boot0&&ONL.boot0();return}
-  if(v==='code'){try{const o=await readSaveCode($('#stCode').value);onlApply(o);await onlPush();closeModal();UI.view='home';render();toast('저장 코드로 시작했어요');ONL.boot0&&ONL.boot0()}catch(e){const m=$('#stMsg');if(m)m.textContent='올바른 저장 코드가 아니에요'}return}
+  if(v==='local'){const c=await onlClaim(myFid(),false);if(c!=='ok'){toast(c==='used'?'이 기기 기록은 이미 다른 계정에서 쓰고 있어요':'기록을 확인하지 못했어요 · 잠시 후 다시 해 주세요');return}ONL.claimFid=S.fid;S.name=ONL.name;save();await onlPush();closeModal();UI.view='home';render();toast('이 기기 기록을 서버에 올렸어요');ONL.boot0&&ONL.boot0();return}
+  if(v==='code'){let o;try{o=await readSaveCode($('#stCode').value)}catch(e){const m=$('#stMsg');if(m)m.textContent='올바른 저장 코드가 아니에요';return}
+    const c=await onlClaim(o.fid,true);if(c!=='ok'){const m=$('#stMsg');if(m)m.textContent=c==='used'?'이미 사용된 저장 코드예요':'저장 코드를 확인하지 못했어요 · 잠시 후 다시 해 주세요';return}
+    ONL.claimFid=o.fid;try{onlApply(o);await onlPush();closeModal();UI.view='home';render();toast('저장 코드로 시작했어요');ONL.boot0&&ONL.boot0()}catch(e){const m=$('#stMsg');if(m)m.textContent='올바른 저장 코드가 아니에요'}return}
   try{localStorage.removeItem(SAVE_KEY)}catch(e){}S=defaultState();openOnboard();const i=$('#obName');if(i){i.value=ONL.name;i.readOnly=true}
 }
 async function onlLogout(){onlPush&&await onlPush();try{await ONL.sb.auth.signOut()}catch(e){}ONL.user=null;ONL.name='';closeModal();openAuth('login','로그아웃했어요')}
@@ -4385,6 +4390,23 @@ async function frRefresh(){
   try{const r=await ONL.sb.from('profiles').select('id,deck').in('id',fs.map(f=>f.uid));if(r.error)return;let ch=0;
     for(const p of r.data||[]){const f=fs.find(x=>x.uid===p.id);const q=p.deck&&parseCode(p.deck);if(f&&q&&!q.err){Object.assign(f,q.f,{uid:p.id,upd:Date.now(),w:f.w,ls:f.ls});ch++}}
     if(ch){save();if(UI.view==='friends'&&!M&&$('#modal').hidden)render()}}catch(e){}
+}
+
+async function onlClaim(fid,strict){
+  if(!fid||!ONL.user||!ONL.sb)return 'err';
+  try{const r=await ONL.sb.from('save_claims').insert({fid:String(fid),owner:ONL.user.id});
+    if(!r.error)return 'ok';
+    if(!/23505|duplicate|unique/i.test((r.error.code||'')+' '+(r.error.message||'')))return 'err';
+    if(strict)return 'used';
+    const q=await ONL.sb.from('save_claims').select('owner').eq('fid',String(fid)).maybeSingle();
+    return q.data&&q.data.owner===ONL.user.id?'ok':'used';
+  }catch(e){return 'err'}
+}
+async function onlOwnClaim(){
+  const f=myFid();if(ONL.claimFid===f)return;
+  const c=await onlClaim(f,false);
+  if(c==='ok'||c==='err'){ONL.claimFid=f;return}
+  if(c==='used'){S.fid=Math.random().toString(36).slice(2,8).toUpperCase();try{localStorage.setItem(SAVE_KEY,JSON.stringify(S))}catch(e){}const c2=await onlClaim(S.fid,false);if(c2==='ok')ONL.claimFid=S.fid}
 }
 let AC=null;
 function audioInit(){if(AC)return;try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}
