@@ -1587,6 +1587,7 @@ table.bx td{text-align:right;padding:5px 4px;border-bottom:1px solid rgba(142,16
 .rmtabs button.on{background:linear-gradient(180deg,#5a4210,#1a1406);border-color:#f2cf6a;color:#ffe9a8}
 .rmcur{display:flex;gap:12px;font-size:15px;white-space:nowrap}
 .rmcur span{display:flex;align-items:center;gap:5px}
+.rmcur .spover b{color:var(--pink)}
 .rmcur b{font-family:var(--px);font-size:12px;font-weight:400;color:#ffe9a8}
 .rmi-ct,.rmi-tr,.rmi-fn{display:inline-block;width:20px;height:20px;flex:none;vertical-align:middle}
 .rmi-ct{background:radial-gradient(circle at 50% 60%,#1a1406 0 30%,transparent 32%),radial-gradient(circle,#f2cf6a 0 62%,#8a5a10 64% 70%,transparent 72%)}
@@ -3434,12 +3435,12 @@ document.addEventListener('click',e=>{
     case'mplay':{const m=UI.mode||'chance';const r=S.rank[m];if(S.lineup.some(u=>!u)){toast('선발 5명을 모두 채워 주세요');go('squad');break}if(typeof mmOk==='function'&&mmOk()){mmStart(m);break}prepMatch({kind:'rank',mode:m,modeFixed:true,opp:genOpp(rankOvr(r.div)),label:`${MODES[m].n} · ${RANKS[r.div]}`});break}
     case'mquick':{const m=UI.mode||'chance';prepMatch({kind:'quick',mode:m,modeFixed:true,opp:genOpp(teamOvr()||60),label:`${MODES[m].n} · 비랭크`});break}
     case'pvwalk':{if(!woonnBP())break;const [pid,ev]=String(v).split('@');previewWalk({pid,evo:+ev||0,enh:0});break}
-    case'authmode':case'authgo':case'authopen':case'authskip':case'ststart':case'logout':case'syncnow':case'plsearch':case'pladd':case'pldeck':case'rkboard':case'mmcancel':case'admopen':case'admban':case'admunban':case'admtab':case'admfill':onlAct(a,v);break;
+    case'authmode':case'authgo':case'authopen':case'authskip':case'ststart':case'logout':case'syncnow':case'plsearch':case'pladd':case'pldeck':case'rkboard':case'mmcancel':case'admopen':case'admbp':case'admban':case'admunban':case'admtab':case'admfill':onlAct(a,v);break;
     case'rmtab':UI.rmtab=v;render();break;
     case'rmsel':UI.rmsel=v;UI.rmtab='up';render();$('#zoomer').scrollTop=0;break;
     case'rmpick':UI.rmsel=v;render();break;
     case'giftgo':{const c=card(+v);closeModal();if(c)showReveal([c],'관리자의 선물','#d9a43a',null,1);break}
-    case'rmswpick':case'rmswp1':case'rmswp2':case'rmget':case'rmrand':case'rmup':case'rmret1':case'rmret2':case'rmctn':case'rmctpick':case'rmctgo':case'rmfanr':case'rmfans':case'rmfango':rmiAct(a,v);break;
+    case'rmswpick':case'rmswp1':case'rmswp2':case'rmget':case'rmrand':case'rmup':case'rmret1':case'rmret2':case'rmctn':case'rmctpick':case'rmctgo':case'rmfanr':case'rmfans':case'rmfango':case'rmf2c':case'rmf2cgo':rmiAct(a,v);break;
     case'evtab':UI.evtab=v;render();break;
     case'evcls':UI.evcls=v;render();break;
     case'rkrew':UI.rkSel=null;go('rkrew');break;
@@ -4041,7 +4042,7 @@ function previewWalk(c){
   const e=poEl();e.hidden=false;audioInit();sfx('pack');poWalk(0);
 }
 
-const RMI_SWAP=5,RMI_FAN=[1,2,3,4,5,6],RMI_CT=[3,5,7,9,11,13],RMI_GET_CT=5,RMI_GET_FAN=2,RMI_RAND_CT=15,FAN_CT=3,FAN_TR=5;
+const RMI_SP_MAX=90,RMI_UP_CT=5,RMI_UP_EVO=5,RMI_SWAP=5,RMI_FAN=[1,2,3,4,5,6],RMI_CT=[3,5,7,9,11,13],RMI_GET_CT=5,RMI_GET_FAN=2,RMI_RAND_CT=15,FAN_CT=3,FAN_TR=5;
 function rmiS(){if(!S.rmi)S.rmi={ct:0,tr:0,fan:{}};const F=S.rmi.fan;for(const k in F)if(!Array.isArray(F[k]))F[k]=[+F[k]||0];return S.rmi}
 function fanArr(n){const F=rmiS().fan;if(!F[n])F[n]=[];const a=F[n];while(a.length<=EVO_MAX)a.push(0);return a}
 function fanCount(n,minE){const a=rmiS().fan[n]||[];let t=0;for(let e=minE||0;e<a.length;e++)t+=a[e]||0;return t}
@@ -4049,24 +4050,27 @@ function fanAdd(n,e,k){fanArr(n)[e||0]+=k==null?1:k}
 function fanTake(n,k,minE){const a=fanArr(n);for(let e=minE||0;e<a.length&&k>0;e++){const t=Math.min(a[e],k);a[e]-=t;k-=t}}
 const fanTotal=()=>RMI_NAMES.reduce((t,n)=>t+fanCount(n),0);
 const rmiLvOf=c=>RMI_LV.indexOf(P(c).ovr);
+const rmiSpUsed=()=>S.cards.filter(c=>P(c).cls==='rmi').reduce((t,c)=>t+(RMI_SP[P(c).name]||0),0);
+const rmiSpOk=(n,minus)=>rmiSpUsed()-(minus||0)+(RMI_SP[n]||0)<=RMI_SP_MAX;
 const rmiOwned=n=>S.cards.filter(c=>P(c).cls==='rmi'&&P(c).name===n).sort((a,b)=>P(b).ovr-P(a).ovr);
 function fanHTML(n,cnt,e){const p=DBI[rmiId(n,0)];return `<div class="fanc"><div class="fc-in"><b>${50+3*(e||0)}</b>${e?`<i class="fce evo ${evoTier(e)}">${e}</i>`:''}<span class="pos">${p.pos}</span><img class="pix" src="${portrait(p)}" alt=""><em>${esc(n)}</em><small>FAN</small></div>${cnt!=null?`<i class="fcn">x${cnt}</i>`:''}</div>`}
 function rmiDots(lv){return `<div class="rdots">${RMI_LV.map((_,i)=>`<i class="${i<=lv?'on':''}"></i>`).join('')}</div>`}
 function vRmx(){
   const R=rmiS();const tab=UI.rmtab||'list';let body='';
   const tabs=[['list','선수 리스트'],['up','승급 · 리턴'],['ct','계약권 교환'],['fan','팬카드 · 트로피']];
-  const cur=`<div class="rmcur"><span><i class="rmi-ct"></i>계약권 <b>${R.ct}</b></span><span><i class="rmi-tr"></i>트로피 <b>${R.tr}</b></span><span><i class="rmi-fn"></i>팬카드 <b>${fanTotal()}</b></span></div>`;
+  const spU=rmiSpUsed();
+  const cur=`<div class="rmcur"><span class="${spU>RMI_SP_MAX?'spover':''}">★ 스타 포인트 <b>${spU}/${RMI_SP_MAX}</b></span><span><i class="rmi-ct"></i>계약권 <b>${R.ct}</b></span><span><i class="rmi-tr"></i>트로피 <b>${R.tr}</b></span><span><i class="rmi-fn"></i>팬카드 <b>${fanTotal()}</b></span></div>`;
   if(tab==='list'){
     body=`<div class="rmgrid">${RMI_NAMES.map(n=>{const own=rmiOwned(n);const top=own[0];const lv=top?rmiLvOf(top):-1;const p=DBI[rmiId(n,Math.max(0,lv))];
       return `<button class="rmtile ${top?'':'none'}" data-a="rmsel" data-v="${n}"><div class="rmc">${cardHTML(top||{pid:p.id})}${top?'':'<i class="rmlock">미보유</i>'}</div>
         <div class="rmf"><span class="sp">★ ${RMI_SP[n]}</span><b>${esc(n)}</b>${rmiDots(lv)}<small>팬카드 ${fanCount(n)} · 보유 ${own.length}장</small></div></button>`}).join('')}</div>
-      <p class="muted" style="margin:0;font-size:14px">RM 아이콘은 이적시장 거래가 안 되는 고유 카드예요. 승급하면 레벨마다 기본 OVR이 +5씩 올라가요(120 → 150). 선수마다 스타 포인트(40·30·20)가 있어요.</p>`;
+      <p class="muted" style="margin:0;font-size:14px">RM 아이콘은 이적시장 거래가 안 되는 고유 카드예요. 5진을 달성하면 계약권 ${RMI_UP_CT}장으로 다음 레벨 0진으로 승급해요(120 → 150, 레벨마다 +5). 선수마다 스타 포인트(40·30·20)가 있고, 한 사람이 가진 아이콘의 스타 포인트 합은 ${RMI_SP_MAX}을 넘을 수 없어요. 지금 ${spU}/${RMI_SP_MAX}.</p>`;
   }else if(tab==='up'){
     const n=UI.rmsel||RMI_NAMES[0];const own=rmiOwned(n);const top=own[0];const lv=top?rmiLvOf(top):-1;const fan=fanCount(n);
     const track=RMI_LV.map((o,i)=>{const p=DBI[rmiId(n,i)];return `<div class="rmlv ${i===lv?'cur':''} ${i<=lv?'got':''}">${cardHTML({pid:p.id})}${i>lv?'<i class="rmlock">'+(i===lv+1?'다음':'잠김')+'</i>':''}<span>Lv.${i+1} · ${o}</span></div>`}).join('');
     let act='';
-    if(!top)act=`<div class="rmact"><div><b>${esc(n)} 획득</b><span>${esc(n)} 팬카드 ${RMI_GET_FAN}장 + 계약권 ${RMI_GET_CT}장 → Lv.1 (OVR 120)</span></div><button class="btn gold" data-a="rmget" data-v="${n}" ${fan>=RMI_GET_FAN&&R.ct>=RMI_GET_CT?'':'disabled'}>획득</button></div>`;
-    else if(lv<RMI_LV.length-1)act=`<div class="rmact"><div><b>승급 Lv.${lv+1} → Lv.${lv+2}</b><span>${esc(n)} 팬카드 ${RMI_FAN[lv]}장 + 계약권 ${RMI_CT[lv]}장 · OVR ${RMI_LV[lv]} → ${RMI_LV[lv+1]} (+5) · 진화·강화는 그대로 유지</span></div><button class="btn gold" data-a="rmup" data-v="${top.uid}" ${fan>=RMI_FAN[lv]&&R.ct>=RMI_CT[lv]?'':'disabled'}>승급</button></div>`;
+    if(!top)act=`<div class="rmact"><div><b>${esc(n)} 미보유</b><span>RM 아이콘은 계약권 교환 탭의 'RM 아이콘 랜덤'이나 아이콘 교체로 얻을 수 있어요.</span></div></div>`;
+    else if(lv<RMI_LV.length-1){const can=top.evo>=RMI_UP_EVO&&R.ct>=RMI_UP_CT;act=`<div class="rmact"><div><b>승급 Lv.${lv+1} → Lv.${lv+2}</b><span>${RMI_UP_EVO}진 달성 + 계약권 ${RMI_UP_CT}장 · OVR ${RMI_LV[lv]} ${top.evo}진 → ${RMI_LV[lv+1]} 0진 · 지금 ${top.evo}진${top.evo<RMI_UP_EVO?` (${RMI_UP_EVO-top.evo}단계 더 필요)`:''}${top.evo>RMI_UP_EVO?' · 승급하면 진화는 0진으로 돌아가요':''}</span></div><button class="btn gold" data-a="rmup" data-v="${top.uid}" ${can?'':'disabled'}>승급</button></div>`}
     else act=`<div class="rmact"><div><b>최고 레벨</b><span>Lv.${RMI_LV.length} · OVR ${RMI_LV[RMI_LV.length-1]} 달성!</span></div></div>`;
     const ret=top?`<div class="rmact ret"><div><b>리턴</b><span>이 선수를 내보내고 ${esc(n)} 팬카드 ${lv+1}장 + 트로피 ${lv*2+1}개를 돌려받아요. 진화·강화는 사라져요.</span></div><button class="btn ghost" data-a="rmret1" data-v="${top.uid}" ${where(top.uid)?'disabled':''}>${where(top.uid)?'스쿼드에서 빼야 해요':'리턴'}</button></div>`:'';
     const swp=top?`<div class="rmact"><div><b>아이콘 교체</b><span>계약권 ${RMI_SWAP}장으로 이 아이콘을 다른 RM 아이콘으로 무작위 교체해요. 교체하면 Lv.1 (OVR 120)으로 돌아가고 진화·강화도 초기화돼요.</span></div><button class="btn" data-a="rmswp1" data-v="${top.uid}" ${R.ct>=RMI_SWAP?'':'disabled'}>교체</button></div>`:'';
@@ -4079,7 +4083,7 @@ function vRmx(){
         <div class="panel exrow"><div class="need"><i class="chipr" style="background:#9aa4b5"></i><div><div style="font-size:20px">노멀 선수 5장</div><div class="muted">보유 ${nf}장 · OVR 낮은 것부터 자동 선택</div></div></div><span class="arrow">▶</span><div><span class="rw"><i class="rmi-ct"></i>계약권 1</span></div><button class="btn sm" data-a="rmctn" ${nf>=5?'':'disabled'}>교환</button></div>
         <div class="panel exrow"><div class="need"><i class="chipr" style="background:linear-gradient(135deg,#ff9f43,#3d7bff,#1fa3c9)"></i><div><div style="font-size:20px">시즌 선수 1장</div><div class="muted">런치·TOTS 1장 = 계약권 1 · 스페셜 = 3 · 진화 단계마다 +1</div></div></div><span class="arrow">▶</span><div><span class="rw"><i class="rmi-ct"></i>계약권 1~</span></div><button class="btn sm" data-a="rmctpick">선수 고르기</button></div>
         <div class="panel exrow"><div class="need"><i class="chipr" style="background:linear-gradient(135deg,#d9a43a,#1a1406)"></i><div><div style="font-size:20px">계약권 ${RMI_SWAP}장 + 내 RM 아이콘</div><div class="muted">다른 RM 아이콘으로 무작위 교체 · OVR 120으로 초기화</div></div></div><span class="arrow">▶</span><div><span class="rw">아이콘 교체</span></div><button class="btn sm" data-a="rmswpick" ${R.ct>=RMI_SWAP&&S.cards.some(c=>P(c).cls==='rmi')?'':'disabled'}>고르기</button></div>
-        <div class="panel exrow exrep"><div class="need"><i class="chipr" style="background:linear-gradient(135deg,#1a1406,#d9a43a)"></i><div><div style="font-size:20px">계약권 ${RMI_RAND_CT}장</div><div class="muted">RM 아이콘 9명 중 1명 · Lv.1 (OVR 120)</div></div></div><span class="arrow">▶</span><div><span class="rw">RM 아이콘 랜덤</span></div><button class="btn sm gold" data-a="rmrand" ${R.ct>=RMI_RAND_CT?'':'disabled'}>계약</button></div>
+        <div class="panel exrow exrep"><div class="need"><i class="chipr" style="background:linear-gradient(135deg,#1a1406,#d9a43a)"></i><div><div style="font-size:20px">계약권 ${RMI_RAND_CT}장</div><div class="muted">스타 포인트 ${RMI_SP_MAX} 안에 들어가는 RM 아이콘 중 1명 · Lv.1 (OVR 120)${RMI_NAMES.some(x=>rmiSpOk(x))?'':' · 스타 포인트가 꽉 찼어요'}</div></div></div><span class="arrow">▶</span><div><span class="rw">RM 아이콘 랜덤</span></div><button class="btn sm gold" data-a="rmrand" ${R.ct>=RMI_RAND_CT&&RMI_NAMES.some(x=>rmiSpOk(x))?'':'disabled'}>계약</button></div>
       </div>`;
   }else{
     const stacks=[];for(const n of RMI_NAMES){const a=rmiS().fan[n]||[];a.forEach((k,e)=>{if(k>0)stacks.push([n,e,k])})}
@@ -4087,6 +4091,7 @@ function vRmx(){
       <p class="muted" style="margin:8px 0 0;font-size:13px">팬카드 진화는 팬카드끼리만 할 수 있고, 다른 선수의 팬카드도 재료로 쓸 수 있어요. 재료는 진화 단계가 같거나 높은 팬카드만 가능 · 3장이면 게이지 가득.</p></div>
       <div class="list">
         <div class="panel exrow"><div class="need"><i class="chipr" style="background:linear-gradient(135deg,#1a1406,#d9a43a)"></i><div><div style="font-size:20px">계약권 ${FAN_CT}장</div><div class="muted">9명 중 무작위 팬카드 1장</div></div></div><span class="arrow">▶</span><div><span class="rw"><i class="rmi-fn"></i>랜덤 팬카드</span></div><button class="btn sm" data-a="rmfanr" ${R.ct>=FAN_CT?'':'disabled'}>교환</button></div>
+        <div class="panel exrow"><div class="need"><i class="chipr" style="background:linear-gradient(135deg,#d9a43a,#1a1406)"></i><div><div style="font-size:20px">팬카드 1장</div><div class="muted">진화 단계 상관없이 1장 = 계약권 1장 · 보유 ${fanTotal()}장</div></div></div><span class="arrow">▶</span><div><span class="rw"><i class="rmi-ct"></i>계약권 1</span></div><button class="btn sm" data-a="rmf2c" ${fanTotal()?'':'disabled'}>고르기</button></div>
         <div class="panel exrow"><div class="need"><i class="chipr" style="background:linear-gradient(135deg,#fff3c4,#c08a1f)"></i><div><div style="font-size:20px">트로피 ${FAN_TR}개</div><div class="muted">원하는 선수 팬카드 1장 · 트로피는 리턴으로 얻어요</div></div></div><span class="arrow">▶</span><div><span class="rw"><i class="rmi-fn"></i>선택 팬카드</span></div><button class="btn sm gold" data-a="rmfans" ${R.tr>=FAN_TR?'':'disabled'}>고르기</button></div>
       </div>`;
   }
@@ -4096,10 +4101,9 @@ function vRmx(){
 function rmiGive(c,title){save();renderTop();showReveal([c],title,'#d9a43a',null,1)}
 function rmiAct(a,v){
   const R=rmiS();
-  if(a==='rmget'){const n=v;if(fanCount(n)<RMI_GET_FAN||R.ct<RMI_GET_CT)return;fanTake(n,RMI_GET_FAN);R.ct-=RMI_GET_CT;rmiGive(addCard(rmiId(n,0)),'RM 아이콘 획득');return}
-  if(a==='rmrand'){if(R.ct<RMI_RAND_CT)return;R.ct-=RMI_RAND_CT;rmiGive(addCard(rmiId(pick(RMI_NAMES),0)),'RM 아이콘 계약');return}
-  if(a==='rmup'){const c=card(+v);if(!c)return;const p=P(c);const lv=rmiLvOf(c);if(lv<0||lv>=RMI_LV.length-1)return;const n=p.name;if(fanCount(n)<RMI_FAN[lv]||R.ct<RMI_CT[lv])return;
-    fanTake(n,RMI_FAN[lv]);R.ct-=RMI_CT[lv];c.pid=rmiId(n,lv+1);save();renderTop();closeModal();audioInit();sfx('pack');showReveal([c],`승급 · ${n} Lv.${lv+2}`,'#d9a43a',null,1);poWalk(0);return}
+  if(a==='rmrand'){if(R.ct<RMI_RAND_CT)return;const cand=RMI_NAMES.filter(x=>rmiSpOk(x));if(!cand.length){toast(`스타 포인트가 ${RMI_SP_MAX}을 넘어서 더 받을 수 없어요`);return}R.ct-=RMI_RAND_CT;rmiGive(addCard(rmiId(pick(cand),0)),'RM 아이콘 계약');return}
+  if(a==='rmup'){const c=card(+v);if(!c)return;const p=P(c);const lv=rmiLvOf(c);if(lv<0||lv>=RMI_LV.length-1)return;const n=p.name;if(c.evo<RMI_UP_EVO||R.ct<RMI_UP_CT)return;
+    R.ct-=RMI_UP_CT;c.pid=rmiId(n,lv+1);c.evo=0;save();renderTop();closeModal();audioInit();sfx('pack');showReveal([c],`승급 · ${n} Lv.${lv+2}`,'#d9a43a',null,1);poWalk(0);return}
   if(a==='rmret1'){const c=card(+v);if(!c||where(c.uid))return;const lv=rmiLvOf(c);openModal(`<div class="mh"><h3>리턴</h3><button class="icon-btn" data-a="close">X</button></div><div class="row" style="gap:16px"><div style="width:120px">${cardHTML(c)}</div><div class="grow"><p style="margin:0 0 8px">${esc(P(c).name)} Lv.${lv+1}을(를) 리턴할까요?</p><p class="muted" style="margin:0">돌려받는 재화 · ${esc(P(c).name)} 팬카드 ${lv+1}장 · 트로피 ${lv*2+1}개<br>진화·강화는 사라지고 되돌릴 수 없어요.</p></div></div><button class="btn pink" data-a="rmret2" data-v="${c.uid}">리턴하기</button>`);return}
   if(a==='rmret2'){const c=card(+v);if(!c||where(c.uid))return;const lv=rmiLvOf(c);const n=P(c).name;fanAdd(n,Math.min(c.evo||0,EVO_MAX),lv+1);R.tr+=lv*2+1;S.cards=S.cards.filter(x=>x.uid!==c.uid);save();closeModal();render();toast(`리턴 완료 · 팬카드 +${lv+1} · 트로피 +${lv*2+1}`);sfx('good');return}
   if(a==='rmctn'){const l=freeCards().filter(c=>P(c).cls==='normal'&&!c.enh).sort((a,b)=>cardOvr(a)-cardOvr(b)).slice(0,5);if(l.length<5)return;const ids=new Set(l.map(c=>c.uid));S.cards=S.cards.filter(c=>!ids.has(c.uid));R.ct++;save();render();toast('계약권 +1');sfx('good');return}
@@ -4110,14 +4114,17 @@ function rmiAct(a,v){
   if(a==='rmswpick'){const l=S.cards.filter(c=>P(c).cls==='rmi').sort((x,y)=>cardOvr(y)-cardOvr(x));openModal(`<div class="mh"><h3>교체할 RM 아이콘</h3><button class="icon-btn" data-a="close">X</button></div><p class="muted" style="margin:0">계약권 ${RMI_SWAP}장 · 고른 아이콘이 다른 RM 아이콘(Lv.1 · OVR 120)으로 무작위로 바뀌어요.</p><div class="cards">${l.map(c=>`<button data-a="rmswp1" data-v="${c.uid}">${cardHTML(c)}</button>`).join('')}</div>`,true);return}
   if(a==='rmswp1'){const c=card(+v);if(!c)return;const lv=rmiLvOf(c);openModal(`<div class="mh"><h3>아이콘 교체</h3><button class="icon-btn" data-a="close">X</button></div><div class="row" style="gap:16px"><div style="width:120px">${cardHTML(c)}</div><div class="grow"><p style="margin:0 0 8px">${esc(P(c).name)} Lv.${lv+1}${c.evo?` · ${c.evo}진`:''}${c.enh?` · +${c.enh}`:''}을(를) 다른 RM 아이콘으로 바꿀까요?</p><p class="muted" style="margin:0">계약권 ${RMI_SWAP}장 사용 · 누가 나올지는 무작위예요.<br>교체되면 <b style="color:var(--pink)">Lv.1 · OVR 120</b>으로 돌아가고 진화·강화도 0이 돼요.</p></div></div><button class="btn gold" data-a="rmswp2" data-v="${c.uid}" ${R.ct>=RMI_SWAP?'':'disabled'}>교체하기 · 계약권 ${RMI_SWAP}</button>`);return}
   if(a==='rmswp2'){const c=card(+v);if(!c||R.ct<RMI_SWAP)return;const old=P(c).name;const w=where(c.uid);const busy=new Set(w&&w.t==='lineup'?S.lineup.filter(u=>u&&u!==c.uid).map(u=>P(card(u)).name):[]);
-    const cand=RMI_NAMES.filter(x=>x!==old&&!busy.has(x));if(!cand.length){toast('바꿀 수 있는 선수가 없어요');return}
+    const cand=RMI_NAMES.filter(x=>x!==old&&!busy.has(x)&&rmiSpOk(x,RMI_SP[old]||0));if(!cand.length){toast(`스타 포인트 ${RMI_SP_MAX} 안에서 바꿀 수 있는 선수가 없어요`);return}
     R.ct-=RMI_SWAP;const n=pick(cand);c.pid=rmiId(n,0);c.evo=0;c.enh=0;c.ep=0;closeModal();rmiGive(c,`아이콘 교체 · ${old}`);UI.rmsel=n;return}
+  if(a==='rmf2c'){const st=[];for(const n of RMI_NAMES){const a=rmiS().fan[n]||[];a.forEach((k,e)=>{if(k>0)st.push([n,e,k])})}
+    openModal(`<div class="mh"><h3>팬카드 → 계약권</h3><button class="icon-btn" data-a="close">X</button></div><p class="muted" style="margin:0">팬카드 1장을 누를 때마다 계약권 1장으로 바꿔요. 진화 단계와 상관없이 1장 = 계약권 1장 · 계약권 <b style="color:#ffe9a8">${R.ct}</b>장</p><div class="fanrow">${st.map(([n,e,k])=>`<button data-a="rmf2cgo" data-v="${n}|${e}">${fanHTML(n,k,e)}</button>`).join('')||'<p class="muted">바꿀 팬카드가 없어요.</p>'}</div>`,true);return}
+  if(a==='rmf2cgo'){const [n,e]=String(v).split('|');const arr=fanArr(n);if(!(arr[+e]>0))return;arr[+e]--;R.ct++;save();renderTop();sfx('good');toast(`${n} 팬카드 → 계약권 +1`);rmiAct('rmf2c');render();return}
   if(a==='rmfango'){if(R.tr<FAN_TR)return;R.tr-=FAN_TR;fanAdd(v,0,1);save();closeModal();render();toast(`${v} 팬카드 +1`);sfx('good');return}
 }
 const rmiCtOf=c=>{const p=P(c);return (p.special?3:1)+(c.evo||0)};
 function giftCheck(){
   if(!S.name||S.adminGift||PO||!$('#modal').hidden||S.packQ.length||!S.welcome)return false;
-  S.adminGift=true;const n=pick(RMI_NAMES);const c=addCard(rmiId(n,0));save();renderTop();sfx('walkout');
+  S.adminGift=true;const pool=RMI_NAMES.filter(x=>rmiSpOk(x));if(!pool.length)return false;const n=pick(pool);const c=addCard(rmiId(n,0));save();renderTop();sfx('walkout');
   openModal(`<div class="gift"><div class="gbox"><i></i></div><div class="logo" style="color:#ffd23f">GIFT</div><div style="font-size:26px">관리자의 선물입니다.</div><p class="muted" style="margin:0">모든 감독님께 드리는 RM 아이콘 · OVR 120</p><div class="gcard">${cardHTML(c)}</div><button class="btn gold wide" data-a="giftgo" data-v="${c.uid}">받기</button></div>`);
   return true;
 }
@@ -4151,23 +4158,23 @@ function fanEvoAct(a,v){
     for(const m of F.mats)if(m)fanArr(m[0])[m[1]]--;const ok=Math.random()<prob;const from=F.e;if(ok){fanArr(F.n)[F.e]--;F.e++;fanArr(F.n)[F.e]++}
     F.result={ok,from,prob};F.mats=[null,null,null];save();sfx(ok?'walkout':'lose');drawFanEvo();return}
 }
-function rmiEvoReq(c){return c.evo||0}
+function rmiEvoReq(c){return 0}
 function drawEvoRmi(){
   const E=UI.evo;const c=card(E.uid);const p=P(c);const n=p.name;const req=rmiEvoReq(c);
   if(E.pick!=null){const pool=(rmiS().fan[n]||[]).map((k,e)=>[e,k-E.mats.filter(m=>m&&m.f===e).length]).filter(([e,k])=>e>=req&&k>0);
-    openModal(`<div class="mh"><h3>재료 선택 · ${esc(n)} 팬카드</h3><button class="icon-btn" data-a="evoback">&lt;</button></div><p class="muted" style="margin:0">RM 아이콘은 같은 선수(${esc(n)})의 팬카드만 재료로 쓸 수 있어요. 지금 진화 단계(${req}) 이상인 팬카드만 가능해요.</p>
+    openModal(`<div class="mh"><h3>재료 선택 · ${esc(n)} 팬카드</h3><button class="icon-btn" data-a="evoback">&lt;</button></div><p class="muted" style="margin:0">RM 아이콘은 같은 선수(${esc(n)})의 팬카드만 재료로 쓸 수 있어요. 팬카드 진화 단계는 상관없어요.</p>
       <div class="fanrow">${pool.map(([e,k])=>`<button data-a="evofan" data-v="${e}">${fanHTML(n,k,e)}</button>`).join('')||`<p class="muted">쓸 수 있는 ${esc(n)} 팬카드가 없어요. RM 교환 → 팬카드에서 얻거나 진화시켜 주세요.</p>`}</div>`,true);return}
   if(E.result){const ok=E.result.ok;openModal(`<div style="text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center"><div class="logo" style="font-size:30px;${ok?'':'color:var(--pink)'}">${ok?'SUCCESS!':'FAIL'}</div><div style="width:170px" class="${ok?'evo-pop':''}">${cardHTML(c)}</div><div style="font-size:20px">${ok?`진화 ${E.result.from} → ${c.evo} 성공 · OVR +3`:'진화 실패 · 단계는 그대로예요'}</div><div class="muted">확률 ${(E.result.prob*100).toFixed(1)}%</div><div class="row" style="justify-content:center">${c.evo<EVO_MAX?`<button class="btn teal" data-a="evo" data-v="${c.uid}">계속 진화</button>`:''}<button class="btn ghost" data-a="close">닫기</button></div></div>`);return}
   const nM=E.mats.filter(m=>m).length;const g=Math.min(10,Math.round(nM*10/3*10)/10);const base=c.evo<EVO_MAX?EVO_PROB[c.evo]:0;const prob=base*g/10;
   openModal(`<div class="mh"><h3>RM 아이콘 진화</h3><button class="icon-btn" data-a="close">X</button></div>
     <div class="evwrap"><div class="evtarget"><div style="width:150px">${cardHTML(c)}</div><div class="evstep"><b>${c.evo}</b><span>▶</span><b class="nx">${Math.min(EVO_MAX,c.evo+1)}</b></div><div class="muted" style="font-size:14px">OVR ${cardOvr(c)} → ${cardOvr(c)+3}</div></div>
-      <div class="evmats"><div class="h" style="margin:0">${esc(n)} 팬카드 3장 · 진화 ${req}단계 이상</div><div class="evslots">${E.mats.map((m,i)=>`<div class="evslot"><button data-a="evoslot" data-v="${i}">${m?fanHTML(n,null,m.f):'<div class="empty">+</div>'}</button><span class="${m?'ok':''}">${m?'FAN '+m.f+'진':'팬카드'}</span></div>`).join('')}</div>
+      <div class="evmats"><div class="h" style="margin:0">${esc(n)} 팬카드 3장 · 진화 단계 상관없음</div><div class="evslots">${E.mats.map((m,i)=>`<div class="evslot"><button data-a="evoslot" data-v="${i}">${m?fanHTML(n,null,m.f):'<div class="empty">+</div>'}</button><span class="${m?'ok':''}">${m?'FAN '+m.f+'진':'팬카드'}</span></div>`).join('')}</div>
         <div class="gauge">${Array.from({length:10},(_,i)=>{const f=clamp(g-i,0,1);return `<i class="${f>=1?'on':f>0?'part':''}" style="--f:${(f*100).toFixed(0)}%"></i>`}).join('')}</div>
-        <dl class="pdl"><dt>기본 확률 (${c.evo}→${c.evo+1})</dt><dd>${Math.round(base*100)}%</dd><dt>보유 ${esc(n)} 팬카드 (${req}진 이상)</dt><dd>${fanCount(n,req)}장</dd><dt>게이지</dt><dd>${g.toFixed(1)}/10</dd><dt>최종 확률</dt><dd style="color:var(--lime)">${(prob*100).toFixed(1)}%</dd></dl></div></div>
+        <dl class="pdl"><dt>기본 확률 (${c.evo}→${c.evo+1})</dt><dd>${Math.round(base*100)}%</dd><dt>보유 ${esc(n)} 팬카드</dt><dd>${fanCount(n,req)}장</dd><dt>게이지</dt><dd>${g.toFixed(1)}/10</dd><dt>최종 확률</dt><dd style="color:var(--lime)">${(prob*100).toFixed(1)}%</dd></dl></div></div>
     <div class="row"><button class="btn ghost" data-a="evoauto">재료 자동 선택</button><span class="grow"></span><button class="btn" data-a="evogo" ${g<=0||c.evo>=EVO_MAX?'disabled':''}>${g<=0?'팬카드를 넣어 주세요':'진화하기 · '+(prob*100).toFixed(1)+'%'}</button></div>
-    <p class="muted" style="margin:0;font-size:13px">RM 아이콘은 같은 선수의 팬카드로만 진화해요. 팬카드는 지금 진화 단계 이상이어야 하고, 1장마다 게이지 3.3칸 · 3장이면 가득. 실패해도 단계가 내려가지 않지만 크리티컬은 없어요. 재료 팬카드는 사라져요.</p>`,true);
+    <p class="muted" style="margin:0;font-size:13px">RM 아이콘은 같은 선수의 팬카드로만 진화해요. 팬카드 진화 단계는 상관없고, 1장마다 게이지 3.3칸 · 3장이면 가득. 실패해도 단계가 내려가지 않지만 크리티컬은 없어요. 재료 팬카드는 사라져요.</p>`,true);
 }
-function evoAutoRmi(){const E=UI.evo;const c=card(E.uid);const n=P(c).name;const req=rmiEvoReq(c);E.mats=[null,null,null];const a=rmiS().fan[n]||[];let i=0;for(let e=req;e<a.length&&i<3;e++)for(let j=0;j<a[e]&&i<3;j++)E.mats[i++]={f:e};if(!i)toast(`${n} 팬카드(${req}진 이상)가 없어요`);drawEvoRmi()}
+function evoAutoRmi(){const E=UI.evo;const c=card(E.uid);const n=P(c).name;const req=rmiEvoReq(c);E.mats=[null,null,null];const a=rmiS().fan[n]||[];let i=0;for(let e=req;e<a.length&&i<3;e++)for(let j=0;j<a[e]&&i<3;j++)E.mats[i++]={f:e};if(!i)toast(`${n} 팬카드가 없어요`);drawEvoRmi()}
 function evoGoRmi(){const E=UI.evo;const c=card(E.uid);if(!c||c.evo>=EVO_MAX)return;const n=P(c).name;const ms=E.mats.filter(Boolean);if(!ms.length)return;
   const a=fanArr(n);for(const m of ms){if(a[m.f]<=0)return}for(const m of ms)a[m.f]--;
   const g=Math.min(10,ms.length*10/3);const prob=EVO_PROB[c.evo]*g/10;const from=c.evo;const ok=Math.random()<prob;if(ok)c.evo++;
@@ -4201,7 +4208,7 @@ async function onlAdmCheck(){
     if(!(a>(+S._adm||0)))return false;
     if(M){clearTimeout(ONL.admT);ONL.admT=setTimeout(onlAdmCheck,3000);return true}
     const sv=await ONL.sb.from('saves').select('data').eq('id',ONL.user.id).maybeSingle();if(!sv.data||!sv.data.data)return false;
-    onlApply(sv.data.data);closeModal();if(typeof poClose==='function')poClose();UI.view='home';render();if(Date.now()-(ONL.syncT||0)>60000){ONL.syncT=Date.now();toast('서버에 저장된 기록으로 맞췄어요')};return true}catch(e){return false}
+    onlApply(sv.data.data);if(S._msg){const mm=S._msg;delete S._msg;save();setTimeout(()=>toast(mm),300);ONL.syncT=Date.now()}closeModal();if(typeof poClose==='function')poClose();UI.view='home';render();if(Date.now()-(ONL.syncT||0)>60000){ONL.syncT=Date.now();toast('서버에 저장된 기록으로 맞췄어요')};return true}catch(e){return false}
 }
 function onlApply(data){
   try{localStorage.setItem(SAVE_KEY,JSON.stringify(data))}catch(e){}
@@ -4295,7 +4302,7 @@ function onlAct(a,v){
   if(a==='authmode'){openAuth(v);return}if(a==='authgo'){authGo();return}if(a==='authopen'){openAuth('login');return}
   if(a==='authskip'){closeModal();if(!S.name)openOnboard();else{render();ONL.boot0&&ONL.boot0()}return}
   if(a==='ststart'){stStart(v);return}if(a==='logout'){onlLogout();return}if(a==='syncnow'){onlPush().then(()=>toast(ONL.status||'서버에 저장했어요'));return}
-  if(a==='admopen'){admOpen();return}if(a==='admban'){admBan();return}if(a==='admunban'){admUnban(v);return}if(a==='admtab'){UI.admTab=v;admDraw();return}if(a==='admfill'){const i=$('#admName');if(i)i.value=v;return}
+  if(a==='admopen'){admOpen();return}if(a==='admbp'){admGiveBp();return}if(a==='admban'){admBan();return}if(a==='admunban'){admUnban(v);return}if(a==='admtab'){UI.admTab=v;admDraw();return}if(a==='admfill'){const i=$('#admName');if(i)i.value=v;return}
   if(a==='plsearch'){plSearch();return}if(a==='rkboard'){openRkBoard(UI.mode||'chance');return}if(a==='mmcancel'){mmCancel();return}if(a==='pladd'||a==='pldeck'){plAct(a,v);return}
 }
 function onlSettingsRow(){
@@ -4474,6 +4481,7 @@ function admDraw(){
   openModal(`<div class="mh"><h3>관리자 메뉴</h3><button class="icon-btn" data-a="settings">X</button></div>
     <div id="admBox" class="admbox">
       <div class="row" style="gap:8px"><input id="admName" class="grow" maxlength="14" placeholder="구단 이름" value="${esc(ADM.pick||'')}"><input id="admWhy" class="grow" maxlength="40" placeholder="사유 (선택)"><button class="btn pink" data-a="admban">정지</button></div>
+      <div class="row" style="gap:8px"><span class="muted" style="font-size:14px">위 구단에게</span><input id="admBp" class="grow" inputmode="numeric" maxlength="10" placeholder="BP 수량 (빼려면 -)"><button class="btn gold" data-a="admbp">BP 지급</button></div>
       <i id="admMsg" class="aumsg">${esc(ADM.err||'')}</i>
       <div class="authtab"><button class="${t==='ban'?'on':''}" data-a="admtab" data-v="ban">정지된 계정</button><button class="${t==='log'?'on':''}" data-a="admtab" data-v="log">치트 기록</button></div>
       ${t==='ban'?ban:log}
@@ -4497,6 +4505,18 @@ async function admBan(){
 async function admUnban(id){
   try{const r=await ONL.sb.from('banned').delete().eq('id',id);if(r.error)throw r.error;toast('정지 해제 완료');await admLoad();admDraw()}
   catch(e){admMsg(onlErr(e))}
+}
+
+async function admGiveBp(){
+  const n=(($('#admName')||{}).value||'').trim();const amt=Math.trunc(+((($('#admBp')||{}).value||'').replace(/[, ]/g,'')));ADM.pick=n;
+  if(!n){admMsg('구단 이름을 입력해 주세요');return}
+  if(!amt||!isFinite(amt)){admMsg('BP 수량을 숫자로 입력해 주세요');return}
+  if(Math.abs(amt)>10000000){admMsg('한 번에 1,000만 BP까지 줄 수 있어요');return}
+  admMsg('처리 중…');
+  try{const r=await ONL.sb.rpc('admin_give_bp',{target:n,amount:amt});if(r.error)throw r.error;
+    const nb=+r.data;admMsg(`${n} · BP ${amt>0?'+':''}${fmt(amt)} 완료 → 지금 ${fmt(nb)} BP`);toast(`${n}에게 BP ${amt>0?'+':''}${fmt(amt)}`);const i=$('#admBp');if(i)i.value='';
+    if(n.toLowerCase()===ONL.name.toLowerCase())onlAdmCheck();
+  }catch(e){const m=(e&&e.message)||'';admMsg(/not admin/.test(m)?'관리자 권한이 없어요':/no user/.test(m)?'그 이름의 구단이 없어요':/no save/.test(m)?'그 구단은 아직 저장 기록이 없어요':/too much/.test(m)?'BP가 1,000만을 넘게 돼요':/function|schema cache|PGRST202/.test(m)?'BP 지급 SQL을 먼저 실행해 주세요':onlErr(e))}
 }
 let AC=null;
 function audioInit(){if(AC)return;try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}
