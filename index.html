@@ -343,7 +343,8 @@ input[type=range]{padding:0;border:0;accent-color:var(--lime);width:100%}
 .prw .lk{position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;background:#e8eef8 radial-gradient(circle at 50% 66%,#0e2a38 0 4px,transparent 4.5px);box-shadow:inset 0 0 0 2px #9aa4b5}
 .short .mlob{min-height:0;height:max(280px,calc(var(--H) - 240px));padding:10px 14px;gap:10px;grid-template-rows:minmax(0,1fr)}.short .mlob>*{min-height:0}.short .mc{height:100%}.short .mr .nxt span{display:none}.short .rkw{min-height:0}
 .short .ml{gap:8px}.short .mdesc{display:none}
-.short .prb{min-height:0;flex:1;padding:10px 90px 10px 14px}.short .prb .t{font-size:22px}.short .prb .s{font-size:13px}.short .prb .pp{width:56px;height:64px}
+.short .prb{min-height:0;flex:1;padding:10px 90px 10px 14px}
+.short .rkbx{padding:5px 10px;gap:1px;flex:none}.short .rkbx .t{font-size:15px}.short .rkbx .s{font-size:12px}.short .rkbx .top3{display:none}.short .prb{min-height:52px}.short .prb .t{font-size:22px}.short .prb .s{font-size:13px}.short .prb .pp{width:56px;height:64px}
 .short .mic{gap:12px}.short .mic button{width:54px;height:54px}.short .mic .ic{width:24px;height:24px}
 .short .myt{padding:8px 16px;font-size:18px}
 .short .mc img{height:100%;max-height:none}
@@ -1724,6 +1725,33 @@ table.bx td{text-align:right;padding:5px 4px;border-bottom:1px solid rgba(142,16
 .pllist{display:flex;flex-direction:column;gap:6px;max-height:320px;overflow:auto}
 .plrow{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--ink);border:1px solid var(--line)}
 .plrow b{font-weight:400;font-size:18px}
+.rkbx{display:flex;flex-direction:column;gap:4px;padding:10px 14px;text-align:left;background:rgba(5,12,32,.7);border:2px solid var(--mc);box-shadow:3px 3px 0 var(--shadow);color:var(--text,#fff);font-family:inherit;cursor:pointer}
+.rkbx .t{font-size:20px;color:var(--gold)}
+.rkbx .s{font-size:14px;color:#d9e6ff}
+.rkbx .s b{font-family:var(--px);font-weight:400;color:var(--lime);font-size:15px}
+.rkbx .top3{display:flex;gap:6px;flex-wrap:wrap}
+.rkbx .top3 i{font-style:normal;font-size:13px;padding:2px 8px;background:#0f1a3a;border:1px solid var(--line);max-width:9em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rkbx .top3 i.me{border-color:var(--lime);color:var(--lime)}
+.rkbx .top3 em{font-style:normal;color:var(--gold);margin-right:4px;font-family:var(--px);font-size:11px}
+.rklist{display:flex;flex-direction:column;gap:6px;max-height:min(52vh,420px);overflow:auto}
+.rkrow{display:flex;align-items:center;gap:12px;padding:6px 12px;background:var(--ink);border:1px solid var(--line)}
+.rkrow .no{font-family:var(--px);font-weight:400;font-size:16px;min-width:2.6em;text-align:center;color:#d9e6ff}
+.rkrow.top .no{color:var(--gold)}
+.rkrow.me{border:2px solid var(--lime);background:#14260f}
+.rkrow.mine{margin-bottom:4px}
+.rkrow .nm{font-size:18px}
+.rkrow .rank{width:34px;height:38px;transform:none;filter:none}
+.rkrow .rank b{font-size:8px;margin-top:-12px}
+.mmbox{display:flex;flex-direction:column;align-items:center;gap:14px;padding:10px 6px;text-align:center}
+.mmbox .h{color:var(--mc);font-size:20px}
+.mmspin{width:86px;height:86px;border-radius:50%;border:6px solid #1c2a52;border-top-color:var(--mc);animation:mmsp .8s linear infinite;display:grid;place-items:center}
+.mmspin i{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffb066,#e2661a 60%,#a8420c);box-shadow:inset 0 0 0 3px #3b1a07;animation:mmsp .8s linear infinite reverse}
+@keyframes mmsp{to{transform:rotate(360deg)}}
+.mmt{font-size:22px;font-weight:400}
+.mmfound{display:flex;flex-direction:column;gap:6px;align-items:center}
+.mmfound b{font-size:26px;font-weight:400;color:var(--lime);text-shadow:3px 3px 0 var(--shadow)}
+.mmfound span{font-size:22px}
+.mmfound small{color:var(--muted);font-size:14px}
 </style>
 
 <div id="root"><div id="zoomer">
@@ -2347,16 +2375,17 @@ function copyText(t){
 function vFriends(){
   const code=myCode();const sorted=S.friends.slice().sort((a,b)=>(b.upd||0)-(a.upd||0));
   const canShare=!!navigator.share;
+  const onl=typeof ONL!=='undefined'&&ONL.on;if(onl)setTimeout(frRefresh,0);
   return subHead('친구')+`<div class="frwrap">${typeof plPanel==='function'?plPanel():''}${netPanel()}
-    <div class="panel pad16 frbox"><div class="h" style="margin:0">내 친구 코드</div>
+    ${onl?'':`<div class="panel pad16 frbox"><div class="h" style="margin:0">내 친구 코드</div>
       <textarea id="myCode" class="frcode" readonly rows="3" aria-label="내 친구 코드">${esc(code)}</textarea>
       <div class="row"><button class="btn teal" data-a="frcopy">코드 복사</button>${canShare?'<button class="btn ghost" data-a="frshare">공유하기</button>':''}<span class="muted grow" style="font-size:14px">내 선발 5명 + 벤치 5명이 담겨요. 스쿼드를 바꾸면 코드도 바뀌니 새 코드를 다시 보내 주세요.</span></div></div>
     <div class="panel pad16 frbox"><div class="h" style="margin:0">친구 추가</div>
       <textarea id="frIn" class="frcode" rows="3" placeholder="친구에게 받은 코드를 붙여넣어 주세요 (PXH1.로 시작)" aria-label="친구 코드 입력"></textarea>
-      <div class="row"><button class="btn ghost" data-a="frpaste">붙여넣기</button><button class="btn" data-a="fradd">친구 추가</button><span class="muted grow" style="font-size:14px">이미 있는 친구의 새 코드를 넣으면 덱이 최신으로 갱신돼요.</span></div></div>
+      <div class="row"><button class="btn ghost" data-a="frpaste">붙여넣기</button><button class="btn" data-a="fradd">친구 추가</button><span class="muted grow" style="font-size:14px">이미 있는 친구의 새 코드를 넣으면 덱이 최신으로 갱신돼요.</span></div></div>`}
     <div class="panel" style="padding:0"><div class="pad16 h" style="margin:0">내 친구 ${S.friends.length}/30</div>
       ${sorted.map(f=>{const t=friendTeam(f);return `<div class="frrow"><img class="pix" src="${emblemURL(t.c1,t.c2,f.e)}" alt=""><div class="grow"><div style="font-size:20px">${esc(f.name)} <span class="muted" style="font-size:14px">${esc(f.abbr)}</span></div><div class="muted" style="font-size:14px">OVR ${t.ovr} · 케미 ${t.chem} · 전적 ${f.w||0}승 ${f.ls||0}패 · 갱신 ${new Date(f.upd||f.added).toLocaleDateString('ko-KR',{month:'numeric',day:'numeric'})}</div></div>
-        <button class="btn sm ghost" data-a="frdeck" data-v="${esc(f.id)}">덱 보기</button><button class="btn sm" data-a="frplay" data-v="${esc(f.id)}">친선전</button><button class="btn sm ghost frdel" data-a="frdel1" data-v="${esc(f.id)}">삭제</button></div>`}).join('')||'<div class="pad16 muted" style="padding-top:0">아직 친구가 없어요. 친구에게 내 코드를 보내고, 친구 코드를 받아 추가해 보세요.</div>'}
+        <button class="btn sm ghost" data-a="frdeck" data-v="${esc(f.id)}">덱 보기</button><button class="btn sm" data-a="frplay" data-v="${esc(f.id)}">친선전</button><button class="btn sm ghost frdel" data-a="frdel1" data-v="${esc(f.id)}">삭제</button></div>`}).join('')||`<div class="pad16 muted" style="padding-top:0">${onl?'아직 친구가 없어요. 위에서 구단 이름을 검색해 친구로 추가해 보세요.':'아직 친구가 없어요. 친구에게 내 코드를 보내고, 친구 코드를 받아 추가해 보세요.'}</div>`}
     </div></div>`;
 }
 function netPanel(){
@@ -3215,7 +3244,7 @@ function vMode(){
   return subHead(MODES[m].n,`<span class="muted mseason">시즌 종료까지 ${cd(seasonEnd())}</span>`)+`<div class="mlob" style="--mc:${MODES[m].c}">
     <div class="ml">
       <button class="prb" data-a="rkrew"><span class="t">승급 보상</span><span class="s">${ready?`${RANKS[ready]} 보상을 받을 수 있어요`:top?'모든 승급 보상을 받았어요':`다음 · ${RANKS[nx]} · ${promoText(nx)}`}</span><div class="pp" style="background:${PK(PROMO[ready||nx][0][0]).col}"><div class="ball"></div></div>${ready?'<i class="dot"></i>':''}</button>
-      <div class="mdesc"><b>${MODES[m].n}</b><span>${MODES[m].d}</span></div>
+      ${typeof rkPanel==='function'&&ONL.on?rkPanel(m):`<div class="mdesc"><b>${MODES[m].n}</b><span>${MODES[m].d}</span></div>`}
       <div class="mic"><button data-a="go" data-v="locker" aria-label="라커룸"><i class="ic ic-jersey"></i></button><button data-a="go" data-v="squad" aria-label="스쿼드"><i class="ic ic-team"></i></button><button data-a="mhist" aria-label="경기 기록"><i class="ic ic-cal"></i></button></div>
       <button class="myt" data-a="go" data-v="squad"><span>나의 팀</span><b>${teamOvr()||'--'}</b><i>▲</i></button>
     </div>
@@ -3224,7 +3253,7 @@ function vMode(){
       <div class="tn">${RANKS[r.div]}</div>
       <div class="pts"><span class="pstar">★</span> x${r.pts}<small>/${DIV_GOAL}</small></div>
       <div class="bigr">${rankBadge(r.div)}</div>
-      <div class="opp">상대 OVR ${rankOvr(r.div)} · 승리 시 BP ${WIN_BP(r.div)}</div>
+      <div class="opp">${typeof ONL!=='undefined'&&ONL.on&&ONL.user?'실제 플레이어와 매칭 · 없으면 AI':'상대 OVR '+rankOvr(r.div)} · 승리 시 BP ${WIN_BP(r.div)}</div>
       <div class="nxt">${top?'<span class="muted">최고 등급이에요</span>':`<div class="bar"><i style="width:${Math.min(100,r.pts/DIV_GOAL*100)}%"></i></div><span class="muted">${RANKS[nx]}까지 승점 ${DIV_GOAL-r.pts}</span>`}</div>
       <div class="mbtn"><button class="btn ghost" data-a="mquick">비랭크 플레이</button><button class="btn mgo" data-a="mplay">▶ 플레이</button></div>
     </div></div>`;
@@ -3259,7 +3288,7 @@ function matchRewards(prep,win,margin,forfeit,myPts){
   if(prep.kind==='friendly'){const out={gp:0,bp:0,xp:0,sp:0,lines:['친선전 · 보상 없음']};const f=S.friends.find(x=>x.id===prep.fid);if(f&&!forfeit){if(win)f.w=(f.w||0)+1;else f.ls=(f.ls||0)+1}
     S.hist.unshift({w:win,a:M.score[0],b:M.score[1],opp:prep.opp.name,mode:'친선전 · '+MODES[prep.mode].n});S.hist=S.hist.slice(0,8);save();return out}
   const mult={chance:1,full:1.25,auto:0.8}[prep.mode]*(prep.kind==='quick'?0.6:1);
-  const out={gp:0,bp:0,xp:0,sp:0,lines:[]};
+  const out={gp:0,bp:0,xp:0,sp:0,lines:[]};if(M&&M.oppLeft)out.lines.push('상대가 나가서 승리 처리');else if(prep.pvp)out.lines.push('vs 플레이어 '+prep.pvp);
   if(!forfeit){out.gp=Math.round(((win?25000:8000)+(win?Math.min(25000,margin*1000):0))*mult/100)*100;out.xp=Math.round((win?120:50)*mult);out.sp=win?60:25}
   S.gp+=out.gp;S.xp+=out.xp;S.pass.sp+=out.sp;
   if(win)S.rec.w++;else S.rec.l++;
@@ -3387,10 +3416,10 @@ document.addEventListener('click',e=>{
     case'slide':UI.slide=+v;document.querySelectorAll('#banner .slide').forEach((s,i)=>s.classList.toggle('on',i===UI.slide));document.querySelectorAll('#banner .dots button').forEach((s,i)=>s.classList.toggle('on',i===UI.slide));break;
     case'ptab':UI.ptab=v;if(UI.view!=='play')go('play');else render();break;
     case'rank':UI.mode=v;go('mode');break;
-    case'mplay':{const m=UI.mode||'chance';const r=S.rank[m];prepMatch({kind:'rank',mode:m,modeFixed:true,opp:genOpp(rankOvr(r.div)),label:`${MODES[m].n} · ${RANKS[r.div]}`});break}
+    case'mplay':{const m=UI.mode||'chance';const r=S.rank[m];if(S.lineup.some(u=>!u)){toast('선발 5명을 모두 채워 주세요');go('squad');break}if(typeof mmOk==='function'&&mmOk()){mmStart(m);break}prepMatch({kind:'rank',mode:m,modeFixed:true,opp:genOpp(rankOvr(r.div)),label:`${MODES[m].n} · ${RANKS[r.div]}`});break}
     case'mquick':{const m=UI.mode||'chance';prepMatch({kind:'quick',mode:m,modeFixed:true,opp:genOpp(teamOvr()||60),label:`${MODES[m].n} · 비랭크`});break}
     case'pvwalk':{if(!woonnBP())break;const [pid,ev]=String(v).split('@');previewWalk({pid,evo:+ev||0,enh:0});break}
-    case'authmode':case'authgo':case'authopen':case'authskip':case'ststart':case'logout':case'syncnow':case'plsearch':case'pladd':case'pldeck':onlAct(a,v);break;
+    case'authmode':case'authgo':case'authopen':case'authskip':case'ststart':case'logout':case'syncnow':case'plsearch':case'pladd':case'pldeck':case'rkboard':case'mmcancel':onlAct(a,v);break;
     case'rmtab':UI.rmtab=v;render();break;
     case'rmsel':UI.rmsel=v;UI.rmtab='up';render();$('#zoomer').scrollTop=0;break;
     case'rmpick':UI.rmsel=v;render();break;
@@ -3459,7 +3488,7 @@ document.addEventListener('click',e=>{
     case'netleave':netLeave().then(()=>render());break;
     case'netstart':netStart('host');break;
     case'netresume':hideMsg();break;
-    case'netquit':netLeave().then(()=>{closeMatch()});break;
+    case'netquit':if(M&&M.prep.kind==='rank'){netLeave();finishMatch(true)}else netLeave().then(()=>{closeMatch()});break;
     case'netclose':closeMatch();break;
     case'frshare':try{navigator.share({title:'픽셀 후프스 친구 코드',text:myCode()}).catch(()=>{})}catch(e){}break;
     case'frpaste':try{navigator.clipboard.readText().then(t=>{const i=$('#frIn');if(i)i.value=t;},()=>toast('붙여넣기가 막혀 있어요 · 칸을 길게 눌러 붙여넣어 주세요'))}catch(e){toast('붙여넣기가 막혀 있어요 · 칸을 길게 눌러 붙여넣어 주세요')}break;
@@ -4141,7 +4170,11 @@ async function onlPush(){
   try{S.name=ONL.name;const now=new Date().toISOString();
     const r1=await ONL.sb.from('saves').upsert({id:ONL.user.id,data:S,updated_at:now});if(r1.error)throw r1.error;
     let deck='';try{deck=myCode()}catch(e){}
-    const r2=await ONL.sb.from('profiles').upsert({id:ONL.user.id,name:ONL.name,abbr:S.abbr,ovr:teamOvr()||0,lvl:S.lvl||1,wins:(S.rec&&S.rec.w)||0,losses:(S.rec&&S.rec.l)||0,deck,updated_at:now});if(r2.error)throw r2.error;
+    const row={id:ONL.user.id,name:ONL.name,abbr:S.abbr,ovr:teamOvr()||0,lvl:S.lvl||1,wins:(S.rec&&S.rec.w)||0,losses:(S.rec&&S.rec.l)||0,deck,updated_at:now};
+    if(!ONL.noRk)for(const m of RK_MODES)row['r_'+m]=rkVal(m);
+    let r2=await ONL.sb.from('profiles').upsert(row);
+    if(r2.error&&/r_(chance|full|auto)/.test(r2.error.message||'')){ONL.noRk=true;for(const m of RK_MODES)delete row['r_'+m];r2=await ONL.sb.from('profiles').upsert(row)}
+    if(r2.error)throw r2.error;
     ONL.lastPush=Date.now();ONL.status='';
   }catch(e){ONL.status='저장 실패 · '+onlErr(e)}
 }
@@ -4227,14 +4260,14 @@ function plPanel(){
 }
 function plAct(a,v){
   const p=(UI.plres||[])[+v];if(!p||!p.deck)return;const r=parseCode(p.deck);if(r.err){toast(r.err);return}
-  if(a==='pladd'){addFriendSilent(r.f);save();toast(`${p.name} 친구 추가`);render();return}
+  if(a==='pladd'){r.f.uid=p.id;addFriendSilent(r.f);save();toast(`${p.name} 친구 추가`);render();return}
   if(a==='pldeck')openDeck(r.f.id,r.f);
 }
 function onlAct(a,v){
   if(a==='authmode'){openAuth(v);return}if(a==='authgo'){authGo();return}if(a==='authopen'){openAuth('login');return}
   if(a==='authskip'){closeModal();if(!S.name)openOnboard();else{render();ONL.boot0&&ONL.boot0()}return}
   if(a==='ststart'){stStart(v);return}if(a==='logout'){onlLogout();return}if(a==='syncnow'){onlPush().then(()=>toast(ONL.status||'서버에 저장했어요'));return}
-  if(a==='plsearch'){plSearch();return}if(a==='pladd'||a==='pldeck'){plAct(a,v);return}
+  if(a==='plsearch'){plSearch();return}if(a==='rkboard'){openRkBoard(UI.mode||'chance');return}if(a==='mmcancel'){mmCancel();return}if(a==='pladd'||a==='pldeck'){plAct(a,v);return}
 }
 function onlSettingsRow(){
   if(!ONL.on)return '';
@@ -4242,6 +4275,109 @@ function onlSettingsRow(){
     :`<div class="row"><span class="grow">온라인 계정<br><small class="muted" style="font-size:13px">로그인 안 함 · 이 기기에만 저장돼요</small></span><button class="btn sm" data-a="authopen">로그인</button></div>`;
 }
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target&&(e.target.id==='auPw'||e.target.id==='auPw2'||e.target.id==='auName')){e.preventDefault();authGo()}if(e.key==='Enter'&&e.target&&e.target.id==='plQ'){e.preventDefault();plSearch()}});
+
+const RK_MODES=['chance','full','auto'];
+function rkVal(m){const r=S.rank&&S.rank[m];return r?r.div*100+Math.min(r.pts,DIV_GOAL):0}
+function rkCanOnline(){return !!(ONL.on&&ONL.user&&ONL.sb)}
+async function rkLoad(m,full){
+  if(!rkCanOnline())return;const c='r_'+m;const k=m+(full?'F':'');UI.rkb=UI.rkb||{};const old=UI.rkb[k];if(old&&old.busy)return;
+  UI.rkb[k]=Object.assign({},old||{},{busy:true});
+  try{
+    if(ONL.lastPush<Date.now()-20000)await onlPush();
+    const top=await ONL.sb.from('profiles').select(`id,name,abbr,ovr,${c}`).order(c,{ascending:false}).order('ovr',{ascending:false}).limit(full?50:3);if(top.error)throw top.error;
+    const mine=rkVal(m);const ab=await ONL.sb.from('profiles').select('id',{count:'exact',head:true}).gt(c,mine);
+    const all=await ONL.sb.from('profiles').select('id',{count:'exact',head:true});
+    UI.rkb[k]={t:Date.now(),list:(top.data||[]).map(p=>({id:p.id,name:p.name,abbr:p.abbr,ovr:p.ovr,v:p[c]||0})),me:ab.error?null:(ab.count||0)+1,n:all.error?null:all.count};
+  }catch(e){UI.rkb[k]={t:Date.now(),err:/r_(chance|full|auto)|column/.test((e&&e.message)||'')?'sql':onlErr(e)}}
+  if(full){if(UI.rkOpen===m)drawRkBoard(m)}else if(UI.view==='mode'&&UI.mode===m&&$('#modal').hidden)render();
+}
+function rkDiv(v){return [Math.min(RANKS.length-1,Math.floor(v/100)),v%100]}
+function rkPanel(m){
+  if(!ONL.on)return '';
+  if(!ONL.user)return `<button class="rkbx" data-a="authopen"><span class="t">플레이어 랭킹</span><span class="s">로그인하면 다른 플레이어와 순위를 겨뤄요</span></button>`;
+  UI.rkb=UI.rkb||{};const b=UI.rkb[m];if(!b||(!b.busy&&Date.now()-b.t>30000))setTimeout(()=>rkLoad(m),0);
+  const body=!b||!b.list&&!b.err?'<span class="s">불러오는 중…</span>':b.err?`<span class="s">${b.err==='sql'?'랭킹 SQL을 먼저 실행해 주세요':esc(b.err)}</span>`
+    :`<span class="s">내 순위 <b>${b.me?'#'+b.me:'-'}</b>${b.n?` / ${b.n}명`:''}</span><span class="top3">${b.list.map((p,i)=>`<i class="${p.id===ONL.user.id?'me':''}"><em>${i+1}</em>${esc(p.name)}</i>`).join('')}</span>`;
+  return `<button class="rkbx" data-a="rkboard"><span class="t">플레이어 랭킹 ›</span>${body}</button>`;
+}
+function openRkBoard(m){UI.rkOpen=m;drawRkBoard(m);rkLoad(m,true)}
+function drawRkBoard(m){
+  const b=(UI.rkb||{})[m+'F'];
+  const rows=!b||(!b.list&&!b.err)?'<p class="muted">불러오는 중…</p>':b.err?`<p class="muted">${b.err==='sql'?'Supabase SQL Editor에서 랭킹용 SQL을 실행하면 순위가 보여요.':esc(b.err)}</p>`
+    :`<div class="rklist">${b.list.map((p,i)=>{const [d,pt]=rkDiv(p.v);const me=p.id===ONL.user.id;return `<div class="rkrow ${me?'me':''} ${i<3?'top':''}"><b class="no">${i+1}</b>${rankBadge(d)}<div class="grow"><div class="nm">${esc(p.name)} <span class="muted">${esc(p.abbr||'')}</span></div><div class="muted" style="font-size:13px">${RANKS[d]} · 승점 ${pt} · OVR ${p.ovr||'-'}</div></div></div>`}).join('')||'<p class="muted">아직 랭킹에 오른 플레이어가 없어요.</p>'}</div>`;
+  const [md,mp]=rkDiv(rkVal(m));
+  openModal(`<div class="mh"><h3>${MODES[m].n} 플레이어 랭킹</h3><button class="icon-btn" data-a="close">X</button></div>
+    <div class="rkrow me mine"><b class="no">${b&&b.me?'#'+b.me:'-'}</b>${rankBadge(md)}<div class="grow"><div class="nm">${esc(ONL.name)} <span class="muted">나</span></div><div class="muted" style="font-size:13px">${RANKS[md]} · 승점 ${mp}${b&&b.n?` · 전체 ${b.n}명`:''}</div></div></div>
+    ${rows}`,true);
+}
+const MM={ch:null,m:'',t0:0,tm:0,state:'',to:null,room:'',opp:null,role:'',tick:0};
+function mmOk(){return rkCanOnline()&&!!ONL.sb.channel}
+function mmModal(){
+  const left=Math.max(0,Math.ceil((MM.t0+3000-Date.now())/1000));
+  const tt=$('#mmT');if(tt&&MM.state==='wait'){tt.textContent=`상대 플레이어를 찾는 중… ${left}`;return}
+  const st=MM.state==='found'?`<div class="mmfound"><b>상대를 찾았어요!</b><span>${esc(MM.opp&&MM.opp.n||'')}</span><small>연결 중…</small></div>`:`<div class="mmspin"><i></i></div><b class="mmt" id="mmT">상대 플레이어를 찾는 중… ${left}</b><span class="muted">${left?'같은 모드를 누른 플레이어와 바로 붙어요':'AI 상대를 준비해요'}</span>`;
+  openModal(`<div class="mmbox" style="--mc:${MODES[MM.m].c}"><div class="h" style="margin:0">${MODES[MM.m].n} · 랭크 매칭</div>${st}${MM.state==='found'?'':'<button class="btn ghost sm" data-a="mmcancel">취소</button>'}</div>`);
+}
+async function mmStart(m){
+  if(MM.ch)await mmStop();
+  Object.assign(MM,{m,t0:Date.now(),state:'wait',to:null,room:'',opp:null,role:''});
+  mmModal();MM.tick=setInterval(()=>{if(MM.state==='wait')mmModal()},250);
+  MM.tm=setTimeout(()=>mmGiveUp(),3000);
+  try{
+    const ch=ONL.sb.channel('pxh-mm-'+m,{config:{presence:{key:ONL.user.id},broadcast:{self:false}}});MM.ch=ch;
+    ch.on('presence',{event:'sync'},()=>mmSync()).on('broadcast',{event:'inv'},({payload})=>mmInv(payload)).on('broadcast',{event:'ok'},({payload})=>mmGotOk(payload));
+    ch.subscribe(async st=>{if(st==='SUBSCRIBED'&&MM.ch===ch&&MM.state==='wait'){try{await ch.track({t:MM.t0,n:ONL.name,fc:myCode(),ovr:teamOvr()||0,p:mmLive(m)?1:0})}catch(e){}}});
+  }catch(e){}
+}
+function mmLive(m){return m!=='chance'&&typeof NET!=='undefined'&&NET.ready&&NET.kind==='p2p'}
+async function mmStop(){clearTimeout(MM.tm);clearInterval(MM.tick);const ch=MM.ch;MM.ch=null;if(ch){try{await ch.untrack()}catch(e){}try{await ONL.sb.removeChannel(ch)}catch(e){}}}
+function mmWaiting(){
+  if(!MM.ch)return [];let st={};try{st=MM.ch.presenceState()||{}}catch(e){}
+  return Object.entries(st).map(([k,a])=>Object.assign({id:k},(a&&a[0])||{})).filter(x=>x.t&&x.fc).sort((a,b)=>a.t-b.t||(a.id<b.id?-1:1));
+}
+function mmSync(){
+  if(MM.state!=='wait'||!MM.ch)return;
+  const w=mmWaiting();if(w.length<2||w[0].id!==ONL.user.id)return;
+  const o=w[1];const live=mmLive(MM.m)&&o.p;
+  MM.state='inv';MM.to=o.id;MM.opp=o;MM.role='host';MM.room=live?'m'+Math.random().toString(36).slice(2,9):'';clearTimeout(MM.tm);
+  try{MM.ch.send({type:'broadcast',event:'inv',payload:{to:o.id,from:ONL.user.id,n:ONL.name,fc:myCode(),room:MM.room}})}catch(e){}
+  MM.tm=setTimeout(()=>{if(MM.state==='inv'){MM.state='wait';mmGiveUp()}},4000);
+}
+function mmInv(p){
+  if(!p||p.to!==ONL.user.id||MM.state!=='wait')return;
+  clearTimeout(MM.tm);MM.state='found';MM.role='guest';MM.opp={id:p.from,n:p.n,fc:p.fc};MM.room=p.room||'';
+  try{MM.ch.send({type:'broadcast',event:'ok',payload:{to:p.from,from:ONL.user.id}})}catch(e){}
+  mmFound();
+}
+function mmGotOk(p){if(!p||p.to!==ONL.user.id||MM.state!=='inv'||p.from!==MM.to)return;clearTimeout(MM.tm);MM.state='found';mmFound()}
+async function mmFound(){
+  clearInterval(MM.tick);mmModal();sfx('good');const m=MM.m,o=MM.opp,role=MM.role,room=MM.room;await mmStop();
+  const r=parseCode(o.fc);if(r.err){mmAI(m);return}
+  if(!room){closeModal();mmStartLocal(m,r.f,o.n);return}
+  let ok=false;
+  for(let k=0;k<(role==='host'?1:6)&&!ok;k++){if(k)await new Promise(z=>setTimeout(z,800));await netEnter(room,role,{rk:m});ok=!!NET.nr}
+  if(!ok){mmAI(m,'상대와 연결하지 못했어요');return}
+  NET.mm={m,role,t:Date.now()};
+  MM.tm=setTimeout(()=>{if(NET.mm&&!M){NET.mm=null;netLeave();mmAI(m,'상대와 연결하지 못했어요')}},9000);
+  if(role==='host')netPeers();
+}
+function mmStartLocal(m,f,n){
+  const r=S.rank[m];closeModal();
+  const prep={kind:'rank',mode:m,modeFixed:true,qlen:1,opp:friendTeam(f),pvp:n,label:`${MODES[m].n} · ${RANKS[r.div]} · vs ${n}`};
+  PREP=prep;startMatch(prep);
+}
+function mmAI(m,msg){
+  mmStop();closeModal();if(msg)toast(msg);
+  const r=S.rank[m];prepMatch({kind:'rank',mode:m,modeFixed:true,opp:genOpp(rankOvr(r.div)),label:`${MODES[m].n} · ${RANKS[r.div]} · AI`});
+}
+function mmGiveUp(){if(MM.state!=='wait')return;MM.state='';mmAI(MM.m)}
+function mmCancel(){MM.state='';mmStop();closeModal()}
+async function frRefresh(){
+  if(!rkCanOnline())return;const fs=S.friends.filter(f=>f.uid);if(!fs.length||Date.now()-(UI.frT||0)<60000)return;UI.frT=Date.now();
+  try{const r=await ONL.sb.from('profiles').select('id,deck').in('id',fs.map(f=>f.uid));if(r.error)return;let ch=0;
+    for(const p of r.data||[]){const f=fs.find(x=>x.uid===p.id);const q=p.deck&&parseCode(p.deck);if(f&&q&&!q.err){Object.assign(f,q.f,{uid:p.id,upd:Date.now(),w:f.w,ls:f.ls});ch++}}
+    if(ch){save();if(UI.view==='friends'&&!M&&$('#modal').hidden)render()}}catch(e){}
+}
 let AC=null;
 function audioInit(){if(AC)return;try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}
 function tone(f,d,type='square',v=0.05,f2=null,delay=0){
@@ -4321,11 +4457,12 @@ function startMatch(prep){
   hideMsg();G=null;resetInput();
   if(M.mode==='chance'){buildPlan();logLine('sep','— 1쿼터 —');M.tm=setTimeout(nextSlot,600)}
   else if(prep.online){
-    M.online={role:prep.online};newGame('full',0);
-    if(prep.online==='host'){G.rc={human:1,ctrl:null,sprint:false,dbl:false,dblUntil:0,trap:[],manualT:0,autoT:0,prevPoss:-1,io:RIO};RIO.held=new Set();RIO.hit.clear();const op=netOpp();RIO.cnt={...((op&&op.presence&&op.presence.c)||{})};placeAll(0,'back');
-      M.paused=true;M.netPhase='wait';M.netMsg=`<div class="big">실시간 친선전</div><div>${esc(home.abbr)} VS ${esc(away.abbr)} · 3초 후 시작</div>`;showMsg(M.netMsg);
+    const au=M.mode==='auto';const ttl=prep.kind==='rank'?MODES[M.mode].n+' · 랭크 매치':'실시간 친선전';
+    M.online={role:prep.online};newGame('full',au?null:0);$('#autoBar').hidden=true;
+    if(prep.online==='host'){if(!au){G.rc={human:1,ctrl:null,sprint:false,dbl:false,dblUntil:0,trap:[],manualT:0,autoT:0,prevPoss:-1,io:RIO};RIO.held=new Set();RIO.hit.clear();const op=netOpp();RIO.cnt={...((op&&op.presence&&op.presence.c)||{})}}else M.speed=2;placeAll(0,'back');
+      M.paused=true;M.netPhase='wait';M.netMsg=`<div class="big">${ttl}</div><div>${esc(home.abbr)} VS ${esc(away.abbr)} · 3초 후 시작</div>`;showMsg(M.netMsg);
       setTimeout(()=>{if(!M||M.done)return;M.paused=false;M.netPhase='play';M.netMsg='';hideMsg()},3000)}
-    else{placeAll(1,'back');NET.lastS=0;NET.lastFx=0;NET.lastCall=0;showMsg(`<div class="big">실시간 친선전</div><div>${esc(home.abbr)} VS ${esc(away.abbr)} · 곧 시작해요</div>`)}
+    else{placeAll(1,'back');NET.lastS=0;NET.lastFx=0;NET.lastCall=0;showMsg(`<div class="big">${ttl}</div><div>${esc(home.abbr)} VS ${esc(away.abbr)} · 곧 시작해요</div>`)}
   }
   else{
     newGame('full',M.mode==='full'?0:null);placeAll(0,'back');
@@ -4342,7 +4479,7 @@ function showMsg(h){const m=$('#stageMsg');m.innerHTML=`<div class="in">${h}</di
 function hideMsg(){$('#stageMsg').hidden=true}
 function togglePause(){
   if(!M||!M.running)return;
-  if(M.online){showMsg(`<div class="big">경기 나가기</div><div>나가면 경기가 끝나고 전적에 남지 않아요. (경기는 멈추지 않아요)</div><button class="btn" data-a="netresume">계속하기</button><button class="btn ghost sm" data-a="netquit">나가기</button>`);return}
+  if(M.online){showMsg(`<div class="big">경기 나가기</div><div>${M.prep.kind==='rank'?'나가면 패배로 처리돼요.':'나가면 경기가 끝나고 전적에 남지 않아요.'} (경기는 멈추지 않아요)</div><button class="btn" data-a="netresume">계속하기</button><button class="btn ghost sm" data-a="netquit">나가기</button>`);return}
   if(!M.paused){M.paused=true;livePause(true);const m=$('#stageMsg');M.msgBack=m.hidden?null:m.innerHTML;showMsg(`<div class="big">PAUSE</div><button class="btn" data-a="resume">계속하기</button><button class="btn ghost sm" data-a="forfeit">기권 (패배 처리)</button>`)}
   else{M.paused=false;livePause(false);if(M.msgBack){const m=$('#stageMsg');m.innerHTML=M.msgBack;m.hidden=false;M.msgBack=null}else hideMsg();resetInput()}
 }
@@ -4457,11 +4594,11 @@ function skipSim(){
 
 function finishMatch(forfeit){
   if(!M||M.done)return;
-  if(M.online&&M.online.role==='host'&&NET.nr){NET.nr.presence({g:{m:NET.mid,s:++NET.seq,e:'end',res:{sc:M.score.slice(),box:M.box}}}).catch(()=>{})}
+  if(M.online&&M.online.role==='host'&&NET.nr){NET.nr.presence({g:{m:NET.mid,s:++NET.seq,e:'end',res:{sc:M.score.slice(),box:M.box,qs:M.qs}}}).catch(()=>{})}
   M.done=true;M.running=false;clearTimeout(M.tm);
   if(G){G.overDone=true;G.qDone=true}
   hideMsg();
-  const A=M.teams[0],Bt=M.teams[1];const win=!forfeit&&M.score[0]>M.score[1];
+  const A=M.teams[0],Bt=M.teams[1];const win=!forfeit&&(M.oppLeft||M.score[0]>M.score[1]);
   const rw=matchRewards(M.prep,win,M.score[0]-M.score[1],forfeit,M.score[0]);
   sfx(win?'win':'lose');if(!forfeit)liveEv('final',{win});else liveStop();
   const wt=M.score[0]>=M.score[1]?0:1;
@@ -4485,7 +4622,7 @@ function finishMatch(forfeit){
     ${bx(0)}${bx(1)}
     <button class="btn" data-a="result">확인</button>`,true);
 }
-function closeMatch(){if(M&&M.online&&M.online.role==='host'&&NET.nr)NET.nr.presence({st:'lobby',g:null}).catch(()=>{});hideMsg();closeModal();$('#match').hidden=true;document.body.style.overflow='';cancelAnimationFrame(RAF);liveStop();M=null;G=null;resetInput();render();if(S.pendingPack){const id=S.pendingPack;S.pendingPack=null;openPack(PK(id),true)}bgmSync()}
+function closeMatch(){if(M&&M.online&&M.prep.kind==='rank')netLeave();else if(M&&M.online&&M.online.role==='host'&&NET.nr)NET.nr.presence({st:'lobby',g:null}).catch(()=>{});hideMsg();closeModal();$('#match').hidden=true;document.body.style.overflow='';cancelAnimationFrame(RAF);liveStop();M=null;G=null;resetInput();render();if(S.pendingPack){const id=S.pendingPack;S.pendingPack=null;openPack(PK(id),true)}bgmSync()}
 
 function newGame(kind,human){
   G={kind,human,P:[],ball:{x:47,y:25,z:0,vx:0,vy:0,vz:0,state:'held',owner:null},poss:0,prevPoss:-1,nextPoss:0,shot:24,clock:M.qlen||120,dead:0,after:null,
@@ -5175,35 +5312,39 @@ function peerRoom(){
 const NET_ERR={room_taken:'이미 쓰는 방 코드예요',no_room:'그 방 코드의 방이 없어요',timeout:'연결 시간이 초과됐어요',network:'인터넷 연결을 확인해 주세요'};
 function netPress(c){if(M&&M.online&&M.online.role==='guest')NET.cnt[c]=(NET.cnt[c]||0)+1}
 function netOpp(){if(!NET.nr)return null;try{return NET.nr.peers().find(p=>!p.isMe&&p.kind==='viewer'&&p.presence&&p.presence.r)||null}catch(e){return null}}
-async function netEnter(code,role){
+async function netEnter(code,role,ex){
   if(!NET.ready||NET.busy)return;NET.busy=true;
   try{await netLeave();let nr=null;
     for(let k=0;;k++){try{nr=await NET.room.join('pxh-'+code,role);break}catch(e){if(role==='host'&&e&&e.code==='room_taken'&&k<3){code=String(1000+Math.floor(Math.random()*9000));continue}throw e}}NET.nr=nr;NET.role=role;NET.code=code;NET.mid=0;
-    await nr.presence({r:role,fc:myCode(),n:S.name,st:'lobby',g:null,in:null});
+    await nr.presence(Object.assign({r:role,fc:myCode(),n:S.name,st:'lobby',g:null,in:null},ex||{}));
     NET.unsub=nr.onPeers(()=>netPeers());
-    toast(role==='host'?`방을 만들었어요 · 방 코드 ${code}`:`${code}번 방에 들어왔어요`);
-  }catch(e){NET.nr=null;NET.role=null;toast('방에 들어가지 못했어요 · '+(NET_ERR[e&&e.code]||(e&&e.code)||'연결 오류'))}
+    if(!ex)toast(role==='host'?`방을 만들었어요 · 방 코드 ${code}`:`${code}번 방에 들어왔어요`);
+  }catch(e){NET.nr=null;NET.role=null;if(!ex)toast('방에 들어가지 못했어요 · '+(NET_ERR[e&&e.code]||(e&&e.code)||'연결 오류'))}
   NET.busy=false;if(UI.view==='friends'&&!M)render();
 }
-async function netLeave(){if(NET.unsub){try{NET.unsub()}catch(e){}}NET.unsub=null;const nr=NET.nr;NET.nr=null;NET.role=null;NET.code='';if(nr){try{await nr.leave()}catch(e){}}}
+async function netLeave(){NET.mm=null;if(NET.unsub){try{NET.unsub()}catch(e){}}NET.unsub=null;const nr=NET.nr;NET.nr=null;NET.role=null;NET.code='';if(nr){try{await nr.leave()}catch(e){}}}
 let NETRT=0;
 function netPeers(){
   const o=netOpp();const pr=o&&o.presence||{};
   if(NET.role==='guest'&&pr.r==='host'&&pr.st==='play'&&pr.mid&&pr.mid!==NET.mid){if(M){if(!M.done)return;closeMatch()}NET.mid=pr.mid;netStart('guest');return}
   if(M&&M.online){if(!o&&!M.done)netAbort('상대가 경기에서 나갔어요');return}
+  if(NET.mm&&NET.role==='host'&&!M&&o&&o.presence&&o.presence.fc){netStart('host');return}
+  if(NET.mm)return;
   if(UI.view==='friends'&&$('#modal').hidden&&!KB){clearTimeout(NETRT);NETRT=setTimeout(()=>{if(!M&&UI.view==='friends'&&$('#modal').hidden)render()},120)}
 }
 function netOppTeam(){const o=netOpp();if(!o||!o.presence.fc)return null;const r=parseCode(o.presence.fc);return r.err?null:r.f}
 function netStart(role){
   const f=netOppTeam();if(!f){toast('상대 팀 정보를 읽지 못했어요');return}
   if(S.lineup.some(u=>!u)){toast('선발 5명을 모두 채워 주세요');return}
-  if(f.id!==myFid())addFriendSilent(f);
+  const rk=NET.mm&&NET.mm.m;
+  if(!rk&&f.id!==myFid())addFriendSilent(f);
   closeModal();if(KB)kbClose();
-  const prep={kind:'friendly',mode:'full',qlen:1,modeFixed:true,fid:f.id,opp:friendTeam(f),label:'실시간 친선전 · '+f.name,online:role};
+  const prep=rk?{kind:'rank',mode:rk,qlen:1,modeFixed:true,opp:friendTeam(f),pvp:f.name,label:`${MODES[rk].n} · ${RANKS[S.rank[rk].div]} · vs ${f.name}`,online:role}
+    :{kind:'friendly',mode:'full',qlen:1,modeFixed:true,fid:f.id,opp:friendTeam(f),label:'실시간 친선전 · '+f.name,online:role};
   if(role==='host'){NET.mid=Date.now();NET.seq=0;NET.nr.presence({st:'play',mid:NET.mid,g:null}).catch(()=>{})}
   PREP=prep;startMatch(prep);
 }
-function netAbort(msg){if(!M||M.done)return;M.done=true;M.running=false;if(G){G.overDone=true;G.qDone=true}showMsg(`<div class="big">연결 끊김</div><div>${esc(msg)}</div><div class="muted">이 경기는 전적에 남지 않아요</div><button class="btn" data-a="netclose">나가기</button>`)}
+function netAbort(msg){if(!M||M.done)return;if(M.prep.kind==='rank'){M.oppLeft=true;netLeave();finishMatch(false);return}M.done=true;M.running=false;if(G){G.overDone=true;G.qDone=true}showMsg(`<div class="big">연결 끊김</div><div>${esc(msg)}</div><div class="muted">이 경기는 전적에 남지 않아요</div><button class="btn" data-a="netclose">나가기</button>`)}
 const R10=v=>Math.round(v*10);
 function netHostSend(){
   const now=performance.now();if(!NET.nr||now-NET.lastSend<50)return;NET.lastSend=now;
@@ -5231,7 +5372,7 @@ function netGuestFrame(dt){
   if(NET.nr&&now-NET.lastSend>=50){NET.lastSend=now;const held=['J','K','L','I','SH'].filter(c=>down(c)).join(',');NET.nr.presence({in:[Math.round(inp.x*100),Math.round(inp.y*100)],h:held,c:{...NET.cnt}}).catch(()=>{})}
 }
 function netApply(g){
-  if(g.e==='end'){const r=g.res||{};M.score=[(r.sc||[0,0])[1],(r.sc||[0,0])[0]];if(r.box)M.box=[r.box[1],r.box[0]];hideMsg();finishMatch(false);return}
+  if(g.e==='end'){const r=g.res||{};M.score=[(r.sc||[0,0])[1],(r.sc||[0,0])[0]];if(r.box)M.box=[r.box[1],r.box[0]];if(r.qs)M.qs=[r.qs[1],r.qs[0]];hideMsg();finishMatch(false);return}
   const mi=i=>i<0?-1:(i+5)%10;
   M.q=g.t[2];M.score=[g.t[4],g.t[3]];G.clock=g.t[0]/10;G.shot=g.t[1]/10;G.poss=1-g.t[5];
   for(let i=0;i<10;i++){const p=G.P[mi(i)],a=g.p.slice(i*6,i*6+6);if(p.nx==null){p.x=94-a[0]/10;p.y=50-a[1]/10}p.nx=94-a[0]/10;p.ny=50-a[1]/10;p.nz=a[2]/10;p.face=-a[3];p.nsp=a[5]/10;p.gather=a[4]>=0?{m:a[4]/100,human:true,lay:false,t:0}:null}
