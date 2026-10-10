@@ -4201,7 +4201,7 @@ async function onlAdmCheck(){
     if(!(a>(+S._adm||0)))return false;
     if(M){clearTimeout(ONL.admT);ONL.admT=setTimeout(onlAdmCheck,3000);return true}
     const sv=await ONL.sb.from('saves').select('data').eq('id',ONL.user.id).maybeSingle();if(!sv.data||!sv.data.data)return false;
-    onlApply(sv.data.data);closeModal();if(typeof poClose==='function')poClose();UI.view='home';render();toast('서버에 저장된 기록으로 맞췄어요');return true}catch(e){return false}
+    onlApply(sv.data.data);closeModal();if(typeof poClose==='function')poClose();UI.view='home';render();if(Date.now()-(ONL.syncT||0)>60000){ONL.syncT=Date.now();toast('서버에 저장된 기록으로 맞췄어요')};return true}catch(e){return false}
 }
 function onlApply(data){
   try{localStorage.setItem(SAVE_KEY,JSON.stringify(data))}catch(e){}
