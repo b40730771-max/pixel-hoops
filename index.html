@@ -226,7 +226,7 @@ input[type=range]{padding:0;border:0;accent-color:var(--lime);width:100%}
 .mside .q{background:repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0 10px,transparent 10px 20px),linear-gradient(140deg,#2a6fd0,#1c2f6f)}
 .mside .s{background:repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0 10px,transparent 10px 20px),linear-gradient(140deg,#5a1a7a,#2a1048)}
 .mside small{font-size:17px;color:#d9e6ff}
-.btabs{display:grid;grid-template-columns:repeat(3,1fr);background:#0b1733;border-top:2px solid rgba(47,211,194,.3)}
+.btabs{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);background:#0b1733;border-top:2px solid rgba(47,211,194,.3)}
 .btabs button{padding:16px 6px;font-size:22px;position:relative;color:var(--cream)}
 .btabs button.on{background:linear-gradient(180deg,#1f5a8a,#163f6a)}
 .btabs button.on::before{content:"";position:absolute;top:-2px;left:50%;transform:translateX(-50%);border:9px solid transparent;border-top-color:var(--lime)}
@@ -2125,6 +2125,379 @@ button.psit{cursor:pointer}button.psit:disabled{opacity:.42;cursor:default}
 
 
 
+#view.fit{padding-bottom:0;overflow:hidden;min-height:0;flex:none}
+#view.fit.vsc{overflow-y:auto;overscroll-behavior:contain}
+#view.fit>.vf{display:flex;flex-direction:column;gap:16px;transform-origin:0 0;min-width:0}
+.short .mcard .art{height:150px}.short .mside button{min-height:0;font-size:24px}.short .mside small{font-size:14px}.short .mcard .foot{padding:8px 10px 6px}.short .mcard .time{padding:6px}
+.c-tr{display:flex;gap:.1em;margin-left:auto;margin-right:.2em}
+.c-tr .tri{width:1.25em;height:1.25em;background:rgba(5,8,20,.75);border-radius:.25em;padding:.1em}
+.pv-trk{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:10px}
+.trk{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:10px;align-items:center;padding:10px 12px;border-radius:8px;background:rgba(5,10,30,.6);border:1px solid color-mix(in srgb,var(--tc) 55%,transparent)}
+.trk .tri{grid-row:1/3;background:rgba(0,0,0,.35);border-radius:8px;padding:4px}
+.trk b{color:var(--tc);font-size:17px}
+.trk span{font-size:13px;color:#cfdaf5;line-height:1.35}
+
+.big3d.lng{font-size:10cqw}
+
+.card[class*=" k-s"]::after{display:none}
+.card .sd{position:absolute;pointer-events:none;z-index:-1;font-style:normal}
+/* S1 NEON STREET */
+.card.k-s1,.card.k-s1S{--tx:#fff;--pb:#5fe3f2;clip-path:polygon(7% 0,100% 0,100% 93%,93% 100%,0 100%,0 7%);background:linear-gradient(170deg,#2a0a4a,#12021f)!important;box-shadow:none}
+.card.k-s1 .sd-wall,.card.k-s1S .sd-wall{inset:0;background:linear-gradient(transparent 0 .9em,rgba(255,255,255,.05) .9em 1em) 0 0/100% 1em,linear-gradient(90deg,transparent 0 1.9em,rgba(255,255,255,.05) 1.9em 2em) 0 0/2em 2em,linear-gradient(90deg,transparent 0 1.9em,rgba(255,255,255,.05) 1.9em 2em) 1em 1em/2em 2em}
+.card.k-s1 .sd-tube{inset:.45em;border:.16em solid #ff4fd8;border-radius:.5em;box-shadow:0 0 .5em #ff4fd8,inset 0 0 .5em #ff4fd8}
+.card.k-s1 .sd-tag,.card.k-s1S .sd-tag{right:.35em;top:30%;writing-mode:vertical-rl;font:900 1.5em/1 "Barlow Condensed",sans-serif;letter-spacing:.1em;color:transparent;-webkit-text-stroke:.06em rgba(95,227,242,.7)}
+.card.k-s1 .c-ovr,.card.k-s1S .c-ovr{color:#fff;text-shadow:0 0 .3em #ff4fd8,0 0 .6em #ff4fd8}
+.card.k-s1 .c-pos,.card.k-s1S .c-pos{color:#12021f}
+.card.k-s1 .c-face{border-color:#ff4fd8;background:rgba(255,79,216,.18)}
+.card.k-s1S{background:radial-gradient(ellipse 80% 60% at 50% 35%,#7a1a9a,#2a0a4a 60%,#12021f)!important}
+.card.k-s1S .sd-tube{inset:.4em;border:.2em solid #5fe3f2;border-radius:.6em;box-shadow:0 0 .6em #5fe3f2,inset 0 0 .6em #5fe3f2;animation:sdFl 3s steps(1) infinite}
+.card.k-s1S .sd-tube2{inset:.85em;border:.14em solid #ff4fd8;border-radius:.4em;box-shadow:0 0 .5em #ff4fd8;animation:sdFl 2.3s steps(1) infinite .7s}
+.card.k-s1S .sd-sign{z-index:2;left:50%;top:-.1em;transform:translateX(-50%);padding:.1em .5em;font:900 .8em/1.2 "Barlow Condensed",sans-serif;letter-spacing:.15em;color:#fff;background:#12021f;border:.12em solid #ffd23f;border-radius:.3em;box-shadow:0 0 .5em #ffd23f;text-shadow:0 0 .3em #ffd23f;white-space:nowrap}
+.card.k-s1S .c-face{border-color:#5fe3f2;background:rgba(95,227,242,.2);box-shadow:0 0 .6em #5fe3f2}
+@keyframes sdFl{0%,6%,10%,100%{opacity:1}7%,9%{opacity:.25}}
+/* S2 MIDNIGHT CITY */
+.card.k-s2,.card.k-s2S{--tx:#e8eef8;--pb:#c8d0e0;clip-path:inset(0 round .7em);background:linear-gradient(180deg,#0a1230,#1c2a52 60%,#2a3a6a)!important;box-shadow:inset 0 0 0 .14em #8fa2c8}
+.card .sd-moon{right:12%;top:16%;width:1.6em;height:1.6em;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#c8d0e0 60%,#8fa2c8);box-shadow:0 0 .8em rgba(200,208,224,.6)}
+.card .sd-sky,.card .sd-sky2{left:0;right:0;bottom:0;height:34%;background:#070b1c;clip-path:polygon(0 40%,8% 40%,8% 20%,16% 20%,16% 50%,24% 50%,24% 10%,30% 10%,30% 30%,40% 30%,40% 0,48% 0,48% 35%,58% 35%,58% 15%,66% 15%,66% 45%,74% 45%,74% 25%,84% 25%,84% 5%,92% 5%,92% 38%,100% 38%,100% 100%,0 100%)}
+.card.k-s2 .c-pos,.card.k-s2S .c-pos{color:#0a1230}
+.card.k-s2 .c-face{border-color:#8fa2c8;background:rgba(143,162,200,.18)}
+.card.k-s2S{background:linear-gradient(180deg,#05081a,#16224a 55%,#3a4e86)!important;box-shadow:none}
+.card.k-s2S .sd-moon{width:2.6em;height:2.6em;right:8%;top:12%;background:radial-gradient(circle at 70% 40%,transparent 40%,#fff 42%,#c8d0e0 70%);box-shadow:none;filter:drop-shadow(0 0 .4em #fff)}
+.card.k-s2S .sd-sky2{background:radial-gradient(circle,#ffe08a 0 .09em,transparent .13em) 0 0/.55em .5em,#070b1c}
+.card.k-s2S .sd-frame{inset:0;border-radius:.7em;border:.38em solid transparent;background:linear-gradient(135deg,#fff,#8fa2c8 30%,#f2f4fa 50%,#6a7a9a 70%,#fff) border-box;-webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;z-index:1}
+.card.k-s2S .sd-shine{inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.35) 50%,transparent 60%) 0 0/250% 100%;animation:sdSh 3.5s linear infinite;z-index:1}
+.card.k-s2S .c-ovr{color:#fff;text-shadow:0 .06em 0 #3a4e86,0 0 .4em rgba(255,255,255,.6)}
+.card.k-s2S .c-name{text-shadow:0 0 .3em #000,0 0 .3em #000}
+.card.k-s2S .c-face{border-color:#fff;background:rgba(255,255,255,.15)}
+@keyframes sdSh{from{background-position:120% 0}to{background-position:-120% 0}}
+/* S3 COSMIC DREAM */
+.card.k-s3,.card.k-s3S{--tx:#fff;--pb:#f7e8ff;clip-path:inset(0 round 2.4em 2.4em .7em .7em);background:#120a30!important;box-shadow:inset 0 0 0 .14em #2fd3c2}
+.card .sd-neb{inset:0;background:radial-gradient(ellipse 70% 50% at 30% 30%,rgba(47,211,194,.55),transparent 70%),radial-gradient(ellipse 60% 50% at 75% 70%,rgba(184,138,255,.55),transparent 70%),radial-gradient(ellipse 50% 40% at 60% 20%,rgba(255,120,220,.3),transparent 70%)}
+@keyframes sdTw{from{opacity:.5}to{opacity:1}}
+.card.k-s3 .c-pos,.card.k-s3S .c-pos{color:#120a30}
+.card.k-s3 .c-face{border-color:#2fd3c2;background:rgba(47,211,194,.15)}
+.card.k-s3S{box-shadow:none}
+.card.k-s3S .sd-holo{inset:0;border-radius:2.4em 2.4em .7em .7em;border:.32em solid transparent;background:conic-gradient(from var(--ha,0deg),#2fd3c2,#b88aff,#ff7ae0,#ffe27a,#2fd3c2) border-box;-webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;z-index:1;animation:sdHolo 4s linear infinite}
+@property --ha{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes sdHolo{to{--ha:360deg}}
+.card.k-s3S .sd-ring{left:4%;right:4%;top:50%;height:14%;border-radius:50%;border:.18em solid rgba(255,226,122,.85);border-top-color:transparent;transform:rotate(-8deg);box-shadow:0 .2em .4em -.2em rgba(255,226,122,.6)}
+.card.k-s3S .sd-planet{left:9%;top:14%;width:1.8em;height:1.8em;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffd0f0,#b84bff 60%,#3a0a6a);box-shadow:0 0 .6em #b84bff}
+.card.k-s3S .c-face{border-color:#ffe27a;background:rgba(255,226,122,.15)}
+.card.k-s3S .c-ovr{color:#fff;text-shadow:0 0 .4em #2fd3c2}
+/* S4 RIVAL DUEL */
+.card.k-s4,.card.k-s4S{--tx:#fff;--pb:#fff;clip-path:polygon(0 0,100% 0,100% 87%,50% 100%,0 87%);background:linear-gradient(115deg,#e8283e 0 50%,#1e5ad8 50%)!important;box-shadow:none}
+.card .sd-seam{left:44%;top:-10%;width:12%;height:120%;transform:rotate(25deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.85) 45% 55%,transparent)}
+.card .sd-vs{z-index:2;left:50%;top:64%;transform:translate(-50%,-50%);font:900 italic 1.1em/1 "Barlow Condensed",sans-serif;color:#fff;background:#0a0c22;padding:.15em .3em;border:.1em solid #fff;border-radius:.2em}
+.card.k-s4 .c-face{border-color:#fff;background:rgba(0,0,0,.25)}
+.card.k-s4 .c-pos,.card.k-s4S .c-pos{color:#c8102e}
+.card.k-s4S{background:linear-gradient(115deg,#ff2a4a 0 48%,#ffd23f 48% 52%,#2a6aff 52%)!important}
+.card.k-s4S::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;box-shadow:inset 0 0 0 .3em #ffd23f,inset 0 0 0 .5em #0a0c22;clip-path:inherit}
+.card.k-s4S .sd-bolt{z-index:-1;left:38%;top:0;width:24%;height:100%;background:#fff6c8;clip-path:polygon(55% 0,30% 42%,52% 42%,22% 100%,78% 34%,52% 34%,80% 0);filter:drop-shadow(0 0 .3em #ffd23f);animation:sdZap 1.6s steps(1) infinite}
+@keyframes sdZap{0%,40%,48%,100%{opacity:1}42%,46%{opacity:.2}}
+.card.k-s4S .sd-fl{bottom:8%;width:30%;height:30%;filter:blur(.05em);animation:sdFlm .5s ease-in-out infinite alternate}
+.card.k-s4S .sd-fl.l{left:0;background:radial-gradient(ellipse at 30% 100%,#ffd23f,#ff3b1f 40%,transparent 70%)}
+.card.k-s4S .sd-fl.r{right:0;background:radial-gradient(ellipse at 70% 100%,#bff6ff,#2a6aff 40%,transparent 70%)}
+@keyframes sdFlm{to{transform:scaleY(1.2) translateY(-6%)}}
+.card.k-s4S .sd-vs{background:#ffd23f;color:#0a0c22;border-color:#0a0c22;font-size:1.3em}
+.card.k-s4S .c-face{border-color:#ffd23f;background:linear-gradient(115deg,#7a1020 0 50%,#10307a 50%);position:relative;z-index:1}
+.card.k-s5,.card.k-s5S{--tx:#fff;--pb:#fff;--rc:#111;clip-path:inset(0 round .55em);background:linear-gradient(160deg,#2c2c2f,#141416 42%,#0b0b0c 70%,#18181a)!important;box-shadow:inset 0 0 0 .12em #3c3c40!important}
+.card .sd-bg{inset:0;background:linear-gradient(128deg,transparent 0 22%,rgba(255,255,255,.05) 22% 38%,transparent 38%),linear-gradient(52deg,transparent 0 55%,rgba(255,255,255,.035) 55% 70%,transparent 70%),linear-gradient(160deg,transparent 0 70%,rgba(255,255,255,.03) 70% 82%,transparent 82%),repeating-linear-gradient(135deg,rgba(255,255,255,.02) 0 .1em,transparent .1em .45em)}
+.card .sd-star{left:-24%;top:2.5%;width:128%;aspect-ratio:1;background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Cpath d=%22M50.00 7.00L60.33 38.78L58.99 40.63L50.00 12.98Z%22 fill=%22%23987125%22 stroke=%22%23987125%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M60.33 38.78L93.75 38.79L88.06 40.63L58.99 40.63Z%22 fill=%22%23f9e5ab%22 stroke=%22%23f9e5ab%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M93.75 38.79L66.71 58.43L64.54 57.72L88.06 40.63Z%22 fill=%22%235a3a08%22 stroke=%22%235a3a08%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M66.71 58.43L77.04 90.21L73.52 85.38L64.54 57.72Z%22 fill=%22%23987125%22 stroke=%22%23987125%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M77.04 90.21L50.00 70.57L50.00 68.29L73.52 85.38Z%22 fill=%22%239c7527%22 stroke=%22%239c7527%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M50.00 70.57L22.96 90.21L26.48 85.38L50.00 68.29Z%22 fill=%22%235a3a08%22 stroke=%22%235a3a08%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M22.96 90.21L33.29 58.43L35.46 57.72L26.48 85.38Z%22 fill=%22%23f9e6ae%22 stroke=%22%23f9e6ae%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M33.29 58.43L6.25 38.79L11.94 40.63L35.46 57.72Z%22 fill=%22%239c7527%22 stroke=%22%239c7527%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M6.25 38.79L39.67 38.78L41.01 40.63L11.94 40.63Z%22 fill=%22%23f9e5ab%22 stroke=%22%23f9e5ab%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M39.67 38.78L50.00 7.00L50.00 12.98L41.01 40.63Z%22 fill=%22%23f9e6ae%22 stroke=%22%23f9e6ae%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M50.00 7.00L60.33 38.78L93.75 38.79L66.71 58.43L77.04 90.21L50.00 70.57L22.96 90.21L33.29 58.43L6.25 38.79L39.67 38.78Z%22 fill=%22none%22 stroke=%22%23fffbe6%22 stroke-width=%22.45%22 opacity=%22.9%22/%3E%3Cpath d=%22M50.00 12.98L58.99 40.63L88.06 40.63L64.54 57.72L73.52 85.38L50.00 68.29L26.48 85.38L35.46 57.72L11.94 40.63L41.01 40.63Z%22 fill=%22none%22 stroke=%22%232a1a02%22 stroke-width=%22.5%22 opacity=%22.7%22/%3E%3C/svg%3E") center/100% 100% no-repeat;filter:drop-shadow(0 0 .25em rgba(232,184,74,.45)) drop-shadow(0 .15em .2em rgba(0,0,0,.7))}
+.card.k-s5S .sd-star{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Cpath d=%22M50.00 7.00L60.33 38.78L58.68 41.06L50.00 14.36Z%22 fill=%22%23b4954b%22 stroke=%22%23b4954b%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M60.33 38.78L93.75 38.79L86.75 41.06L58.68 41.06Z%22 fill=%22%23fff6df%22 stroke=%22%23fff6df%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M93.75 38.79L66.71 58.43L64.04 57.56L86.75 41.06Z%22 fill=%22%237a5a1a%22 stroke=%22%237a5a1a%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M66.71 58.43L77.04 90.21L72.71 84.26L64.04 57.56Z%22 fill=%22%23b4954b%22 stroke=%22%23b4954b%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M77.04 90.21L50.00 70.57L50.00 67.76L72.71 84.26Z%22 fill=%22%23b8984e%22 stroke=%22%23b8984e%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M50.00 70.57L22.96 90.21L27.29 84.26L50.00 67.76Z%22 fill=%22%237a5a1a%22 stroke=%22%237a5a1a%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M22.96 90.21L33.29 58.43L35.96 57.56L27.29 84.26Z%22 fill=%22%23fff7e2%22 stroke=%22%23fff7e2%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M33.29 58.43L6.25 38.79L13.25 41.06L35.96 57.56Z%22 fill=%22%23b8984e%22 stroke=%22%23b8984e%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M6.25 38.79L39.67 38.78L41.32 41.06L13.25 41.06Z%22 fill=%22%23fff6df%22 stroke=%22%23fff6df%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M39.67 38.78L50.00 7.00L50.00 14.36L41.32 41.06Z%22 fill=%22%23fff7e2%22 stroke=%22%23fff7e2%22 stroke-width=%22.25%22/%3E%3Cpath d=%22M50.00 7.00L60.33 38.78L93.75 38.79L66.71 58.43L77.04 90.21L50.00 70.57L22.96 90.21L33.29 58.43L6.25 38.79L39.67 38.78Z%22 fill=%22none%22 stroke=%22%23fffbe6%22 stroke-width=%22.45%22 opacity=%22.9%22/%3E%3Cpath d=%22M50.00 14.36L58.68 41.06L86.75 41.06L64.04 57.56L72.71 84.26L50.00 67.76L27.29 84.26L35.96 57.56L13.25 41.06L41.32 41.06Z%22 fill=%22none%22 stroke=%22%232a1a02%22 stroke-width=%22.5%22 opacity=%22.7%22/%3E%3C/svg%3E");filter:drop-shadow(0 0 .2em #fff3c4) drop-shadow(0 0 .7em rgba(255,200,70,.9))}
+.card.k-s5 .c-top,.card.k-s5S .c-top{position:absolute;left:5%;top:4%;flex-direction:column;align-items:center;gap:.1em;z-index:1}
+.card.k-s5 .c-ovr,.card.k-s5S .c-ovr{font-size:2.4em;color:#fff;text-shadow:0 .06em .2em rgba(0,0,0,.85)}
+.card.k-s5 .c-rt,.card.k-s5S .c-rt{align-items:center;gap:.3em}
+.card.k-s5 .c-pos,.card.k-s5S .c-pos{background:none;color:#fff;font-size:1em;padding:0;text-shadow:0 .05em .15em #000}
+.card.k-s5 .c-grade,.card.k-s5S .c-grade{font-size:.85em}
+.card.k-s5 .c-face,.card.k-s5S .c-face{position:absolute;right:-1%;top:15%;width:66%;margin:0;border:0;background:none;filter:drop-shadow(0 .2em .3em rgba(0,0,0,.65))}
+.card.k-s5 .c-name,.card.k-s5S .c-name{position:absolute;left:4%;right:4%;top:78%;max-width:none;z-index:1;font-size:1.3em;color:#fff;text-shadow:0 .06em .2em #000}
+.card.k-s5 .c-foot,.card.k-s5S .c-foot{position:absolute;left:5%;right:5%;bottom:1.5%;color:#e8b84a}
+.card.k-s5 .c-cls,.card.k-s5S .c-cls{visibility:hidden}
+.card.k-s5S{background:radial-gradient(ellipse 60% 45% at 60% 45%,rgba(255,190,70,.3),transparent 70%),linear-gradient(160deg,#2c2a26,#121110 42%,#0a0908 70%,#1c1608)!important;box-shadow:inset 0 0 0 .13em #e8b84a!important}
+.card.k-s5S .c-ovr{color:#fff;text-shadow:0 0 .35em rgba(255,200,80,.9),0 .06em .15em #000}
+/* S5 ROYAL CHAMPIONS */
+.card.k-s1S .c-top{margin-top:.5em}
+.nppk .packart .pn{color:#fff;text-shadow:0 1px 3px #000,0 0 6px rgba(0,0,0,.6);font-size:11px;padding:0 6px}
+.nppk .npev{position:absolute;top:9%;right:9%;font-family:var(--px);font-size:10px;padding:3px 6px;border-radius:4px;background:rgba(10,8,20,.75);color:#ffd23f}
+.nptime{font-size:13px;color:#ff9fd0}
+.po-note{color:#ffd23f;font-size:15px;margin-left:12px}
+.npcap{display:flex;flex-direction:column;align-items:center;gap:10px;padding:10px 0 4px}
+.npcap-t{font-size:24px;color:#ffd23f}
+.npcapb{position:relative;display:flex;flex-direction:column;align-items:center;gap:14px;padding:30px 50px;border:0;border-radius:20px;cursor:pointer;background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--ca) 40%,transparent),transparent 70%)}
+.npcapb .pcap{width:130px;height:130px;animation:pgpulse .7s steps(4) infinite alternate;filter:drop-shadow(0 0 18px var(--ca))}
+.npcapb span{font-size:17px;color:var(--lime)}
+.card.k-s4,.card.k-s4S{padding-bottom:19%}
+.ic-ad{--m:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm6 4.2v7.6l6-3.8z'/%3E%3C/svg%3E")}
+.adq span{font-variant-numeric:tabular-nums}
+#adx{position:fixed;left:0;top:0;width:var(--W,100vw);height:var(--H,100vh);z-index:160;background:#05060f;overflow:hidden;color:#fff;container-type:size}
+#adx .ad-top{position:absolute;left:0;right:0;top:0;z-index:3;display:flex;align-items:center;gap:1.2cqw;padding:2.2cqh 2cqw}
+#adx .ad-tag{padding:.4cqh 1.1cqw;border-radius:4px;background:#ffd23f;color:#1a1200;font-weight:800;font-size:clamp(13px,2.4cqh,22px)}
+#adx .ad-rw{display:flex;align-items:center;gap:4px;font-size:clamp(13px,2.4cqh,22px);color:#c8f23a}
+#adx .ad-t{margin-left:auto;width:clamp(30px,6cqh,52px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;border:2px solid rgba(255,255,255,.5);font-size:clamp(13px,2.6cqh,22px);font-variant-numeric:tabular-nums}
+#adx .ad-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6cqw;padding:12cqh 7cqw 14cqh;background:radial-gradient(ellipse 70% 60% at 35% 50%,color-mix(in srgb,var(--ac,#e8b84a) 40%,transparent),transparent 70%),linear-gradient(160deg,#141008,#05060f)}
+#adx .a2{--ac:#c08bff}
+#adx .ad-rays{position:absolute;left:32%;top:50%;width:170cqmax;height:170cqmax;margin:-85cqmax;background:repeating-conic-gradient(from 0deg,color-mix(in srgb,var(--ac,#e8b84a) 22%,transparent) 0 5deg,transparent 5deg 15deg);animation:adRot 20s linear infinite}
+#adx .ad-art{position:relative;flex:none;height:66cqh;aspect-ratio:3/4.1;max-width:34cqw;animation:adIn 1s cubic-bezier(.2,1.3,.4,1) both,adFl 3s ease-in-out 1s infinite alternate}
+#adx .ad-art .pkc{font-size:3.3cqh}
+#adx .ad-caps{display:grid;place-items:center;aspect-ratio:1;height:56cqh}
+#adx .ad-caps .pcap{width:72%;height:72%;filter:drop-shadow(0 0 24px var(--ac))}
+#adx .ad-badge{position:absolute;right:0;bottom:2%;width:42%}
+#adx .ad-copy{position:relative;display:flex;flex-direction:column;gap:2cqh;max-width:46cqw;min-width:0;animation:adSl .8s .3s cubic-bezier(.2,1,.3,1) both}
+#adx .ad-copy em{font-style:normal;font-size:3cqh;letter-spacing:.3em;color:var(--ac,#e8b84a)}
+#adx .ad-copy b{font-size:min(11cqh,7cqw);line-height:1.05;font-weight:900;word-break:keep-all}
+#adx .ad-copy span{font-size:min(4.2cqh,2.8cqw);color:#cfd6e6}
+#adx .ad-cta{align-self:flex-start;font-style:normal;margin-top:1cqh;padding:1.8cqh 3cqh;border-radius:999px;background:linear-gradient(180deg,#ffe46a,#f5b300);color:#2a1a00;font-weight:800;font-size:min(3.6cqh,2.4cqw);animation:adPl 1.2s ease-in-out infinite alternate}
+#adx .ad-bar{position:absolute;left:0;right:0;bottom:0;height:max(4px,.8cqh);background:rgba(255,255,255,.15);z-index:3}
+#adx .ad-bar i{display:block;height:100%;width:0;background:#ffd23f}
+#adx .ad-skip{position:absolute;right:0;bottom:5cqh;z-index:3;padding:2cqh 2.4cqw 2cqh 3cqw;border:1px solid rgba(255,255,255,.35);border-right:0;background:rgba(0,0,0,.7);color:#fff;font-size:clamp(14px,3cqh,24px);cursor:pointer}
+#adx .ad-skip:disabled{color:#aab;cursor:default}
+#adx .ad-skip b{margin-left:6px}
+@keyframes adRot{to{transform:rotate(360deg)}}
+.adrow{display:flex;align-items:center;gap:12px;padding:12px 16px}
+.adrow .grow b{display:block;font-size:18px}
+@keyframes adIn{from{transform:scale(.4) rotate(-12deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes adFl{to{transform:translateY(-10px) rotate(2deg)}}
+@keyframes adSl{from{transform:translateX(40px);opacity:0}to{transform:none;opacity:1}}
+@keyframes adPl{to{transform:scale(1.06)}}
+.evw{display:grid;grid-template-columns:230px 1fr;gap:16px;min-height:0}
+.evl{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 10px;border-radius:14px;background:linear-gradient(160deg,#3a1466,#1a0a3a);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.evtt{align-self:stretch;text-align:center;padding:6px;border-radius:8px;background:rgba(53,208,186,.18);color:#7ff0de;font-size:18px;box-shadow:inset 0 0 0 1px rgba(127,240,222,.4)}
+.evcnt{font-size:15px;color:#d6dcea}
+.evg{position:relative;width:100%;height:330px;margin:4px 0}
+.evg-bar{position:absolute;left:50%;top:22px;bottom:22px;width:22px;margin-left:-11px;border-radius:999px;background:rgba(0,0,0,.45);box-shadow:inset 0 0 0 2px rgba(255,255,255,.15);overflow:hidden}
+.evg-bar i{position:absolute;left:0;right:0;bottom:0;border-radius:999px;background:linear-gradient(0deg,#b84bff,#ff7ae0);box-shadow:0 0 12px #ff7ae0;transition:height .5s}
+.evg-n{position:absolute;bottom:calc(var(--b) * .8 - 32px);width:calc(50% - 14px);height:64px;display:flex;align-items:center;gap:6px;padding:0;border:0;background:none;color:#fff;cursor:pointer}
+.evg-n:nth-child(odd){left:calc(50% + 14px);flex-direction:row}
+.evg-n:nth-child(even){right:calc(50% + 14px);flex-direction:row-reverse}
+.evg-n .evri{width:58px;height:58px;flex:none;border-radius:50%;display:grid;place-items:center;background:#1a1030;box-shadow:0 0 0 3px #3a2a5a;position:relative;overflow:hidden}
+.evg-n .evri.evbw{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.evg-n .evri.evbw b{font-size:15px;line-height:1;color:#c8f23a}
+.evg-n .evri.pk .pkc{font-size:3.6px;width:34px;filter:none}
+.evg-n span{flex:1;min-width:0;font-size:12px;line-height:1.2;color:#cfd6e6;word-break:keep-all}
+.evg-n:nth-child(odd) span{text-align:left}.evg-n:nth-child(even) span{text-align:right}
+.evg-n.ready .evri{box-shadow:0 0 0 3px #ffd23f,0 0 16px #ffd23f;animation:adPl .8s ease-in-out infinite alternate}
+.evg-n.got .evri{opacity:.55}
+.evg-n.lock .evri{filter:grayscale(.7) brightness(.7)}
+.evg-n .dot{position:absolute;top:2px}
+.evg-n:nth-child(odd) .dot{left:46px}.evg-n:nth-child(even) .dot{right:46px}
+.evg-n:disabled{cursor:default}
+.evck{position:absolute;font-style:normal;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#35d0ba;color:#062a24;font-size:14px;font-weight:900}
+.evg-n .evck,.evg-n .evlk{top:-2px}
+.evg-n:nth-child(odd) .evck,.evg-n:nth-child(odd) .evlk{left:42px}.evg-n:nth-child(even) .evck,.evg-n:nth-child(even) .evlk{right:42px}
+.evlk{position:absolute;width:18px;height:18px;border-radius:5px;background:#2a2440;box-shadow:inset 0 0 0 2px #8a80aa}
+.evtm{font-size:13px;color:var(--muted)}
+.evr{display:flex;flex-direction:column;gap:14px;min-width:0}
+.evrow{position:relative;display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:12px;background:linear-gradient(100deg,color-mix(in srgb,var(--rc) 55%,#1a0a3a) 0 26%,#24104a 26.2%,#1a0a3a);overflow:hidden}
+.evrow::before{content:"";position:absolute;left:24%;top:0;bottom:0;width:4%;background:color-mix(in srgb,var(--rc) 70%,transparent);transform:skewX(-18deg)}
+.evlab{position:relative;width:22%;flex:none;display:flex;flex-direction:column}
+.evlab b{font-size:22px;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.4)}
+.evlab small{font-size:13px;color:rgba(255,255,255,.75)}
+.evnodes{position:relative;flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.evnode{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 4px;border:0;border-radius:12px;background:rgba(0,0,0,.25);color:#fff;cursor:pointer;transition:transform .12s}
+.evnode:hover:not(:disabled){transform:translateY(-2px);background:rgba(255,255,255,.08)}
+.evem{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#2a1a4a,#0e0820);box-shadow:0 0 0 3px var(--rc),0 0 14px color-mix(in srgb,var(--rc) 60%,transparent)}
+.evem img{width:42px;height:42px}
+.evdn{font-size:15px}
+.evov{font-size:12px;color:var(--muted)}
+.evbp{position:absolute;top:6px;right:8px;display:flex;align-items:center;gap:2px;font-style:normal;font-size:12px;color:#c8f23a}
+.evnode .evck{top:6px;right:8px}
+.evnode.done{opacity:.55;cursor:default}
+.evnode.done .evem{box-shadow:0 0 0 3px #35d0ba}
+.evh{margin:0;font-size:13px}
+.short .evg{height:250px}
+.short .evl{padding:8px;gap:4px}
+.short .evtt{padding:3px;font-size:16px}
+.short .evg-n{height:52px;bottom:calc(var(--b) * .78 - 26px)}
+.short .evg-n .evri{width:46px;height:46px}
+.short .evr{gap:8px}
+.short .evrow{padding:6px 12px}
+.short .evem{width:46px;height:46px}
+.short .evem img{width:32px;height:32px}
+.short .evnode{padding:5px 4px;gap:1px}
+.short .evlab b{font-size:19px}
+.pkg{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:16px 12px}
+.pkh{font-size:16px;color:var(--muted);margin-bottom:-6px}
+.pkt{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
+.pkart{width:100%;padding:0;border:0;background:none;cursor:pointer;transition:transform .15s}
+.pkart:hover{transform:translateY(-3px)}
+.pkc{font-size:12px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
+.pkc .sd-vs,.pkc .sd-sign{display:none}
+.pkc .pks{position:absolute;left:16%;top:11%;width:68%;z-index:0}
+.pkc .pko{position:absolute;left:0;right:0;top:57%;z-index:1;text-align:center;font:900 2.15em/1 "Barlow Condensed",var(--px),sans-serif;letter-spacing:.02em;color:#fff;text-shadow:0 .06em .15em rgba(0,0,0,.9),0 0 .5em rgba(0,0,0,.55)}
+.pkc .pke{position:absolute;left:0;right:0;top:75%;z-index:1;display:flex;justify-content:center;align-items:center;gap:.35em}
+.pkc .pke b{width:1.7em;height:1.7em;border-radius:50%;display:grid;place-items:center;font:900 1em/1 "Barlow Condensed",sans-serif;color:#fff;border:.13em solid #fff;box-shadow:0 .1em .2em rgba(0,0,0,.5);text-shadow:0 .05em .1em rgba(0,0,0,.6)}
+.pkc .pke .lo{background:radial-gradient(circle at 40% 35%,#ffe08a,#e8a020 60%,#9a5a08)}
+.pkc .pke .hi{background:radial-gradient(circle at 40% 35%,#ff8a8a,#e8283e 60%,#7a0418)}
+.pkc .pke i{width:.55em;height:.14em;background:#fff;border-radius:2px}
+.pkc .pkn{position:absolute;top:5%;right:7%;z-index:2;font:900 1em/1 "Barlow Condensed",sans-serif;padding:.2em .4em;border-radius:.3em;background:rgba(0,0,0,.6);color:#fff}
+.pkc .pkn:empty{display:none}
+.pkc .pkdone{position:absolute;inset:0;z-index:3;display:grid;place-items:center;background:rgba(2,7,19,.6);font-size:2.4em;color:#c8f23a}
+.pknm{font-size:13px;line-height:1.25;color:#d6dcea;text-align:center;max-width:100%;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;min-height:2.5em}
+.pkbuy{min-width:82%;height:32px;padding:0 12px;border-radius:999px;border:0;background:#1c2748;color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);cursor:pointer}
+.pkbuy:hover:not(:disabled){background:#26335e}
+.pkbuy:disabled{opacity:.5;cursor:default}
+.pkbuy.free{background:linear-gradient(180deg,#ffe46a,#f5b300);color:#2a1a00;box-shadow:none}
+.pkt .nptime{font-size:12px;color:#ff9fd0;margin-top:-4px}
+.psart .pkc{font-size:17px}
+.pcm .pkc{font-size:5.4px;filter:none}
+.si,.sr{position:absolute;inset:0;z-index:0;overflow:hidden;font-family:"Barlow Condensed",var(--px),sans-serif}
+.si>*,.sr>*{position:absolute}
+.sr-tag{left:3%;bottom:12%;z-index:3;padding:.4cqw 1.4cqw;border-radius:99px;font:800 1.5cqw/1.2 "Barlow Condensed",sans-serif;letter-spacing:.3cqw;color:#fff;background:rgba(0,0,0,.45);border:.15cqw solid rgba(255,255,255,.4)}
+.st.ssp .sr-tag{color:#2a1a00;background:linear-gradient(90deg,#fff3c4,#ffd23f,#e8a020);border-color:#fff}
+@keyframes sFlk{0%,4%,8%,40%,44%,100%{opacity:1}5%,7%,42%{opacity:.2}}
+@keyframes sRot{to{transform:rotate(360deg)}}
+@keyframes sBob{from{transform:translateY(-1.5cqh)}to{transform:translateY(1.5cqh)}}
+
+.si1,.sr1{background:linear-gradient(180deg,#14051f,#0b0418 65%,#05020a)}
+.si1 .brick,.sr1 .brick{left:0;right:0;top:0;height:70%;background:linear-gradient(transparent 0 2.6cqw,rgba(0,0,0,.55) 2.6cqw 2.9cqw) 0 0/100% 2.9cqw,linear-gradient(90deg,transparent 0 5.6cqw,rgba(0,0,0,.55) 5.6cqw 5.9cqw) 0 0/5.9cqw 5.8cqw,linear-gradient(90deg,transparent 0 5.6cqw,rgba(0,0,0,.55) 5.6cqw 5.9cqw) 2.95cqw 2.9cqw/5.9cqw 5.8cqw,radial-gradient(ellipse 60% 70% at 50% 40%,#4a1a5a,#21102e 70%)}
+.si1 .nsign{font-weight:900;font-style:italic;line-height:1;color:#fff;letter-spacing:.3cqw;white-space:nowrap}
+.si1 .nsign.a{left:5%;top:9%;font-size:9cqw;transform:rotate(-5deg);text-shadow:0 0 .4cqw #ff4fd8,0 0 1.4cqw #ff4fd8,0 0 3cqw #ff4fd8;animation:sFlk 2.8s steps(1) infinite}
+.si1 .nsign.b{right:5%;top:12%;font-size:7.5cqw;transform:rotate(4deg);text-shadow:0 0 .4cqw #5fe3f2,0 0 1.4cqw #5fe3f2,0 0 3cqw #5fe3f2;animation:sFlk 3.6s steps(1) infinite .9s}
+.si1 .nsign.c{left:9%;top:44%;font-size:5cqw;padding:.4cqw 1cqw;border:.4cqw solid #ffd23f;border-radius:1cqw;box-shadow:0 0 1.4cqw #ffd23f,inset 0 0 1.4cqw #ffd23f;text-shadow:0 0 1.2cqw #ffd23f;animation:sFlk 4.2s steps(1) infinite 1.7s}
+.si1 .nsign.d{right:11%;top:42%;font-size:8cqw;color:#c8f23a;text-shadow:0 0 1.4cqw #c8f23a,0 0 3cqw #c8f23a;animation:sBob 1.4s ease-in-out infinite alternate}
+.st.ssp .si1 .nsign.d{color:#ffd23f;text-shadow:0 0 1.4cqw #ffd23f,0 0 3cqw #ff8a1a}
+.si1 .wet{left:0;right:0;bottom:0;height:30%;background:linear-gradient(90deg,transparent 4%,rgba(255,79,216,.35) 6% 22%,transparent 26% 66%,rgba(95,227,242,.3) 70% 92%,transparent 95%),linear-gradient(180deg,#1a0a26,#05020a);-webkit-mask:repeating-linear-gradient(180deg,#000 0 .5cqh,rgba(0,0,0,.5) .5cqh 1.2cqh);mask:repeating-linear-gradient(180deg,#000 0 .5cqh,rgba(0,0,0,.5) .5cqh 1.2cqh)}
+.si1 .steam{left:-10%;right:-10%;bottom:18%;height:30%;background:radial-gradient(ellipse 30% 50% at 30% 60%,rgba(255,255,255,.12),transparent 70%),radial-gradient(ellipse 30% 50% at 75% 50%,rgba(255,255,255,.1),transparent 70%);animation:sBob 3s ease-in-out infinite alternate}
+.st.s-out .si1 .nsign{animation:none;opacity:1}
+.sr1 .grid{left:-30%;right:-30%;bottom:0;height:42%;overflow:hidden;transform:perspective(30cqw) rotateX(58deg);transform-origin:bottom;background:linear-gradient(180deg,#0b0418,#3a0a4a)}
+.sr1 .grid::before{content:"";position:absolute;left:0;right:0;top:-100%;height:200%;background:linear-gradient(transparent 0 calc(100% - .35cqw),#ff4fd8 0) 0 0/100% 6cqw,linear-gradient(90deg,transparent 0 calc(100% - .35cqw),#5fe3f2 0) 0 0/6cqw 100%;will-change:transform;animation:sGrid 1s linear infinite}
+@keyframes sGrid{to{transform:translateY(6cqw)}}
+.sr1 .ntxt{left:0;right:0;top:4%;text-align:center;font-size:8.5cqw;font-weight:900;font-style:italic;line-height:.9;letter-spacing:.6cqw;color:#fff;text-shadow:0 0 .4cqw #ff4fd8,0 0 1.5cqw #ff4fd8,0 0 3.5cqw #ff4fd8;animation:sFlk 3s steps(1) infinite}
+.sr1 .ntxt br{display:none}
+.sr1 .nring{left:50%;top:56%;border-radius:50%;transform:translate(-50%,-50%)}
+.sr1 .nring.a{width:46cqh;height:46cqh;border:.6cqw solid #5fe3f2;box-shadow:0 0 2cqw #5fe3f2,inset 0 0 2cqw #5fe3f2;animation:sPls 1.6s ease-in-out infinite alternate}
+.sr1 .nring.b{width:62cqh;height:62cqh;border:.4cqw dashed #ff4fd8;animation:sRotC 9s linear infinite}
+.st.ssp .sr1 .nring.a{border-color:#ffd23f;box-shadow:0 0 2cqw #ffd23f,inset 0 0 2cqw #ffd23f}
+@keyframes sPls{to{transform:translate(-50%,-50%) scale(1.08)}}
+@keyframes sRotC{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.sr1 .dais{background:radial-gradient(ellipse,#ffd6f6 0 22%,#ff4fd8 45%,#5a0a6a 66%,transparent 70%);box-shadow:0 0 6cqw rgba(255,79,216,.8)}
+.sr1 .dais span{color:#fff}
+
+.si2,.sr2{background:linear-gradient(180deg,#01020a,#0a1434 50%,#1e2c5a)}
+.si2 .moon,.sr2 .moon{right:14%;top:8%;width:15cqw;height:15cqw;border-radius:50%;background:radial-gradient(circle at 38% 38%,#fff,#dfe4f0 45%,#9aa6c4);box-shadow:0 0 5cqw 1cqw rgba(200,214,255,.45)}
+.sr2 .moon{left:50%;right:auto;top:52%;width:52cqh;height:52cqh;transform:translate(-50%,-50%);background:radial-gradient(circle at 40% 35%,#fff,#e6eaf4 40%,#b4bdd4 70%,#8a94b0);box-shadow:0 0 8cqw 2cqw rgba(200,214,255,.5)}
+.st.ssp .sr2 .moon{background:radial-gradient(circle at 40% 35%,#fffbe8,#ffe9a8 40%,#e8c470 70%,#b8902a);box-shadow:0 0 8cqw 2cqw rgba(255,226,140,.55)}
+.si2 .beam,.sr2 .beam{bottom:0;width:7cqw;height:130cqh;transform-origin:50% 100%;background:linear-gradient(0deg,rgba(220,230,255,.55),transparent 80%);clip-path:polygon(40% 100%,60% 100%,100% 0,0 0);will-change:transform}
+.si2 .beam.a,.sr2 .beam.a{left:22%;animation:sBeam 3.2s ease-in-out infinite alternate}
+.si2 .beam.b,.sr2 .beam.b{right:22%;animation:sBeam 2.7s ease-in-out infinite alternate-reverse}
+@keyframes sBeam{from{transform:rotate(-26deg)}to{transform:rotate(26deg)}}
+.si2 .city,.sr2 .city{left:0;right:0;bottom:0;clip-path:polygon(0 100%,0 40%,5% 40%,5% 22%,10% 22%,10% 50%,15% 50%,15% 8%,19% 8%,19% 0,21% 0,21% 8%,25% 8%,25% 45%,31% 45%,31% 28%,37% 28%,37% 55%,42% 55%,42% 14%,48% 14%,48% 38%,54% 38%,54% 20%,58% 20%,58% 4%,60% 4%,60% 20%,64% 20%,64% 48%,70% 48%,70% 24%,76% 24%,76% 52%,82% 52%,82% 12%,88% 12%,88% 36%,94% 36%,94% 26%,100% 26%,100% 100%)}
+.si2 .city.far,.sr2 .city.far{height:46%;background:radial-gradient(circle,rgba(255,224,138,.55) 0 .18cqw,transparent .26cqw) 0 0/1.4cqw 1.8cqh,#0d1838;transform:scaleX(-1)}
+.si2 .city.near{height:32%;background:radial-gradient(circle,#ffe08a 0 .25cqw,transparent .35cqw) .5cqw 0/2.2cqw 2.6cqh,#03050d}
+.si2 .rain{left:-20%;right:-20%;top:-100%;height:200%;background:repeating-linear-gradient(105deg,transparent 0 2.2cqw,rgba(180,200,255,.22) 2.2cqw 2.3cqw);will-change:transform;animation:sRain .6s linear infinite}
+@keyframes sRain{to{transform:translate(-4cqw,25cqh)}}
+.sr2 .mtxt{left:0;right:0;top:3%;text-align:center;font-size:9cqw;font-weight:900;line-height:.9;letter-spacing:1cqw;background:linear-gradient(180deg,#fff,#c8d0e0 45%,#6a7a9a 55%,#e8eef8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sr2 .mtxt span{display:block;font-size:2.4cqw;letter-spacing:2.6cqw;color:#c8d0e0;-webkit-text-fill-color:#c8d0e0}
+.st.ssp .sr2 .mtxt{background-image:linear-gradient(180deg,#fffbe8,#ffe08a 45%,#b8862a 55%,#fff3c4)}
+.sr2 .roof{left:-10%;right:-10%;bottom:0;height:24%;background:linear-gradient(180deg,rgba(200,214,255,.25),transparent 40%),repeating-linear-gradient(90deg,#141c38 0 7cqw,#0e1430 7cqw 14cqw);transform:perspective(40cqw) rotateX(45deg);transform-origin:bottom}
+.sr2 .dais{background:radial-gradient(ellipse,#fff 0 22%,#c8d0e0 45%,#3a4e86 64%,transparent 70%);box-shadow:0 0 6cqw rgba(200,214,255,.8)}
+.sr2 .dais span{color:#0a1230}
+
+.si3,.sr3{background:radial-gradient(ellipse at 50% 50%,#1e0c4a,#07031a 60%,#020108)}
+.si3 .neb,.sr3 .gal{left:50%;top:50%;width:140cqw;height:140cqw;margin:-70cqw;border-radius:50%;background:radial-gradient(ellipse 30% 18% at 35% 45%,rgba(47,211,194,.45),transparent 70%),radial-gradient(ellipse 28% 22% at 65% 58%,rgba(184,138,255,.5),transparent 70%),radial-gradient(ellipse 18% 14% at 55% 38%,rgba(255,120,220,.4),transparent 70%);will-change:transform;animation:sRot 40s linear infinite}
+.si3 .warp{left:50%;top:48%;width:0;height:0}
+.si3 .warp i{position:absolute;left:0;top:0;width:var(--l);height:.22cqw;border-radius:9px;background:linear-gradient(90deg,transparent,#bff6ff 60%,#fff);transform-origin:0 50%;opacity:0;will-change:transform;animation:sWarp 1.3s linear infinite var(--d)}
+@keyframes sWarp{0%{transform:rotate(var(--a)) translateX(2cqw) scaleX(.05);opacity:0}20%{opacity:1}100%{transform:rotate(var(--a)) translateX(70cqw) scaleX(1);opacity:1}}
+.st.s-out .si3 .warp i{animation-duration:.5s}
+.si3 .pl{border-radius:50%;animation:sBob 3s ease-in-out infinite alternate}
+.si3 .pl.a{left:-6%;bottom:-14%;width:36cqw;height:36cqw;background:radial-gradient(circle at 70% 30%,#ffd0f0,#b84bff 45%,#2a0a5a 80%);box-shadow:0 0 5cqw rgba(184,75,255,.5)}
+.si3 .pl.a::after{content:"";position:absolute;left:-25%;right:-25%;top:42%;height:16%;border-radius:50%;border:.6cqw solid rgba(255,226,122,.75);transform:rotate(-14deg)}
+.si3 .pl.b{right:9%;top:9%;width:9cqw;height:9cqw;background:radial-gradient(circle at 30% 30%,#e8fffb,#2fd3c2 50%,#0a4a4a);box-shadow:0 0 3cqw rgba(47,211,194,.6);animation-duration:2.2s}
+.sr3 .stars,.si3::before{inset:0;background:radial-gradient(circle,#fff 0 .12cqw,transparent .2cqw) 0 0/5cqw 6cqw,radial-gradient(circle,#bff6ff 0 .1cqw,transparent .18cqw) 2.4cqw 3cqw/7cqw 5cqw,radial-gradient(circle,#ffd0f0 0 .1cqw,transparent .18cqw) 1cqw 1.5cqw/9cqw 8cqw;animation:sTw 2s ease-in-out infinite alternate}
+.si3::before{content:"";position:absolute}
+@keyframes sTw{from{opacity:.5}to{opacity:1}}
+.sr3 .gal{background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(184,138,255,.22) 0 8deg,transparent 8deg 30deg),radial-gradient(circle,rgba(255,226,122,.5),rgba(184,138,255,.3) 12%,rgba(47,211,194,.15) 30%,transparent 55%);animation-duration:24s}
+.st.ssp .sr3 .gal{background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(47,211,194,.25) 0 6deg,rgba(255,122,224,.22) 6deg 12deg,transparent 12deg 24deg),radial-gradient(circle,rgba(255,240,180,.7),rgba(255,122,224,.35) 12%,rgba(47,211,194,.2) 30%,transparent 55%);animation-duration:12s}
+.sr3 .orb{left:50%;top:56%;border-radius:50%;border:.3cqw solid rgba(191,246,255,.5);transform:translate(-50%,-50%) rotateX(70deg)}
+.sr3 .orb.o1{width:70cqw;height:70cqw}
+.sr3 .orb.o2{width:48cqw;height:48cqw;border-color:rgba(255,226,122,.55)}
+.sr3 .orb i{position:absolute;inset:0;border-radius:50%;will-change:transform;animation:sRot 5s linear infinite}
+.sr3 .orb.o2 i{animation-duration:3.4s;animation-direction:reverse}
+.sr3 .orb i::before{content:"";position:absolute;left:50%;top:-1.6cqw;width:3cqw;height:3cqw;margin-left:-1.5cqw;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#2fd3c2 60%,#0a4a4a);box-shadow:0 0 2cqw #2fd3c2}
+.sr3 .orb.o2 i::before{background:radial-gradient(circle at 35% 35%,#fff,#ff7ae0 60%,#5a0a4a);box-shadow:0 0 2cqw #ff7ae0}
+.sr3 .ctxt{left:0;right:0;top:4%;text-align:center;font-size:8cqw;font-weight:900;letter-spacing:.8cqw;background:linear-gradient(90deg,#2fd3c2,#b88aff,#ff7ae0,#ffe27a,#2fd3c2) 0 0/200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sHue 3s linear infinite}
+@keyframes sHue{to{background-position:200% 0}}
+.sr3 .dais{background:radial-gradient(ellipse,#fff 0 18%,#bff6ff 32%,#b88aff 50%,#2a0a5a 66%,transparent 70%);box-shadow:0 0 6cqw rgba(184,138,255,.8)}
+.sr3 .dais span{color:#1a0a40}
+
+.si4,.sr4{background:#0a0c22}
+.si4 .half,.sr4 .half{top:0;bottom:0;width:58%}
+.si4 .half.r,.sr4 .half.r{left:0;background:radial-gradient(ellipse at 30% 50%,#ff3b4f,#c8102e 55%,#5a0414);clip-path:polygon(0 0,100% 0,72% 100%,0 100%)}
+.si4 .half.b,.sr4 .half.b{right:0;background:radial-gradient(ellipse at 70% 50%,#4a8aff,#1e5ad8 55%,#06164a);clip-path:polygon(28% 0,100% 0,100% 100%,0 100%)}
+.si4 .half{transition:transform .45s cubic-bezier(.6,0,.3,1.3)}
+.si4 .half.r{transform:translateX(-105%)}
+.si4 .half.b{transform:translateX(105%)}
+.st.in .si4 .half{transform:none}
+.si4 .half b{position:absolute;top:50%;transform:translateY(-50%);font-size:22cqw;font-weight:900;font-style:italic;line-height:1;color:transparent;-webkit-text-stroke:.3cqw rgba(255,255,255,.28)}
+.si4 .half.r b{left:3%}
+.si4 .half.b b{right:3%}
+.si4 .bolt,.sr4 .zap{left:44%;top:-2%;width:12%;height:104%;background:linear-gradient(90deg,#fff6c8,#fff,#ffd23f);clip-path:polygon(60% 0,30% 44%,52% 44%,26% 100%,76% 38%,54% 38%,78% 0);opacity:0}
+.st.in .si4 .bolt{animation:sZap 1.2s steps(1) infinite .45s}
+.sr4 .zap{animation:sZap 1.4s steps(1) infinite}
+@keyframes sZap{0%,30%,100%{opacity:1}10%,40%{opacity:.15}}
+.st.ssp .si4 .bolt,.st.ssp .sr4 .zap{width:16%;left:42%;background:linear-gradient(90deg,#fff,#ffd23f,#ff8a1a)}
+.si4 .vs{left:50%;bottom:8%;transform:translateX(-50%) scale(3);opacity:0;font-size:10cqw;font-weight:900;font-style:italic;line-height:1;color:#ffd23f;-webkit-text-stroke:.35cqw #0a0c22;text-shadow:.5cqw .5cqw 0 #0a0c22;transition:transform .35s cubic-bezier(.3,1.6,.5,1) .5s,opacity .2s .5s}
+.st.in .si4 .vs{transform:translateX(-50%) scale(1);opacity:1}
+.st.in .si4{animation:sShk .35s .45s}
+@keyframes sShk{0%,100%{transform:none}20%{transform:translate(-1.2cqw,.8cqh)}40%{transform:translate(1cqw,-.8cqh)}60%{transform:translate(-.8cqw,.5cqh)}80%{transform:translate(.6cqw,-.3cqh)}}
+.sr4 .spot{top:-10%;width:30cqw;height:125%;transform-origin:50% 0;clip-path:polygon(40% 0,60% 0,100% 100%,0 100%)}
+.sr4 .spot.l{left:2%;background:linear-gradient(180deg,rgba(255,200,200,.5),rgba(255,59,79,.15));transform:rotate(-24deg);animation:sSpL 2.4s ease-in-out infinite alternate}
+.sr4 .spot.r{right:2%;background:linear-gradient(180deg,rgba(200,220,255,.5),rgba(74,138,255,.15));transform:rotate(24deg);animation:sSpR 2.4s ease-in-out infinite alternate}
+@keyframes sSpL{to{transform:rotate(-34deg)}}
+@keyframes sSpR{to{transform:rotate(34deg)}}
+.sr4 .rtxt{top:12%;font-size:11cqw;font-weight:900;font-style:italic;line-height:1;color:#fff;text-shadow:.5cqw .5cqw 0 rgba(0,0,0,.5)}
+.sr4 .rtxt.l{left:4%;transform:rotate(-6deg)}
+.sr4 .rtxt.r{right:4%;transform:rotate(6deg)}
+.st.ssp .sr4 .rtxt{color:#ffd23f;-webkit-text-stroke:.2cqw #0a0c22}
+.sr4 .dais{background:linear-gradient(90deg,#ff3b4f 0 48%,#fff 48% 52%,#4a8aff 52%);border-radius:50%;box-shadow:0 0 6cqw rgba(255,255,255,.5)}
+.sr4 .dais span{color:#fff;text-shadow:0 0 .4cqw #000}
+
+.si5,.sr5{background:#0a0703}
+.si5 .hall{inset:0;background:radial-gradient(ellipse 40% 50% at 50% 45%,rgba(255,214,120,.35),transparent 70%),repeating-linear-gradient(90deg,transparent 0 9cqw,rgba(232,184,74,.18) 9cqw 10cqw),linear-gradient(180deg,#1a1408,#050402)}
+.si5 .cur{top:0;bottom:0;width:52%;background:repeating-linear-gradient(90deg,#4a0410 0 1.5cqw,#8a0e22 3.5cqw,#c41a34 4.5cqw,#8a0e22 5.5cqw,#4a0410 7cqw);border-bottom:2.6cqh solid #e8b84a;box-shadow:inset 0 -4cqh 3cqh -2cqh rgba(0,0,0,.5);transition:transform 1.2s cubic-bezier(.6,0,.2,1)}
+.si5 .cur::after{content:"";position:absolute;left:0;right:0;top:0;height:9%;background:repeating-linear-gradient(90deg,#c41a34 0 3cqw,#8a0e22 3cqw 3.5cqw),linear-gradient(#e8b84a,#e8b84a);border-bottom:.8cqh solid #e8b84a;border-radius:0 0 50% 50%/0 0 60% 60%}
+.si5 .cur.l{left:0}
+.si5 .cur.r{right:0}
+.st.s-flag .si5 .cur.l,.st.s-pos .si5 .cur.l{transform:translateX(-32%)}
+.st.s-flag .si5 .cur.r,.st.s-pos .si5 .cur.r{transform:translateX(32%)}
+.st.s-logo .si5 .cur.l,.st.s-out .si5 .cur.l{transform:translateX(-82%)}
+.st.s-logo .si5 .cur.r,.st.s-out .si5 .cur.r{transform:translateX(82%)}
+.si5 .chand{left:50%;top:-2%;width:16cqw;height:12cqw;margin-left:-8cqw;transform-origin:50% 0;background:radial-gradient(circle,#fff 0 .4cqw,transparent .6cqw) 0 100%/2.6cqw 3cqw repeat-x,radial-gradient(ellipse 50% 40% at 50% 70%,rgba(255,226,140,.9),rgba(232,184,74,.3) 50%,transparent 70%);animation:sSwg 2.6s ease-in-out infinite alternate}
+@keyframes sSwg{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+.si5 .carpet{left:50%;bottom:0;width:30cqw;height:30%;margin-left:-15cqw;background:linear-gradient(90deg,#e8b84a 0 4%,#a0102a 4% 96%,#e8b84a 96%);clip-path:polygon(38% 0,62% 0,100% 100%,0 100%)}
+.sr5 .hall{inset:0;z-index:1;background:radial-gradient(ellipse 50% 55% at 50% 50%,transparent 30%,rgba(5,4,2,.92) 80%)}
+.sr5 .rays{left:50%;top:55%;width:150cqw;height:150cqw;margin:-75cqw;background:repeating-conic-gradient(from 0deg,rgba(255,214,90,.55) 0 5deg,transparent 5deg 15deg),radial-gradient(circle,#fff3c4,#e8b84a 20%,#3a2604 50%);will-change:transform;animation:sRot 22s linear infinite}
+.sr5 .crown{left:50%;top:2%;z-index:2;width:12cqw;height:7.2cqw;margin-left:-6cqw;background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 36%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x1=%220%22 y1=%220%22 x2=%220%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%23fff6cf%22/%3E%3Cstop offset=%22.5%22 stop-color=%22%23f3c650%22/%3E%3Cstop offset=%221%22 stop-color=%22%239a6412%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d=%22M4 30L7 8l12 12L30 2l11 18L53 8l3 22z%22 fill=%22url(%23g)%22 stroke=%22%234a2a04%22 stroke-width=%222%22/%3E%3Crect x=%224%22 y=%2229%22 width=%2252%22 height=%226%22 rx=%222%22 fill=%22url(%23g)%22 stroke=%22%234a2a04%22 stroke-width=%222%22/%3E%3Ccircle cx=%2230%22 cy=%224%22 r=%223%22 fill=%22%23ff3b5c%22/%3E%3Ccircle cx=%227%22 cy=%228%22 r=%222.4%22 fill=%22%234fd1ff%22/%3E%3Ccircle cx=%2253%22 cy=%228%22 r=%222.4%22 fill=%22%234fd1ff%22/%3E%3Ccircle cx=%2230%22 cy=%2222%22 r=%223.4%22 fill=%22%233ee08a%22/%3E%3C/svg%3E") center/contain no-repeat;animation:sBob 1.6s ease-in-out infinite alternate}
+.sr5 .gtxt{left:0;right:0;top:15%;z-index:2;text-align:center;font-size:7.5cqw;font-weight:900;line-height:.9;letter-spacing:1.2cqw;background:linear-gradient(180deg,#fff6cf,#f3c650 50%,#9a6412 52%,#ffe08a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sr5 .gtxt span{display:block;font-size:2.2cqw;letter-spacing:1.8cqw;-webkit-text-fill-color:#e8b84a}
+.sr5 .gold{inset:0;z-index:2}
+.sr5 .gold i{position:absolute;top:-4%;width:.9cqw;height:.9cqw;background:linear-gradient(135deg,#fff6cf,#f3c650 50%,#9a6412);transform:rotate(45deg);will-change:transform;animation:sGold 2.6s linear infinite}
+.sr5 .gold i:nth-child(2n){display:none}
+.st.ssp .sr5 .gold i:nth-child(2n){display:block}
+@keyframes sGold{to{transform:translateY(110cqh) rotate(405deg)}}
+.sr5 .dais{z-index:1;background:radial-gradient(ellipse,#fff6cf 0 22%,#f3c650 45%,#6e4508 64%,transparent 70%);box-shadow:0 0 6cqw rgba(243,198,80,.9)}
+.sr5 .dais span{color:#3a2604}
+.sr5 .sr-tag{z-index:3}
+.sban{left:50%;top:5%;z-index:3;transform:translateX(-50%) scale(.3);opacity:0;transition:transform .5s cubic-bezier(.3,1.6,.5,1) .3s,opacity .2s .3s}
+.st.in .sban{transform:translateX(-50%) scale(1);opacity:1}
+.st.s-out .sban{opacity:0}
+.sban span{display:block;padding:.6cqw 3cqw;font-size:3.6cqw;font-weight:900;letter-spacing:1.2cqw;line-height:1;white-space:nowrap}
+.si1 .sban span{color:#fff;border:.4cqw solid #ffd23f;border-radius:1.2cqw;background:rgba(18,2,31,.8);box-shadow:0 0 2cqw #ffd23f,inset 0 0 1.4cqw #ffd23f;text-shadow:0 0 1.2cqw #ffd23f;animation:sFlk 2s steps(1) infinite}
+.si1 .sban{top:auto;bottom:16%}
+.si2 .sban span{color:#3a2604;background:linear-gradient(180deg,#fffbe8,#ffe08a 50%,#c8962a);clip-path:polygon(4% 0,96% 0,100% 50%,96% 100%,4% 100%,0 50%)}
+.st.ssp .si2 .moon{background:radial-gradient(circle at 38% 38%,#fffbe8,#ffe08a 50%,#c8962a);box-shadow:0 0 6cqw 2cqw rgba(255,214,120,.55)}
+.st.ssp .si2 .beam{background:linear-gradient(0deg,rgba(255,226,140,.6),transparent 80%)}
+.si3 .sban span{color:transparent;background:linear-gradient(90deg,#2fd3c2,#b88aff,#ff7ae0,#ffe27a,#2fd3c2) 0 0/200% 100%;-webkit-background-clip:text;background-clip:text;font-size:5cqw;animation:sHue 2s linear infinite}
+.st.ssp .si3 .pl.b{background:radial-gradient(circle at 30% 30%,#fffbe8,#ffe27a 50%,#b8862a);box-shadow:0 0 4cqw rgba(255,226,122,.8)}
+.st.ssp .si3 .warp i{background:linear-gradient(90deg,transparent,#ffe27a 60%,#fff)}
+.si4 .sban{top:6%}
+.si4 .sban span{color:#0a0c22;background:#ffd23f;transform:skewX(-12deg);box-shadow:.5cqw .5cqw 0 #0a0c22}
+.st.ssp .si4 .half.r{background:radial-gradient(ellipse at 30% 50%,#ff6a3a,#e8283e 50%,#5a0414)}
+.st.ssp .si4 .half.b{background:radial-gradient(ellipse at 70% 50%,#7ab0ff,#2a6aff 50%,#06164a)}
+.si5 .sban{z-index:4;top:auto;bottom:16%}
+.si5 .sban span{color:transparent;background:linear-gradient(180deg,#fff6cf,#f3c650 50%,#9a6412 52%,#ffe08a);-webkit-background-clip:text;background-clip:text;font-size:5cqw}
+.st.ssp .si5 .cur{background:repeating-linear-gradient(90deg,#1a0a2a 0 1.5cqw,#3a1a5a 3.5cqw,#5a2a8a 4.5cqw,#3a1a5a 5.5cqw,#1a0a2a 7cqw)}
+.st.ssp .si5 .carpet{background:linear-gradient(90deg,#e8b84a 0 4%,#3a1a5a 4% 96%,#e8b84a 96%)}
 </style>
 
 <div id="root"><div id="zoomer">
@@ -2136,6 +2509,7 @@ button.psit{cursor:pointer}button.psit:disabled{opacity:.42;cursor:default}
       <button data-a="go" data-v="login"><i class="ic ic-cal"></i><span>출석</span><i class="dot" id="dLogin" hidden></i></button>
       <button data-a="go" data-v="team"><i class="ic ic-team"></i><span>나의 팀</span></button>
       <button data-a="go" data-v="friends"><i class="ic ic-friend"></i><span>친구</span></button>
+      <button data-a="adwatch" class="adq"><i class="ic ic-ad"></i><span id="adLbl">광고</span><i class="dot" id="dAd" hidden></i></button>
     </div>
     <div class="wallet">
       <button class="cur" data-a="go" data-v="shop" title="BP · 선수 팩 구매"><i class="bp"></i><span id="wBP">0</span><span class="plus">+</span></button>
@@ -2193,8 +2567,8 @@ const ROSTER = [
   ['tots',127,false,['최선웅','이태린','김지환','김정우','신태환','김도야']],
   ['tots',126,false,['김민준','박민혁','최동아','나윤오','정현성','이진헌','김유담','손지율']],
   ['tots',125,false,['문채빈','강범석','우현진','이혁환','차이정','한재준','정희건','최시우','정이루','원준섭','유도원','임수환','김동휘','이혁준','이지성','이윤재','이동훈']],
-  ['rep',140,true,['최선웅','이태린','김지환','김도야','김정우','신태환']],
-  ['rep',139,true,['박민혁','정현성','나윤오']]
+  ['rep',143,true,['최선웅','이태린','김지환','김도야','김정우','신태환']],
+  ['rep',142,true,['박민혁','정현성','나윤오']]
 ];
 const PERSON_POS = {
   '최선웅':'C','신태환':'C','최동아':'F',
@@ -2210,6 +2584,12 @@ const CLASSES = {
   rmi:{n:'RM ICON',ko:'RM 아이콘',col:'#d9a43a',j:['#1a1406','#d9a43a']}
 };
 const KIND_COL = {normal:'#9aa4b5',lunch:'#ff9f43',lunchS:'#ffd23f',tots:'#3d7bff',totsS:'#7fb2ff',rep:'#ff3b5c',fr:'#1fa3c9',frS:'#b06bff',rmi:'#d9a43a'};
+
+const SEASONS={"s1": {"n": "NEON STREET", "ko": "네온 스트리트", "col": "#ff4fd8", "j": ["#ff4fd8", "#2a0a4a"], "l": [["김지환", 128, 133], ["이태린", 128, 133], ["김정우", 127, 132], ["최선웅", 128, 133], ["김도야", 127, 132], ["신태환", 126, 131], ["나윤오", 125, null], ["최동아", 126, null], ["정현성", 126, null], ["박민혁", 125, null], ["손지율", 124, null], ["강범석", 124, null], ["한재준", 124, null], ["우현진", 125, null], ["이혁환", 124, null], ["정이루", 124, null], ["이윤재", 124, null], ["이동훈", 124, null], ["이혁준", 124, null], ["이진헌", 125, null], ["김유담", 125, null], ["문채빈", 123, null], ["차이정", 123, null], ["유도원", 123, null], ["임수환", 123, null]]}, "s2": {"n": "MIDNIGHT CITY", "ko": "미드나잇 시티", "col": "#8fa2c8", "j": ["#1c2a52", "#c8d0e0"], "l": [["최선웅", 129, 134], ["김도야", 128, 133], ["신태환", 128, 133], ["김민준", 127, 132], ["이진헌", 126, null], ["김유담", 126, null], ["정현성", 127, 132], ["박민혁", 127, 132], ["최동아", 126, null], ["나윤오", 126, null], ["이혁준", 125, null], ["이윤재", 125, null], ["손지율", 125, null], ["문채빈", 124, null], ["강범석", 125, null], ["우현진", 125, null], ["이혁환", 124, null], ["차이정", 124, null], ["한재준", 125, null], ["정희건", 124, null], ["최시우", 124, null], ["정이루", 124, null], ["원준섭", 124, null], ["유도원", 124, null], ["임수환", 124, null]]}, "s3": {"n": "COSMIC DREAM", "ko": "코스믹 드림", "col": "#2fd3c2", "j": ["#2a1a6a", "#2fd3c2"], "l": [["최선웅", 129, 135], ["이태린", 129, 135], ["김지환", 128, 134], ["김민준", 128, 134], ["강범석", 127, 133], ["한재준", 126, null], ["이도건", 127, 133], ["이윤재", 126, null], ["우현진", 126, null], ["정이루", 125, null], ["유도원", 125, null], ["이혁환", 125, null], ["김정우", 128, 134], ["김도야", 127, null], ["신태환", 127, null], ["최동아", 126, null], ["나윤오", 126, null], ["이진헌", 125, null], ["김유담", 125, null], ["문채빈", 124, null], ["차이정", 124, null], ["정희건", 124, null], ["최시우", 124, null], ["원준섭", 124, null], ["이동훈", 124, null]]}, "s4": {"n": "RIVAL DUEL", "ko": "라이벌 듀얼", "col": "#ff4a5a", "j": ["#c8102e", "#1e5ad8"], "l": [["김지환", 130, 136], ["이태린", 130, 136], ["김정우", 129, 135], ["김도야", 129, 135], ["박민혁", 128, 134], ["최동아", 128, 134], ["신태환", 128, 134], ["정현성", 127, null], ["한재준", 126, null], ["우현진", 127, null], ["손지율", 126, null], ["김민준", 128, null], ["나윤오", 127, null], ["이진헌", 126, null], ["김유담", 126, null], ["강범석", 127, null], ["이혁준", 126, null], ["이윤재", 126, null], ["이동훈", 125, null], ["문채빈", 125, null], ["이혁환", 125, null], ["차이정", 125, null], ["정이루", 125, null], ["임수환", 124, null]]}, "s5": {"n": "ROYAL CHAMPIONS", "ko": "로열 챔피언스", "col": "#e8b84a", "j": ["#141008", "#e8b84a"], "l": [["최선웅", 133, 139], ["이태린", 132, 139], ["김지환", 132, 139], ["김정우", 131, 139], ["김도야", 131, 138], ["신태환", 130, 137], ["박민혁", 129, 136], ["정현성", 129, 136], ["나윤오", 128, 135], ["최동아", 128, 135], ["김민준", 129, 136], ["강범석", 128, null], ["한재준", 127, null], ["이진헌", 128, null], ["김유담", 128, null], ["손지율", 127, null], ["우현진", 127, null], ["이윤재", 127, null], ["이혁준", 127, null], ["이동훈", 126, null], ["문채빈", 126, null], ["정이루", 126, null], ["유도원", 126, null], ["임수환", 126, null], ["이도건", 128, null]]}};
+for(const k in SEASONS){const se=SEASONS[k];CLASSES[k]={n:se.n,ko:se.ko,col:se.col,j:se.j};KIND_COL[k]=se.col;KIND_COL[k+'S']=se.col;
+  const g={},gs={};for(const [nm,o,so] of se.l){(g[o]=g[o]||[]).push(nm);if(so)(gs[so]=gs[so]||[]).push(nm)}
+  for(const o in gs)ROSTER.push([k,+o,true,gs[o]]);for(const o in g)ROSTER.push([k,+o,false,g[o]]);
+}
 const EVO_PROB = [1,1,0.8,0.7,0.5,0.4,0.35,0.2,0.1,0.07];
 const EVO_MAX = 10, ENH_MAX = 100, ENH_PER = 200, NORMAL_PT = 10, PROTECT_BP = 100;
 
@@ -2252,8 +2632,11 @@ const PACKS = [
   {id:'pos',name:'포지션 선택 팩',n:1,bp:180,cls:'lunch',odds:[[123,.62],[124,.25],[125,.1],['S',.03]],desc:'원하는 포지션 런치브레이크 1명',col:'#ffcf5a'},
   {id:'deal48',name:'특가 4~8진 팩',n:1,bp:200,cls:'deal',deal:true,ovr:[125,130],evo:[[4,.35],[5,.28],[6,.2],[7,.12],[8,.05]],desc:'4~8진 OVR 125~130 선수 1명',col:'#ff4f9a',oddsText:'진화 · 4진 35% · 5진 28% · 6진 20% · 7진 12% · 8진 5% / 기본 OVR · 125 30% · 126 25% · 127 20% · 128 13% · 129 8% · 130 4%'},
   {id:'deal7',name:'특가 6진 팩',n:1,bp:350,cls:'deal',deal:true,ovr:[126,130],evo:6,desc:'6진 OVR 126~130 선수 1명',col:'#b06bff',oddsText:'6진 확정 / 기본 OVR · 126 36% · 127 29% · 128 19% · 129 11% · 130 5%'},
-  {id:'rep',name:'리프레젠트 멤버 팩',n:1,bp:0,cls:'rep',odds:[[139,.6],[140,.4]],desc:'교환 전용 · 리프레젠트 멤버 1명',col:'#ff3b5c',hidden:true}
+  {id:'rep',name:'리프레젠트 멤버 팩',n:1,bp:0,cls:'rep',odds:[[142,.6],[143,.4]],desc:'리프레젠트 멤버 1명',col:'#ff3b5c',hidden:true}
 ];
+for(const k in SEASONS){const se=SEASONS[k];const ovs=[...new Set(se.l.map(x=>x[1]))].sort((a,b)=>a-b);const w=ovs.map((_,i)=>Math.pow(0.55,i));const sm=w.reduce((a,b)=>a+b,0);
+  const odds=ovs.map((o,i)=>[o,Math.round(w[i]/sm*0.96*1000)/1000]);odds.push(['S',0.04]);
+  PACKS.push({id:k,name:se.n+' 팩',n:1,bp:{s1:200,s2:230,s3:260,s4:300,s5:400}[k],cls:k,odds,desc:se.ko+' 시즌 선수 1명',col:se.col,season:true})}
 
 const $ = s => document.querySelector(s);
 const clamp = (v,a,b) => v<a?a:v>b?b:v;
@@ -2334,6 +2717,8 @@ function buildDB(){
   for(const p of DB){if(!fastOf(p.name))p.stats.spd=Math.max(1,p.stats.spd-Math.max(1,Math.round(statCap(p.ovr)*SPD_CUT/100)));DBI[p.id]=p}
 }
 buildDB();
+const PID_ALIAS={};for(const [a,b] of [[140,143],[139,142]])for(let i=0;DBI['rep'+b+'_'+i];i++){PID_ALIAS['rep'+a+'_'+i]='rep'+b+'_'+i;if(!DBI['rep'+a+'_'+i])DBI['rep'+a+'_'+i]=DBI['rep'+b+'_'+i]}
+const pidA=x=>PID_ALIAS[x]||x;
 
 const PCACHE = {};
 function portrait(p){
@@ -2358,10 +2743,46 @@ function portrait(p){
 function baseValue(p){return Math.round(baseValue0(p)*(1+(p.q||0)*0.3))}
 function baseValue0(p){
   if(p.cls==='normal')return 1000+(p.ovr-40)*200;
-  if(p.cls==='rep')return Math.round(1000000000*Math.pow(2,p.ovr-139));
+  if(p.cls==='rep')return Math.round(30000000*Math.pow(2,p.ovr-142));
   return Math.round(60000*Math.pow(1.32,p.ovr-123)*(p.cls==='tots'?1.2:1)*(p.special?1.6:1));
 }
-function value(p,evo,enh){return Math.max(1000,Math.round(baseValue(p)*Math.pow(1.7,evo||0)*(1+(enh||0)*0.01)/1000)*1000)}
+const EVO_RNG=[[1,1],[1.1,1.3],[1.3,1.7],[2,2.5],[3.5,5],[7,10],[15,25],[40,70],[100,180],[180,320],[320,600]];
+const VALUE_CAP=400e9;
+function evoMul(p,evo){
+  evo=Math.max(0,Math.min(EVO_RNG.length-1,evo|0));if(!evo)return 1;const [a,b]=EVO_RNG[evo];
+  let t=0.3+0.4*hash01(p.id+'|em|'+evo);
+  const ov=Math.max(0,Math.min(1,(Math.log10(Math.max(1000,baseValue(p)))-4.5)/4.5));t-=0.3*ov;
+  if(typeof evoMkAdj==='function')t+=evoMkAdj(p,evo);
+  t=Math.max(0,Math.min(1,t));return a*Math.pow(b/a,t);
+}
+function value(p,evo,enh){return Math.max(1000,Math.min(VALUE_CAP,Math.round(baseValue(p)*evoMul(p,evo||0)*(1+(enh||0)*0.01)/1000)*1000))}
+
+const TRAITS={
+  clutch:{n:'클러치 슈터',d:'4쿼터·연장 막판(남은 시간 35% 이하), 5점 차 이내에서 슛 성공률 +7%',c:'#ff4f6d',g:'M12 3l2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.4l6-.8z'},
+  sniper:{n:'외곽 저격수',d:'3점슛 성공률 +4%',c:'#ffd23f',g:'M12 2v4M12 18v4M2 12h4M18 12h4M12 7a5 5 0 1 0 .01 0z'},
+  slash:{n:'슬래셔',d:'레이업·덩크 성공률 +5%, 덩크 시도 증가',c:'#ff8a2a',g:'M4 20L20 4M14 4h6v6'},
+  pm:{n:'패스 마스터',d:'내 패스를 받은 동료의 슛 성공률 +5% · 자동 진행 어시스트 확률 증가',c:'#35d0ba',g:'M3 12h14M13 6l6 6-6 6'},
+  stl:{n:'스틸 전문',d:'스틸 성공 확률 ×1.35',c:'#c8f23a',g:'M5 12l5 5L19 7'},
+  rim:{n:'림 프로텍터',d:'골밑 근처 블록 확률 +8%',c:'#5fe3f2',g:'M4 4h16v6c0 5-4 9-8 10-4-1-8-5-8-10z'},
+  lock:{n:'자물쇠 수비',d:'내가 막는 상대의 슛 성공률 −4%',c:'#9b8aff',g:'M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5z'},
+  board:{n:'보드 장악',d:'리바운드 경합 시 잡을 확률 ×1.6',c:'#f7e8c6',g:'M12 3a9 9 0 1 0 .01 0zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18'},
+  hand:{n:'볼 핸들러',d:'상대에게 스틸당할 확률 −30%',c:'#ff7ae0',g:'M8 21V11a2 2 0 0 1 4 0v-1a2 2 0 0 1 4 0v1a2 2 0 0 1 4 0v6a6 6 0 0 1-6 6h-2a6 6 0 0 1-4-2l-4-5 2-2 2 2'},
+  jet:{n:'제트 엔진',d:'경기 이동 속도 +4%',c:'#6aa8ff',g:'M3 13h8l-2 8 12-12h-8l2-6z'}
+};
+const TRAIT_CACHE={};
+function traitsOf(p){
+  if(!p)return [];const nTr=p.cls==='normal'?1:(p.special||p.cls==='rep'||p.cls==='rmi')?3:2;
+  const key=p.name+'|'+nTr;if(TRAIT_CACHE[key])return TRAIT_CACHE[key];
+  let best=p;for(const q of DB)if(q.name===p.name&&q.ovr>best.ovr)best=q;
+  const s=best.stats,cap=statCap(best.ovr),N=k=>(s[k]||0)/cap;const j=k=>hash01(p.name+'|tr|'+k)*0.08;
+  const sc={clutch:(N('sht')+N('mid'))/2*1.03+j('clutch'),sniper:N('sht')+j('sniper'),slash:(N('ins')+N('ath'))/2+j('slash'),pm:N('pas')+j('pm'),stl:(N('def')*0.6+N('spd')*0.4)*1.05+j('stl'),
+    rim:(N('def')+N('reb'))/2*(best.pos==='C'?1.04:best.pos==='F'?1:0.9)+j('rim'),lock:N('def')*0.98+j('lock'),board:N('reb')*(best.pos==='G'?0.92:1)+j('board'),hand:N('drb')+j('hand'),jet:N('spd')+j('jet')};
+  const ord=Object.keys(sc).sort((a,b)=>sc[b]-sc[a]);const out=[];
+  const clash={rim:'lock',lock:'rim',sniper:'clutch',clutch:'sniper'};
+  for(const k of ord){if(out.length>=nTr)break;if(out.includes(clash[k])&&ord.length-out.length>nTr)continue;out.push(k)}
+  return TRAIT_CACHE[key]=out;
+}
+function traitIcon(id,sz){const t=TRAITS[id];if(!t)return'';return `<svg class="tri" viewBox="0 0 24 24" width="${sz||18}" height="${sz||18}"><path d="${t.g}" fill="none" stroke="${t.c}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`}
 const SAVE_KEY='pixelhoops.v2';
 const OLD_KEY='pixelhoops.v1';
 function today(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
@@ -2391,13 +2812,15 @@ function load(){
     }
   }catch(e){}
   S.cards.forEach(c=>{const m=/^rmi(\d+)_(\d+)$/.exec(c.pid);if(m&&!DBI[c.pid]){const o=+m[1];const i=o===132?0:Math.max(0,RMI_OLD.indexOf(o));c.pid='rmi'+RMI_LV[i]+'_'+m[2]}});
+  S.cards.forEach(c=>c.pid=pidA(c.pid));(S.listings||[]).forEach(l=>{if(l.pid)l.pid=pidA(l.pid)});(S.bids||[]).forEach(b=>{if(b.pid)b.pid=pidA(b.pid)});if(Array.isArray(S.watch))S.watch=S.watch.map(pidA);(S.trades||[]).forEach(t=>{if(t&&t.pid)t.pid=pidA(t.pid)});
+  if(S.mk)for(const k of ['f','pf','lo','hi','d','vol'])if(S.mk[k])for(const o in PID_ALIAS)if(S.mk[k][o]!=null){S.mk[k][PID_ALIAS[o]]=S.mk[k][o];delete S.mk[k][o]}
   S.cards=S.cards.filter(c=>DBI[c.pid]);S.cards.forEach(c=>{c.evo=c.evo||0;c.enh=c.enh||0;c.ep=c.ep||0;delete c.lvl});
   const ok=new Set(S.cards.map(c=>c.uid));
   S.lineup=SLOTS.map((_,i)=>ok.has(S.lineup[i])?S.lineup[i]:null);
   S.bench=[0,1,2,3,4].map(i=>ok.has(S.bench[i])?S.bench[i]:null);
   S.listings=(S.listings||[]).filter(l=>l.done?DBI[l.pid]:ok.has(l.uid));
   S.watch=(S.watch||[]).filter(id=>DBI[id]);
-  S.friends=(S.friends||[]).filter(f=>f&&f.id&&Array.isArray(f.l));S.bids=(S.bids||[]).filter(b=>DBI[b.pid]&&(b.qty>0||b.got>0));S.taken=S.taken||{};S.takenB=S.takenB||{};
+  S.friends=(S.friends||[]).filter(f=>f&&f.id&&Array.isArray(f.l));S.bids=(S.bids||[]).filter(b=>DBI[b.pid]&&(b.qty>0||b.got>0));if(!S.repCut){S.repCut=1;S.repCut2=0;const isR=id=>DBI[id]&&DBI[id].cls==='rep';S.bids.forEach(b=>{if(isR(b.pid))b.price=Math.round(b.price/10000)*1000});(S.listings||[]).forEach(l=>{if(!l.done&&isR(l.pid))l.price=Math.round(l.price/10000)*1000})}if(!S.repCut2){S.repCut2=1;const isR=id=>DBI[id]&&DBI[id].cls==='rep';const f=x=>Math.max(1000,Math.round(x*0.3/1000)*1000);S.bids.forEach(b=>{if(isR(b.pid))b.price=f(b.price)});(S.listings||[]).forEach(l=>{if(!l.done&&isR(l.pid))l.price=f(l.price)})}S.taken=S.taken||{};S.takenB=S.takenB||{};
 }
 function save(){if(typeof psSync==='function')try{psSync()}catch(e){}S._ts=Date.now();try{localStorage.setItem(SAVE_KEY,JSON.stringify(S))}catch(e){}if(typeof onlSchedule==='function')onlSchedule()}
 function ensureDaily(){
@@ -2434,7 +2857,7 @@ function rawStats(p,evo,enh){const st={};for(const [k] of STATS)st[k]=p.stats[k]
 function effCard(p,evo,enh,slot,bonus,uid){
   const pen=posPenalty(p.pos,slot);const raw=rawStats(p,evo,enh);const st={};
   for(const [k] of STATS)st[k]=Math.max(20,Math.round(eng(raw[k])+bonus+pen));
-  return{id:p.id,uid,iq:p.iq??0.5,name:p.name,pos:slot,nat:p.pos,num:p.num,look:p.look,height:p.height,cls:p.cls,special:p.special,evo:evo||0,enh:enh||0,st,ovr:p.ovr+3*(evo||0)+pen+bonus};
+  return{id:p.id,uid,iq:p.iq??0.5,tr:traitsOf(p),name:p.name,pos:slot,nat:p.pos,num:p.num,look:p.look,height:p.height,cls:p.cls,special:p.special,evo:evo||0,enh:enh||0,st,ovr:p.ovr+3*(evo||0)+pen+bonus};
 }
 function teamColors(){return TEAM_COLORS[S.color]||TEAM_COLORS[0]}
 function myTeam(){
@@ -2524,9 +2947,9 @@ function cardHTML(c,opt={}){
   const p=c.name?(DBI[c.id]||c):P(c);const evo=c.evo||0,enh=c.enh||0;const o=opt.ovr??(p.ovr+3*evo);const k=kindOf(p);
   const rl=k==='rmi'?Math.max(0,RMI_LV.indexOf(p.ovr)):-1;const psl=opt.ps||(c.uid!=null&&typeof psOf==='function'?psOf(c):null);
   const ax=ART_K.has(k);
-  const h=`<div class="card k-${k}${rl>=0?' rl'+rl:''}${ax?' ax':''}">${ax?'<i class="cout"></i><i class="cart"></i>'+CSH:''}${rl>=0?'<i class="rmray"></i><i class="rmw"></i><i class="rmcr"></i><i class="rmsp"></i>':''}${psl&&psl.length?`<div class="c-ps">${psl.map(id=>psIcon(id)).join('')}</div>`:''}${k==='rep'?'<i class="crown"></i>':''}${k==='frS'?'<b class="frc">C</b><i class="frlf"></i><i class="frsw"></i>':''}<div class="c-top"><b class="c-ovr">${o}</b><span class="c-rt"><span class="c-pos">${opt.pos||p.pos}</span><b class="c-grade g-${p.grade||'B'}">${p.grade||'B'}</b></span></div>`+
+  const h=`<div class="card k-${k}${rl>=0?' rl'+rl:''}${ax?' ax':''}">${ax?'<i class="cout"></i><i class="cart"></i>'+CSH:''}${rl>=0?'<i class="rmray"></i><i class="rmw"></i><i class="rmcr"></i><i class="rmsp"></i>':''}${psl&&psl.length?`<div class="c-ps">${psl.map(id=>psIcon(id)).join('')}</div>`:''}${k==='rep'?'<i class="crown"></i>':''}${SEA_K.has(p.cls)?seaDeco(k,p.special):''}${k==='frS'?'<b class="frc">C</b><i class="frlf"></i><i class="frsw"></i>':''}<div class="c-top"><b class="c-ovr">${o}</b><span class="c-rt"><span class="c-pos">${opt.pos||p.pos}</span><b class="c-grade g-${p.grade||'B'}">${p.grade||'B'}</b></span></div>`+
     `<img class="c-face" alt="" src="${portrait(p)}"><div class="c-name">${esc(p.name)}</div>`+
-    `<div class="c-foot"><span class="c-cls">${CLASSES[p.cls].n}</span><span class="c-badges">${enh?`<b class="enh">+${enh}</b>`:''}${evo?`<b class="evo ${evoTier(evo)}">${evo}</b>`:''}</span></div>${opt.tag?`<div class="tag${opt.tag==='판매 대기'?' blue':''}">${opt.tag}</div>`:''}</div>`;
+    `<div class="c-foot"><span class="c-cls">${CLASSES[p.cls].n}</span><span class="c-tr">${traitsOf(p).map(k=>traitIcon(k)).join('')}</span><span class="c-badges">${enh?`<b class="enh">+${enh}</b>`:''}${evo?`<b class="evo ${evoTier(evo)}">${evo}</b>`:''}</span></div>${opt.tag?`<div class="tag${opt.tag==='판매 대기'?' blue':''}">${opt.tag}</div>`:''}</div>`;
   return k==='frS'?`<div class="cwrap">${h}<b class="capc">C</b></div>`:h;
 }
 const PK=id=>PACKS.find(p=>p.id===id);
@@ -2565,7 +2988,7 @@ function renderTop(){
   $('#tBadge').src=emblemURL(tc.c1,tc.c2,S.emblem);$('#tName').textContent=S.name||'구단';
   $('#tLv').textContent=S.lvl;$('#tXp').textContent=`${fmt(S.xp)}/${fmt(xpNeed(S.lvl))}XP`;
   $('#wBP').textContent=fmtBP(S.bp);$('#wGP').textContent=fmt(S.gp);
-  const c=claimables();$('#dMis').hidden=!c.mis;$('#dLogin').hidden=!c.login;$('#dPass').hidden=!c.pass;
+  if(typeof adTop==='function')adTop();const c=claimables();$('#dMis').hidden=!c.mis;$('#dLogin').hidden=!c.login;$('#dPass').hidden=!c.pass;
 }
 function go(v,noPush){if(KB)kbClose();if(!noPush&&UI.view!==v)UI.prev.push(UI.view);if(UI.prev.length>20)UI.prev.shift();UI.view=v;UI.msel=null;render();$('#zoomer').scrollTop=0}
 function back(){const v=UI.prev.pop()||'home';UI.view=v;UI.msel=null;render();$('#zoomer').scrollTop=0}
@@ -2575,7 +2998,7 @@ function render(){
   const navMap={home:'home',missions:'missions',login:'missions',market:'market',exchange:'exchange',shop:'shop',rmx:'rmx'};
   document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===navMap[UI.view]));
   const V={friends:vFriends,home:vHome,team:vTeam,squad:vSquad,players:vPlayers,mode:vMode,event:vEvent,rmx:vRmx,rkrew:vRkRew,locker:vLocker,badge:vBadge,style:vStyle,play:vPlay,market:vMarket,exchange:vExchange,shop:vShop,missions:vMissions,login:vMissions,pass:vPass,psedit:vPsEdit}[UI.view]||vHome;
-  $('#view').innerHTML=V();updNav();{const r=$('#root');if(r)r.classList.toggle('hm',UI.view==='home')}if(UI.view==='home'){fitHome();hbgSet((UI.hslide||0)%3)}
+  {const vw=$('#view');const free=UI.view==='market'||UI.view==='shop'||UI.view==='home';vw.classList.toggle('fit',!free);vw.style.height='';vw.innerHTML=free?V():`<div class="vf">${V()}</div>`;}updNav();if(UI.view!=='home')fitView();{const r=$('#root');if(r)r.classList.toggle('hm',UI.view==='home')}if(UI.view==='home'){fitHome();hbgSet((UI.hslide||0)%3)}
   save();
 }
 
@@ -2603,6 +3026,22 @@ function hbgSet(i){
   if(!w){w=document.createElement('div');w.id='hbgs';w.innerHTML=[HERO.bg].concat(HERO.bgs||[]).map(u=>`<i style="background-image:url(${u})"></i>`).join('');r.insertBefore(w,r.firstChild)}
   w.querySelectorAll('i').forEach((x,k)=>x.classList.toggle('on',k===i));
 }
+function fitView(){
+  const v=$('#view');if(!v)return;const f=v.firstElementChild;
+  if(!v.classList.contains('fit')||!f||!f.classList.contains('vf')){v.style.height='';return}
+  const zm=$('#zoomer');const t=$('#top')?$('#top').offsetHeight:70,n=$('#nav')?$('#nav').offsetHeight:64;
+  const avail=Math.max(200,zm.clientHeight-t-n-26);v.style.height=avail+'px';
+  f.style.transform='';f.style.width='';f.style.marginLeft='';v.classList.remove('vsc');
+  const h0=f.offsetHeight,W0=f.offsetWidth;if(h0<=avail)return;
+  const MIN=0.58;const zp=avail/h0;
+  let z=1,h=h0;for(let k=0;k<4;k++){z=Math.max(MIN,Math.min(1,z*avail/h*0.995));f.style.width=(100/z)+'%';h=f.offsetHeight*z;if(h<=avail||z<=MIN)break}
+  const zw=h<=avail?z:0;
+  if(zw>=zp&&zw>0){f.style.transform=`scale(${zw})`;return}
+  f.style.width='';
+  if(zp>=MIN){f.style.transform=`scale(${zp})`;f.style.marginLeft=((1-zp)*W0/2)+'px';return}
+  if(zw>0){f.style.width=(100/zw)+'%';f.style.transform=`scale(${zw})`;return}
+  f.style.width='';f.style.transform='';v.classList.add('vsc');
+}
 function carCur(id){return id==='hcar'?(UI.hslide||0):(UI.slide||0)}
 function fitHome(){
   const h=document.querySelector('.hm2');if(!h)return;const zm=$('#zoomer');
@@ -2625,7 +3064,7 @@ function vHome(){
     {cls:'sl-hero',go:'play',html:`<div class="mini-art">${H?`<img class="m1" src="${H.p[1]}" alt=""><img class="m2" src="${H.p[2]}" alt=""><img class="m0" src="${H.p[0]}" alt="">`:''}</div><div class="sl-t"><b>PIXEL HOOPS 26</b><span>${new Date().getMonth()+1}월 랭크 시즌 개막</span></div>`},
     {cls:'sl-fr',go:'event',html:`<span class="x">EVENT</span><div class="sl-t"><em>FRIENDS &amp; RIVALS</em><b>2026 반대항전</b><span>[기간] 10.19 ~ 11.9 · 1학년 6개 반</span><span>[신규 시즌] F&amp;R 반별 스쿼드 공개</span></div>`},
     {cls:'sl-tots',go:'shop',html:`<div class="sl-art"><img src="${bodyURL(DBI['tots130_0']||cap,'#2f6bff','#ffd23f',true)}" alt=""></div><div class="sl-t"><em>TOTS</em><b>TOTS 팩</b><span>팀 오브 더 세메스터 · OVR 125~130</span></div>`},
-    {cls:'sl-rep',go:'exchange',html:`<div class="sl-art"><img src="${bodyURL(DBI['rep140_0']||cap,'#c8102e','#ffd23f',true)}" alt=""></div><div class="sl-t"><em>REPRESENT</em><b>리프레젠트 멤버</b><span>OVR 142 이상 카드 50장 교환</span></div>`},
+    {cls:'sl-rep',go:'market',html:`<div class="sl-art"><img src="${bodyURL(DBI['rep143_0']||cap,'#c8102e','#ffd23f',true)}" alt=""></div><div class="sl-t"><em>REPRESENT</em><b>리프레젠트 멤버</b><span>이적시장에서 영입 · 3천만부터</span></div>`},
     {cls:'sl-mk',go:'market',html:`<div class="sl-art"><img src="${bodyURL(DBI['lunch128_1']||cap,'#ff9f43','#3a1a05',true)}" alt=""></div><div class="sl-t"><em>MARKET</em><b>이적 시장</b><span>GP로 원하는 선수를 검색해서 영입</span></div>`}
   ];
   const n=slides.length,cur=UI.slide%n;const hc=(UI.hslide||0)%3;
@@ -2724,7 +3163,7 @@ function vPlayers(){
   const cnt=k=>k==='ALL'?S.cards.length:S.cards.filter(c=>P(c).cls===k).length;
   return subHead('보유 선수',`<span class="cur"><i class="gp"></i>${fmt(S.gp)}</span>`)+`
     <div class="row" style="flex-wrap:wrap;gap:10px">
-      <div class="chips">${[['ALL','전체'],['rep','리프레젠트'],['tots','TOTS'],['lunch','런치브레이크'],['normal','노멀']].map(x=>`<button class="${f.cls===x[0]?'on':''}" data-a="pf" data-v="cls:${x[0]}">${x[1]} ${cnt(x[0])}</button>`).join('')}</div>
+      <div class="chips">${[['ALL','전체'],['rep','리프레젠트'],['s5','S5 로열'],['s4','S4 라이벌'],['s3','S3 코스믹'],['s2','S2 미드나잇'],['s1','S1 네온'],['tots','TOTS'],['lunch','런치브레이크'],['normal','노멀']].map(x=>`<button class="${f.cls===x[0]?'on':''}" data-a="pf" data-v="cls:${x[0]}">${x[1]} ${cnt(x[0])}</button>`).join('')}</div>
       <span class="grow"></span><button class="btn sm teal" data-a="go" data-v="squad">스쿼드 편집</button></div>
     <div class="row" style="flex-wrap:wrap;gap:10px">
       <div class="chips">${['ALL',...POS].map(x=>`<button class="${f.pos===x?'on':''}" data-a="pf" data-v="pos:${x}">${x==='ALL'?'모든 포지션':x}</button>`).join('')}</div>
@@ -2873,6 +3312,7 @@ function vPlay(){
         <div class="foot"><span class="tier">${RANKS[r.div]}</span><div class="bar" style="width:80%"><i style="width:${Math.min(100,r.pts/DIV_GOAL*100)}%;background:var(--lime)"></i></div><span class="muted" style="font-size:14px">승점 ${r.pts}/${DIV_GOAL} · 상대 OVR ${rankOvr(r.div)}</span></div>
         <div class="time">⏱ ${cd(seasonEnd())}</div></button>`}).join('')}
       <div class="mside"><button class="q" data-a="quick">퀵 매치<small>난이도를 골라 연습 · 보상 60%</small></button><button class="q fr" data-a="go" data-v="friends">친선전<small>친구 팀과 대결 · 보상 없음</small></button><button class="s" data-a="go" data-v="shop">상점으로 가기<small>BP로 선수 팩 구매</small></button></div></div>`;
+  }else if(UI.ptab==='event'){body=vEvent2();
   }else if(UI.ptab==='story'){
     const cleared=Object.keys(S.story).length;
     body=`<div class="stages">${STORY.map(s=>{const stars=S.story[s.i]||0;const lock=s.i>0&&!S.story[s.i-1];
@@ -2885,26 +3325,45 @@ function vPlay(){
       <button class="btn sm ${done?'ghost':''}" data-a="chal" data-v="${c.id}" ${done?'disabled':''}>${done?'완료':'도전'}</button></div>`}).join('')}</div>
       <p class="muted" style="margin:0">챌린지는 매일 자정에 초기화돼요. 남은 시간 ${cd(midnight())}</p>`;
   }
-  return subHead('매치&amp;플레이')+body+`<div class="btabs">${[['match','매치 센터'],['story','스토리 센터'],['chal','챌린지 센터']].map(t=>`<button class="${UI.ptab===t[0]?'on':''}" data-a="ptab" data-v="${t[0]}">${t[1]}</button>`).join('')}</div>`;
+  return subHead('매치&amp;플레이')+body+`<div class="btabs">${[['match','매치 센터'],['event','이벤트 센터'],['story','스토리 센터'],['chal','챌린지 센터']].map(t=>`<button class="${UI.ptab===t[0]?'on':''}" data-a="ptab" data-v="${t[0]}" style="position:relative">${t[1]}${t[0]==='event'&&evReady()?'<i class="dot"></i>':''}</button>`).join('')}</div>`;
 }
 
 function gauss(){let u=0,v=0;while(!u)u=Math.random();while(!v)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)}
-function mkEnsure(){if(!S.mk||!S.mk.f){S.mk={t:Math.floor(Date.now()/60000)*60000,day:today(),f:{},pf:{},lo:{},hi:{}};mkTick(1)}S.mk.lo=S.mk.lo||{};S.mk.hi=S.mk.hi||{}}
+const MK_REF=10*60000,MK_LIM=0.1;
+const mkNext=()=>S.mk.t+MK_REF;
+const fixedPrice=id=>/^rmi/.test(id);
+function mkEnsure(){if(!S.mk||!S.mk.f){S.mk={t:Math.floor(Date.now()/MK_REF)*MK_REF,day:today(),f:{},pf:{},lo:{},hi:{},d:{},vol:{},n:0};mkTick(1)}S.mk.lo=S.mk.lo||{};S.mk.hi=S.mk.hi||{};S.mk.d=S.mk.d||{};S.mk.vol=S.mk.vol||{};S.mk.n=S.mk.n||0;if(S.mk.t%MK_REF)S.mk.t=Math.floor(S.mk.t/MK_REF)*MK_REF}
+function mkRecord(pid,evo,price){try{const p=DBI[pid];if(!p||fixedPrice(pid))return;mkEnsure();const v=value(p,evo||0,0);if(!v)return;(S.mk.vol[pid]=S.mk.vol[pid]||[]).push(price/v);if(S.mk.vol[pid].length>40)S.mk.vol[pid].splice(0,S.mk.vol[pid].length-40)}catch(e){}}
+const mkDem=id=>(S.mk&&S.mk.d&&S.mk.d[id])||0;
+const mkLight=id=>{const d=mkDem(id);return d>0.3?'red':d<-0.3?'blue':''};
 function mkTick(n){
   mkEnsure();
-  for(const p of DB){let f=S.mk.f[p.id]??(0.9+0.2*hash01(p.id)),pf=f;const vol=p.cls==='rep'?0.02:p.cls==='normal'?0.05:0.035;
-    for(let k=0;k<n;k++){pf=f;f*=1+gauss()*vol;f+=(1-f)*0.04;f=clamp(f,0.6,1.6)}
-    f=Math.round(f*1e4)/1e4;S.mk.pf[p.id]=Math.round(pf*1e4)/1e4;S.mk.f[p.id]=f;
+  for(const p of DB){if(fixedPrice(p.id))continue;let f=S.mk.f[p.id]??(0.9+0.2*hash01(p.id)),pf=f,d=S.mk.d[p.id]||0;
+    const base=p.cls==='rep'?0.4:p.cls==='normal'?3:2;
+    for(let k=0;k<n;k++){pf=f;d=clamp(d*0.72+gauss()*0.38,-1.6,1.6);
+      const tr=[];if(k===n-1&&S.mk.vol[p.id]&&S.mk.vol[p.id].length){tr.push(...S.mk.vol[p.id]);S.mk.vol[p.id]=[]}
+      let cnt=d<-0.3?(Math.random()<0.2?1:0):Math.round(base*(1+Math.max(0,d))*(0.5+Math.random()));
+      for(let i=0;i<cnt;i++)tr.push(f*(1+clamp(0.065*d+gauss()*0.025,-MK_LIM,MK_LIM)));
+      let nf;
+      if(tr.length){const lo=f*(1-MK_LIM),hi=f*(1+MK_LIM);nf=tr.reduce((a,x)=>a+clamp(x,lo,hi),0)/tr.length}
+      else nf=f*(d<-0.3?1-(0.02+0.04*Math.random()):1);
+      nf+=(1-nf)*0.01;f=clamp(nf,Math.max(0.3,f*(1-MK_LIM)),Math.min(3,f*(1+MK_LIM)))}
+    f=Math.round(f*1e4)/1e4;S.mk.pf[p.id]=Math.round(pf*1e4)/1e4;S.mk.f[p.id]=f;S.mk.d[p.id]=Math.round(d*1e3)/1e3;
     S.mk.lo[p.id]=Math.min(S.mk.lo[p.id]??f,f);S.mk.hi[p.id]=Math.max(S.mk.hi[p.id]??f,f);}
+  S.mk.n+=n;
 }
-function mkUpdate(){mkEnsure();const due=Math.floor((Date.now()-S.mk.t)/60000);if(due>0){if(S.mk.day!==today()){S.mk.day=today();S.mk.lo={};S.mk.hi={}}mkTick(Math.min(due,120));S.mk.t+=due*60000;save();return true}return false}
-const fixedPrice=id=>/^rmi/.test(id);
+function mkUpdate(){mkEnsure();const due=Math.floor((Date.now()-S.mk.t)/MK_REF);if(due>0){if(S.mk.day!==today()){S.mk.day=today();S.mk.lo={};S.mk.hi={}}mkTick(Math.min(due,144));S.mk.t+=due*MK_REF;save();return true}return false}
+function evoMkAdj(p,evo){
+  if(fixedPrice(p.id)||!S||!S.mk)return 0;const w=S.mk.n||0;
+  let mine=0;try{for(const l of S.listings||[]){if(l.done)continue;const c=card(l.uid);if(c&&c.pid===p.id&&c.evo===evo)mine--}for(const x of S.bids||[])if(x.qty>0&&x.pid===p.id&&x.evo===evo)mine+=Math.min(3,x.qty)}catch(e){}
+  return (hash01(p.id+'@'+evo+'|sd|'+w)-0.5)*0.2+Math.max(-0.2,Math.min(0.2,mine*0.06));
+}
 const dayF=id=>{if(fixedPrice(id))return 1;mkEnsure();return S.mk.f[id]??(0.9+0.2*hash01(id))};
 const mkDelta=id=>{if(fixedPrice(id))return 0;const f=dayF(id),pf=S.mk.pf[id]??f;return f/pf-1};
 function deltaHTML(id){const d=mkDelta(id);if(Math.abs(d)<0.0005)return '<span class="dl">-</span>';return `<span class="dl ${d>0?'up':'down'}">${d>0?'▲':'▼'}${Math.abs(d*100).toFixed(1)}%</span>`}
 function priceOf(p,evo){return Math.max(1000,Math.round(value(p,evo||0,0)*dayF(p.id)/1000)*1000)}
 function ownPrice(c){return Math.max(1000,Math.round(value(P(c),c.evo,c.enh)*dayF(P(c).id)/1000)*1000)}
-function rangeOf(v){return[Math.max(1000,Math.round(v*0.85/1000)*1000),Math.round(v*1.25/1000)*1000]}
+function rangeOf(v){return[Math.max(1000,Math.round(v*(1-MK_LIM)/1000)*1000),Math.round(v*(1+MK_LIM)/1000)*1000]}
 const priceRange=p=>rangeOf(priceOf(p));
 const TRADE=()=>DB.filter(p=>!UNRELEASED.has(p.cls));
 function recList0(){const reps=DB.filter(p=>p.cls==='rep');const rp=reps[Math.floor(hash01('rep'+S.recSeed)*reps.length)];const l=TRADE().filter(p=>p.cls!=='normal'&&p.cls!=='rep');return [rp].concat(l.sort((a,b)=>hash01(a.id+'r'+S.recSeed)-hash01(b.id+'r'+S.recSeed)).slice(0,11)).concat(TRADE().filter(p=>p.cls==='normal').sort((a,b)=>hash01(a.id+'r'+S.recSeed)-hash01(b.id+'r'+S.recSeed)).slice(0,3)).sort((a,b)=>b.ovr-a.ovr)}
@@ -2924,7 +3383,7 @@ function panelHTML(){
     const [pid,ev]=String(s.v).split('@');const p=DBI[pid];const evo=+ev||0;const pr=priceOf(p,evo);const [mn,mx]=buyRange(p,evo);const nA=asksOf(p,evo).filter(a=>!a.mine).reduce((a,x)=>a+x.qty,0),nB=bidsOf(p,evo).filter(a=>!a.mine).reduce((a,x)=>a+x.qty,0);
     return `<div class="pbig"><button class="pc" data-a="pdetail" data-v="db:${pid}@${evo}" aria-label="선수 상세 보기">${cardHTML({pid,evo})}</button><span class="pchint">카드를 누르면 상세 정보</span></div>
       <div class="row"><span class="grow" style="font-size:18px">관심 선수</span><button class="toggle ${S.watch.includes(p.id)?'on':''}" data-a="watch" data-v="${p.id}" aria-label="관심 선수"></button></div>
-      <dl class="pdl pval"><dt>현재 가치</dt><dd>${fmt(pr)}</dd><dt>최저 가치</dt><dd>${fmt(mn)}</dd><dt>최고 가치</dt><dd>${fmt(mx)}</dd><dt>판매 대기</dt><dd style="color:${nA?'#4f9bff':'var(--muted)'}">${nA?nA+'장':'없음'}</dd><dt>구매 대기</dt><dd style="color:${nB?'#ff4f6d':'var(--muted)'}">${nB?nB+'장':'없음'}</dd></dl>
+      <dl class="pdl pval"><dt>기준가</dt><dd>${fmt(pr)}</dd><dt>하한가</dt><dd>${fmt(mn)}</dd><dt>상한가</dt><dd>${fmt(mx)}</dd><dt>시장 상황</dt><dd style="color:${mkLight(p.id)==='red'?'#ff4f6d':mkLight(p.id)==='blue'?'#4f9bff':'var(--muted)'}">${mkLight(p.id)==='red'?'● 빨간불 · 구매 대기 많음':mkLight(p.id)==='blue'?'● 파란불 · 판매 대기 많음':'보합'}</dd><dt>판매 대기</dt><dd style="color:${nA?'#4f9bff':'var(--muted)'}">${nA?nA+'장':'없음'}</dd><dt>구매 대기</dt><dd style="color:${nB?'#ff4f6d':'var(--muted)'}">${nB?nB+'장':'없음'}</dd></dl>
       ${pendHTML(p.id)}
       <button class="btn wide buybig" data-a="buyopen" data-v="${pid}@${evo}">구매</button>`;
   }
@@ -2937,7 +3396,7 @@ function panelHTML(){
   else if(w)sell=`<p class="muted" style="margin:0;font-size:14px">${w.t==='lineup'?'선발':'벤치'}에 있는 선수예요.</p><button class="btn ghost wide" data-a="unsquad" data-v="${c.uid}">스쿼드에서 빼고 판매하기</button>`;
   else{
     const [bmn,bmx]=buyRange(p,c.evo);
-    sell=`<dl class="pdl pval"><dt>현재 가치</dt><dd>${fmt(priceOf(p,c.evo))}</dd><dt>최저 가치</dt><dd>${fmt(bmn)}</dd><dt>최고 가치</dt><dd>${fmt(bmx)}</dd></dl><button class="btn wide buybig sellbig" data-a="sellopen" data-v="${c.uid}">판매</button>
+    sell=`<dl class="pdl pval"><dt>현재 가치</dt><dd>${fmt(priceOf(p,c.evo))}</dd><dt>하한가</dt><dd>${fmt(bmn)}</dd><dt>상한가</dt><dd>${fmt(bmx)}</dd></dl><button class="btn wide buybig sellbig" data-a="sellopen" data-v="${c.uid}">판매</button>
       <button class="btn ghost wide" data-a="qsell" data-v="${c.uid}">즉시 판매 · ${fmt(Math.round(value(p,c.evo,c.enh)*0.4/1000)*1000)} GP 바로 받기</button>`;
   }
   return `<div class="phead"><button class="pc" data-a="pdetail" data-v="own:${c.uid}" aria-label="선수 상세 보기">${cardHTML(c)}<span class="pchint">눌러서 상세 보기</span></button><div class="pinfo"><div class="pn">${esc(p.name)}</div><div class="muted">${p.pos} · ${p.height}cm · ${CLASSES[p.cls].ko} · 등급 <b class="gchip g-${p.grade}">${p.grade}</b></div><div class="muted">진화 ${c.evo}/${EVO_MAX} · 강화 ${c.enh}/${ENH_MAX}</div>
@@ -2954,7 +3413,7 @@ function pdvData(){const D=UI.pdv;if(D.k==='own'){const c=card(+D.v);if(!c)retur
 function openPDV(k,v){UI.pdv={k,v,tab:'sum',base:false,fromModal:!$('#modal').hidden,fromCmp:!!document.querySelector('#modal .cmpwrap')};drawPDV()}
 function closePDV(){const f=UI.pdv&&UI.pdv.fromModal,fc=UI.pdv&&UI.pdv.fromCmp;UI.pdv=null;closeModal();if(fc)openCmp();else if(f&&UI.msel)selMarket(UI.msel.k,String(UI.msel.v))}
 function statCol(v){return v>=130?'#2fd3c2':v>=100?'#5be37d':v>=70?'#c8f23a':v>=45?'#ffd23f':'#ff6b6b'}
-function traitLines(p){const o=[];const t=PERSON_TRAIT[p.name];const SN=Object.fromEntries(STATS);
+function traitLines(p){const o=traitsOf(p).map(k=>['★ '+TRAITS[k].n,TRAITS[k].d]);const t=PERSON_TRAIT[p.name];const SN=Object.fromEntries(STATS);
   if(t&&t.maxStat){const nm=t.maxStat.map(k=>SN[k]).join('·');o.push([nm+' 만렙',(t.maxStat.length>1?'모두 ':'')+'이 OVR에서 올릴 수 있는 최대치'+(t.speed?' · 경기 이동 속도 +'+Math.round((t.speed-1)*100)+'%':'')])}
   if(t&&t.nearMax)o.push([Object.keys(t.nearMax).map(k=>SN[k]).join('·')+' 거의 만렙','최대치에 가까운 수치'+(t.speed?' · 경기 이동 속도 +'+Math.round((t.speed-1)*100)+'%':'')]);
   o.push(['경기 지능 '+Math.round((p.iq||0)*100),'기본 OVR이 높을수록 자리 잡기·수비·공격 판단이 좋아요'+(DB.filter(q=>q.name===p.name).length>1?' · 같은 선수 중 높은 카드일수록 더 영리해요':'')]);
@@ -2970,7 +3429,7 @@ function drawPDV(){
       <div class="pv-boxes">
         <div class="pv-box"><div class="pv-bh"><span>강화 레벨</span><b>${x.enh}/${ENH_MAX}</b></div><div class="pv-bar"><i style="width:${x.enh/ENH_MAX*100}%"></i></div>${c?`<button class="pv-btn" data-a="enh" data-v="${c.uid}" ${c.enh>=ENH_MAX?'disabled':''}>강화</button>`:'<span class="muted">보유한 카드만 강화할 수 있어요</span>'}</div>
         <div class="pv-box"><div class="pv-bh"><span>선수 진화</span><b class="evo ${evoTier(x.evo||1)} pv-evo">${x.evo}</b></div><div class="pv-bar"><i style="width:${x.evo/EVO_MAX*100}%;background:var(--teal)"></i></div>${c?`<button class="pv-btn" data-a="evo" data-v="${c.uid}" ${c.evo>=EVO_MAX?'disabled':''}>진화</button>`:'<span class="muted">보유한 카드만 진화할 수 있어요</span>'}</div>
-        <div class="pv-box pv-wide"><div class="pv-bh"><span>특성</span></div><div class="pv-traits">${traitLines(p).map(t=>`<div><b>${esc(t[0])}</b><span>${esc(t[1])}</span></div>`).join('')}</div></div>
+        <div class="pv-box pv-wide"><div class="pv-bh"><span>특성</span></div><div class="pv-trk">${traitsOf(p).map(k=>`<div class="trk" style="--tc:${TRAITS[k].c}">${traitIcon(k,30)}<b>${TRAITS[k].n}</b><span>${TRAITS[k].d}</span></div>`).join('')}</div><div class="pv-traits">${traitLines(p).filter(t=>t[0][0]!=='★').map(t=>`<div><b>${esc(t[0])}</b><span>${esc(t[1])}</span></div>`).join('')}</div></div>
       </div>`;
   }else if(D.tab==='ps'){
     body=psTab(x);
@@ -3085,15 +3544,15 @@ function cmpPickList(q){
     <div class="h" style="margin:10px 0 4px">이적 시장 선수</div><div class="cards">${mk.map(p=>`<button data-a="cmppick" data-v="db:${p.id}@0">${cardHTML({pid:p.id})}</button>`).join('')||'<p class="muted">없어요</p>'}</div>`;
 }
 const pUnit=v=>v<100000?100:1000;
-function buyRange(p,evo){const v=priceOf(p,evo),u=pUnit(v);return[Math.max(u,Math.round(v*0.95/u)*u),Math.max(u,Math.round(v*1.05/u)*u)]}
+function buyRange(p,evo){const v=priceOf(p,evo),u=pUnit(v);return[Math.max(u,Math.round(v*(1-MK_LIM)/u)*u),Math.max(u,Math.round(v*(1+MK_LIM)/u)*u)]}
 const mkWin=()=>Math.floor(Date.now()/60000);
 const ASK_P=[0.9,0.62,0.5,0.4,0.3,0.22,0.15,0.04,0.03,0.02,0.015];
 const REP_RATE=0.5;
 const BID_P=[0.8,0.6,0.5,0.45,0.4,0.33,0.26,0.12,0.1,0.08,0.06];
 function bookAt(p,evo,w){
   const key=p.id+'@'+evo;const r=mulberry(hashInt(key+'|bk|'+w));const [mn,mx]=buyRange(p,evo);const cur=priceOf(p,evo);
-  const mid=cur*(1+(r()-0.5)*0.05);const cf={normal:1,lunch:0.9,tots:0.8,rep:0.035}[p.cls]??0.8;const cb={normal:1,lunch:0.9,tots:0.85,rep:0.3}[p.cls]??0.8;
-  const mk=(prob,maxN,dir)=>{const m=new Map();if(r()<prob){const n=1+Math.floor(r()*maxN);for(let i=0;i<n;i++){const u=pUnit(cur);const pr=clamp(Math.round(mid*(1+dir*(0.004+r()*0.035))/u)*u,mn,mx);m.set(pr,(m.get(pr)||0)+(r()<0.25?2:1))}}return [...m].map(([price,qty])=>({price,qty}))};
+  const dm=mkDem(p.id);const mid=cur*(1+dm*0.045+(r()-0.5)*0.04);const cf=({normal:1,lunch:0.9,tots:0.8,rep:0.035}[p.cls]??0.8)*clamp(1-0.7*dm,0.15,1.9);const cb=({normal:1,lunch:0.9,tots:0.85,rep:0.3}[p.cls]??0.8)*clamp(1+0.7*dm,0.15,1.9);
+  const mk=(prob,maxN,dir)=>{const m=new Map();if(r()<prob){const n=1+Math.floor(r()*maxN);for(let i=0;i<n;i++){const u=pUnit(cur);let pr=clamp(Math.round(mid*(1+dir*(0.004+r()*0.035))/u)*u,mn,mx);if(dm>0.3&&dir<0&&r()<0.6)pr=mx;if(dm<-0.3&&dir>0&&r()<0.6)pr=mn;m.set(pr,(m.get(pr)||0)+(r()<0.25?2:1))}}return [...m].map(([price,qty])=>({price,qty}))};
   const evoN=Math.max(1,4-Math.floor(evo/2));
   let asks,bids;
   if(p.cls==='rep'){const on=r()<REP_RATE*ASK_P[evo]/ASK_P[0],side=r()<0.5;asks=on&&side?mk(1,1,1):[];bids=on&&!side?mk(1,1,-1):[]}
@@ -3144,7 +3603,7 @@ function drawBuy(){
       ${histSVG(priceHist(p,B.evo))}</div>
     <div class="buyr">
       ${obHTML(asks,bids,'buy')}${pendHTML(p.id)}
-      <dl class="pdl pval"><dt>최저 가치</dt><dd>${fmt(mn)}</dd><dt>최고 가치</dt><dd>${fmt(mx)}</dd></dl>
+      <dl class="pdl pval"><dt>하한가</dt><dd>${fmt(mn)}</dd><dt>상한가</dt><dd>${fmt(mx)}</dd></dl>
       <div class="bline"><span>구매 가격</span><div class="ppill"><button data-a="buyp" data-v="-${step}" aria-label="가격 내리기">−</button><i class="gp"></i><b>${fmt(B.price)}</b><button data-a="buyp" data-v="${step}" aria-label="가격 올리기">+</button></div></div>
       <div class="bline"><span>잔액</span><b style="${left<0?'color:var(--pink)':''}">${fmt(left)}</b></div>
       <div class="bline"><span>구매 수량</span><div class="qpill"><button data-a="buyq" data-v="-1" aria-label="수량 줄이기">−</button><b style="${left<0?'color:var(--pink)':''}">${B.qty}</b><button data-a="buyq" data-v="1" aria-label="수량 늘리기">+</button></div></div>
@@ -3190,13 +3649,13 @@ function drawSell(){
       <div class="evsel"><b class="evo ${evoTier(c.evo||1)}">${c.evo}</b><span>진화 ${c.evo}단계</span></div>
       <div class="buyc">${cardHTML(c)}</div>${histSVG(priceHist(p,c.evo))}</div>
     <div class="buyr">${obHTML(asks,bids,'sell')}
-      <dl class="pdl pval"><dt>최저 가치</dt><dd>${fmt(mn)}</dd><dt>최고 가치</dt><dd>${fmt(mx)}</dd></dl>
+      <dl class="pdl pval"><dt>하한가</dt><dd>${fmt(mn)}</dd><dt>상한가</dt><dd>${fmt(mx)}</dd></dl>
       <div class="bline"><span>판매 가격</span><div class="ppill"><button data-a="sellp" data-v="-${step}" aria-label="가격 내리기">−</button><i class="gp"></i><b>${fmt(X.price)}</b><button data-a="sellp" data-v="${step}" aria-label="가격 올리기">+</button></div></div>
       <div class="bline"><span>수수료 10%</span><b>-${fmt(fee)}</b></div>
       <div class="bline"><span>예상 수령액</span><b style="color:var(--gold)">${fmt(net)}</b></div>
       <div class="bline"><span>판매 수량</span><div class="qpill"><button data-a="sellq" data-v="-1" aria-label="수량 줄이기">−</button><b>${X.qty}</b><button data-a="sellq" data-v="1" aria-label="수량 늘리기">+</button></div></div>
       <p class="muted" style="margin:0;font-size:13px">같은 카드(같은 진화·강화 +0·스쿼드 밖) ${pool.length}장 보유 · ${fillN?`이 가격 이상 구매 대기 ${Math.min(fillN,X.qty)}장에 비싼 것부터 바로 판매${X.qty>fillN?`, 나머지 ${X.qty-fillN}장은 판매 대기`:''}`:'이 가격 이상 구매 대기가 없어요. 판매 대기로 등록되고, 이 가격 이상 구매 대기가 나오면 자동으로 팔려요'}</p>
-      ${X.price<=mn?'<p style="margin:0;font-size:14px;color:#9cc2ff">최저 가치로 걸면 거의 바로 팔려요.</p>':''}
+      ${X.price<=mn?'<p style="margin:0;font-size:14px;color:#9cc2ff">하한가로 걸면 거의 바로 팔려요.</p>':''}
       <button class="btn wide buybig sellbig" data-a="sellgo">${X.relist?'재판매':'판매'}</button>
     </div></div>`,true);
 }
@@ -3218,7 +3677,7 @@ function sellGo(){
 }
 const ORDER_MAX=25;
 const orderCount=()=>S.listings.length+S.bids.length;
-function markSold(l,price){const c=card(l.uid);if(!c)return 0;const g=Math.round(price*0.9);l.done=true;l.pid=c.pid;l.evo=c.evo;l.gp=g;l.soldAt=Date.now();l.sold=price;S.cards=S.cards.filter(x=>x.uid!==l.uid);S.trades.unshift({type:'sell',pid:c.pid,evo:c.evo,price:g,t:Date.now()});return g}
+function markSold(l,price){const c=card(l.uid);if(!c)return 0;mkRecord(c.pid,c.evo,price);const g=Math.round(price*0.9);l.done=true;l.pid=c.pid;l.evo=c.evo;l.gp=g;l.soldAt=Date.now();l.sold=price;S.cards=S.cards.filter(x=>x.uid!==l.uid);S.trades.unshift({type:'sell',pid:c.pid,evo:c.evo,price:g,t:Date.now()});return g}
 function claimSell(uid){const l=S.listings.find(x=>x.uid===+uid&&x.done);if(!l)return;S.gp+=l.gp;S.listings=S.listings.filter(x=>x!==l);sfx('good');toast(`${DBI[l.pid].name} 판매 완료 · +${fmt(l.gp)} GP`);save();render()}
 function claimBuy(id){const b=S.bids.find(x=>x.id===id);if(!b||!b.got)return;const n=b.got;for(let i=0;i<n;i++)addCard(b.pid,b.evo);b.got=0;if(b.qty<=0)S.bids=S.bids.filter(x=>x!==b);sfx('walkout');toast(`${DBI[b.pid].name}${b.evo?' '+b.evo+'진':''} ${n}장 받기 완료`);save();render()}
 function updNav(){const b=document.querySelector('#nav button[data-v="market"]');if(b)b.classList.toggle('alert',(S.unseen||0)>0)}
@@ -3309,17 +3768,17 @@ function kbKey(k){if(!KB)return;if(KB.mode==='num'){if(KB.j.length>=(KBT[KB.id].
 function statBars(p,evo,enh){const raw=rawStats(p,evo,enh);return `<div class="stats">${STATS.map(([k,n])=>{const s=raw[k];const col=s>=110?'var(--teal)':s>=90?'var(--lime)':s>=50?'var(--gold)':'var(--pink)';return `<div class="stat"><span>${n}</span><div class="bar"><i style="width:${Math.min(100,s/1.6)}%;background:${col}"></i></div><b>${s}</b></div>`}).join('')}</div>`}
 function vMarket(){
   if(UI.mtab==='trade'&&S.unseen){S.unseen=0;save()}const npend=S.unseen||0;const tabs=[['rec','추천 선수'],['own','보유 선수'],['watch','관심 선수'],['trade','거래 목록'+(npend?'<i class="rdot"></i>':'')],['search','검색'],['cmp','선수 비교']];
-  const head=subHead('이적 시장',`<span class="cur" title="다음 시세 갱신">⏱ <span data-cd="${S.mk.t+60000}">${cdText(S.mk.t+60000)}</span></span><span class="cur"><i class="gp"></i>${fmt(S.gp)}</span>`)+`<div class="mtabs">${tabs.map(t=>`<button class="${UI.mtab===t[0]?'on':''}" data-a="mtab" data-v="${t[0]}">${t[1]}</button>`).join('')}</div>`;
+  const head=subHead('이적 시장',`<span class="cur" title="다음 시세 갱신">⏱ <span data-cd="${mkNext()}">${cdText(mkNext())}</span></span><span class="cur"><i class="gp"></i>${fmt(S.gp)}</span>`)+`<div class="mtabs">${tabs.map(t=>`<button class="${UI.mtab===t[0]?'on':''}" data-a="mtab" data-v="${t[0]}">${t[1]}</button>`).join('')}</div>`;
   if(UI.mtab==='cmp')return head+cmpView();
   if(UI.mtab==='trade')return head+tradeView();
   let left='';
   if(UI.mtab==='rec')left=`<div class="mgrid">${recList().map(mcellDB).join('')}</div><div class="row" style="margin-top:12px"><button class="btn ghost" data-a="mrefresh">↻ 갱신</button></div>`;
   else if(UI.mtab==='watch'){const l=S.watch.map(id=>DBI[id]);left=l.length?`<div class="mgrid">${l.map(p=>mcellDB(p)).join('')}</div>`:'<div class="panel pad16 muted">관심 선수가 없어요. 선수를 누르고 관심 선수를 켜 보세요.</div>'}
   else if(UI.mtab==='own'){const f=UI.ownCls||'ALL';const l=S.cards.filter(c=>f==='ALL'||P(c).cls===f).sort((a,b)=>cardOvr(b)-cardOvr(a)||b.enh-a.enh);
-    left=`<div class="chips" style="margin-bottom:10px">${[['ALL','전체'],['rep','리프레젠트'],['tots','TOTS'],['lunch','런치브레이크'],['normal','노멀']].map(x=>`<button class="${f===x[0]?'on':''}" data-a="owncls" data-v="${x[0]}">${x[1]} ${x[0]==='ALL'?S.cards.length:S.cards.filter(c=>P(c).cls===x[0]).length}</button>`).join('')}</div><div class="mgrid">${l.map(mcellOwn).join('')||'<div class="pad16 muted">선수가 없어요.</div>'}</div>`}
+    left=`<div class="chips" style="margin-bottom:10px">${[['ALL','전체'],['rep','리프레젠트'],['s5','S5 로열'],['s4','S4 라이벌'],['s3','S3 코스믹'],['s2','S2 미드나잇'],['s1','S1 네온'],['tots','TOTS'],['lunch','런치브레이크'],['normal','노멀']].map(x=>`<button class="${f===x[0]?'on':''}" data-a="owncls" data-v="${x[0]}">${x[1]} ${x[0]==='ALL'?S.cards.length:S.cards.filter(c=>P(c).cls===x[0]).length}</button>`).join('')}</div><div class="mgrid">${l.map(mcellOwn).join('')||'<div class="pad16 muted">선수가 없어요.</div>'}</div>`}
   else if(UI.mtab==='search'){
     const q=UI.sq;
-    const CLS_O=[['ALL','전체'],['rep','리프레젠트'],['tots','TOTS'],['lunch','런치브레이크'],['normal','노멀']],POS_O=[['ALL','전체'],...POS.map(x=>[x,x+' · '+POS_KO[x]])],SORT_O=[['ovr','OVR 높은순'],['low','가격 낮은순'],['high','가격 높은순']];
+    const CLS_O=[['ALL','전체'],['rep','리프레젠트'],['s5','S5 로열'],['s4','S4 라이벌'],['s3','S3 코스믹'],['s2','S2 미드나잇'],['s1','S1 네온'],['tots','TOTS'],['lunch','런치브레이크'],['normal','노멀']],POS_O=[['ALL','전체'],...POS.map(x=>[x,x+' · '+POS_KO[x]])],SORT_O=[['ovr','OVR 높은순'],['low','가격 낮은순'],['high','가격 높은순']];
     left=`<div class="panel sform" data-f="search"><div class="fld"><span>선수 이름</span>${gin('sqName','이름 검색')}</div>
       <div class="fld"><span>클래스</span>${dd('sqCls',q.cls||'ALL',CLS_O,v=>{UI.sq.cls=v;runSearch()})}</div>
       <div class="fld"><span>포지션</span>${dd('sqPos',q.pos||'ALL',POS_O,v=>{UI.sq.pos=v;runSearch()})}</div>
@@ -3332,7 +3791,7 @@ function vMarket(){
     const bq=S.bids.map(b=>{const p=DBI[b.pid];return `<div class="trow pendrow r" data-a="pendsel" data-v="bid:${b.id}" role="button" tabindex="0">${cardHTML({pid:p.id,evo:b.evo})}<div><div style="font-size:18px">${esc(p.name)}${b.evo?` · ${b.evo}진`:''}</div><div class="muted" style="font-size:14px"><b class="mypend r">구매 대기</b> ${b.qty}장 · ${orderStatus('bid',b)}</div></div><span class="mprice"><i class="gp"></i>${fmt(b.price)}</span><button class="btn sm ghost" data-a="bidcancel" data-v="${b.id}">취소</button></div>`}).join('');
     left=`<div class="panel" style="padding:0"><div class="pad16 h" style="margin:0">구매 대기 ${S.bids.reduce((a,b)=>a+b.qty,0)}</div>${bq||'<div class="pad16 muted" style="padding-top:0">구매 대기 중인 선수가 없어요.</div>'}<div class="pad16 h" style="margin:0">판매 대기 ${S.listings.length}</div>${pend||'<div class="pad16 muted" style="padding-top:0">판매 중인 선수가 없어요.</div>'}</div><p class="muted" style="margin:8px 0 0;font-size:14px">대기 중인 카드를 누르면 가격을 바꿔 다시 걸거나 지금 판매·구매 대기 상황을 볼 수 있어요.</p>`;
   }
-  return subHead('이적 시장',`<span class="cur" title="다음 시세 갱신">⏱ <span data-cd="${S.mk.t+60000}">${cdText(S.mk.t+60000)}</span></span><span class="cur"><i class="gp"></i>${fmt(S.gp)}</span>`)+`<div class="mtabs">${tabs.map(t=>`<button class="${UI.mtab===t[0]?'on':''}" data-a="mtab" data-v="${t[0]}">${t[1]}</button>`).join('')}</div>
+  return subHead('이적 시장',`<span class="cur" title="다음 시세 갱신">⏱ <span data-cd="${mkNext()}">${cdText(mkNext())}</span></span><span class="cur"><i class="gp"></i>${fmt(S.gp)}</span>`)+`<div class="mtabs">${tabs.map(t=>`<button class="${UI.mtab===t[0]?'on':''}" data-a="mtab" data-v="${t[0]}">${t[1]}</button>`).join('')}</div>
     <div class="mk"><div style="min-width:0">${left}</div><aside class="panel mpanel" id="mpanel">${panelHTML()}</aside></div>`;
 }
 function checkListings(){
@@ -3348,20 +3807,20 @@ function isFloor(l){if(l.done)return false;const c=card(l.uid);if(!c)return fals
 function sellNow(l,toastIt){const c=card(l.uid);if(!c)return 0;const g=markSold(l,l.price);if(toastIt)toast(`${P(c).name} 판매 완료 · 거래 목록에서 GP 받기`);return g}
 function floorSales(){
   const now=Date.now();let n=0;
-  for(const l of S.listings.slice()){if(l.done||l.dur||!isFloor(l))continue;if(now-(l.fc||0)<4000)continue;l.fc=now;if(Math.random()<0.85){sellNow(l,true);n++}}
+  for(const l of S.listings.slice()){if(l.done||l.dur||!isFloor(l))continue;if(now-(l.fc||0)<4000)continue;l.fc=now;const c0=card(l.uid);if(Math.random()<(c0&&mkDem(c0.pid)<-0.3?0.03:0.85)){sellNow(l,true);n++}}
   if(n){S.unseen=(S.unseen||0)+n;S.trades=S.trades.slice(0,50);sfx('good');track('trade',n);save();updNav()}
 }
 function openPend(kind,id){
   if(kind==='ask'){const l=S.listings.find(x=>x.uid===+id);const c=card(+id);if(!l||!c)return;const p=P(c);const [mn,mx]=buyRange(p,c.evo);
     openModal(`<div class="mh"><h3>판매 대기</h3><button class="icon-btn" data-a="close">X</button></div>
       <div class="pendm"><div class="pc">${cardHTML(c)}</div><div class="grow"><div style="font-size:22px">${esc(p.name)}${c.evo?` · ${c.evo}진`:''}</div>
-        <dl class="pdl pval"><dt>내 판매 가격</dt><dd style="color:#4f9bff">${fmt(l.price)}</dd><dt>현재 가치</dt><dd>${fmt(priceOf(p,c.evo))}</dd><dt>최저 가치</dt><dd>${fmt(mn)}</dd><dt>최고 가치</dt><dd>${fmt(mx)}</dd></dl>
+        <dl class="pdl pval"><dt>내 판매 가격</dt><dd style="color:#4f9bff">${fmt(l.price)}</dd><dt>현재 가치</dt><dd>${fmt(priceOf(p,c.evo))}</dd><dt>하한가</dt><dd>${fmt(mn)}</dd><dt>상한가</dt><dd>${fmt(mx)}</dd></dl>
         <p class="muted" style="margin:0;font-size:14px">${l.dur?'곧 판매돼요':orderStatus('ask',l)}</p></div></div>
       <div class="row"><button class="btn ghost grow" data-a="unlist" data-v="${c.uid}">판매 취소</button><button class="btn grow sellbig" data-a="relist" data-v="${c.uid}">재판매</button></div>`)}
   else{const b=S.bids.find(x=>x.id===id);if(!b)return;const p=DBI[b.pid];const [mn,mx]=buyRange(p,b.evo);
     openModal(`<div class="mh"><h3>구매 대기</h3><button class="icon-btn" data-a="close">X</button></div>
       <div class="pendm"><div class="pc">${cardHTML({pid:p.id,evo:b.evo})}</div><div class="grow"><div style="font-size:22px">${esc(p.name)}${b.evo?` · ${b.evo}진`:''}</div>
-        <dl class="pdl pval"><dt>내 구매 가격</dt><dd style="color:#ff4f6d">${fmt(b.price)}</dd><dt>수량</dt><dd>${b.qty}장</dd><dt>현재 가치</dt><dd>${fmt(priceOf(p,b.evo))}</dd><dt>최저 가치</dt><dd>${fmt(mn)}</dd><dt>최고 가치</dt><dd>${fmt(mx)}</dd></dl>
+        <dl class="pdl pval"><dt>내 구매 가격</dt><dd style="color:#ff4f6d">${fmt(b.price)}</dd><dt>수량</dt><dd>${b.qty}장</dd><dt>현재 가치</dt><dd>${fmt(priceOf(p,b.evo))}</dd><dt>하한가</dt><dd>${fmt(mn)}</dd><dt>상한가</dt><dd>${fmt(mx)}</dd></dl>
         <p class="muted" style="margin:0;font-size:14px">${orderStatus('bid',b)}</p></div></div>
       <div class="row"><button class="btn ghost grow" data-a="bidcancel" data-v="${b.id}">구매 취소</button><button class="btn grow buybig" data-a="rebid" data-v="${b.id}">재구매</button></div>`)}
 }
@@ -3374,7 +3833,7 @@ function processOrders(){
     for(const b of S.bids.filter(x=>x.qty>0).sort((x,y)=>y.price-x.price)){
       const p=DBI[b.pid];const key=p.id+'@'+b.evo;
       let asks=bookAt(p,b.evo,w).asks;asks=takeFrom(asks,w===wNow?S.taken[key]:null,w);asks=takeFrom(asks,used[key]?{w,n:used[key]}:null,w);
-      for(const a of asks){while(b.qty>0&&a.qty>0&&a.price<=b.price){a.qty--;b.qty--;used[key]=(used[key]||0)+1;S.gp+=b.price-a.price;b.got=(b.got||0)+1;S.trades.unshift({type:'buy',pid:b.pid,evo:b.evo,price:a.price,t:Date.now()});bought.push(p.name)}}
+      for(const a of asks){while(b.qty>0&&a.qty>0&&a.price<=b.price){a.qty--;b.qty--;used[key]=(used[key]||0)+1;S.gp+=b.price-a.price;b.got=(b.got||0)+1;mkRecord(b.pid,b.evo,a.price);S.trades.unshift({type:'buy',pid:b.pid,evo:b.evo,price:a.price,t:Date.now()});bought.push(p.name)}}
     }
     for(const l of S.listings.filter(x=>!x.dur&&!x.done).sort((x,y)=>x.price-y.price)){
       const c=card(l.uid);if(!c)continue;const p=P(c);const key=p.id+'@'+c.evo;
@@ -3394,7 +3853,6 @@ function orderStatus(kind,o){
 }
 
 const EXCH=[
-  {id:'rep',need:50,name:'OVR 142 이상 선수 50장',sub:'진화로 OVR 142를 넘긴 카드만 가능',to:'rep',ok:c=>cardOvr(c)>=142,col:'linear-gradient(135deg,#7a0f24,#ffd23f)'},
   {id:'n2l',need:20,name:'노멀 선수 20장',sub:'강화 재료로도 쓰이는 노멀 카드',to:'lunch',ok:c=>P(c).cls==='normal',col:'#9aa4b5'}
 ];
 const bpOf=c=>Math.max(1,Math.round(value(P(c),c.evo,c.enh)/5000));
@@ -3425,24 +3883,23 @@ function exOne(){
   openModal(`<div class="mh"><h3>BP로 교환할 선수</h3><button class="icon-btn" data-a="close">X</button></div><div class="cards">${l.map(c=>`<button data-a="exonego" data-v="${c.uid}">${cardHTML(c,{tag:bpOf(c)+' BP'})}</button>`).join('')}</div>`,true);
 }
 
-function oddsText(pk){if(pk.oddsText)return pk.oddsText;if(!pk.odds)return '노멀 OVR 40~90';return pk.odds.map(o=>(o[0]==='S'?'스페셜':'OVR '+o[0])+' '+Math.round(o[1]*100)+'%').join(' · ')}
+function oddsText(pk){if(pk.np)return npOdds(pk);if(pk.oddsText)return pk.oddsText;if(!pk.odds)return '노멀 OVR 40~90';return pk.odds.map(o=>(o[0]==='S'?'스페셜':'OVR '+o[0])+' '+Math.round(o[1]*100)+'%').join(' · ')}
 function vShop(){
-  const cats=[['rec','추천'],['packs','선수 팩'],['deal','특가 팩'],['pos','포지션 팩'],['pass','스타패스'],['ps','플레이스타일']];
+  const cats=[['rec','추천'],['season','시즌 팩'],['packs','선수 팩'],['deal','특가 팩'],['pos','포지션 팩'],['pass','스타패스'],['ps','플레이스타일']];
   let body='';
-  const packCard=(pk,extra)=>`<div class="panel pack"><div class="pt">${pk.name}</div><div class="packart" style="background:${pk.col}"><div class="ball"></div><div class="pn">${pk.name}</div>${extra&&extra.done?'<div class="done">✓ 구매 완료</div>':''}</div>
-    <div class="muted" style="font-size:14px">${pk.desc}</div><div class="muted" style="font-size:12px">${oddsText(pk)}</div>
-    ${extra&&extra.btn?extra.btn:`<button class="btn" data-a="buypack" data-v="${pk.id}" ${S.bp<pk.bp?'disabled':''}><i class="bp"></i>${fmt(pk.bp)}</button>`}</div>`;
+  const packCard=(pk,extra)=>pkTile(pk,extra||{});
   if(UI.scat==='rec'){
-    body=`<div class="sbanner"><div class="t">TOTS <span>스페셜 영입</span></div><div class="s">팀 오브 더 세메스터 · OVR 125~130</div><div class="p">[판매] 시즌 종료까지 ${cd(seasonEnd())}</div></div>
+    body=`
       <div class="panel pack" style="flex-direction:row;flex-wrap:wrap;align-items:center;gap:16px"><div class="packart" style="width:120px;background:linear-gradient(160deg,#c8f23a,#2fd3c2)"><div class="ball"></div><div class="pn">WELCOME</div>${S.welcome?'<div class="done">✓</div>':''}</div>
         <div class="grow"><div style="font-size:24px">첫 로그인 패키지</div><div class="muted">계정당 1회 · 무료</div><div class="row" style="margin-top:8px">${WELCOME.map(rewardHTML).join('')}</div></div>
         <button class="btn gold" data-a="welcome" ${S.welcome?'disabled':''}>${S.welcome?'수령 완료':'무료 받기'}</button></div>
-      <div class="packs">${['tots','lunch','mix'].map(id=>packCard(PK(id))).join('')}</div>`;
-  }else if(UI.scat==='packs')body=`<div class="packs">${PACKS.filter(p=>p.id!=='pos'&&!p.hidden&&!p.deal).map(p=>packCard(p)).join('')}</div><p class="muted" style="margin:0">리프레젠트 멤버는 팩으로 얻을 수 없어요. 교환(OVR 142 이상 카드 50장)이나 이적시장에서 구할 수 있어요.</p>`;
-  else if(UI.scat==='deal')body=`<div class="sbanner" style="background:linear-gradient(110deg,#5a0f3a,#3a1a6a)"><div class="t" style="color:#ff9fd0">특가 <span>진화 선수 팩</span></div><div class="s">진화가 끝난 런치브레이크 · TOTS 선수를 바로 영입</div></div><div class="packs">${PACKS.filter(p=>p.deal).map(p=>packCard(p)).join('')}</div>`;
+      ${npTab('rec')}<div class="pkg">${['tots','lunch','mix'].map(id=>packCard(PK(id))).join('')}</div>`;
+  }else if(UI.scat==='packs')body=`${npTab('packs')}<div class="pkg">${PACKS.filter(p=>p.id!=='pos'&&!p.hidden&&!p.deal&&!p.season&&!p.np).map(p=>packCard(p)).join('')}</div><p class="muted" style="margin:0">리프레젠트 멤버는 팩이나 교환으로 얻을 수 없어요. 이적시장에서만 구할 수 있어요.</p>`;
+  else if(UI.scat==='deal')body=`${npTab('deal')}<div class="sbanner" style="background:linear-gradient(110deg,#5a0f3a,#3a1a6a)"><div class="t" style="color:#ff9fd0">특가 <span>진화 선수 팩</span></div><div class="s">진화가 끝난 런치브레이크 · TOTS 선수를 바로 영입</div></div><div class="pkg">${PACKS.filter(p=>p.deal).map(p=>packCard(p)).join('')}</div>`;
   else if(UI.scat==='pos'){const pk=PK('pos');body=`<div class="panel pad16"><div class="h">포지션 선택 팩 · ${fmt(pk.bp)} BP</div><p class="muted" style="margin:0 0 12px">${pk.desc}. 원하는 포지션을 골라 열어요.</p>
-    <div class="packs">${POS.map(ps=>packCard({...pk,name:POS_KO[ps]+' 팩'},{btn:`<button class="btn" data-a="pospack" data-v="${ps}" ${S.bp<pk.bp?'disabled':''}><i class="bp"></i>${fmt(pk.bp)}</button>`})).join('')}</div></div>`}
-  else if(UI.scat==='ps')body=vPsShop();
+    <div class="pkg">${POS.map(ps=>pkTile(pk,{name:POS_KO[ps]+' 팩',pos:ps,a:'pospack',v:ps})).join('')}</div></div>`}
+  else if(UI.scat==='season')body=`${npTab('season')}<div class="pkh">시즌 팩</div><div class="pkg">${PACKS.filter(p=>p.season).map(p=>packCard(p)).join('')}</div><p class="muted" style="margin:0">시즌마다 일반 카드 25장, 스페셜은 시즌 대표 선수만. 시즌이 높을수록 OVR이 높아요 (최고 139).</p>`;
+  else if(UI.scat==='ps')body=npTab('ps')+vPsShop();
   else body=`<div class="sbanner" style="background:linear-gradient(110deg,#0f5a3a,#1b6a7a)"><div class="t" style="color:var(--lime)">프리미엄 스타패스</div><div class="s">매 레벨 BP 80 · 5레벨마다 런치브레이크/TOTS 팩 · 30레벨 TOTS 팩</div>
     ${S.pass.premium?'<div class="p">이번 시즌 구매 완료</div>':`<button class="btn" style="align-self:flex-start" data-a="buypass" ${S.bp<PASS_COST?'disabled':''}><i class="bp"></i>${fmt(PASS_COST)} 구매</button>`}</div>`;
   return subHead('상점',`<span class="cur"><i class="bp"></i>${fmtBP(S.bp)}</span>`)+`<div class="shop"><div class="scat">${cats.map(c=>`<button class="${UI.scat===c[0]?'on':''}" data-a="shopcat" data-v="${c[0]}" style="position:relative">${c[1]}${c[0]==='ps'&&typeof psFreeReady==='function'&&psFreeReady()?'<i class="dot"></i>':''}</button>`).join('')}</div><div style="display:flex;flex-direction:column;gap:16px;min-width:0">${body}</div></div>`;
@@ -3459,6 +3916,7 @@ const dealPool=(pk,pos)=>DB.filter(p=>(p.cls==='lunch'||p.cls==='tots')&&p.ovr>=
 function packEvo(pk){if(!pk||pk.evo==null)return 0;if(typeof pk.evo==='number')return pk.evo;return +rollOdds(pk.evo)}
 const normalOf=pos=>pick(DB.filter(p=>p.cls==='normal'&&(!pos||p.pos===pos)));
 function drawPack(pk,pos){
+  if(pk.np)return npDraw(pk,pos);
   if(pk.cls==='deal'){const l=dealPool(pk,pos);const cnt={};l.forEach(p=>cnt[p.ovr]=(cnt[p.ovr]||0)+1);const w=l.map(p=>(DEAL_W[p.ovr]||5)/cnt[p.ovr]);return Array.from({length:pk.n},()=>l[wpick(w)])}
   if(pk.cls==='normal')return Array.from({length:pk.n},()=>normalOf(pos));
   if(pk.cls==='mix'){const a=[normalOf(),normalOf(),normalOf()];a.push(Math.random()<0.85?drawClass('lunch',PK('lunch').odds):drawClass('tots',PK('tots').odds));return a}
@@ -3466,7 +3924,7 @@ function drawPack(pk,pos){
 }
 function openPack(pk,free,pos){
   if(!free){if(S.bp<pk.bp)return;S.bp-=pk.bp}
-  const got=drawPack(pk,pos).sort((a,b)=>a.ovr-b.ovr);const cs=got.map(p=>addCard(p.id,packEvo(pk)));track('pack');save();renderTop();showReveal(cs,pos?POS_KO[pos]+' 팩':pk.name,pk.col,pk);
+  const got=drawPack(pk,pos).sort((a,b)=>a.ovr-b.ovr);const cs=got.map(p=>addCard(p.id,packEvo(pk)));track('pack');npAfter(pk,1,cs);save();renderTop();showReveal(cs,pos?POS_KO[pos]+' 팩':pk.name,pk.col,pk);
 }
 function flip(el){
   if(el.classList.contains('open'))return;el.classList.add('open');const k=el.dataset.r;
@@ -3630,7 +4088,7 @@ function passClaim(v){
   render();
 }
 
-const WELCOME=[{t:'gp',n:300000},{t:'bp',n:600},{t:'pack',id:'lunch'},{t:'pack',id:'normal'}];
+const WELCOME=[{t:'gp',n:300000},{t:'bp',n:1000},{t:'pack',id:'lunch'},{t:'pack',id:'normal'}];
 function openWelcome(){
   openModal(`<div style="text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center"><div class="logo">WELCOME!</div><div style="font-size:26px">첫 로그인 패키지</div>
     <p class="muted" style="margin:0">BP와 GP는 0에서 시작해요. 창단 기념 패키지로 시작 자금과 선수 팩을 받아 가세요.</p>
@@ -3717,7 +4175,7 @@ function openQuick(){
 function matchRewards(prep,win,margin,forfeit,myPts){
   if(prep.kind==='friendly'){const out={gp:0,bp:0,xp:0,sp:0,lines:['친선전 · 보상 없음']};const f=S.friends.find(x=>x.id===prep.fid);if(f&&!forfeit){if(win)f.w=(f.w||0)+1;else f.ls=(f.ls||0)+1}
     S.hist.unshift({w:win,a:M.score[0],b:M.score[1],opp:prep.opp.name,mode:'친선전 · '+MODES[prep.mode].n});S.hist=S.hist.slice(0,8);save();return out}
-  const mult={chance:1,full:1.25,auto:0.8}[prep.mode]*(prep.kind==='quick'?0.6:1);
+  const mult={chance:1,full:1.25,auto:0.8}[prep.mode]*(prep.kind==='quick'||prep.kind==='train'?0.6:1);
   const out={gp:0,bp:0,xp:0,sp:0,lines:[]};if(M&&M.oppLeft)out.lines.push('상대가 나가서 승리 처리');else if(prep.pvp)out.lines.push('vs 플레이어 '+prep.pvp);
   if(!forfeit){out.gp=Math.round(((win?25000:8000)+(win?Math.min(25000,margin*1000):0))*mult/100)*100;out.xp=Math.round((win?120:50)*mult);out.sp=win?60:25}
   S.gp+=out.gp;S.xp+=out.xp;S.pass.sp+=out.sp;
@@ -3731,6 +4189,7 @@ function matchRewards(prep,win,margin,forfeit,myPts){
     else if(r.div>=RANKS.length-1)r.pts=Math.min(r.pts,DIV_GOAL);
   }
   if(prep.kind==='story'&&win){const st=margin>=20?3:margin>=10?2:1;const s=STORY[prep.stage];const first=!S.story[prep.stage];S.story[prep.stage]=Math.max(S.story[prep.stage]||0,st);out.lines.push(`스테이지 ${prep.stage+1} ${'★'.repeat(st)}`);if(first){for(const r of s.r){if(r.t==='bp'){S.bp+=r.n;out.bp+=r.n}else{S.gp+=r.n;out.gp+=r.n}}out.lines.push('첫 클리어 보상')}}
+  if(prep.kind==='train'&&!forfeit)evDone(prep.ev,out);
   if(prep.kind==='challenge'){const c=CHAL.find(x=>x.id===prep.chal);if(c.cond(win,margin)&&!S.chal.done[c.id]){S.chal.done[c.id]=true;out.lines.push(`챌린지 성공 · ${c.name}`);if(c.r.t==='bp'){S.bp+=c.r.n;out.bp+=c.r.n}else{S.pendingPack=c.r.id;out.lines.push(PK(c.r.id).name+' 획득')}}else out.lines.push('챌린지 실패')}
   while(S.xp>=xpNeed(S.lvl)){S.xp-=xpNeed(S.lvl);S.lvl++;S.bp+=50;S.gp+=50000;out.bp+=50;out.lines.push(`레벨 ${S.lvl} 달성! BP 50 · GP 50,000`)}
   S.hist.unshift({w:win,a:M.score[0],b:M.score[1],opp:prep.opp.name,mode:MODES[prep.mode].n});S.hist=S.hist.slice(0,8);
@@ -3884,7 +4343,7 @@ document.addEventListener('click',e=>{
     case'msel':{const i=v.indexOf(':');selMarket(v.slice(0,i),v.slice(i+1));break}
     case'watch':{const i=S.watch.indexOf(v);if(i>=0)S.watch.splice(i,1);else S.watch.push(v);save();if(UI.pdv&&!$('#modal').hidden&&$('#modal .pdv')){drawPDV();render()}else refreshPanel();break}
     case'mrefresh':S.recSeed++;UI.msel=null;render();break;
-    case'buy':{const [pid,ev]=String(v).split('@');const p=DBI[pid];const evo=+ev||0;const pr=priceOf(p,evo);if(S.gp<pr)break;S.gp-=pr;addCard(p.id,evo);S.trades.unshift({type:'buy',pid:p.id,evo,price:pr,t:Date.now()});S.trades=S.trades.slice(0,50);track('trade');sfx('good');toast(`${p.name}${evo?' '+evo+'진':''} 영입 완료 · -${fmt(pr)} GP`);closeModal();UI.pdv=null;UI.msel=null;render();break}
+    case'buy':{const [pid,ev]=String(v).split('@');const p=DBI[pid];const evo=+ev||0;const pr=priceOf(p,evo);if(S.gp<pr)break;S.gp-=pr;addCard(p.id,evo);mkRecord(p.id,evo,pr);S.trades.unshift({type:'buy',pid:p.id,evo,price:pr,t:Date.now()});S.trades=S.trades.slice(0,50);track('trade');sfx('good');toast(`${p.name}${evo?' '+evo+'진':''} 영입 완료 · -${fmt(pr)} GP`);closeModal();UI.pdv=null;UI.msel=null;render();break}
     case'evo':openEvo(+v);break;
     case'evoslot':UI.evo.pick=+v;drawEvo();break;
     case'evoback':UI.evo.pick=null;drawEvo();break;
@@ -3965,6 +4424,7 @@ document.addEventListener('click',e=>{
     case'exonego':{const c=card(+v);if(!c||where(c.uid)||c.enh>0||P(c).cls==='rmi')break;const b=bpOf(c);S.bp+=b;S.cards=S.cards.filter(x=>x.uid!==c.uid);closeModal();toast(`${P(c).name} 교환 · BP +${b}`);sfx('good');render();break}
     case'shopcat':UI.scat=v;if(UI.view!=='shop')go('shop');else render();break;
     case'buypack':openPackShop(v);break;
+    case'npdaily':npDaily();break;
     case'potear':poTear();break;
     case'poskip':poSkip();break;
     case'ponext':poNext();break;
@@ -3985,7 +4445,13 @@ document.addEventListener('click',e=>{
     case'dosearch':runSearch();break;
     case'flip':flip(el);break;
     case'flipall':document.querySelectorAll('.flip:not(.open)').forEach((f,i)=>setTimeout(()=>flip(f),i*180));break;
-    case'revealdone':poClose();closeModal();render();if(S.packQ.length){const id=S.packQ.shift();save();openPack(PK(id),true)}else if(!S.welcome&&S.name&&!UI.welcomeShown){UI.welcomeShown=true;openWelcome()}else giftCheck();break;
+    case'npcap':npCapOpen();break;
+    case'adwatch':adOpen();break;
+    case'evplay':evPlay(v);break;
+    case'evclaim':evClaim(v);break;
+    case'adskip':if(AD&&(Date.now()-AD.t0)/1000>=AD_SKIP)adEnd();break;
+    case'npcapn':npCapNext();break;
+    case'revealdone':poClose();closeModal();render();if(npCapShow())break;if(S.packQ.length){const id=S.packQ.shift();save();openPack(PK(id),true)}else if(!S.welcome&&S.name&&!UI.welcomeShown){UI.welcomeShown=true;openWelcome()}else giftCheck();break;
     case'bgm':S.settings.music=S.settings.music===false;save();bgmSync();openSettings();break;
     case'crowd':S.settings.crowd=S.settings.crowd===false;save();if(S.settings.crowd===false)ambStop();else if(M)ambStart();openSettings();break;
     case'snd':S.settings.sound=!S.settings.sound;save();openSettings();break;
@@ -4047,6 +4513,7 @@ function layout(){
   LAY.rot=rot;LAY.z=z;
   if(typeof fitCanvas==='function')requestAnimationFrame(fitCanvas);
   if(typeof fitHome==='function')requestAnimationFrame(fitHome);
+  if(typeof fitView==='function')requestAnimationFrame(fitView);
 }
 window.addEventListener('resize',layout);
 document.addEventListener('focusout',()=>setTimeout(layout,350));
@@ -4120,7 +4587,7 @@ function swapSlots(a,b){
 function refreshPricesInPlace(){
   document.querySelectorAll('.mcell[data-v^="db:"]').forEach(el=>{const [pid,ev]=el.dataset.v.slice(3).split('@');const p=DBI[pid];if(!p)return;const pr=el.querySelector('.mprice');if(pr)pr.innerHTML=`<i class="gp"></i>${fmt(priceOf(p,+ev||0))}${dotsHTML(lights(p,+ev||0))}`;const dl=el.querySelector('.mdelta');if(dl)dl.innerHTML=deltaHTML(p.id)});
   document.querySelectorAll('.mcell[data-v^="own:"]').forEach(el=>{const c=card(+el.dataset.v.slice(4));const pr=el.querySelector('.mprice');if(c&&pr&&!c.enh)pr.innerHTML=`<i class="gp"></i>${fmt(value(P(c),c.evo,c.enh))}`});
-  document.querySelectorAll('[data-cd]').forEach(el=>{el.dataset.cd=S.mk.t+60000;el.textContent=cdText(S.mk.t+60000)});
+  document.querySelectorAll('[data-cd]').forEach(el=>{el.dataset.cd=mkNext();el.textContent=cdText(mkNext())});
   const busy=document.activeElement&&/^(INPUT|SELECT)$/.test(document.activeElement.tagName);
   if(UI.msel&&UI.msel.k==='db'&&!busy){const pnl=$('#modal').hidden?$('#mpanel'):$('#modal .mpanel2');if(pnl&&($('#modal').hidden||pnl.querySelector('[data-a="buyopen"]'))){if($('#modal').hidden)pnl.innerHTML=panelHTML();else selMarket('db',UI.msel.v)}}
   if(UI.buy&&!$('#modal').hidden&&$('#modal .buyw'))drawBuy();
@@ -4188,7 +4655,7 @@ function evoAnimate(cardEl,ok,crit,done){
 }
 const PERSON_CLASS={'최선웅':'1-2','이태린':'1-3','김지환':'1-6','김정우':'1-5','신태환':'1-3','김도야':'1-3','김민준':'1-2','박민혁':'1-1','최동아':'1-2','나윤오':'1-2','정현성':'1-2','이진헌':'1-1','김유담':'1-1','문채빈':'1-4','강범석':'1-6','우현진':'1-5','이혁환':'1-1','차이정':'1-3','한재준':'1-4','정희건':'1-1','최시우':'1-6','정이루':'1-4','원준섭':'1-2','유도원':'1-1','임수환':'1-3','김동휘':'1-2','이혁준':'1-2','이지성':'1-6','이윤재':'1-5','이동훈':'1-5','손지율':'1-1'};
 function classOf(name){if(PERSON_CLASS[name])return PERSON_CLASS[name];const h=hashInt(name+'|ban')>>>0;return '1-'+(1+h%6)}
-const KRANK={normal:0,lunch:1,fr:1,tots:2,lunchS:3,frS:3,totsS:4,rep:5,rmi:5};
+const KRANK={normal:0,lunch:1,fr:1,tots:2,lunchS:3,frS:3,totsS:4,rep:5,rmi:5,s1:2,s2:2,s3:2,s4:2,s5:3,s1S:4,s2S:4,s3S:4,s4S:4,s5S:4};
 const STAGE={
   normal:{t:'PIXEL HOOPS',s:'PLAYER PACK',c1:'#6b7a96',c2:'#141a28',acc:'#e3ebf7',fx:0},
   lunch:{t:'LUNCH BREAK',s:'SEASON',c1:'#ff9f43',c2:'#2e1206',acc:'#ffd29a',fx:1},
@@ -4198,7 +4665,12 @@ const STAGE={
   rep:{t:'REPRESENT',s:'♛ MEMBER ♛',c1:'#ff3b5c',c2:'#240310',acc:'#ffd23f',fx:3},
   rmi:{t:'RM',s:'♛ ICON ♛',c1:'#d9a43a',c2:'#140e04',acc:'#ffe9a8',fx:3},
   fr:{t:'FRIENDS & RIVALS',s:'F&R',c1:'#1fa3c9',c2:'#062a33',acc:'#ffd23f',fx:1},
-  frS:{t:'FRIENDS & RIVALS',s:'★ CAPTAIN ★',c1:'#9b5cff',c2:'#062a33',acc:'#ffd23f',fx:2}
+  frS:{t:'FRIENDS & RIVALS',s:'★ CAPTAIN ★',c1:'#9b5cff',c2:'#062a33',acc:'#ffd23f',fx:2},
+  s1:{t:'NEON STREET',s:'SEASON 1',big:'NEON',c1:'#ff4fd8',c2:'#1a0630',acc:'#5fe3f2',fx:1},s1S:{t:'NEON STREET',s:'★ SEASON 1 SPECIAL ★',big:'NEON',c1:'#ff4fd8',c2:'#1a0630',acc:'#5fe3f2',fx:2},
+  s2:{t:'MIDNIGHT CITY',s:'SEASON 2',big:'MIDNIGHT',c1:'#8fa2c8',c2:'#070b1c',acc:'#e8eef8',fx:1},s2S:{t:'MIDNIGHT CITY',s:'★ SEASON 2 SPECIAL ★',big:'MIDNIGHT',c1:'#c8d0e0',c2:'#070b1c',acc:'#ffffff',fx:2},
+  s3:{t:'COSMIC DREAM',s:'SEASON 3',big:'COSMIC',c1:'#2fd3c2',c2:'#120a30',acc:'#b88aff',fx:1},s3S:{t:'COSMIC DREAM',s:'★ SEASON 3 SPECIAL ★',big:'COSMIC',c1:'#2fd3c2',c2:'#120a30',acc:'#b88aff',fx:2},
+  s4:{t:'RIVAL DUEL',s:'SEASON 4',big:'RIVAL',c1:'#ff4a5a',c2:'#0a0c22',acc:'#6aa8ff',fx:1},s4S:{t:'RIVAL DUEL',s:'★ SEASON 4 SPECIAL ★',big:'RIVAL',c1:'#ff4a5a',c2:'#0a0c22',acc:'#6aa8ff',fx:2},
+  s5:{t:'ROYAL CHAMPIONS',s:'SEASON 5',big:'ROYAL',c1:'#e8b84a',c2:'#0a0804',acc:'#fff3c4',fx:2},s5S:{t:'ROYAL CHAMPIONS',s:'♛ SEASON 5 SPECIAL ♛',big:'ROYAL',c1:'#e8b84a',c2:'#0a0804',acc:'#fff3c4',fx:3}
 };
 let PO=null;
 function poEl(){let e=$('#po');if(!e){e=document.createElement('div');e.id='po';e.hidden=true;$('#zoomer').appendChild(e)}return e}
@@ -4212,7 +4684,7 @@ function fpackHTML(pk,col,name,big){
 function bestIdx(cs){let b=0;cs.forEach((c,i)=>{const k=KRANK[kindOf(P(c))],kb=KRANK[kindOf(P(cs[b]))];if(k>kb||(k===kb&&cardOvr(c)>cardOvr(cs[b])))b=i});return b}
 function showReveal(cs,title,col,pk,n){
   poClear();closeModal();
-  PO={cs,title,col:col||(pk&&pk.col)||'#ffd23f',pk,n:n||1,timers:[],phase:'pack'};
+  PO={cs,title,col:col||(pk&&pk.col)||'#ffd23f',pk,n:n||1,timers:[],phase:'pack',note:typeof PO_NOTE==='string'?PO_NOTE:''};if(typeof PO_NOTE==='string')PO_NOTE='';
   const e=poEl();e.hidden=false;
   e.innerHTML=`<div class="po-bg"></div><div class="po-top"><h2>${esc(title)}</h2></div>
     <div class="po-mid"><button class="po-pk" data-a="potear" aria-label="팩 열기"><i class="po-ring"></i>${fpackHTML(pk,PO.col,pk?pk.name:title,true)}</button><p>팩을 열어 선수를 만나세요</p></div>
@@ -4226,7 +4698,7 @@ function poTear(){
   poT(()=>{e.classList.remove('tearing','holo','flash');poWalk(bestIdx(PO.cs))},1450);
 }
 function confettiHTML(n,cols){let h='';for(let i=0;i<n;i++){const l=Math.random()*100,d=Math.random()*2.4,du=2.2+Math.random()*2.2,c=cols[i%cols.length],w=4+Math.random()*6,r=Math.random()*360;h+=`<i style="left:${l}%;animation-delay:${d}s;animation-duration:${du}s;background:${c};width:${w}px;height:${w*0.5}px;--r:${r}deg"></i>`}return h}
-const WORLD={normal:'gym',lunch:'sun',lunchS:'sun',fr:'deco',frS:'deco',tots:'tun',totsS:'tun',rep:'hall',rmi:'icon'};
+const WORLD={normal:'gym',lunch:'sun',lunchS:'sun',fr:'deco',frS:'deco',tots:'tun',totsS:'tun',rep:'hall',rmi:'icon',s1:'tun',s1S:'tun',s2:'tun',s2S:'tun',s3:'tun',s3S:'tun',s4:'tun',s4S:'tun',s5:'hall',s5S:'hall'};
 const STATUE=[
  ['.....##.......','....####......','....####...##.','.....##...###.','....#####.##..','...########...','..##.####.....','.##..####.....','.....####.....','.....####.....','....##..##....','....##..##....','...##....##...','...##....##...','..##......##..','.###......###.'],
  ['...........##.','..........##..','.....##..##...','....####.#....','....#####.....','.....##.......','....#####.....','...######.....','..##.####.....','.##..####.....','.....####.....','....##..##....','...##....##...','..##......##..','.##.......##..','.#.........##.'],
@@ -4262,7 +4734,7 @@ function roomHTML(w,T,sp){
     h+=back('<div class="door"></div>');
   }else if(w==='tun'){
     const zt=[0.02,0.5,1.02,1.58,2.18];
-    for(const x of [-1,1])zt.forEach((z1,k)=>{const z2=z1+0.4;h+=pl(`scr2 ${k%2?'alt':''}`,quad(x,-0.55,0.45,z1,z2));h+=lbl(x,-0.55,0.45,z1,z2,k%2?`<i>TOTS</i>`:`<b>TEAM<small>OF THE</small>SEMESTER</b>`,x>0?'r':'')});
+    for(const x of [-1,1])zt.forEach((z1,k)=>{const z2=z1+0.4;h+=pl(`scr2 ${k%2?'alt':''}`,quad(x,-0.55,0.45,z1,z2));h+=lbl(x,-0.55,0.45,z1,z2,k%2?`<i>${T.big||'TOTS'}</i>`:(T.big?`<b>${T.t.split(' ')[0]}<small>SEASON</small>${T.t.split(' ').slice(1).join(' ')}</b>`:`<b>TEAM<small>OF THE</small>SEMESTER</b>`),x>0?'r':'')});
     for(let k=0;k<9;k++){const z=k*0.34;h+=pl('bar',hband(-1,z,z+0.05,-0.75,0.75))}
     for(let k=0;k<9;k++){const z=k*0.34;h+=pl('grid',hband(1,z,z+0.01,-1,1))}
     h+=pl('stripe',quad(-1,-0.62,-0.6,0,RZF))+pl('stripe',quad(1,-0.62,-0.6,0,RZF))+pl('stripe',quad(-1,0.52,0.54,0,RZF))+pl('stripe',quad(1,0.52,0.54,0,RZF));
@@ -4304,8 +4776,8 @@ function revealHTML(w,T,sp){
   </div>`;
   if(w==='jump'&&sp)return `<div class="rv rv-jbs"><div class="sky"></div><div class="beams"><i></i><i></i><i></i><i></i></div><b class="megaC">C</b><div class="fw">${Array.from({length:9},(_,j)=>`<i style="left:${8+j*10.5}%;top:${10+((j*37)%40)}%;--c:${['#ffd23f','#ff7aa8','#5fe3f2','#ffffff','#9b5cff'][j%5]};animation-delay:${(j*0.27).toFixed(2)}s"></i>`).join('')}</div><div class="laurel l"></div><div class="laurel r"></div><div class="big3d gold c cap">CAPTAIN</div><div class="tag">FRIENDS &amp; RIVALS · 2026 반대항전</div><div class="floor"></div><div class="dais"><span>F&amp;R CAPTAIN</span></div></div>`;
   if(w==='jump')return `<div class="rv rv-jb"><div class="sky"></div><div class="burst"></div><div class="crowd"></div><div class="big3d ${sp?'gold':'frc3'} l">FRIENDS</div><div class="big3d ${sp?'gold':'frc3'} r">RIVALS</div><div class="amp">&amp;</div><div class="wood"><i></i></div><div class="dais"><span>${sp?'F&amp;R CAPTAIN':'FRIENDS &amp; RIVALS'}</span></div></div>`;
-  if(w==='hall')return `<div class="rv rv-hall"><div class="sky"></div><div class="godr"></div><div class="arc"></div><div class="big3d gold l">${T.t==='RM'?'RM':'REPRESENT'}</div><div class="big3d gold r">${T.t==='RM'?'ICON':'MEMBER'}</div><div class="cols"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="mfloor"></div><div class="dais"><span>${T.t==='RM'?'RM':'REPRESENT'}</span></div></div>`;
-  if(w==='tun')return `<div class="rv rv-tun"><div class="crowd"></div><div class="ribbon"></div><div class="ribbon b2"></div><div class="big3d ${sp?'gold':'ice'} c">TOTS</div><div class="tag">TEAM OF THE SEMESTER${sp?' · SPECIAL':''}</div><div class="sparks"></div><div class="dais"><span>TOTS</span></div></div>`;
+  if(w==='hall')return `<div class="rv rv-hall"><div class="sky"></div><div class="godr"></div><div class="arc"></div><div class="big3d gold l">${T.big?'ROYAL':T.t==='RM'?'RM':'REPRESENT'}</div><div class="big3d gold r">${T.big?'CHAMPIONS':T.t==='RM'?'ICON':'MEMBER'}</div><div class="cols"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="mfloor"></div><div class="dais"><span>${T.big?T.t:T.t==='RM'?'RM':'REPRESENT'}</span></div></div>`;
+  if(w==='tun')return `<div class="rv rv-tun"><div class="crowd"></div><div class="ribbon"></div><div class="ribbon b2"></div><div class="big3d ${sp?'gold':'ice'} c${T.big&&T.big.length>5?' lng':''}">${T.big||'TOTS'}</div><div class="tag">${T.big?T.t:'TEAM OF THE SEMESTER'}${sp?' · SPECIAL':''}</div><div class="sparks"></div><div class="dais"><span>${T.big?T.t:'TOTS'}</span></div></div>`;
   if(w==='gym')return `<div class="rv rv-gym"><div class="crowd"></div><div class="flashes">${Array.from({length:18},()=>`<i style="left:${Math.random()*100}%;top:${10+Math.random()*35}%;animation-delay:${(Math.random()*2).toFixed(2)}s"></i>`).join('')}</div><div class="spot"></div><div class="hardwood"></div><div class="dais"><span>PIXEL HOOPS</span></div></div>`;
   return `<div class="rv rv-sun"><div class="sky"></div><div class="sundisc"></div><div class="city"></div><div class="lz">${Array.from({length:sp?10:6},(_,j)=>`<i style="--a:${-60+j*(120/((sp?10:6)-1))}deg;--c:${['#ffd23f','#ff4f7b','#5fe3f2','#c8f23a','#ff8a2a'][j%5]};animation-delay:${(j*0.17).toFixed(2)}s"></i>`).join('')}</div><div class="big3d ${sp?'gold':'sunc'} l">LUNCH</div><div class="big3d ${sp?'gold':'sunc'} r">BREAK</div><div class="roof"></div><div class="dais"><span>LUNCH BREAK${sp?' SPECIAL':''}</span></div></div>`;
 }
@@ -4363,9 +4835,9 @@ function poWalk(i){
   const w=WORLD[k]||'gym',sp=T.fx>=2;
   const conf=T.fx>=1?confettiHTML(T.fx===1?26:T.fx===2?(w==='jump'?36:70):120,w==='hall'||w==='icon'?['#ffd23f','#f6d77a','#ffffff','#c9963a',w==='icon'?'#fff3c4':'#ff3b5c']:[T.c1,T.acc,'#ffffff','#c8f23a','#ff4f7b','#5fe3f2']):'';
   const e=poEl();
-  e.innerHTML=`<div class="st w-${w} st-${k} fx${T.fx} ${sp?'sp':''}" style="--c1:${T.c1};--c2:${T.c2};--acc:${T.acc}" data-a="poskip">
-    <div class="sc-intro">${w==='sun'?sunHTML(sp):w==='jump'?jumpHTML(p,sp):w==='deco'?decoHTML(p,sp):w==='icon'?iconHTML(p):roomHTML(w,T,sp)}</div>
-    <div class="sc-rev">${revealHTML(w,w==='icon'?{...T,ovr:p.ovr}:T,sp)}</div>
+  e.innerHTML=`<div class="st w-${w} st-${k} fx${T.fx} ${sp?'sp':''} ${p.special?'ssp':''}" style="--c1:${T.c1};--c2:${T.c2};--acc:${T.acc}" data-a="poskip">
+    <div class="sc-intro">${SEA_K.has(p.cls)?seaIntroHTML(k,p.special):w==='sun'?sunHTML(sp):w==='jump'?jumpHTML(p,sp):w==='deco'?decoHTML(p,sp):w==='icon'?iconHTML(p):roomHTML(w,T,sp)}</div>
+    <div class="sc-rev">${SEA_K.has(p.cls)?seaRevealHTML(k,p.special):revealHTML(w,w==='icon'?{...T,ovr:p.ovr}:T,sp)}</div>
     <div class="wo wo-flag"><div class="flag c${bn}"><b>${esc(cl)}</b></div><span>${gr}학년 ${bn}반</span></div>
     <div class="wo wo-pos"><b>${p.pos}</b><span>${POS_KO[p.pos]||''}</span></div>
     <div class="wo wo-logo"><img src="${LOGO}" alt="광주과학고등학교"></div>
@@ -4393,11 +4865,12 @@ function poSum(){
   const e=poEl();
   e.innerHTML=`<div class="po-bg"></div><div class="po-top"><h2>${esc(PO.title)}</h2></div>
     <div class="po-grid ${cs.length>6?'many':''}">${cs.map((c,i)=>{const p=P(c);return `<button class="po-c" data-a="powalk" data-v="${i}" style="animation-delay:${Math.min(i,20)*0.08}s">${cardHTML(c)}<small>현재 가치</small><span><i class="gp"></i>${fmt(priceOf(p,c.evo||0))}</span></button>`}).join('')}</div>
-    <div class="po-bot2"><span class="muted">총 ${cs.length}개 보상 획득</span><span class="grow"></span><button class="btn ghost" data-a="poreplay">다시 보기</button><button class="btn po-nx" data-a="revealdone">다음 →</button></div>`;
+    <div class="po-bot2"><span class="muted">총 ${cs.length}개 보상 획득</span>${PO.note?`<span class="po-note">${esc(PO.note)}</span>`:''}<span class="grow"></span><button class="btn ghost" data-a="poreplay">다시 보기</button><button class="btn po-nx" data-a="revealdone">다음 →</button></div>`;
 }
 function poNext(){if(!PO)return;if(PO.phase==='walk'&&!PO.atCard)poCard();else if(PO.preview)poClose();else poSum()}
 function poSkip(){if(PO&&PO.phase==='walk'&&!PO.atCard)poCard()}
 function packPool(pk,pos){
+  if(pk.np)return npPool(pk,pos);
   const f=p=>!pos||p.pos===pos;
   if(pk.cls==='normal')return DB.filter(p=>p.cls==='normal'&&f(p));
   if(pk.cls==='mix')return DB.filter(p=>(p.cls==='lunch'||p.cls==='tots')&&f(p));
@@ -4410,7 +4883,7 @@ function drawPackShop(){
   const ex=packPool(pk,Q.pos).sort((a,b)=>(b.special?1:0)-(a.special?1:0)||b.ovr-a.ovr);const seen=new Set();const exs=[];for(const p of ex){if(seen.has(p.name))continue;seen.add(p.name);exs.push(p);if(exs.length>=5)break}
   openModal(`<div class="mh"><h3>${esc(name)}</h3><button class="icon-btn" data-a="close">X</button></div>
   <div class="psd">
-    <div class="psl"><div class="pst">${esc(name)}</div><div class="psart">${fpackHTML(pk,pk.col,name,true)}</div>
+    <div class="psl"><div class="pst">${esc(name)}</div><div class="psart">${pkTile(pk,{artOnly:true,pos:Q.pos})}</div>
       <div class="pqrow"><button data-a="pqn" data-v="-1" ${Q.n<=1?'disabled':''} aria-label="수량 줄이기">−</button><b>${Q.n}</b><button data-a="pqn" data-v="1" ${Q.n>=10?'disabled':''} aria-label="수량 늘리기">+</button></div>
       <button class="btn pqbuy" data-a="pqbuy" ${S.bp<cost?'disabled':''}><i class="bp"></i>${fmt(cost)}<small>보유 ${fmtBP(S.bp)}</small></button></div>
     <div class="psr">
@@ -4418,7 +4891,7 @@ function drawPackShop(){
       <p class="psd-t">${esc(name)}에서 ${esc(Q.pos?POS_KO[Q.pos]+' '+pk.desc:pk.desc)}을(를) 획득할 수 있어요.</p>
       ${Q.odds?`<div class="podds">${esc(oddsText(pk))}</div>`:''}
       <div class="psec">확정 보상</div>
-      <div class="pconf"><div class="pcm">${fpackHTML(pk,pk.col,name)}</div><div><b>${esc(name)}</b><span>x${Q.n}</span></div></div>
+      <div class="pconf"><div class="pcm">${pkTile(pk,{artOnly:true,pos:Q.pos})}</div><div><b>${esc(name)}</b><span>x${Q.n}</span></div></div>
       <div class="psec">획득 가능한 보상 <small>아래 선수들은 예시이며, 보장되지 않아요.</small></div>
       <div class="pex">${exs.map(p=>`<div><em>획득찬스</em>${cardHTML({pid:p.id,evo:pk.evo==null?0:typeof pk.evo==='number'?pk.evo:pk.evo[pk.evo.length-1][0]})}</div>`).join('')}</div>
     </div>
@@ -4426,7 +4899,7 @@ function drawPackShop(){
 }
 function packBuy(){
   const Q=UI.pq;if(!Q)return;const pk=PK(Q.id);const cost=pk.bp*Q.n;if(S.bp<cost)return;S.bp-=cost;
-  let cs=[];for(let i=0;i<Q.n;i++){const got=drawPack(pk,Q.pos||undefined).sort((a,b)=>a.ovr-b.ovr);cs=cs.concat(got.map(p=>addCard(p.id,packEvo(pk))));track('pack')}
+  let cs=[];for(let i=0;i<Q.n;i++){const got=drawPack(pk,Q.pos||undefined).sort((a,b)=>a.ovr-b.ovr);cs=cs.concat(got.map(p=>addCard(p.id,packEvo(pk))));track('pack')}npAfter(pk,Q.n,cs);
   save();renderTop();const name=Q.pos?POS_KO[Q.pos]+' 팩':pk.name;const n=Q.n;UI.pq=null;
   showReveal(cs,n>1?`${name} x${n}`:name,pk.col,pk,n);
 }
@@ -4601,6 +5074,34 @@ function evoGoRmi(){const E=UI.evo;const c=card(E.uid);if(!c||c.evo>=EVO_MAX)ret
   const g=Math.min(10,ms.length*10/3);const prob=EVO_PROB[c.evo]*g/10;const from=c.evo;if(E.protect){if(S.bp<PROTECT_BP)return;S.bp-=PROTECT_BP}const ok=Math.random()<prob;if(ok)c.evo++;else if(!E.protect&&c.evo>0)c.evo--;
   track('evo');E.result={ok,from,prob,crit:1,prot:!ok&&E.protect};E.mats=[null,null,null];save();renderTop();
   const el=document.querySelector('#modal .evtarget .card');evoAnimate(el,ok,false,()=>{drawEvoRmi();render()});
+}
+const SEA_K=new Set(['s1','s2','s3','s4','s5']);
+function seaDeco(k,sp){
+  const s=k.slice(0,2);
+  if(s==='s1')return `<i class="sd sd-wall"></i><i class="sd sd-tube"></i><i class="sd sd-tag">NEON</i>${sp?'<i class="sd sd-sign">★ STREET ★</i><i class="sd sd-tube2"></i>':''}`;
+  if(s==='s2')return `<i class="sd sd-moon"></i><i class="sd sd-sky"></i>${sp?'<i class="sd sd-sky2"></i><i class="sd sd-frame"></i><i class="sd sd-shine"></i>':''}`;
+  if(s==='s3')return `<i class="sd sd-neb"></i><i class="sd sd-stars"></i>${sp?'<i class="sd sd-ring"></i><i class="sd sd-planet"></i><i class="sd sd-holo"></i>':''}`;
+  if(s==='s4')return `<i class="sd sd-seam"></i><i class="sd sd-vs">VS</i>${sp?'<i class="sd sd-bolt"></i><i class="sd sd-fl l"></i><i class="sd sd-fl r"></i>':''}`;
+  if(s==='s5')return `<i class="sd sd-bg"></i><i class="sd sd-star"></i>`;
+  return '';
+}
+function seaIntroHTML(k,sp){return seaIntro0(k,sp).replace(/<\/div>$/,(sp?`<div class="sban"><span>SPECIAL</span></div>`:'')+'</div>')}
+function seaIntro0(k,sp){
+  const s=k.slice(0,2);const n=(a,f)=>Array.from({length:a},(_,i)=>f(i)).join('');
+  if(s==='s1')return `<div class="si si1"><div class="brick"></div><div class="nsign a">NEON</div><div class="nsign b">HOOPS</div><div class="nsign c">24H</div><div class="nsign d">★</div><div class="wet"></div><div class="steam"></div></div>`;
+  if(s==='s2')return `<div class="si si2"><div class="moon"></div><div class="beam a"></div><div class="beam b"></div><div class="city far"></div><div class="city near"></div><div class="rain"></div></div>`;
+  if(s==='s3')return `<div class="si si3"><div class="neb"></div><div class="warp">${n(36,i=>`<i style="--a:${(i*137.5)%360}deg;--d:${((i*0.137)%1.4).toFixed(2)}s;--l:${12+(i*7)%30}cqw"></i>`)}</div><div class="pl a"></div><div class="pl b"></div></div>`;
+  if(s==='s4')return `<div class="si si4"><div class="half r"><b>RED</b></div><div class="half b"><b>BLUE</b></div><div class="bolt"></div><div class="vs">VS</div></div>`;
+  return `<div class="si si5"><div class="hall"></div><div class="cur l"></div><div class="cur r"></div><div class="chand"></div><div class="carpet"></div></div>`;
+}
+function seaRevealHTML(k,sp){
+  const s=k.slice(0,2);const T=STAGE[k]||{};const n=(a,f)=>Array.from({length:a},(_,i)=>f(i)).join('');
+  const tag=`<div class="sr-tag">${T.t}${sp?' · SPECIAL':''}</div>`;
+  if(s==='s1')return `<div class="rv sr sr1"><div class="brick"></div><div class="grid"></div><div class="ntxt">NEON STREET</div><div class="nring a"></div><div class="nring b"></div>${tag}<div class="dais"><span>NEON STREET</span></div></div>`;
+  if(s==='s2')return `<div class="rv sr sr2"><div class="moon"></div><div class="city far"></div><div class="beam a"></div><div class="beam b"></div><div class="mtxt">MIDNIGHT<span>CITY</span></div><div class="roof"></div>${tag}<div class="dais"><span>MIDNIGHT CITY</span></div></div>`;
+  if(s==='s3')return `<div class="rv sr sr3"><div class="gal"></div><div class="stars"></div><div class="orb o1"><i></i></div><div class="orb o2"><i></i></div><div class="ctxt">COSMIC DREAM</div>${tag}<div class="dais"><span>COSMIC DREAM</span></div></div>`;
+  if(s==='s4')return `<div class="rv sr sr4"><div class="half r"></div><div class="half b"></div><div class="spot l"></div><div class="spot r"></div><div class="rtxt l">RIVAL</div><div class="rtxt r">DUEL</div><div class="zap"></div>${tag}<div class="dais"><span>RIVAL DUEL</span></div></div>`;
+  return `<div class="rv sr sr5"><div class="hall"></div><div class="rays"></div><div class="crown"></div><div class="gtxt">ROYAL<span>CHAMPIONS</span></div><div class="gold">${n(26,i=>`<i style="left:${(i*37)%100}%;animation-delay:${((i*0.29)%2.6).toFixed(2)}s"></i>`)}</div>${tag}<div class="dais"><span>ROYAL CHAMPIONS</span></div></div>`;
 }
 const PS=[
   {id:'zone',n:'ZONE',t:0,w:1,d:'하프라인 슛, 뒤로 빠지며 던지는 슛 같은 말도 안 되는 슛도 들어가요. 상대의 앵클 브레이크가 훨씬 자주 일어나고, 모든 슛 성공률이 올라가요.'},
@@ -4787,6 +5288,179 @@ function psDec(s){return String(s||'').split('+').filter(id=>PSI[id]).slice(0,3)
   st.textContent=`.card .rmw{background-image:url("data:image/svg+xml,${encodeURIComponent(svg)}")}.card .rmcr{background-image:url("data:image/svg+xml,${encodeURIComponent(crest)}")}`;
   document.head.appendChild(st);
 })();
+const NP_SEA=['s1','s2','s3','s4','s5'];
+const NP_BASIC=['lunch','tots',...NP_SEA];
+const NP_TBP={s1:700,s2:800,s3:900,s4:1000,s5:1200},NP_SBP={s1:400,s2:450,s3:500,s4:550,s5:650};
+const NP_TN={normal:'노멀',season:'시즌',low:'일반',high:'상위',elite:'엘리트',sp:'스페셜',rep:'대표',feat:'기간 대표',b1:'OVR 125~129',b2:'OVR 130~134',b3:'OVR 135~137',b4:'OVR 138~140'};
+const NP_CUT={};
+function npRank(p){
+  if(!NP_CUT[p.cls]){const l=DB.filter(x=>x.cls===p.cls&&!x.special);const m={};for(const x of l){if(m[x.ovr]==null)m[x.ovr]=l.filter(y=>y.ovr<x.ovr).length/l.length}NP_CUT[p.cls]=m}
+  const f=NP_CUT[p.cls][p.ovr]||0;return f>=0.7?'elite':f>=0.4?'high':'low';
+}
+const npOk=p=>p.ovr<=140&&p.cls!=='rep'&&!UNRELEASED.has(p.cls);
+const NP_WEEK=7*86400000,NP_W0=(3*24+15)*3600000;
+const npWeek=()=>Math.floor((Date.now()-NP_W0)/NP_WEEK);
+const npWeekEnd=()=>(npWeek()+1)*NP_WEEK+NP_W0;
+const npTimedSea=()=>NP_SEA[((npWeek()%5)+5)%5];
+function npTier(pk,t){
+  const cl=pk.prem?NP_SEA:NP_BASIC;
+  let l;
+  if(pk.sel){const s=DB.filter(p=>p.cls===pk.sel&&npOk(p));
+    if(t==='rep')return s.filter(p=>p.special);return s.filter(p=>!p.special&&npRank(p)===t)}
+  if(pk.timed){const w=npTimedSea();const s=DB.filter(p=>p.cls===w&&npOk(p));const top=Math.max(...s.filter(p=>p.special).map(p=>p.ovr));
+    if(t==='feat')return s.filter(p=>p.special&&p.ovr===top);if(t==='sp')return s.filter(p=>p.special&&p.ovr<top);return s.filter(p=>!p.special&&npRank(p)===t)}
+  if(t==='normal')return DB.filter(p=>p.cls==='normal');
+  const b={b1:[125,129],b2:[130,134],b3:[135,137],b4:[138,140]}[t];
+  if(b)return DB.filter(p=>cl.includes(p.cls)&&npOk(p)&&p.ovr>=b[0]&&p.ovr<=b[1]);
+  l=DB.filter(p=>cl.includes(p.cls)&&npOk(p));
+  if(t==='sp')return l.filter(p=>p.special);
+  if(t==='season')return l.filter(p=>!p.special&&npRank(p)!=='elite');
+  return l.filter(p=>!p.special&&npRank(p)===t);
+}
+function npTiers(pk,pos){
+  const r=pk.tiers.map(([t,w])=>[t,w,npTier(pk,t).filter(p=>!pos||p.pos===pos)]).filter(x=>x[2].length);
+  const s=r.reduce((a,x)=>a+x[1],0);return r.map(([t,w,l])=>[t,w/s,l]);
+}
+function npOne(pk,pos){const T=npTiers(pk,pos);const t=T[wpick(T.map(x=>x[1]))];return pick(t[2])}
+function npDraw(pk,pos){
+  const out=[];
+  for(let i=0;i<pk.n;i++){
+    let p=npOne(pk,pos);
+    if(pk.duo&&i>0){for(let k=0;k<30&&out.some(q=>q.pos===p.pos);k++)p=npOne(pk,pos)}
+    out.push(p);
+  }
+  return out;
+}
+function npPool(pk,pos){return npTiers(pk,pos).flatMap(x=>x[2])}
+const npPct=v=>{const x=v*100;return (x>=10||x===Math.round(x)?Math.round(x):x>=1?x.toFixed(1):x.toFixed(2))+'%'};
+function npOdds(pk){
+  const T=npTiers(pk);
+  const a=T.map(([t,w,l])=>`${NP_TN[t]} ${npPct(w)} (${l.length}명 · 1명당 ${npPct(w/l.length)})`).join(' · ');
+  const e=pk.evo.map(([k,w])=>`${k}진 ${npPct(w)}`).join(' · ');
+  return `선수 ${pk.n}명 · 한 명당 등급 확률 · ${a} / 진화 · ${e} / 최대 ${pk.evo[pk.evo.length-1][0]}진${pk.duo?' / 두 선수는 서로 다른 포지션':''}${pk.psr?' / 플레이스타일 캡슐 1개 추가 지급':''}`;
+}
+const NP_PACKS=[
+  {id:'nmix',name:'네온 믹스 팩',n:3,bp:300,tab:'packs',col:'#ff4fd8',bg:'linear-gradient(135deg,#ff4fd8,#5fe3f2)',desc:'선수 3명 · 최대 3진',tiers:[['normal',45],['season',35],['elite',15],['sp',5]],evo:[[0,.5],[1,.3],[2,.15],[3,.05]]},
+  {id:'rduo',name:'라이벌 듀오 팩',n:2,bp:700,tab:'packs',prem:true,duo:true,col:'#e8283e',bg:'linear-gradient(135deg,#e8283e 50%,#1e5ad8 50%)',desc:'서로 다른 포지션 선수 2명 · 최대 3진',tiers:[['season',30],['elite',45],['sp',25]],evo:[[0,.2],[1,.3],[2,.3],[3,.2]]},
+  {id:'spch',name:'스페셜 찬스 팩',n:1,bp:800,tab:'packs',prem:true,col:'#b88aff',bg:'linear-gradient(135deg,#b88aff,#ffd23f)',desc:'고급 선수 1명 · 최대 4진',tiers:[['high',40],['elite',40],['sp',20]],evo:[[1,.2],[2,.35],[3,.3],[4,.15]]},
+  {id:'champ',name:'챔피언 팩',n:2,bp:1200,tab:'rec',prem:true,col:'#e8b84a',bg:'linear-gradient(135deg,#141008,#e8b84a 60%,#fff3c4)',desc:'고OVR 선수 2명 · 최대 4진',tiers:[['b1',20],['b2',40],['b3',25],['b4',15]],evo:[[2,.25],[3,.45],[4,.3]]},
+  {id:'daily',name:'데일리 선수 팩',n:1,bp:0,tab:'deal',free:true,col:'#c8f23a',bg:'linear-gradient(135deg,#c8f23a,#2fd3c2)',desc:'하루 1번 무료 · 선수 1명 · 최대 2진',tiers:[['normal',50],['season',35],['elite',12],['sp',3]],evo:[[0,.7],[1,.25],[2,.05]]},
+  {id:'timed',n:2,get bp(){return NP_TBP[npTimedSea()]},tab:'rec',prem:true,timed:true,get name(){return '타임 리미티드 팩 · '+CLASSES[npTimedSea()].n},get col(){return CLASSES[npTimedSea()].col},get desc(){return `${CLASSES[npTimedSea()].ko} 위크 · 기간 한정 선수 2명 · 최대 4진`},tiers:[['elite',50],['sp',35],['feat',15]],evo:[[1,.15],[2,.35],[3,.35],[4,.15]]},
+  {id:'psl',name:'플레이스타일 연계 팩',n:1,bp:650,tab:'ps',prem:true,psr:true,col:'#c08bff',bg:'linear-gradient(135deg,#2a0f5a,#c08bff 55%,#ffd23f)',desc:'선수 1명 + 플레이스타일 캡슐 1개 · 최대 3진',tiers:[['season',25],['elite',50],['sp',25]],evo:[[0,.2],[1,.3],[2,.3],[3,.2]]},
+  ...NP_SEA.map(s=>({id:'sel_'+s,sel:s,n:1,bp:NP_SBP[s],tab:'season',hidden:true,get name(){return '시즌 셀렉트 팩 · '+CLASSES[s].n},get col(){return CLASSES[s].col},get desc(){return CLASSES[s].ko+' 선수 1명 · 최대 3진'},tiers:[['low',40],['high',35],['elite',20],['rep',5]],evo:[[0,.3],[1,.3],[2,.25],[3,.15]]}))
+];
+for(const x of NP_PACKS){x.np=true;x.cls='np';PACKS.push(x)}
+function npAfter(pk,n,cs){
+  if(!pk||!pk.psr||typeof psRoll!=='function')return;
+  psS();const got=[];
+  const R=psS();UI.npq=[];for(let i=0;i<(cs?cs.length:n||1);i++){const id=psRoll();R.inv[id]=(R.inv[id]||0)+1;UI.npq.push(id);got.push(id)}
+  if(got.length)PO_NOTE='플레이스타일 캡슐 '+got.length+'개 · 다음 → 에서 열기';
+}
+let PO_NOTE='';
+const npDailyReady=()=>S.npDay!==today();
+function npDaily(){
+  if(!npDailyReady())return;const pk=PK('daily');S.npDay=today();openPack(pk,true);
+}
+function npCard(pk,extra){extra=extra||{};return pkTile(pk,{done:extra.done,btn:extra.btn,sub:extra.sub,a:pk.free?'npdaily':null})}
+function npTab(tab){
+  if(tab==='rec'){const t=PK('timed');const ar=typeof adReady==='function'&&adReady();
+    return `<div class="panel adrow"><i class="ic ic-ad" style="font-size:28px;color:#ffd23f"></i><div class="grow"><b>광고 보고 BP 100 받기</b><span class="muted" style="font-size:14px">5분마다 1번 · 5초 후 건너뛰기 가능</span></div><button class="btn ${ar?'gold':'ghost'}" data-a="adwatch">${ar?'광고 보기':'대기 중'}</button></div><div class="sbanner" style="background:linear-gradient(110deg,#141008,${t.col} 140%)"><div class="t">TIME LIMITED <span>${esc(CLASSES[npTimedSea()].n)} 위크</span></div><div class="s">매주 월요일 0시 선수 교체</div><div class="p">[판매 종료] ${cd(npWeekEnd())}</div></div>
+      <div class="pkg">${npCard(PK('champ'))}${npCard(t,{sub:`<div class="nptime">⏱ ${cd(npWeekEnd())}</div>`})}</div>`}
+  if(tab==='packs')return `<div class="pkg">${['nmix','rduo','spch'].map(id=>npCard(PK(id))).join('')}</div>`;
+  if(tab==='deal'){const pk=PK('daily');const ok=npDailyReady();return `<div class="pkg">${npCard(pk,{done:!ok,btn:`<button class="pkbuy ${ok?'free':''}" data-a="npdaily" ${ok?'':'disabled'}>${ok?'무료':'내일 다시'}</button>`})}</div>`}
+  if(tab==='season'){const pk=PK('sel_s1');
+    return `<div class="pkh">시즌 셀렉트</div><div class="pkg">${NP_SEA.map(s=>npCard(PK('sel_'+s))).join('')}</div>`}
+  if(tab==='ps')return `<div class="pkg">${npCard(PK('psl'))}</div>`;
+  return '';
+}
+const PK_KIND={nmix:'s1S',rduo:'s4S',spch:'s3S',champ:'s5S',daily:'lunch',psl:'s2S',normal:'normal',lunch:'lunch',tots:'tots',mix:'lunchS',pos:'lunch',deal48:'totsS',deal7:'totsS'};
+function pkKind(pk){if(pk.timed)return npTimedSea()+'S';if(pk.sel)return pk.sel;if(pk.season)return pk.cls;return PK_KIND[pk.id]||(pk.deal?'totsS':'lunch')}
+function pkEvoR(pk){const e=pk.evo;if(e==null)return null;if(typeof e==='number')return [e,e];const k=e.map(x=>+x[0]);return [Math.min(...k),Math.max(...k)]}
+function pkOvrR(pk,pos){let l=[];try{l=packPool(pk,pos)}catch(e){}if(pk.cls==='mix')l=l.concat(DB.filter(p=>p.cls==='normal'));if(pk.cls==='deal'&&pk.ovr)return pk.ovr;if(!l.length)return null;const o=l.map(p=>p.ovr);return [Math.min(...o),Math.max(...o)]}
+const PK_SIL='<svg class="pks" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="pksg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></linearGradient></defs><path d="M50 10c10 0 17 8 17 19 0 8-3 14-7 18v4c12 3 24 9 28 16 3 6 4 16 4 33H8c0-17 1-27 4-33 4-7 16-13 28-16v-4c-4-4-7-10-7-18 0-11 7-19 17-19z" fill="url(#pksg)"/></svg>';
+function pkTile(pk,o={}){
+  const k=o.kind||pkKind(pk);const r=pkOvrR(pk,o.pos);const e=pkEvoR(pk);const nm=o.name||pk.name;
+  const deco=SEA_K.has(k.replace('S',''))?seaDeco(k,k.endsWith('S')):'';
+  const art=`<div class="card k-${k} pkc">${deco}${PK_SIL}<div class="pkn">${pk.n>1?'x'+pk.n:''}</div><div class="pko">${r?(r[0]===r[1]?r[0]:r[0]+'-'+r[1]):''}</div>${e&&e[1]>0?(e[0]===e[1]?`<div class="pke"><b class="hi">${e[0]}</b></div>`:`<div class="pke"><b class="lo">${e[0]}</b><i></i><b class="hi">${e[1]}</b></div>`):''}${o.done?'<div class="pkdone">✓</div>':''}</div>`;
+  if(o.artOnly)return art;
+  const act=o.btn||`<button class="pkbuy" data-a="${o.a||'buypack'}" data-v="${o.v||pk.id}" ${S.bp<pk.bp?'disabled':''}><i class="bp"></i>${fmt(pk.bp)}</button>`;
+  return `<div class="pkt"><button class="pkart" data-a="${o.a||'buypack'}" data-v="${o.v||pk.id}" aria-label="${esc(nm)}" ${o.noOpen?'disabled':''}>${art}</button><div class="pknm">${esc(nm)}</div>${o.sub||''}${act}</div>`;
+}
+function npCapShow(){
+  const q=UI.npq||[];if(!q.length)return false;const id=q[0];
+  openModal(`<div class="npcap"><div class="npcap-t">플레이스타일 캡슐</div><div class="muted">${q.length>1?'남은 캡슐 '+q.length+'개':'마지막 캡슐'}</div><button class="npcapb" data-a="npcap" style="--ca:${PS_TIER[PSI[id].t].a}" aria-label="캡슐 열기">${psCapsule(id)}<span>캡슐을 눌러 열어요</span></button></div>`);
+  try{audioInit();sfx('bounce')}catch(e){}
+  return true;
+}
+function npCapOpen(){
+  const q=UI.npq||[];if(!q.length)return;const id=q[0];const x=PSI[id];const T=PS_TIER[x.t];
+  try{sfx(x.t===0?'walkout':x.t===1?'pack':'good')}catch(e){}
+  openModal(`<div class="pgres t${x.t}" style="--ca:${T.a};--cb:${T.b}"><i class="burst"></i>${psCapsule(id,'split')}<div class="pgbadge">${psIcon(id)}</div><div class="pgtier">${T.n}</div><div class="pgname">${esc(x.n)}</div><div class="pgdesc">${esc(x.d)}</div>
+    <div class="row" style="justify-content:center;gap:10px;position:relative;z-index:2"><button class="btn gold" data-a="npcapn">${q.length>1?'다음 캡슐 ('+(q.length-1)+')':'확인'}</button></div>
+    <div class="muted" style="font-size:13px;position:relative;z-index:2">보관함에 들어갔어요 · 선수 카드 → 플레이스타일 탭에서 달 수 있어요</div></div>`);
+}
+function npCapNext(){const q=UI.npq||[];q.shift();if(q.length)npCapShow();else{closeModal();render()}}
+const AD_CD=5*60000,AD_BP=100,AD_LEN=15,AD_SKIP=5;
+const adLeft=()=>Math.max(0,(S.adT||0)+AD_CD-Date.now());
+const adReady=()=>adLeft()<=0;
+function adTop(){const l=$('#adLbl'),d=$('#dAd');if(!l)return;const r=adLeft();if(r<=0){l.textContent='광고 +100';if(d)d.hidden=false}else{const s=Math.ceil(r/1000);l.textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0');if(d)d.hidden=true}}
+setInterval(()=>{try{adTop()}catch(e){}},1000);
+let AD=null;
+function adCreative(){
+  const k=Math.floor(Math.random()*3);
+  if(k===0){const pk=PK('champ');return `<div class="ad-stage a0"><i class="ad-rays"></i><div class="ad-art">${pkTile(pk,{artOnly:true})}</div><div class="ad-copy"><em>PIXEL HOOPS</em><b>챔피언 팩</b><span>고OVR 선수 2명 · 최대 4진</span><i class="ad-cta">상점에서 만나요</i></div></div>`}
+  if(k===1){const pk=PK('timed');return `<div class="ad-stage a1" style="--ac:${CLASSES[npTimedSea()].col}"><i class="ad-rays"></i><div class="ad-art">${pkTile(pk,{artOnly:true})}</div><div class="ad-copy"><em>TIME LIMITED</em><b>${esc(CLASSES[npTimedSea()].n)}</b><span>이번 주만 · 기간 대표 선수 등장</span><i class="ad-cta">판매 종료까지 ${cdText(npWeekEnd())}</i></div></div>`}
+  const id=PS[Math.floor(Math.random()*PS.length)].id;
+  return `<div class="ad-stage a2"><i class="ad-rays"></i><div class="ad-art ad-caps">${psCapsule(id)}<div class="ad-badge">${psIcon(id)}</div></div><div class="ad-copy"><em>PLAY STYLE</em><b>플레이스타일 캡슐</b><span>선수에게 달아 경기 능력 UP</span><i class="ad-cta">하루 1번 무료 뽑기</i></div></div>`;
+}
+function adOpen(){
+  if(AD)return;
+  if(!adReady()){const s=Math.ceil(adLeft()/1000);toast(`다음 광고까지 ${Math.floor(s/60)}분 ${s%60}초`);return}
+  const e=document.createElement('div');e.id='adx';
+  e.innerHTML=`<div class="ad-top"><span class="ad-tag">광고</span><span class="ad-rw"><i class="bp"></i>+${AD_BP}</span><span class="ad-t" id="adT">${AD_LEN}</span></div>${adCreative()}<div class="ad-bar"><i id="adBar"></i></div><button class="ad-skip" id="adSkip" data-a="adskip" disabled>${AD_SKIP}초 후 건너뛰기</button>`;
+  ($('#zoomer')||document.body).appendChild(e);
+  AD={t0:Date.now(),el:e,done:false};try{audioInit();sfx('flip')}catch(x){}
+  AD.iv=setInterval(adTick,100);
+}
+function adTick(){
+  if(!AD)return;const t=(Date.now()-AD.t0)/1000;
+  const bar=$('#adBar');if(bar)bar.style.width=Math.min(100,t/AD_LEN*100)+'%';
+  const tt=$('#adT');if(tt)tt.textContent=Math.max(0,Math.ceil(AD_LEN-t));
+  const sk=$('#adSkip');
+  if(sk){if(t<AD_SKIP){sk.disabled=true;sk.textContent=`${Math.ceil(AD_SKIP-t)}초 후 건너뛰기`}else if(sk.disabled){sk.disabled=false;sk.innerHTML='건너뛰기 <b>▶|</b>'}}
+  if(t>=AD_LEN)adEnd();
+}
+function adEnd(){
+  if(!AD||AD.done)return;AD.done=true;clearInterval(AD.iv);
+  S.bp+=AD_BP;S.adT=Date.now();save();renderTop();adTop();
+  const e=AD.el;AD=null;e.remove();
+  try{sfx('good')}catch(x){}toast(`광고 보상 · BP +${AD_BP}`);
+  if(UI.view==='shop')render();
+}
+const EV_ROWS=[['chance','공격 경기','#ff4d6d'],['full','일반 경기','#ff8a2a'],['auto','매니저 경기','#35d0ba']];
+const EV_DIFF=[['쉬움',-8],['보통',0],['어려움',6]];
+const EV_RW=[{t:'bp',n:50},{t:'pack',id:'deal48'},{t:'bp',n:150},{t:'pack',id:'rduo'}];
+const EV_NODE_BP=20;
+function evS(){const t=today();if(!S.ev||S.ev.day!==t)S.ev={day:t,done:{},cl:[]};return S.ev}
+const evCount=()=>Object.keys(evS().done).length;
+const evReady=()=>{const E=evS(),n=evCount();return EV_RW.some((_,i)=>n>=i+1&&!E.cl.includes(i))};
+function evOpp(id){const [r,d]=id.split('-').map(Number);const base=teamOvr()||60;const o=genOpp(Math.max(45,Math.round(base+EV_DIFF[d][1])),hashInt(today()+'ev'+id));return o}
+function evDone(id,out){const E=evS();if(E.done[id])return;E.done[id]=1;S.bp+=EV_NODE_BP;out.bp+=EV_NODE_BP;out.lines.push(`매일 훈련 완료 · BP +${EV_NODE_BP} (${evCount()}/9)`);if(evReady())out.lines.push('이벤트 센터에서 게이지 보상을 받을 수 있어요')}
+function evRwIcon(r){if(r.t==='bp')return `<div class="evri evbw"><i class="bp"></i><b>${r.n}</b></div>`;return `<div class="evri pk">${pkTile(PK(r.id),{artOnly:true})}</div>`}
+function evRwName(r){return r.t==='bp'?`BP ${r.n}`:PK(r.id).name}
+function vEvent2(){
+  const E=evS();const n=evCount();const fill=Math.min(4,n);
+  const gauge=EV_RW.map((r,i)=>{const st=E.cl.includes(i)?'got':n>=i+1?'ready':'lock';
+    return `<button class="evg-n ${st}" style="--b:${(i+1)/4*100}%" data-a="evclaim" data-v="${i}" ${st!=='ready'?'disabled':''} aria-label="${evRwName(r)}">${evRwIcon(r)}<span>${evRwName(r)}</span>${st==='got'?'<i class="evck">✓</i>':st==='lock'?'<i class="evlk"></i>':'<i class="dot"></i>'}</button>`}).join('');
+  const rows=EV_ROWS.map(([m,nm,c],ri)=>`<div class="evrow" style="--rc:${c}"><div class="evlab"><b>${nm}</b><small>${MODES[m].n}</small></div><div class="evnodes">${EV_DIFF.map(([dn],di)=>{const id=ri+'-'+di;const o=evOpp(id);const done=E.done[id];
+    return `<button class="evnode ${done?'done':''}" data-a="evplay" data-v="${id}" ${done?'disabled':''}><span class="evem"><img class="pix" src="${emblemURL(o.c1,o.c2,o.emblem)}" alt=""></span><span class="evdn">${dn}</span><span class="evov">OVR ${o.ovr}</span>${done?'<i class="evck">✓</i>':`<i class="evbp"><i class="bp"></i>${EV_NODE_BP}</i>`}</button>`}).join('')}</div></div>`).join('');
+  return `<div class="evw"><div class="evl"><div class="evtt">매일 훈련</div><div class="evcnt">✓ ${n}/9</div><div class="evg"><div class="evg-bar"><i style="height:${fill/4*100}%"></i></div>${gauge}</div><div class="evtm">초기화까지 ${cd(midnight())}</div></div>
+    <div class="evr">${rows}<p class="muted evh">경기 1판마다 게이지 1칸 · 승패와 관계없이 끝까지 하면 완료 · 1경기 완료마다 BP ${EV_NODE_BP}</p></div></div>`;
+}
+function evPlay(id){const E=evS();if(E.done[id])return;const [r,d]=id.split('-').map(Number);const m=EV_ROWS[r][0];prepMatch({kind:'train',ev:id,mode:m,modeFixed:true,opp:evOpp(id),label:`매일 훈련 · ${EV_ROWS[r][1]} · ${EV_DIFF[d][0]}`})}
+function evClaim(i){const E=evS();i=+i;if(E.cl.includes(i)||evCount()<i+1)return;E.cl.push(i);const r=EV_RW[i];
+  if(r.t==='bp'){S.bp+=r.n;save();renderTop();toast(`게이지 보상 · BP +${r.n}`);try{sfx('good')}catch(e){}render()}
+  else{save();render();openPack(PK(r.id),true)}}
 const MG={};
 function mgGeo(){
   if(MG.ok)return MG;
@@ -5521,31 +6195,32 @@ function simPoss(t,quiet){
   const avg=(T,k)=>T.players.reduce((a,p)=>a+p.st[k],0)/5;
   const L=(c,s)=>{if(!quiet)logLine(c,s)};
   const to=0.12+(avg(D,'def')-(avg(O,'drb')+avg(O,'pas'))/2)*0.004+(D.tactic.def==='press'?0.035:0);
-  if(Math.random()<clamp(to,0.05,0.25)){const i=wpick(D.players.map(p=>p.st.def**2));db[i].stl++;L('',`${D.abbr} ${D.players[i].name} 스틸`);return 0}
+  if(Math.random()<clamp(to*(1+0.08*D.players.filter(q=>q.tr&&q.tr.includes('stl')).length-0.06*O.players.filter(q=>q.tr&&q.tr.includes('hand')).length),0.05,0.25)){const i=wpick(D.players.map(p=>p.st.def**2*(p.tr&&p.tr.includes('stl')?1.6:1)));db[i].stl++;L('',`${D.abbr} ${D.players[i].name} 스틸`);return 0}
   for(let tries=0;tries<3;tries++){
     const i=wpick(O.players.map(p=>Math.pow((p.st.sht+p.st.mid+p.st.ins)/3,2)*(p.pos==='G'?1.1:1)));
     const p=O.players[i],df=D.players[i],tac=O.tactic.off;
     const w=[p.st.sht*(tac==='3pt'?1.5:tac==='inside'?0.6:1),p.st.mid*0.8*(tac==='3pt'?0.8:1),(p.st.ins*0.6+p.st.ath*0.4)*(tac==='inside'?1.4:1)*(D.tactic.def==='zone'?0.75:1)];
     const ty=wpick(w);
     const rating=[p.st.sht,p.st.mid,p.st.ins*0.7+p.st.ath*0.3][ty];
-    const PY=(x,id)=>!!(x&&x.ps&&x.ps.includes(id));
-    const pr=clamp([0.36,0.43,0.57][ty]+(rating-df.st.def)*0.006+(ty===0&&D.tactic.def==='zone'?0.03:0)+(PY(p,'zone')?0.12:0)+(ty===0&&PY(p,'tp')?0.08:0)+(ty===2&&PY(p,'sh')?0.04:0),0.1,0.9);
+    const PY=(x,id)=>!!(x&&x.ps&&x.ps.includes(id));const TY=(x,id)=>!!(x&&x.tr&&x.tr.includes(id));
+    const lateQ=M.q>=4&&(M.simClock==null||M.simClock<=0.35)&&Math.abs(M.score[0]-M.score[1])<=5;
+    const pr=clamp([0.36,0.43,0.57][ty]+(rating-df.st.def)*0.006+(ty===0&&D.tactic.def==='zone'?0.03:0)+(PY(p,'zone')?0.12:0)+(ty===0&&PY(p,'tp')?0.08:0)+(ty===2&&PY(p,'sh')?0.04:0)+(ty===0&&TY(p,'sniper')?0.04:0)+(ty===2&&TY(p,'slash')?0.05:0)+(lateQ&&TY(p,'clutch')?0.07:0)-(TY(df,'lock')?0.04:0)+(O.players.some(q=>q!==p&&TY(q,'pm'))?0.015:0),0.1,0.9);
     if(Math.random()<((ty===2?0.13:0.04)+(D.tactic.def==='press'?0.02:0))*(PY(p,'ha')?1.7:1)){
       const n=ty===0?3:2,fp=PY(p,'ft')?1:clamp(0.4+p.st.sht*0.0032+p.st.mid*0.0022,0.45,0.93);const k=wpick(D.players.map((q,j)=>j===i?3:1));db[k].pf++;
       let v=0;for(let f=0;f<n;f++){ob[i].fta++;if(Math.random()<fp){ob[i].ftm++;v++}}
       if(v)addPts(t,i,v);L('',`${D.abbr} ${D.players[k].name} 파울, ${p.name} 자유투 ${v}/${n}`);return v;
     }
     ob[i].fga++;if(ty===0)ob[i].tpa++;
-    if(ty===2&&Math.random()<0.05+(df.st.def-70)*0.002+(PY(df,'bk')?0.07:0)-(PY(p,'zone')?0.03:0)){db[i].blk++;L('',`${D.abbr} ${df.name} 블록슛!`)}
+    if(ty===2&&Math.random()<0.05+(df.st.def-70)*0.002+(PY(df,'bk')?0.07:0)+(TY(df,'rim')?0.06:0)-(PY(p,'zone')?0.03:0)){db[i].blk++;L('',`${D.abbr} ${df.name} 블록슛!`)}
     else if(Math.random()<pr){
       const v=ty===0?3:2;addPts(t,i,v);ob[i].fgm++;if(ty===0)ob[i].tpm++;
-      let as='';if(Math.random()<0.6){const ww=O.players.map(q=>q.st.pas**2);ww[i]=0;const j=wpick(ww);ob[j].ast++;as=` (어시스트 ${O.players[j].name})`}
+      let as='';if(Math.random()<0.6){const ww=O.players.map(q=>q.st.pas**2*(q.tr&&q.tr.includes('pm')?1.8:1));ww[i]=0;const j=wpick(ww);ob[j].ast++;as=` (어시스트 ${O.players[j].name})`}
       L(ty===0?'hl':'',`${O.abbr} ${p.name} ${['3점슛','중거리슛','골밑 득점'][ty]}${as}`);return v;
     }
     const orb=clamp(0.24+(avg(O,'reb')-avg(D,'reb'))*0.006,0.1,0.4);
     const rbO=O.players.filter(q=>PY(q,'rb')).length,rbD=D.players.filter(q=>PY(q,'rb')).length;
-    if(Math.random()<clamp(orb+(rbO-rbD)*0.05,0.08,0.5)&&tries<2){const k=wpick(O.players.map(q=>q.st.reb**2*(PY(q,'rb')?2:1)));ob[k].reb++;continue}
-    const k=wpick(D.players.map(q=>q.st.reb**2*(1+((q.height||175)-175)*0.02)*(1+((q.st.str||70)-70)*0.01)*(PY(q,'rb')?2:1)));db[k].reb++;
+    if(Math.random()<clamp(orb+(rbO-rbD)*0.05,0.08,0.5)&&tries<2){const k=wpick(O.players.map(q=>q.st.reb**2*(PY(q,'rb')?2:1)*(TY(q,'board')?1.6:1)));ob[k].reb++;continue}
+    const k=wpick(D.players.map(q=>q.st.reb**2*(1+((q.height||175)-175)*0.02)*(1+((q.st.str||70)-70)*0.01)*(PY(q,'rb')?2:1)*(TY(q,'board')?1.6:1)));db[k].reb++;
     L('',`${O.abbr} ${p.name} ${['3점슛','중거리슛','레이업'][ty]} 실패, ${D.abbr} 리바운드`);return 0;
   }
   return 0;
@@ -5832,6 +6507,7 @@ function foulOn(df,vic,kind){
     else{callout('FOUL',`${df.c.name} 파울 · 팀파울 ${M.tf[t]}`,'#ff4f7b');Object.assign(b,{state:'dead',owner:null,vz:1});G.nextPoss=vic.t;G.dead=0.9;const x=vic.x,y=vic.y<25?0.5:49.5;G.after=()=>sideIn(vic.t,x,y)}
   }
 }
+const TRX=(p,id)=>!!(p&&p.c&&p.c.tr&&p.c.tr.indexOf(id)>=0);
 function trySteal(d){
   if(isCtrl(d)&&d.stealCd>0)return;
   d.stealCd=Math.max(d.stealCd,0.7);
@@ -5839,7 +6515,7 @@ function trySteal(d){
   if(!h||h.t===d.t||dist(d,h)>3.6){d.stun=0.2;return}
   const trapped=G.P.filter(q=>q.t===d.t&&dist(q,h)<4.5).length>=2;
   let ch=clamp((isCtrl(d)?0.2:0.14)+(d.c.st.def-h.c.st.drb)*0.007,0.05,0.38)*(trapped?1.35:1)*(0.85+0.3*Math.min(1.2,IQ(d)))*(1.25-0.5*Math.min(1.2,IQ(h)));if(h.gather)ch*=0.5;
-  if(PSX(h,'fg'))ch*=trapped?0.4:0.55;if(PSX(h,'zone'))ch*=0.7;if(PSX(d,'sh'))ch*=1.12;if(PSX(h,'sh'))ch*=0.85;
+  if(PSX(h,'fg'))ch*=trapped?0.4:0.55;if(PSX(h,'zone'))ch*=0.7;if(PSX(d,'sh'))ch*=1.12;if(PSX(h,'sh'))ch*=0.85;if(TRX(d,'stl'))ch*=1.35;if(TRX(h,'hand'))ch*=0.7;
   const r=Math.random();
   if(r<ch){M.box[d.t][d.i].stl++;addFx('STEAL!',d.x,d.y,'#ff4f7b');sfx('steal');liveEv('steal',{p:d});h.gather=null;giveBall(d)}
   else if(r>1-((isCtrl(d)?0.14:0.05*(1.35-0.7*Math.min(1,IQ(d))))*(trapped?1.3:1)*(1+(75-d.c.st.def)*0.01)*(PSX(h,'ha')?1.7:1))){if(h.gather){h.gather.foul=d}else foulOn(d,h,'reach')}
@@ -5958,7 +6634,7 @@ function tolOf(p){const st=p.c.st;const th=threeAt(p);return 0.03+(th?st.sht:st.
 function meterQ(p,m){const tol=tolOf(p);const off=Math.abs(m-GREEN);return off<=tol?1:clamp(1-(off-tol)/0.35,0,0.9)}
 function startShot(p,human){
   const h=atkH(p.t),d=dist(p,h),lay=d<7.5,sp=Math.hypot(p.vx,p.vy);
-  const dunk=lay&&d<5.5&&p.c.st.ath>=68&&sp>6&&Math.random()<0.45+(p.c.st.ath-68)/50;
+  const dunk=lay&&d<5.5&&p.c.st.ath>=(TRX(p,'slash')?62:68)&&sp>6&&Math.random()<(TRX(p,'slash')?0.15:0)+0.45+(p.c.st.ath-68)/50;
   p.gather={t:0,human,lay,dunk,dur:lay?(dunk?0.36:0.3):0.5,q:human?null:aiQ(p,d),m:0,hio:human?IO:null};
   p.drive=0;
   const nd=nearestDef(p);
@@ -5978,11 +6654,15 @@ function release(p,q){
   const nd=nearestDef(p);G.fc=false;
   let pr=estPr(p,d,three,g.dunk,nd);
   pr+=(q-0.6)*0.22;if(q>=1)pr+=0.04;
+  if(three&&TRX(p,'sniper'))pr+=0.04;if(g.lay&&TRX(p,'slash'))pr+=0.05;
+  if(TRX(p,'clutch')&&M.q>=4&&G.clock<=(M.qlen||60)*0.35&&Math.abs(M.score[0]-M.score[1])<=5){pr+=0.07;addFx('CLUTCH',p.x,p.y-3,'#ff4f6d')}
+  if(nd.p&&nd.d<5&&TRX(nd.p,'lock'))pr-=0.04;
+  {const lp=G.lastPass;if(lp&&lp.to===p&&lp.p&&lp.p.t===p.t&&G.t-lp.t<2.5&&TRX(lp.p,'pm'))pr+=0.05}
   pr=clamp(pr,0,0.95);
   for(const df of G.P){
     if(df.t===p.t)continue;const dd=dist(df,p);
     if(dd<4&&df.z>0.8){
-      const bc=(0.09+(df.c.st.def-70)*0.003+(df.c.st.ath-70)*0.002+((df.c.height||175)-(p.c.height||175))*0.006+(d<8?0.07:0)-(g.dunk?0.06:0)+(PSX(df,'bk')?0.12:0))*(PSX(p,'zone')?0.6:1);
+      const bc=(0.09+(df.c.st.def-70)*0.003+(df.c.st.ath-70)*0.002+((df.c.height||175)-(p.c.height||175))*0.006+(d<8?0.07:0)-(g.dunk?0.06:0)+(PSX(df,'bk')?0.12:0)+(TRX(df,'rim')&&d<8?0.08:0))*(PSX(p,'zone')?0.6:1);
       if(Math.random()<bc){
         box.fga++;if(three)box.tpa++;
         M.box[df.t][df.i].blk++;addFx('BLOCK!',p.x,p.y,'#5fe3f2');sfx('block');liveEv('block',{p:df});G.shake=0.25;
@@ -6096,7 +6776,7 @@ function updBall(dt){
     b.grabT-=dt;if(b.grabT>0)return;
     const c=G.P.filter(p=>Math.hypot(p.x-b.x,p.y-b.y)<1.5+p.c.st.reb/100*1.5+((p.c.height||175)-175)*0.03+(PSX(p,'rb')?1.1:0)+(PSX(p,'sh')?0.3:0)&&b.z<5.5+p.c.st.ath/100*3+p.z+(PSX(p,'rb')?1:0));
     if(c.length){
-      const p=c[wpick(c.map(q=>q.c.st.reb**2*(1+((q.c.st.str||70)-70)*0.012)*(q.t===b.lastTeam?0.8:1)*(PSX(q,'rb')?2:1)*(PSX(q,'sh')?1.35:1)))];
+      const p=c[wpick(c.map(q=>q.c.st.reb**2*(1+((q.c.st.str||70)-70)*0.012)*(q.t===b.lastTeam?0.8:1)*(PSX(q,'rb')?2:1)*(PSX(q,'sh')?1.35:1)*(TRX(q,'board')?1.6:1)))];
       const fs=b.fromShot,off=p.t===G.poss;
       if(fs)M.box[p.t][p.i].reb++;
       giveBall(p);
@@ -6111,7 +6791,7 @@ function outOfBounds(){
   G.after=G.kind==='chance'&&t!==M.curSlot?.team?()=>{G.over=true}:()=>sideIn(t,x,y);
 }
 function maxSp(p){
-  let s=12+p.c.st.spd*0.09;const tr=PERSON_TRAIT[p.c.name];if(tr&&tr.speed)s*=tr.speed;
+  let s=12+p.c.st.spd*0.09;const tr=PERSON_TRAIT[p.c.name];if(tr&&tr.speed)s*=tr.speed;if(TRX(p,'jet'))s*=1.04;
   const qd=PSX(p,'qd');if(qd)s*=1.06;
   if(G.ball.owner===p)s*=qd?0.96:0.88;
   if(sprintOf(p))s*=1.22;else if(p.drive>0)s*=1.15;
