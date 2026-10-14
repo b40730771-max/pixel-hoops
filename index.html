@@ -2707,7 +2707,7 @@ function buildDB(){
     const P0=DB[DB.length-1];P0.q=Math.min(0.3,qualityOf(P0.name));P0.grade=gradeOf(P0.q);P0.stats=genStats(pos,ovr,r,P0.q);
   }
   ROSTER.forEach(([cls,ovr,special,names])=>names.forEach((name,i)=>{
-    const pos=(cls==='fr'&&FR_POS[name])||PERSON_POS[name]||POS[Math.floor(hash01(name+'|pos')*3)];const pr=mulberry(hashInt(name));const look=genLook(pr);const num=1+Math.floor(pr()*55);const hr=HEIGHT[pos];const height0=Math.round(hr[0]+pr()*(hr[1]-hr[0]));
+    const pos=((cls==='fr'||/^s[1-5]$/.test(cls))&&FR_POS[name])||PERSON_POS[name]||POS[Math.floor(hash01(name+'|pos')*3)];const pr=mulberry(hashInt(name));const look=genLook(pr);const num=1+Math.floor(pr()*55);const hr=HEIGHT[pos];const height0=Math.round(hr[0]+pr()*(hr[1]-hr[0]));
     const q=qualityOf(name);const height=PERSON_INFO[name]?PERSON_INFO[name][0]:height0;DB.push({id:`${cls}${ovr}_${i}`,name,pos,cls,special,ovr,num,height,look,q,grade:gradeOf(q),stats:traitStats(name,ovr,tiltStats(name+'|'+cls,ovr,genStats(pos,ovr,mulberry(hashInt(name+'s'+cls)),q)))});
   }));
   const ownMax=k=>DB.some(q=>{const t=PERSON_TRAIT[q.name];return t&&t.maxStat&&t.maxStat.includes(k)});
