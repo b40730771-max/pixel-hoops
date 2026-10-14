@@ -2315,6 +2315,9 @@ button.psit{cursor:pointer}button.psit:disabled{opacity:.42;cursor:default}
 .short .evem img{width:32px;height:32px}
 .short .evnode{padding:5px 4px;gap:1px}
 .short .evlab b{font-size:19px}
+.psslot.empty{width:auto;aspect-ratio:auto;display:flex;place-items:normal;border:2px dashed var(--line);background:var(--ink);font-family:inherit;font-size:inherit;color:inherit}
+.pses.empty{aspect-ratio:auto;display:flex;place-items:normal;border:0;border-bottom:4px solid transparent;background:none;font-family:inherit;font-size:inherit;color:#cfd8ec}
+.pses.empty.on{border-bottom-color:var(--lime);background:linear-gradient(180deg,transparent,rgba(200,242,58,.16))}
 .pkg{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:16px 12px}
 .pkh{font-size:16px;color:var(--muted);margin-bottom:-6px}
 .pkt{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
@@ -2998,7 +3001,7 @@ function render(){
   const navMap={home:'home',missions:'missions',login:'missions',market:'market',exchange:'exchange',shop:'shop',rmx:'rmx'};
   document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===navMap[UI.view]));
   const V={friends:vFriends,home:vHome,team:vTeam,squad:vSquad,players:vPlayers,mode:vMode,event:vEvent,rmx:vRmx,rkrew:vRkRew,locker:vLocker,badge:vBadge,style:vStyle,play:vPlay,market:vMarket,exchange:vExchange,shop:vShop,missions:vMissions,login:vMissions,pass:vPass,psedit:vPsEdit}[UI.view]||vHome;
-  {const vw=$('#view');const free=UI.view==='market'||UI.view==='shop'||UI.view==='home';vw.classList.toggle('fit',!free);vw.style.height='';vw.innerHTML=free?V():`<div class="vf">${V()}</div>`;}updNav();if(UI.view!=='home')fitView();{const r=$('#root');if(r)r.classList.toggle('hm',UI.view==='home')}if(UI.view==='home'){fitHome();hbgSet((UI.hslide||0)%3)}
+  {const vw=$('#view');const free=true;vw.classList.toggle('fit',!free);vw.style.height='';vw.innerHTML=free?V():`<div class="vf">${V()}</div>`;}updNav();if(UI.view!=='home')fitView();{const r=$('#root');if(r)r.classList.toggle('hm',UI.view==='home')}if(UI.view==='home'){fitHome();hbgSet((UI.hslide||0)%3)}
   save();
 }
 
