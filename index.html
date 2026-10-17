@@ -1301,7 +1301,7 @@ table.bx td{text-align:right;padding:5px 4px;border-bottom:1px solid rgba(142,16
 .evhead h2{margin:4px 0;font-size:40px;font-weight:700;text-shadow:0 3px 6px #062a33}
 .evhead p{margin:0;color:#d8fbff;font-size:16px}
 .evtag{font-family:var(--px);font-size:11px;color:#062a33;background:#ffd23f;padding:4px 8px}
-.evtabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.evtabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
 .evtabs button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 4px;font-size:18px;background:var(--panel);border:2px solid var(--line);color:var(--muted)}
 .evtabs button small{font-family:var(--px);font-size:9px;opacity:.7}
 .evtabs button.on{background:linear-gradient(180deg,#1597a6,#0b3f4c);border-color:#ffd23f;color:#fff}
@@ -1320,6 +1320,105 @@ table.bx td{text-align:right;padding:5px 4px;border-bottom:1px solid rgba(142,16
 .evbench .card{font-size:7px}
 .nd{width:100%;aspect-ratio:3/4.1;display:grid;place-items:center;text-align:center;border:2px dashed rgba(255,255,255,.35);background:rgba(2,8,24,.55);clip-path:polygon(10% 0,90% 0,100% 7%,100% 93%,90% 100%,10% 100%,0 93%,0 7%)}
 .nd b{font-family:var(--px);font-weight:700;font-size:8px;line-height:1.6;color:#8ea6c9}
+.frchip{display:inline-flex;align-items:baseline;gap:1px;padding:3px 9px;border:2px solid var(--c1);background:color-mix(in srgb,var(--c1) 22%,#0a1530);color:#fff;font-family:var(--px);font-size:13px;white-space:nowrap}
+.frchip small{font-family:inherit;font-size:9px;opacity:.75}
+.frchip.tbd{--c1:#5b6b8f;color:var(--muted)}
+.frinfo{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;padding:14px 18px}
+.frinfo>div:first-child{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1 1 280px}
+.frinfo b{font-size:22px;color:#ffd23f}.frinfo span{color:var(--muted);font-size:15px}
+.frrw{display:flex;gap:8px;flex-wrap:wrap}.frrw span{padding:6px 10px;background:#0a1838;border:2px solid var(--line);font-size:14px;color:var(--muted)}.frrw b{font-size:15px;color:#fff}
+.frerr{margin:0;color:var(--pink);text-align:center}
+.frnone{min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
+.frnone b{font-size:22px;color:#ffd23f}.frnone span{color:var(--muted);display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:center}
+.frvl{display:grid;gap:10px}
+.frvc{padding:14px;display:flex;flex-direction:column;gap:12px}
+.frvh{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:17px}
+.frres{color:var(--lime)}
+.frvs{display:grid;grid-template-columns:1fr auto 1fr;gap:10px}
+.frvo{position:relative;min-height:78px;display:flex;align-items:center;justify-content:center;background:#0a1838;border:3px solid var(--line);color:#fff}
+.frvo .frchip{font-size:22px;padding:6px 14px}.frvo .frchip small{font-size:12px}
+.frvo .frdr{font-size:18px;padding:0 14px;color:var(--muted)}
+.frvo.on{border-color:#ffd23f;background:#2a2410;box-shadow:0 0 0 2px #ffd23f55}
+.frvo.win{outline:3px solid var(--lime);outline-offset:-8px}
+.frvo:disabled{cursor:default}.frvo:disabled:not(.on):not(.win){opacity:.55}
+.frvm{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#ffd23f;color:#1a1200;font-style:normal;font-size:11px;padding:1px 6px;white-space:nowrap}
+.frvf{display:flex;justify-content:center}
+.frst{color:var(--muted);font-size:15px}.frst.ok{color:var(--lime)}.frst.bad{color:var(--pink)}
+.frcls{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.frcls button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px;background:#0a1838;border:3px solid var(--line);color:#fff}
+.frcls button b{font-family:var(--px);font-size:20px;color:var(--c1)}.frcls button b small{font-size:10px}
+.frcls button span{font-size:15px}.frcls button em{font-style:normal;font-size:12px;color:var(--muted)}
+.frcls button.on{border-color:var(--c1);background:color-mix(in srgb,var(--c1) 22%,#0a1838)}
+.frdif{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.frdif button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 4px;background:#0a1838;border:3px solid var(--line);color:#fff}
+.frdif button b{font-size:22px;color:var(--dc)}.frdif button span{font-size:13px;color:var(--muted)}
+.frdif button em{font-style:normal;font-size:14px;display:flex;align-items:center;gap:4px}.frdif button small{font-size:11px;color:var(--lime)}
+.frdif button.on{border-color:var(--dc);background:color-mix(in srgb,var(--dc) 18%,#0a1838)}
+.frpv{padding:12px}.frpv .mini5{max-width:560px}
+.frlg{display:flex;flex-direction:column;gap:12px}
+.frlgh{display:flex;align-items:center;gap:14px;padding:12px 16px}.frlgh .frchip{font-size:22px}
+.frlgh .grow{display:flex;flex-direction:column;gap:2px}.frlgh b{font-size:20px}.frlgh span{color:var(--muted);font-size:15px}.frlgh em{font-style:normal}
+.frlgb{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px}.frlgb>.panel{padding:12px}
+.frtb{width:100%;border-collapse:collapse;font-size:15px}
+.frtb th{color:var(--muted);font-weight:400;font-size:13px;padding:4px;text-align:center}
+.frtb td{padding:6px 4px;text-align:center;border-top:1px solid #1d3a6e}
+.frtb tr.top td:first-child{color:#ffd23f}
+.frtb tr.me td{background:#1a3366}
+.frrds{display:flex;flex-direction:column;gap:6px}
+.frrd{display:flex;align-items:center;gap:10px;padding:6px 10px;background:#0a1838;border:2px solid var(--line)}
+.frrd small{font-family:var(--px);font-size:10px;color:var(--muted);width:24px}.frrd b{margin-left:auto;font-size:16px}
+.frrd.cur{border-color:#ffd23f}.frrd.cur b{color:#ffd23f;font-family:var(--px);font-size:11px}
+.frrd.w b{color:var(--lime)}.frrd.l b{color:var(--pink)}
+.frfin{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 18px}
+.frfin b{font-size:26px;color:#ffd23f}.frfin span{flex:1;color:var(--muted)}
+.frtk{display:inline-block;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff6 0 18%,transparent 20%),conic-gradient(#ff4f7b,#ffd23f,#3d7bff,#ff4f7b);box-shadow:inset 0 0 0 2px #0008;vertical-align:-2px}
+.frtk.big{width:42px;height:42px}
+.frtkh{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;padding:14px 18px}
+.frtkn{display:flex;align-items:center;gap:10px}.frtkn b{font-family:var(--px);font-size:30px;color:#ffd23f}.frtkn small{color:var(--muted);font-size:14px}
+.frtkd{display:flex;gap:8px;flex-wrap:wrap}
+.frtkd div{display:flex;flex-direction:column;gap:2px;padding:6px 12px;background:#0a1838;border:2px solid var(--line)}
+.frtkd div b{font-size:15px}.frtkd div span{font-size:12px;color:var(--muted)}
+.frtkd div.got{border-color:var(--lime)}.frtkd div.got span{color:var(--lime)}
+.frtkr{font-size:13px;margin-left:auto}
+.frtkp{max-width:520px}.frtks{font-size:13px;text-align:center}.frtkb{display:flex;align-items:center;justify-content:center;gap:6px}
+.frtkg{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
+.frtkg button{display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;padding:0;color:#fff}
+.frtkg button .card{width:100%}
+.frtkg button span{display:flex;align-items:center;gap:5px;font-family:var(--px);font-size:12px}
+.frtkg button.lack span{color:var(--muted)}
+.frtkc{display:flex;gap:16px;align-items:center}.frtkc .grow{display:flex;flex-direction:column;gap:6px}
+.frtkcost{display:flex;align-items:center;gap:6px;font-size:16px}
+.frsch{padding:6px}
+.frst2{width:100%;min-width:520px;border-collapse:collapse;font-size:13px;text-align:center}
+.frst2 th{background:#0a1838;color:#fff;font-weight:700;padding:9px 6px;border:1px solid #1d3a6e}
+.frst2 td{padding:7px 6px;border:1px solid #1d3a6e;color:#dfe8ff}
+.frst2 td.ref{font-weight:700}
+.frst2 td.bk{background:#0c1b3f}
+.frst2 tr.off td{color:#6b7ea8;background:#0b1530}
+.frst2 tr.fin td{background:#4a3c08;color:#ffe27a;font-weight:700}
+.frst2 tr.today td{box-shadow:inset 0 2px 0 var(--lime),inset 0 -2px 0 var(--lime)}
+.frst2 tr.today td:first-child{color:var(--lime)}
+.frsvs{display:flex;justify-content:center;align-items:center;gap:4px;margin-top:4px}.frsvs i{font-style:normal;font-size:11px;color:var(--muted)}
+.frsvs .frchip,.frsres{font-size:11px}
+.frslg{display:block;font-size:12px;color:var(--muted)}.frst2 tr.fin .frslg{color:#ffe27a}
+.frsres{display:block;margin-top:3px;color:var(--lime);font-weight:700}
+.fradm{display:flex;flex-direction:column;gap:8px;padding:14px}
+.fradr{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px;background:#0a1838;border:2px solid var(--line)}
+.fradr.today{border-color:var(--lime)}
+.fradd{display:flex;flex-direction:column;width:84px;font-size:15px}.fradd small{color:var(--muted);font-size:11px}
+.frft{display:flex;align-items:center;gap:6px}.frft i{font-style:normal;color:var(--muted);font-size:12px}
+.frft select{background:#071029;color:#fff;border:2px solid var(--line);padding:4px}
+.frsc{display:flex;align-items:center;gap:4px}.frsc input{width:52px;padding:5px;text-align:center}
+.frab{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}.frab .btn.on{outline:3px solid #ffd23f}
+.frov{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.frovc{display:flex;flex-direction:column;align-items:center;gap:8px;padding:10px;border-top:4px solid var(--c1)}
+.frovh{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center}.frovh b{font-size:16px}.frovh em{font-style:normal;font-family:var(--px);font-size:12px;color:var(--lime)}
+.frovk{width:100%;max-width:120px}.frovc>span{font-size:12px;text-align:center}
+.frhist{display:flex;flex-direction:column;gap:6px;padding:10px}
+.frhist div{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:6px;border-bottom:1px solid #1d3a6e}
+.frhist span{width:84px;color:var(--muted);font-size:14px}.frhist b{font-weight:400;color:var(--muted);font-size:12px}
+.frhist em{font-style:normal;margin-left:auto}.frhist i{font-style:normal;color:var(--lime);font-size:13px}
+@container app (max-width:900px){.evtabs{grid-template-columns:repeat(3,minmax(0,1fr))}.frcls{grid-template-columns:repeat(3,minmax(0,1fr))}.frdif{grid-template-columns:repeat(3,minmax(0,1fr))}.frlgb{grid-template-columns:1fr}.frov{grid-template-columns:repeat(3,minmax(0,1fr))}.frvo .frchip{font-size:17px}}
 .evsoon{min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
 .evsoon b{font-family:var(--px);font-weight:700;font-size:26px;color:#ffd23f;text-shadow:0 3px 6px #062a33}
 .evsoon span{font-size:20px;color:var(--muted)}
@@ -4072,6 +4171,7 @@ function packEvo(pk){if(!pk||pk.evo==null)return 0;if(typeof pk.evo==='number')r
 const normalOf=pos=>pick(DB.filter(p=>p.cls==='normal'&&(!pos||p.pos===pos)));
 function drawPack(pk,pos){
   if(pk.np)return npDraw(pk,pos);
+  if(pk.id==='frp'||pk.id==='frn'||pk.id==='frs')return [frDraw(pk.id)];
   if(pk.cls==='deal'){const l=dealPool(pk,pos);const cnt={};l.forEach(p=>cnt[p.ovr]=(cnt[p.ovr]||0)+1);const w=l.map(p=>(DEAL_W[p.ovr]||5)/cnt[p.ovr]);return Array.from({length:pk.n},()=>l[wpick(w)])}
   if(pk.cls==='normal')return Array.from({length:pk.n},()=>normalOf(pos));
   if(pk.cls==='mix'){const a=[normalOf(),normalOf(),normalOf()];a.push(Math.random()<0.85?drawClass('lunch',PK('lunch').odds):drawClass('tots',PK('tots').odds));return a}
@@ -4258,15 +4358,15 @@ function claimWelcome(){
 }
 let PREP=null;
 function prepMatch(o){
-  if(S.lineup.some(u=>!u)){toast('선발 5명을 모두 채워 주세요');go('squad');return}
+  if(!o.home&&S.lineup.some(u=>!u)){toast('선발 5명을 모두 채워 주세요');go('squad');return}
   PREP=Object.assign({mode:S.settings.mode||'chance',qlen:1,modeFixed:false},o);
   drawPrep();
 }
 function drawPrep(){
-  const my=myTeam();const o=PREP.opp;
+  const my=PREP.home||myTeam();const o=PREP.opp;
   const modes=Object.keys(MODES);
   openModal(`<div class="mh"><h3>${PREP.label}</h3><button class="icon-btn" data-a="close">X</button></div>
-    <div class="vs"><div class="t"><img class="pix" src="${emblemURL(my.c1,my.c2,S.emblem)}" alt=""><span>${esc(my.name)}</span><b>${my.ovr}</b></div><div class="x">VS</div>
+    <div class="vs"><div class="t"><img class="pix" src="${emblemURL(my.c1,my.c2,my.emblem||0)}" alt=""><span>${esc(my.name)}</span><b>${my.ovr}</b></div><div class="x">VS</div>
       <div class="t"><img class="pix" src="${emblemURL(o.c1,o.c2,o.emblem||0)}" alt=""><span>${esc(o.name)}</span><b>${o.ovr}</b></div></div>
     <div><div class="h">상대 선발</div><div class="mini5">${o.players.map(p=>cardHTML(p,{ovr:p.ovr,pos:p.pos})).join('')}</div>
       <p class="muted" style="margin:8px 0 0;font-size:14px">상대 스타일 · ${OFF_TAC.find(t=>t[0]===o.tactic.off)[1]} / ${DEF_TAC.find(t=>t[0]===o.tactic.def)[1]}</p></div>
@@ -4330,7 +4430,7 @@ function openQuick(){
 function matchRewards(prep,win,margin,forfeit,myPts){
   if(prep.kind==='friendly'){const out={gp:0,bp:0,xp:0,sp:0,lines:['친선전 · 보상 없음']};const f=S.friends.find(x=>x.id===prep.fid);if(f&&!forfeit){if(win)f.w=(f.w||0)+1;else f.ls=(f.ls||0)+1}
     S.hist.unshift({w:win,a:M.score[0],b:M.score[1],opp:prep.opp.name,mode:'친선전 · '+MODES[prep.mode].n});S.hist=S.hist.slice(0,8);save();return out}
-  const mult={chance:1,full:1.25,auto:0.8}[prep.mode]*(prep.kind==='quick'||prep.kind==='train'?0.6:1);
+  const mult={chance:1,full:1.25,auto:0.8}[prep.mode]*(prep.kind==='quick'||prep.kind==='train'||prep.kind==='frl'?0.6:1);
   const out={gp:0,bp:0,xp:0,sp:0,lines:[]};if(M&&M.oppLeft)out.lines.push('상대가 나가서 승리 처리');else if(prep.pvp)out.lines.push('vs 플레이어 '+prep.pvp);
   if(!forfeit){out.gp=Math.round(((win?25000:8000)+(win?Math.min(25000,margin*1000):0))*mult/100)*100;out.xp=Math.round((win?120:50)*mult);out.sp=win?60:25}
   S.gp+=out.gp;S.xp+=out.xp;S.pass.sp+=out.sp;
@@ -4345,6 +4445,8 @@ function matchRewards(prep,win,margin,forfeit,myPts){
   }
   if(prep.kind==='story'&&win){const st=margin>=20?3:margin>=10?2:1;const s=STORY[prep.stage];const first=!S.story[prep.stage];S.story[prep.stage]=Math.max(S.story[prep.stage]||0,st);out.lines.push(`스테이지 ${prep.stage+1} ${'★'.repeat(st)}`);if(first){for(const r of s.r){if(r.t==='bp'){S.bp+=r.n;out.bp+=r.n}else{S.gp+=r.n;out.gp+=r.n}}out.lines.push('첫 클리어 보상')}}
   if(prep.kind==='train'&&!forfeit)evDone(prep.ev,out);
+  if(prep.kind==='frl'&&typeof frlDone==='function')frlDone(prep,win,forfeit,out);
+  if(!forfeit&&typeof frTokGain==='function')frTokGain(prep.mode,out);
   if(prep.kind==='challenge'){const c=CHAL.find(x=>x.id===prep.chal);if(c.cond(win,margin)&&!S.chal.done[c.id]){S.chal.done[c.id]=true;out.lines.push(`챌린지 성공 · ${c.name}`);if(c.r.t==='bp'){S.bp+=c.r.n;out.bp+=c.r.n}else{S.pendingPack=c.r.id;out.lines.push(PK(c.r.id).name+' 획득')}}else out.lines.push('챌린지 실패')}
   while(S.xp>=xpNeed(S.lvl)){S.xp-=xpNeed(S.lvl);S.lvl++;S.bp+=50;S.gp+=50000;out.bp+=50;out.lines.push(`레벨 ${S.lvl} 달성! BP 50 · GP 50,000`)}
   S.hist.unshift({w:win,a:M.score[0],b:M.score[1],opp:prep.opp.name,mode:MODES[prep.mode].n});S.hist=S.hist.slice(0,8);
@@ -4474,6 +4576,7 @@ document.addEventListener('click',e=>{
     case'giftgo':{const c=card(+v);closeModal();if(c)showReveal([c],'관리자의 선물','#d9a43a',null,1);break}
     case'rmswpick':case'rmswp1':case'rmswp2':case'rmget':case'rmrand':case'rmup':case'rmret1':case'rmret2':case'rmctn':case'rmctpick':case'rmctgo':case'rmfanr':case'rmfans':case'rmfango':case'rmf2c':case'rmf2cgo':rmiAct(a,v);break;
     case'evtab':UI.evtab=v;render();break;
+    case'frvote':case'frvclaim':case'frc':case'frd':case'frstart':case'frplay':case'frclaim':case'frquit':case'frquitgo':case'frtk':case'frtkgo':case'frteam':case'frset':frAct(a,v);break;
     case'evcls':UI.evcls=v;render();break;
     case'rkrew':UI.rkSel=null;go('rkrew');break;
     case'rksel':UI.rkSel=+v;render();break;
@@ -5063,7 +5166,7 @@ function packBuy(){
   showReveal(cs,n>1?`${name} x${n}`:name,pk.col,pk,n);
 }
 for(const [cl,pl] of FR_TEAMS)for(const [n] of pl)if(!PERSON_CLASS[n])PERSON_CLASS[n]=cl;
-const EV_TABS=[['main','메인'],['vote','투표'],['play','직접 플레이'],['token','토큰 교환소'],['sched','경기 일정']];
+const EV_TABS=[['main','메인'],['vote','투표'],['play','직접 플레이'],['token','토큰 교환소'],['sched','경기 일정'],['ovr','OVR 변동']];
 const frCardOf=n=>DB.find(p=>p.cls==='fr'&&p.name===n);
 function evCard(p){return p?`<button data-a="pdetail" data-v="db:${p.id}@0">${cardHTML({pid:p.id})}</button>`:'<div class="nd"><b>Not<br>Defined</b></div>'}
 function vEvent(){
@@ -5083,7 +5186,7 @@ function vEvent(){
         <div class="panel pad16"><div class="h">교체</div><div class="bench evbench">${[0,1,2,3,4].map(i=>`<div class="slot">${evCard(bench[i])}</div>`).join('')}</div></div>
         <p class="muted" style="margin:0;font-size:14px">각 반의 앞 5명이 주전이에요. 선수가 모자라면 Not Defined로 표시돼요. F&amp;R 카드는 아직 이적시장에 없어요.</p>
       </div></div>`;
-  }else body=`<div class="panel evsoon"><b>Not Varify Yet...</b><span>(10.19 ~ 11.9)</span></div>`;
+  }else body=frBody(tab);
   return subHead('2026 반대항전')+`<div class="evhead"><div><span class="evtag">FRIENDS &amp; RIVALS</span><h2>2026 반대항전</h2><p>1학년 6개 반 · 10.19 ~ 11.9</p></div></div>
     <div class="evtabs">${EV_TABS.map(([k,t],i)=>`<button class="${k===tab?'on':''}" data-a="evtab" data-v="${k}"><small>${i+1}</small>${t}</button>`).join('')}</div>${body}`;
 }
@@ -5541,7 +5644,7 @@ function npTab(tab){
 const PK_KIND={nmix:'s1S',rduo:'s4S',spch:'s3S',champ:'s5S',daily:'lunch',psl:'s2S',normal:'normal',lunch:'lunch',tots:'tots',mix:'lunchS',pos:'lunch',deal48:'totsS',deal7:'totsS'};
 function pkKind(pk){if(pk.s7)return 's7S';if(pk.timed&&npTimedSea()==='s7')return 's7S';if(pk.timed)return npTimedSea()+'S';if(pk.sel)return pk.sel;if(pk.season)return pk.cls;return PK_KIND[pk.id]||(pk.deal?'totsS':'lunch')}
 function pkEvoR(pk){const e=pk.evo;if(e==null)return null;if(typeof e==='number')return [e,e];const k=e.map(x=>+x[0]);return [Math.min(...k),Math.max(...k)]}
-function pkOvrR(pk,pos){let l=[];try{l=packPool(pk,pos)}catch(e){}if(pk.cls==='mix')l=l.concat(DB.filter(p=>p.cls==='normal'));if(pk.cls==='deal'&&pk.ovr)return pk.ovr;if(!l.length)return null;const o=l.map(p=>p.ovr);return [Math.min(...o),Math.max(...o)]}
+function pkOvrR(pk,pos){if(pk.id==='frn'||pk.id==='frs'){const o=DB.filter(p=>p.cls==='fr'&&!!p.special===(pk.id==='frs')).map(p=>p.ovr);return [Math.min(...o),Math.max(...o)]}let l=[];try{l=packPool(pk,pos)}catch(e){}if(pk.cls==='mix')l=l.concat(DB.filter(p=>p.cls==='normal'));if(pk.cls==='deal'&&pk.ovr)return pk.ovr;if(!l.length)return null;const o=l.map(p=>p.ovr);return [Math.min(...o),Math.max(...o)]}
 const PK_SIL='<svg class="pks" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="pksg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></linearGradient></defs><path d="M50 10c10 0 17 8 17 19 0 8-3 14-7 18v4c12 3 24 9 28 16 3 6 4 16 4 33H8c0-17 1-27 4-33 4-7 16-13 28-16v-4c-4-4-7-10-7-18 0-11 7-19 17-19z" fill="url(#pksg)"/></svg>';
 function pkTile(pk,o={}){
   const k=o.kind||pkKind(pk);const r=pkOvrR(pk,o.pos);const e=pkEvoR(pk);const nm=o.name||pk.name;
@@ -6508,6 +6611,221 @@ async function admGiveBp(){
     if(n.toLowerCase()===ONL.name.toLowerCase())onlAdmCheck();
   }catch(e){const m=(e&&e.message)||'';admMsg(/not admin/.test(m)?'관리자 권한이 없어요':/no user/.test(m)?'그 이름의 구단이 없어요':/no save/.test(m)?'그 구단은 아직 저장 기록이 없어요':/too much/.test(m)?'BP가 1,000만을 넘게 돼요':/function|schema cache|PGRST202/.test(m)?'BP 지급 SQL을 먼저 실행해 주세요':onlErr(e))}
 }
+const FR_IDS=FR_TEAMS.map(t=>t[0]);
+const FRC={};for(const [c,l] of FR_TEAMS)for(const [n] of l)FRC[n]=c;
+const FR_COL={'1-1':['#ff4d6d','#3a0d1a'],'1-2':['#3d7bff','#0d1a3a'],'1-3':['#35d0ba','#0b2b28'],'1-4':['#ffd23f','#3a2a05'],'1-5':['#b06bff','#22103a'],'1-6':['#ff8a2a','#3a1a05']};
+const FR_WIN_OVR=4;
+const FRD=[['최하',-4,.15,-3,50,'#7fe0a0'],['하',-2,.4,0,100,'#35d0ba'],['중',0,.65,2,300,'#ffd23f'],['상',3,.95,4,500,'#ff8a2a'],['최상',9,1.4,9,1000,'#ff3b5c']];
+const FR_PKN={1:3,2:2,3:1};
+const FR_TK_N=3,FR_TK_S=15;
+const FR_LR=[[[0,5],[1,4],[2,3]],[[0,4],[5,3],[1,2]],[[0,3],[4,2],[5,1]],[[0,2],[3,1],[4,5]],[[0,1],[2,5],[3,4]]];
+PACKS.push({id:'frp',name:'F&R 팩',n:1,bp:0,cls:'fr',desc:'F&R 선수 1명',col:'#ff4f7b',hidden:true},{id:'frn',name:'F&R 선수 팩',n:1,bp:0,cls:'fr',desc:'일반 F&R 선수 1명',col:'#ff4f7b',hidden:true,tk:FR_TK_N},{id:'frs',name:'스페셜 F&R 팩',n:1,bp:0,cls:'fr',desc:'스페셜 F&R 선수 1명',col:'#ffd23f',hidden:true,tk:FR_TK_S});
+function frDraw(id){const sp=id==='frs'?true:id==='frn'?false:Math.random()<.08;return pick(DB.filter(p=>p.cls==='fr'&&!!p.special===sp))}
+const FR_SC=[
+['10-19','월','1농구(A) 3vs5반','1차 개막전'],
+['10-20','화','1농구(B) 1vs2반',''],
+['10-21','수','1농구(A) 5vs6반',''],
+['10-22','목','1농구(B) 2vs4반',''],
+['10-23','금','경기 없음','저녁 경기 불가'],
+['10-24','토','퇴사 (경기 없음)','기숙사 퇴사',1],
+['10-25','일','퇴사 (경기 없음)','기숙사 퇴사',1],
+['10-26','월','1농구(A) 3vs6반',''],
+['10-27','화','1농구(B) 1vs4반','1차 예선 종료'],
+['10-28','수','★ 1농구 결승','★ 1차 결승전',2]];
+const FR_BG=FR_SC.filter(r=>/농구/.test(r[2])).map(r=>{const m=r[2].match(/(\d)vs(\d)/);return{id:'b'+r[0].replace('-',''),d:'2026-'+r[0],lg:r[2].replace(/\s*\d+vs\d+반/,'').replace('★ ',''),a:m?'1-'+m[1]:null,b:m?'1-'+m[2]:null,fin:!m}});
+const FRG={res:{},t:0,busy:false,err:'',ch:null,sig:''};
+try{FRG.res=JSON.parse(localStorage.getItem('pxh-frr')||'{}')||{}}catch(e){FRG.res={}}
+function frGames(){return FR_BG.map(g=>{const r=FRG.res[g.id]||{};return{...g,a:r.a||g.a,b:r.b||g.b,w:(r.a||g.a)&&(r.b||g.b)?r.w||null:null,sa:r.sa??null,sb:r.sb??null}})}
+function frWins(){const w={};for(const c of FR_IDS)w[c]=0;for(const g of frGames()){if(g.w==='a'&&w[g.a]!=null)w[g.a]++;else if(g.w==='b'&&w[g.b]!=null)w[g.b]++}return w}
+function frApply(){
+  const w=frWins();
+  for(const p of DB){if(p.cls!=='fr')continue;if(p.ovr0==null){p.ovr0=p.ovr;p.st0={...p.stats}}const k=w[FRC[p.name]]||0;p.ovr=p.ovr0+FR_WIN_OVR*k;for(const s in p.st0)p.stats[s]=p.st0[s]+2*FR_WIN_OVR*k}
+  return w;
+}
+frApply();
+function frNotice(w){
+  if(typeof S==='undefined'||!S)return;const F=frS();const old=F.seen;F.seen={...w};
+  if(!old){save();return}
+  const up=FR_IDS.filter(c=>(w[c]||0)>(old[c]||0));if(up.length){toast(`${up.map(c=>c+'반').join(', ')} 승리! F&R 카드 OVR +${FR_WIN_OVR}`);try{sfx('good')}catch(e){}}
+  save();
+}
+async function frFetch(force){
+  if(typeof ONL==='undefined'||!ONL.sb||FRG.busy)return;if(!force&&Date.now()-FRG.t<45000)return;
+  FRG.busy=true;FRG.t=Date.now();
+  try{
+    const r=await ONL.sb.from('fr_res').select('k,a,b,w,sa,sb');if(r.error)throw r.error;
+    const m={};for(const x of r.data||[])m[x.k]=x;FRG.res=m;FRG.err='';try{localStorage.setItem('pxh-frr',JSON.stringify(m))}catch(e){}
+    const w=frApply();frNotice(w);
+    const sig=JSON.stringify(m);if(sig!==FRG.sig){FRG.sig=sig;if(UI.view==='event'&&(typeof M==='undefined'||!M)&&!frTyping())render()}
+  }catch(e){const m=(e&&e.message)||'';FRG.err=/relation|does not exist|schema cache|PGRST2|42P01/i.test(m)?'반대항전 결과 SQL을 먼저 실행해 주세요':'경기 결과를 불러오지 못했어요'}
+  FRG.busy=false;
+}
+function frTyping(){const a=document.activeElement;return !!(a&&a.closest&&a.closest('.fradm'))}
+function frLive(){if(FRG.ch||typeof ONL==='undefined'||!ONL.sb||!ONL.sb.channel)return;try{FRG.ch=ONL.sb.channel('frg').on('postgres_changes',{event:'*',schema:'public',table:'fr_res'},()=>{frFetch(true)}).subscribe()}catch(e){}}
+setTimeout(()=>{frFetch(true);frLive()},1500);setInterval(()=>frFetch(),90000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')frFetch()});
+function frS(){if(!S.fr)S.fr={v:{},vc:{},tk:0,td:'',tm:{},lg:null,rec:{}};const F=S.fr;F.v=F.v||{};F.vc=F.vc||{};F.tm=F.tm||{};F.rec=F.rec||{};return F}
+const frISO=(d=new Date())=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const frDL=g=>new Date(g.d+'T18:30:00').getTime();
+function frDay(d){const x=new Date(d+'T00:00:00');return `${x.getMonth()+1}.${x.getDate()} (${'일월화수목금토'[x.getDay()]})`}
+const frChip=c=>!c?'<span class="frchip tbd">미정</span>':`<span class="frchip" style="--c1:${(FR_COL[c]||['#888'])[0]}">${esc(c)}<small>반</small></span>`;
+const frRes=g=>g.w==='a'?g.a+'반 승':g.w==='b'?g.b+'반 승':g.w==='d'?'무승부':'';
+function frTeam(cls,dif){
+  const t=FR_TEAMS.find(x=>x[0]===cls)||FR_TEAMS[0];const pl=t[1].map(([n])=>frCardOf(n)).filter(Boolean);
+  const D=dif==null?null:FRD[dif];const used=new Set();const slots=SLOTS.map(()=>null);
+  for(let pass=0;pass<2;pass++)SLOTS.forEach((s,i)=>{if(slots[i])return;const c=pl.filter(p=>!used.has(p.id)&&(pass||p.pos===s)).sort((a,b)=>b.ovr-a.ovr)[0];if(c){slots[i]=c;used.add(c.id)}});
+  const wins=frWins()[cls]||0;const ev=D?D[1]:0,bo=D?D[3]:2;
+  const players=slots.map((p,i)=>{const s=SLOTS[i];let e;
+    if(p)e=effCard(p,ev,0,s,bo);
+    else{const r=mulberry(hashInt(cls+'fill'+i));const o=118+FR_WIN_OVR*wins;const hr=HEIGHT[s];
+      const fp={id:'frx'+cls+'_'+i,name:cls+'반 '+(i+1)+'번',pos:s,cls:'normal',special:false,ovr:o,num:1+Math.floor(r()*55),height:Math.round(hr[0]+r()*(hr[1]-hr[0])),look:genLook(r),q:0,iq:.45,grade:'B'};
+      fp.stats=genStats(s,o,r,0);e=effCard(fp,ev,0,s,bo);e.grade='B';e.fill=1}
+    if(D)e.iq=D[2];e.ps=[];return e});
+  const col=FR_COL[cls]||['#888','#222'];const R=mulberry(hashInt(cls+'tac'));const rp=a=>a[Math.floor(R()*a.length)];
+  return{name:cls+'반',abbr:cls,c1:col[0],c2:col[1],emblem:FR_IDS.indexOf(cls)%6,players,tactic:D?{off:rp(OFF_TAC)[0],def:dif>=3?'press':rp(DEF_TAC)[0]}:{...S.tactic},chem:50,ovr:Math.round(players.reduce((a,p)=>a+p.ovr,0)/5)};
+}
+function frTokGain(mode,out){const F=frS();const t=today();if(F.td!==t){F.td=t;F.tm={}}if(!MODES[mode]||F.tm[mode])return;F.tm[mode]=1;F.tk=(F.tk||0)+1;out.lines.push(`F&R 토큰 +1 · ${MODES[mode].n}`)}
+function frTodayTm(){const F=frS();return F.td===today()?F.tm:{}}
+function frTable(L){
+  const st=L.ord.map((c,i)=>({c,i,w:0,l:0,f:0,a:0,g:0}));
+  const add=(i,j,si,sj,iw)=>{const A=st[i],B=st[j];A.g++;B.g++;A.f+=si;A.a+=sj;B.f+=sj;B.a+=si;if(iw){A.w++;B.l++}else{B.w++;A.l++}};
+  for(let k=0;k<L.r;k++){const m=L.my[k];add(0,FR_LR[k][0][1],m[0],m[1],!!m[2]);for(const [i,j,si,sj] of L.sim[k])add(i,j,si,sj,si>sj)}
+  return st.sort((x,y)=>y.w-x.w||(y.f-y.a)-(x.f-x.a)||x.i-y.i);
+}
+const frRank=L=>frTable(L).findIndex(x=>x.i===0)+1;
+function frLgStart(){
+  const c=UI.frc,d=UI.frd;if(!FR_IDS.includes(c)||!(d>=0&&d<5))return;
+  const ord=[c,...FR_IDS.filter(x=>x!==c)];const rnd=mulberry((Date.now()%1e9)|0);
+  const str=ord.map(x=>frTeam(x,null).ovr);
+  const sim=FR_LR.map(g=>g.slice(1).map(([i,j])=>{const pa=1/(1+Math.exp(-(str[i]-str[j])/4));const aw=rnd()<pa;const hi=52+Math.floor(rnd()*30),lo=hi-1-Math.floor(rnd()*16);return aw?[i,j,hi,lo]:[i,j,lo,hi]}));
+  frS().lg={cls:c,dif:d,ord,sim,my:[],r:0,done:0};save();render();
+}
+function frLgPlay(){
+  const L=frS().lg;if(!L||L.done||L.r>=5)return;const oc=L.ord[FR_LR[L.r][0][1]];
+  prepMatch({kind:'frl',r:L.r,home:frTeam(L.cls,null),opp:frTeam(oc,L.dif),label:`반대항전 리그 ${L.r+1}R · ${FRD[L.dif][0]}`});
+}
+function frlDone(prep,win,forfeit,out){
+  const L=frS().lg;if(!L||L.done||L.r!==prep.r)return;
+  const a=forfeit?0:M.score[0],b=forfeit?20:M.score[1];L.my.push([a,b,win?1:0]);L.r++;
+  out.lines.push(`반대항전 리그 ${L.r}/5 · ${win?'승리':'패배'}`);
+  if(L.r>=5){L.done=1;const rk=frRank(L);out.lines.push(`리그 최종 ${rk}위${rk<=3?' · 이벤트에서 보상을 받아 주세요':''}`)}
+}
+function frGive(n,label){if(n<=0)return;for(let i=1;i<n;i++)S.packQ.push('frp');save();renderTop();openPack(PK('frp'),true);if(label)toast(label)}
+function frLgClaim(){
+  const F=frS();const L=F.lg;if(!L||!L.done)return;const rk=frRank(L);const n=FR_PKN[rk]||0;const bp=rk===1?FRD[L.dif][4]:0;
+  const r=F.rec[L.dif];if(!r||rk<r)F.rec[L.dif]=rk;F.lg=null;
+  if(bp){S.bp+=bp}
+  const msg=`리그 ${rk}위${n?` · F&R 팩 ×${n}`:''}${bp?` · BP +${fmt(bp)}`:''}`;
+  if(n)frGive(n,msg);else{save();renderTop();render();toast(msg)}
+}
+function frVote(v){
+  const [id,p]=String(v).split(':');const g=frGames().find(x=>String(x.id)===id);if(!g||!g.a||!g.b||!['a','b','d'].includes(p))return;
+  if(g.d!==frISO()){toast('경기 당일에만 투표할 수 있어요');return}
+  if(Date.now()>=frDL(g)||g.w){toast('투표가 마감됐어요');render();return}
+  frS().v[id]={p,at:Date.now()};save();render();try{sfx('flip')}catch(e){}
+}
+function frVClaim(id){
+  const F=frS();const g=frGames().find(x=>String(x.id)===String(id));const v=F.v[id];if(!g||!g.w||!v||F.vc[id])return;
+  const ok=v.p===g.w;F.vc[id]=1;frGive(ok?3:1,ok?'예측 성공! F&R 팩 ×3':'예측 실패 · F&R 팩 ×1');
+}
+function frTokGo(id){
+  const pk=PK(id);if(!pk||!pk.tk)return;const F=frS();if((F.tk||0)<pk.tk){toast(`토큰이 ${pk.tk-(F.tk||0)}개 모자라요`);return}
+  F.tk-=pk.tk;save();renderTop();openPack(pk,true);
+}
+async function frAdm(a,v){
+  if(typeof onlIsAdmin!=='function'||!onlIsAdmin()||!ONL.sb)return;
+  const msg=m=>{const e=$('#frAdmMsg');if(e)e.textContent=m};
+  try{
+    const g=frGames().find(x=>x.id===String(v).split(':')[0]);if(!g)return;const cur=FRG.res[g.id]||{};
+    let row={k:g.id,a:cur.a||null,b:cur.b||null,w:cur.w||null,sa:cur.sa??null,sb:cur.sb??null};
+    if(a==='frteam'){const ta=($('#frA_'+g.id)||{}).value,tb=($('#frB_'+g.id)||{}).value;if(!ta||!tb||ta===tb){msg('서로 다른 두 반을 골라 주세요');return}row.a=ta;row.b=tb;if(ta!==g.a||tb!==g.b)row.w=null}
+    else if(a==='frset'){const w=String(v).split(':')[1];if(!g.a||!g.b){msg('결승 대진을 먼저 정해 주세요');return}row.w=w==='x'?null:w;
+      const sa=(($('#frSa_'+g.id)||{}).value||'').trim(),sb=(($('#frSb_'+g.id)||{}).value||'').trim();row.sa=w==='x'?null:sa===''?null:Math.max(0,Math.min(999,+sa|0));row.sb=w==='x'?null:sb===''?null:Math.max(0,Math.min(999,+sb|0))}
+    else return;
+    msg('저장 중…');const r=await ONL.sb.from('fr_res').upsert(row);if(r.error)throw r.error;
+    toast(a==='frteam'?'결승 대진을 저장했어요':row.w?'결과 저장 · 모든 유저에게 바로 반영돼요':'결과를 지웠어요');
+    FRG.sig='';FRG.res[g.id]=row;frApply();await frFetch(true);render();
+  }catch(e){const m=(e&&e.message)||'';msg(/permission|policy|row-level|42501/i.test(m)?'관리자 권한이 없어요 · 반대항전 SQL을 확인해 주세요':/relation|does not exist|schema cache|PGRST2/i.test(m)?'반대항전 결과 SQL을 먼저 실행해 주세요':onlErr(e))}
+}
+function frVoteTab(){
+  const F=frS();const t=frISO();const now=Date.now();
+  const todays=frGames().filter(g=>g.d===t);
+  const pend=frGames().filter(g=>g.w&&F.v[g.id]&&!F.vc[g.id]);
+  const card=g=>{const v=F.v[g.id];const closed=now>=frDL(g)||!!g.w||!g.a||!g.b;const opt=(k,lab)=>{const on=v&&v.p===k;const right=g.w&&g.w===k;return `<button class="frvo${on?' on':''}${right?' win':''}" data-a="frvote" data-v="${g.id}:${k}" ${closed?'disabled':''}>${lab}${on?'<i class="frvm">내 선택</i>':''}</button>`};
+    let st='';if(g.w){const ok=v&&v.p===g.w;st=v?(F.vc[g.id]?`<span class="frst ok">보상 받음</span>`:`<button class="btn sm ${ok?'gold':'teal'}" data-a="frvclaim" data-v="${g.id}">${ok?'예측 성공 · F&R 팩 ×3 받기':'예측 실패 · F&R 팩 ×1 받기'}</button>`):'<span class="frst">투표 안 함</span>'}
+    else if((!g.a||!g.b)&&now<frDL(g))st='<span class="frst">대진 미정 · 관리자가 정하면 투표할 수 있어요</span>';
+    else if(closed)st=v?'<span class="frst">투표 마감 · 결과 기다리는 중</span>':'<span class="frst bad">투표 마감</span>';else st=`<span class="frst">마감까지 ${cd(frDL(g))} · 18:30 마감</span>`;
+    return `<div class="panel frvc"><div class="frvh"><b>${frDay(g.d)} · ${esc(g.lg)}</b>${g.w?`<span class="frres">${frRes(g)}${g.sa!=null&&g.sb!=null?` · ${g.sa}:${g.sb}`:''}</span>`:''}</div>
+      <div class="frvs">${opt('a',frChip(g.a))}${opt('d','<span class="frdr">무승부</span>')}${opt('b',frChip(g.b))}</div><div class="frvf">${st}</div></div>`};
+  const next=frGames().find(g=>g.d>t);
+  return `<div class="frinfo panel"><div><b>승부 예측</b><span>경기 당일 오후 6시 30분까지 이길 반을 골라요 (무승부 가능)</span></div><div class="frrw"><span>적중 <b>F&amp;R 팩 ×3</b></span><span>실패 <b>F&amp;R 팩 ×1</b></span></div></div>
+    ${FRG.err?`<p class="frerr">${esc(FRG.err)}</p>`:''}
+    ${todays.length?`<div class="frvl">${todays.map(card).join('')}</div>`:`<div class="panel frnone"><b>오늘은 경기가 없어요</b><span>${next?`다음 경기 · ${frDay(next.d)} ${frChip(next.a)} vs ${frChip(next.b)}`:'경기 일정이 아직 없어요'}</span></div>`}
+    ${pend.filter(g=>g.d!==t).length?`<div class="h">받지 않은 예측 보상</div><div class="frvl">${pend.filter(g=>g.d!==t).map(card).join('')}</div>`:''}`;
+}
+function frPlayTab(){
+  const F=frS();const L=F.lg;
+  if(!L){
+    const c=FR_IDS.includes(UI.frc)?UI.frc:null;const d=UI.frd>=0?UI.frd:null;const w=frWins();
+    return `<div class="frinfo panel"><div><b>반대항전 리그</b><span>반 하나를 골라 그 반 F&amp;R 선수로 나머지 5개 반과 한 번씩 붙어요 · 선수가 모자라면 보충 선수가 들어가요</span></div><div class="frrw"><span>1위 <b>F&amp;R 팩 ×3 + 우승 BP</b></span><span>2위 <b>×2</b></span><span>3위 <b>×1</b></span></div></div>
+    <div class="h">1. 내 반 고르기</div>
+    <div class="frcls">${FR_IDS.map(x=>{const tm=frTeam(x,null);return `<button class="${x===c?'on':''}" data-a="frc" data-v="${x}" style="--c1:${FR_COL[x][0]}"><b>${x}<small>반</small></b><span>OVR ${tm.ovr}</span><em>${tm.players.filter(p=>!p.fill).length}/5 · ${w[x]}승</em></button>`}).join('')}</div>
+    <div class="h">2. 난이도</div>
+    <div class="frdif">${FRD.map((D,i)=>`<button class="${i===d?'on':''}" data-a="frd" data-v="${i}" style="--dc:${D[5]}"><b>${D[0]}</b><span>상대 OVR ${D[1]*3+D[3]-2>=0?'+':''}${D[1]*3+D[3]-2}</span><em><i class="bp"></i>우승 ${fmt(D[4])}</em>${F.rec[i]?`<small>최고 ${F.rec[i]}위</small>`:''}</button>`).join('')}</div>
+    ${c?`<div class="panel frpv"><div class="h">${c}반 선발</div><div class="mini5">${frTeam(c,null).players.map(p=>cardHTML(p,{ovr:p.ovr,pos:p.pos})).join('')}</div></div>`:''}
+    <button class="btn" data-a="frstart" ${c&&d!=null?'':'disabled'} style="font-size:22px">리그 시작 ▶</button>`;
+  }
+  const tb=frTable(L);const D=FRD[L.dif];const rk=frRank(L);
+  const rounds=FR_LR.map((g,k)=>{const oc=L.ord[g[0][1]];const m=L.my[k];const cur=k===L.r&&!L.done;
+    return `<div class="frrd${cur?' cur':''}${m?(m[2]?' w':' l'):''}"><small>${k+1}R</small>${frChip(oc)}<b>${m?`${m[0]}:${m[1]}`:cur?'NEXT':'-'}</b></div>`}).join('');
+  const table=`<table class="frtb"><tr><th>#</th><th>반</th><th>경기</th><th>승</th><th>패</th><th>득실</th></tr>${tb.map((s,i)=>`<tr class="${s.i===0?'me':''}${i<3?' top':''}"><td>${i+1}</td><td>${frChip(s.c)}</td><td>${s.g}</td><td>${s.w}</td><td>${s.l}</td><td>${s.f-s.a>0?'+':''}${s.f-s.a}</td></tr>`).join('')}</table>`;
+  const n=FR_PKN[rk]||0;
+  const act=L.done?`<div class="panel frfin"><b>최종 ${rk}위</b><span>${n?`F&amp;R 팩 ×${n}${rk===1?` · 우승 BP ${fmt(D[4])}`:''}`:'4위 이하는 보상이 없어요'}</span><button class="btn gold" data-a="frclaim">${n?'보상 받기':'리그 끝내기'}</button></div>`
+    :`<div class="row" style="gap:10px"><button class="btn grow" data-a="frplay" style="font-size:22px">${L.r+1}라운드 · vs ${L.ord[FR_LR[L.r][0][1]]}반 ▶</button><button class="btn ghost" data-a="frquit">포기</button></div>`;
+  return `<div class="frlg"><div class="frlgh panel"><div>${frChip(L.cls)}</div><div class="grow"><b>반대항전 리그</b><span>난이도 <em style="color:${D[5]}">${D[0]}</em> · ${L.r}/5 경기 · 지금 ${rk}위</span></div></div>
+    <div class="frlgb"><div class="panel">${table}</div><div class="panel frrds">${rounds}</div></div>${act}</div>`;
+}
+function frTokTab(){
+  const F=frS();const tm=frTodayTm();const tk=F.tk||0;
+  const tile=(id,kind,sub)=>{const pk=PK(id);return pkTile(pk,{kind,a:'frtk',v:id,sub:`<div class="muted frtks">${sub}</div>`,btn:`<button class="pkbuy frtkb" data-a="frtk" data-v="${id}" ${tk<pk.tk?'disabled':''}><i class="frtk"></i>${pk.tk}</button>`})};
+  return `<div class="frtkh panel"><div class="frtkn"><i class="frtk big"></i><b>${tk}</b><small>F&amp;R 토큰</small></div>
+    <div class="frtkd">${['chance','full','auto'].map(m=>`<div class="${tm[m]?'got':''}"><b>${MODES[m].n}</b><span>${tm[m]?'✓ 오늘 받음':'경기 1판 하면 +1'}</span></div>`).join('')}</div>
+    <div class="muted frtkr">모드마다 하루 1개 · 초기화까지 ${cd(midnight())}</div></div>
+    <div class="pkg frtkp">${tile('frn','fr','일반 F&amp;R 선수 1명')}${tile('frs','frS','스페셜 F&amp;R 선수 1명')}</div>`;
+}
+function frSchedTab(){
+  const t=frISO().slice(5);const G={};for(const g of frGames())G[g.id]=g;
+  const adm=typeof onlIsAdmin==='function'&&onlIsAdmin();
+  const cell=r=>{const g=G['b'+r[0].replace('-','')];if(!g)return esc(r[2]);
+    const vs=g.a&&g.b?`<span class="frsvs">${frChip(g.a)}<i>vs</i>${frChip(g.b)}</span>`:'';
+    const res=g.w?`<span class="frsres">${g.sa!=null&&g.sb!=null?g.sa+':'+g.sb+' · ':''}${frRes(g)}</span>`:'';
+    return `<small class="frslg">${esc(r[2].replace(/\s*\d+vs\d+반/,''))}</small>${vs}${res}`};
+  const rows=FR_SC.map(r=>`<tr class="${r[4]===1?'off':r[4]===2?'fin':''}${r[0]===t?' today':''}"><td>${r[0].replace('-','/')}</td><td>${r[1]}</td><td class="bk">${cell(r)}</td><td>${esc(r[3])}</td></tr>`).join('');
+  const sel=(id,v)=>`<select id="${id}"><option value="">반</option>${FR_IDS.map(c=>`<option value="${c}" ${c===v?'selected':''}>${c}반</option>`).join('')}</select>`;
+  const admBox=adm?`<div class="panel fradm"><div class="h" style="margin:0">관리자 · 농구 결과 입력</div><i id="frAdmMsg" class="aumsg"></i>
+    ${frGames().map(g=>`<div class="fradr${g.d.slice(5)===t?' today':''}"><span class="fradd">${g.d.slice(5).replace('-','/')}<small>${esc(g.lg)}</small></span>
+      ${g.fin?`<span class="frft">${sel('frA_'+g.id,g.a)}<i>vs</i>${sel('frB_'+g.id,g.b)}<button class="btn sm gold" data-a="frteam" data-v="${g.id}">대진 저장</button></span>`:`<span class="frft">${frChip(g.a)}<i>vs</i>${frChip(g.b)}</span>`}
+      <span class="frsc"><input id="frSa_${g.id}" inputmode="numeric" maxlength="3" placeholder="점수" value="${g.sa??''}">:<input id="frSb_${g.id}" inputmode="numeric" maxlength="3" placeholder="점수" value="${g.sb??''}"></span>
+      <span class="frab"><button class="btn sm teal${g.w==='a'?' on':''}" data-a="frset" data-v="${g.id}:a">${g.a?g.a+' 승':'A 승'}</button><button class="btn sm ghost${g.w==='d'?' on':''}" data-a="frset" data-v="${g.id}:d">무</button><button class="btn sm teal${g.w==='b'?' on':''}" data-a="frset" data-v="${g.id}:b">${g.b?g.b+' 승':'B 승'}</button><button class="btn sm pink" data-a="frset" data-v="${g.id}:x">취소</button></span></div>`).join('')}
+    <p class="muted" style="margin:0;font-size:13px">결과를 누르면 모든 유저의 F&amp;R 카드 OVR이 바로 바뀌어요 (이긴 반 +${FR_WIN_OVR}) · 점수는 비워도 돼요</p></div>`:'';
+  return `${FRG.err?`<p class="frerr">${esc(FRG.err)}</p>`:''}<div class="panel frsch"><div class="tblwrap"><table class="frst2"><tr><th>날짜</th><th>요일</th><th>저녁 경기 (농구)</th><th>비고</th></tr>${rows}</table></div></div>${admBox}`;
+}
+function frOvrTab(){
+  const w=frWins();const done=frGames().filter(g=>g.w).reverse();
+  return `<div class="frinfo panel"><div><b>카드 OVR 변동</b><span>실제 반대항전에서 이길 때마다 그 반 F&amp;R 카드 OVR +${FR_WIN_OVR} · 관리자가 결과를 올리면 바로 반영</span></div></div>
+    <div class="frov">${FR_IDS.map(c=>{const t=FR_TEAMS.find(x=>x[0]===c);const cap=frCardOf(t[1][0][0]);return `<div class="panel frovc" style="--c1:${FR_COL[c][0]}"><div class="frovh">${frChip(c)}<b>${w[c]}승</b><em>${w[c]?'+'+w[c]*FR_WIN_OVR:'±0'}</em></div><div class="frovk">${cap?cardHTML({pid:cap.id}):''}</div><span class="muted">${t[1].length}명</span></div>`}).join('')}</div>
+    ${done.length?`<div class="h">결과 기록</div><div class="panel frhist">${done.map(g=>`<div><span>${frDay(g.d)}</span>${frChip(g.a)}<b>vs</b>${frChip(g.b)}<em>${frRes(g)}</em><i>${g.w==='d'?'변동 없음':(g.w==='a'?g.a:g.b)+'반 +'+FR_WIN_OVR}</i></div>`).join('')}</div>`:''}`;
+}
+function frBody(tab){frFetch();if(tab==='vote')return frVoteTab();if(tab==='play')return frPlayTab();if(tab==='token')return frTokTab();if(tab==='sched')return frSchedTab();if(tab==='ovr')return frOvrTab();return ''}
+function frAct(a,v){
+  if(a==='frvote')return frVote(v);if(a==='frvclaim')return frVClaim(v);
+  if(a==='frc'){UI.frc=v;render();return}if(a==='frd'){UI.frd=+v;render();return}
+  if(a==='frstart')return frLgStart();if(a==='frplay')return frLgPlay();if(a==='frclaim')return frLgClaim();
+  if(a==='frquit'){openModal(`<div class="mh"><h3>리그 포기</h3><button class="icon-btn" data-a="close">X</button></div><p>지금까지 결과가 사라지고 보상을 받을 수 없어요.</p><div class="row" style="gap:10px"><button class="btn grow ghost" data-a="close">계속하기</button><button class="btn grow pink" data-a="frquitgo">포기하기</button></div>`);return}
+  if(a==='frquitgo'){frS().lg=null;save();closeModal();render();return}
+  if(a==='frtk')return frTokGo(v);
+  if(a==='frteam'||a==='frset')return frAdm(a,v);
+}
 let AC=null;
 function audioInit(){if(AC)return;try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}
 function tone(f,d,type='square',v=0.05,f2=null,delay=0){
@@ -6572,7 +6890,7 @@ function releaseCode(c){if(c==='SH'&&!down('SH')&&performance.now()-inp.shAt<230
 
 function startMatch(prep){
   setTimeout(bgmSync,0);
-  const home=myTeam(),away=prep.opp;
+  const home=prep.home||myTeam(),away=prep.opp;
   home.j1=home.c1;home.j2=home.c2;
   if(colDist(home.c1,away.c1)<130){away.j1=colDist(home.c1,'#f7e8c6')<130?'#2a2140':'#f7e8c6';away.j2=away.c1}else{away.j1=away.c1;away.j2=away.c2}
   if(!S.settings.v4){S.settings.v4=1;S.settings.view='tv'}if(S.settings.view==='3d')S.settings.view='tv';
@@ -6748,7 +7066,7 @@ function finishMatch(forfeit){
       <div class="muted">${esc(M.prep.label)}${M.prep.modeFixed?'':' · '+MODES[M.mode].n}</div></div>
     <div class="vs"><div class="t"><img class="pix" src="${emblemURL(A.c1,A.c2,A.emblem||0)}" alt=""><span>${esc(A.abbr)}</span><b>${M.score[0]}</b></div><div class="x">:</div><div class="t"><img class="pix" src="${emblemURL(Bt.c1,Bt.c2,Bt.emblem||0)}" alt=""><span>${esc(Bt.abbr)}</span><b>${M.score[1]}</b></div></div>
     <div class="tblwrap"><table class="bx"><tr><th></th><th>1Q</th><th>2Q</th><th>3Q</th><th>4Q</th>${ot?'<th>OT</th>':''}<th>T</th></tr>${qrow(0)}${qrow(1)}</table></div>
-    ${forfeit?'':`<div class="row panel" style="padding:10px"><div style="width:74px">${cardHTML({...mvp,ovr:DBI[mvp.id].ovr,id:mvp.id},{ovr:mvp.ovr,pos:mvp.pos})}</div>
+    ${forfeit?'':`<div class="row panel" style="padding:10px"><div style="width:74px">${cardHTML({...mvp,ovr:(DBI[mvp.id]||mvp).ovr,id:mvp.id},{ovr:mvp.ovr,pos:mvp.pos})}</div>
       <div class="grow"><div class="h" style="margin:0 0 4px">MVP</div><div style="font-size:22px">${esc(mvp.name)}</div><div class="muted">${mb.pts}득점 ${mb.reb}리바운드 ${mb.ast}어시스트</div></div></div>`}
     <div class="row" style="justify-content:center;gap:14px">
       <span class="cur"><i class="gp"></i>+${fmt(rw.gp)}</span>${rw.bp?`<span class="cur"><i class="bp"></i>+${fmt(rw.bp)}</span>`:''}<span class="cur">XP +${rw.xp}</span><span class="cur">SP +${rw.sp}</span></div>
