@@ -7043,7 +7043,7 @@ function r3Draw(){
   R3.camX+=(tx-R3.camX)*Math.min(1,dt*2.4);R3.camZ=(R3.camZ||0)+(tz-(R3.camZ||0))*Math.min(1,dt*2);
   const g0=G.P.find(p=>p.gather&&p.gather.dunk);const zoom=g0?0.82:1;R3.zoom=(R3.zoom||1)+(zoom-(R3.zoom||1))*Math.min(1,dt*3);
   const shk=G.shake>0?G.shake:0;
-  R3.cam.position.set(R3.camX*0.92+rnd(-1,1)*shk,15.5*R3.zoom+rnd(-1,1)*shk,(37+R3.camZ)*R3.zoom);R3.cam.lookAt(R3.camX,3.6,R3.camZ-1.5);if(R3.dbg!=null){const q=G.P[R3.dbg];R3.cam.position.set(q.x-47+R3.dbg2[0],R3.dbg2[1],q.y-25+R3.dbg2[2]);R3.cam.lookAt(q.x-47,R3.dbg2[3],q.y-25)}
+  R3.cam.position.set(R3.camX*0.85+rnd(-1,1)*shk,23*R3.zoom+rnd(-1,1)*shk,(54+R3.camZ*0.6)*R3.zoom);R3.cam.lookAt(R3.camX*0.95,2,R3.camZ*0.6-2);if(R3.dbg!=null){const q=G.P[R3.dbg];R3.cam.position.set(q.x-47+R3.dbg2[0],R3.dbg2[1],q.y-25+R3.dbg2[2]);R3.cam.lookAt(q.x-47,R3.dbg2[3],q.y-25)}
   R3.sun.position.set(R3.camX+10,80,40);R3.sun.target.position.set(R3.camX,0,0);
   if(R3.led)R3.led.offset.x=(R3.led.offset.x+dt*0.05)%1;if(R3.crowdM){const f=Math.floor(G.t*3)%2;const k=(G.net>0||G.flash>0)?f:0;if(R3.crowdM.map!==R3.crowdT[k]){R3.crowdM.map=R3.crowdT[k];R3.crowdM.needsUpdate=true}}
   R3.ren.render(R3.sc,R3.cam);
