@@ -1564,7 +1564,7 @@ table.bx td{text-align:right;padding:5px 4px;border-bottom:1px solid rgba(142,16
 .mvw .mvx .mvx-core,.mvw .mvx .mvx-crack{animation-delay:4.9s}
 .mvw .mvx .mvx-holo,.mvw .mvx .mvx-orb,.mvw .mvx .c-foot,.mvw .mvx .s7tn,.mvw .mvx .c-ps{animation:mvAppear .3s ease-out 4.72s both}.mvw .mvx .mvx-holo{animation:mvAppear .3s ease-out 4.72s both,mvxHolo 3.2s linear 5s infinite}
 @keyframes mvAppear{from{opacity:0}to{opacity:1}}
-.mvw .mv-card{opacity:1!important;animation:none!important;transform:translate(-50%,-55%)!important}
+.mvw .mv-card{opacity:1!important;animation:none!important;transform:translate(-50%,-60%)!important}
 .st.in .mv-room{animation:mvShake .5s linear 4.72s}
 @keyframes mvShake{0%,100%{transform:none}20%{transform:translate(-14px,6px)}40%{transform:translate(12px,-8px)}60%{transform:translate(-8px,4px)}80%{transform:translate(6px,-3px)}}
 .mv-bolt{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0}
@@ -6308,7 +6308,7 @@ function mvpWalk(i){
   </div><button class="po-next" data-a="ponext">다음</button>`;
   const st=e.querySelector('.st'),cv=st.querySelector('.mvcv');st.classList.add('in');
   const X={w:0,h:0,x:null,t:0,last:performance.now(),sp:[],cf:[],rings:[],fw:[],shake:0,flash:0,hit:false,bolts:[],crowd:[]};PO.mvX=X;
-  const size=()=>{const d=Math.min(2,window.devicePixelRatio||1);X.w=st.clientWidth||960;X.h=st.clientHeight||540;cv.width=Math.round(X.w*d);cv.height=Math.round(X.h*d);X.x=cv.getContext('2d');X.x.setTransform(d,0,0,d,0,0);X.d=d};size();
+  const size=()=>{const d=Math.min(2,window.devicePixelRatio||1);X.w=st.clientWidth||960;X.h=st.clientHeight||540;cv.width=Math.round(X.w*d);cv.height=Math.round(X.h*d);X.x=cv.getContext('2d');X.x.setTransform(d,0,0,d,0,0);X.d=d;const mc=st.querySelector('.mv-card');if(mc){const cw=Math.round(Math.min(X.h*.56,X.w*.36));mc.style.width=cw+'px';const cd=mc.querySelector('.card');if(cd)cd.style.fontSize=(cw/15.3).toFixed(1)+'px'}};size();
   const rnd=(a,b)=>a+Math.random()*(b-a),cl01=v=>v<0?0:v>1?1:v,sm=(a,b,t)=>{const x=cl01((t-a)/(b-a));return x*x*(3-2*x)};
   const GOLD='255,210,63',WH='255,248,225',VI='184,138,255',PK='255,90,170',CY='110,220,255';
   for(let k=0;k<220;k++)X.crowd.push({x:Math.random(),y:.66+Math.pow(Math.random(),.7)*.34,ph:rnd(0,6.28),f:rnd(1.5,5),c:Math.random()<.15?GOLD:Math.random()<.3?VI:WH});
