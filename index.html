@@ -1301,7 +1301,7 @@ table.bx td{text-align:right;padding:5px 4px;border-bottom:1px solid rgba(142,16
 .evhead h2{margin:4px 0;font-size:40px;font-weight:700;text-shadow:0 3px 6px #062a33}
 .evhead p{margin:0;color:#d8fbff;font-size:16px}
 .evtag{font-family:var(--px);font-size:11px;color:#062a33;background:#ffd23f;padding:4px 8px}
-.evtabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.evtabs{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
 .evtabs button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 4px;font-size:18px;background:var(--panel);border:2px solid var(--line);color:var(--muted)}
 .evtabs button small{font-family:var(--px);font-size:9px;opacity:.7}
 .evtabs button.on{background:linear-gradient(180deg,#1597a6,#0b3f4c);border-color:#ffd23f;color:#fff}
@@ -1418,7 +1418,7 @@ table.bx td{text-align:right;padding:5px 4px;border-bottom:1px solid rgba(142,16
 .frhist div{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:6px;border-bottom:1px solid #1d3a6e}
 .frhist span{width:84px;color:var(--muted);font-size:14px}.frhist b{font-weight:400;color:var(--muted);font-size:12px}
 .frhist em{font-style:normal;margin-left:auto}.frhist i{font-style:normal;color:var(--lime);font-size:13px}
-@container app (max-width:900px){.evtabs{grid-template-columns:repeat(3,minmax(0,1fr))}.frcls{grid-template-columns:repeat(3,minmax(0,1fr))}.frdif{grid-template-columns:repeat(3,minmax(0,1fr))}.frlgb{grid-template-columns:1fr}.frov{grid-template-columns:repeat(3,minmax(0,1fr))}.frvo .frchip{font-size:17px}}
+@container app (max-width:900px){.evtabs{grid-template-columns:repeat(4,minmax(0,1fr))}.frcls{grid-template-columns:repeat(3,minmax(0,1fr))}.frdif{grid-template-columns:repeat(3,minmax(0,1fr))}.frlgb{grid-template-columns:1fr}.frov{grid-template-columns:repeat(3,minmax(0,1fr))}.frvo .frchip{font-size:17px}}
 .card.k-s8,.card.k-s8S{--tx:#fff;--pb:#19f0ff;--rc:#04050d;--sy:41%;clip-path:polygon(10% 0,100% 0,100% 92%,90% 100%,0 100%,0 8%);background:#04050d!important;box-shadow:none!important}
 .card.k-s8S{--pb:#ffe14d}
 .card .sd-pf{inset:0;clip-path:polygon(10% 0,100% 0,100% 92%,90% 100%,0 100%,0 8%);background:linear-gradient(150deg,#19f0ff,#1c2550 42%,#2a1650 60%,#ff2e9a)}
@@ -1485,6 +1485,101 @@ table.bx td{text-align:right;padding:5px 4px;border-bottom:1px solid rgba(142,16
 .fe-row{display:grid;grid-template-columns:minmax(0,190px) 1fr 56px;gap:12px;align-items:center}
 .fe-n{display:flex;flex-direction:column}.fe-n b{font-size:16px}.fe-n span{font-size:11px;color:var(--muted)}
 .fe-row em{font-style:normal;font-size:14px;text-align:right}
+.mvw{position:absolute;inset:0;overflow:hidden;background:#06020c;font-family:var(--px)}
+.mvw.skip,.mvw.skip *{animation-delay:-20s!important;transition:none!important}
+.mv-room{position:absolute;inset:0}
+.mv-wall{position:absolute;inset:0;background:radial-gradient(ellipse 50% 45% at 50% 46%,rgba(255,210,63,.18),transparent 70%),repeating-linear-gradient(90deg,#1c0830 0 7%,#2a0c46 7% 8%,#1c0830 8% 15%),linear-gradient(180deg,#14051f,#2a0c46 60%,#0c0314)}
+.mv-wall::after{content:"";position:absolute;left:0;right:0;top:0;height:9%;background:repeating-linear-gradient(90deg,#ffd23f 0 2%,#b07a10 2% 4%);opacity:.5;clip-path:polygon(0 0,100% 0,100% 40%,0 40%)}
+.mv-carpet{position:absolute;left:50%;bottom:0;width:70%;height:42%;transform:translateX(-50%);background:linear-gradient(90deg,#ffd23f 0 2%,#7a0a2a 2% 98%,#ffd23f 98%);clip-path:polygon(38% 0,62% 0,100% 100%,0 100%)}
+.mv-ped{position:absolute;left:50%;top:60%;width:26%;height:6%;transform:translateX(-50%);background:linear-gradient(180deg,#ffe680,#b07a10);border-radius:50%;box-shadow:0 0 30px rgba(255,210,63,.6)}
+.mv-torch{position:absolute;bottom:30%;width:2%;height:16%;background:linear-gradient(180deg,#5a3a06,#2a1a04)}
+.mv-torch.l1{left:12%}.mv-torch.l2{left:26%;bottom:40%;height:10%}.mv-torch.r1{right:12%}.mv-torch.r2{right:26%;bottom:40%;height:10%}
+.mv-torch i{position:absolute;left:50%;top:-60%;width:260%;height:70%;transform:translateX(-50%);border-radius:50% 50% 40% 40%;background:radial-gradient(ellipse at 50% 80%,#fff6c0,#ffb030 40%,#ff4a1a 70%,transparent 72%);filter:drop-shadow(0 0 14px #ff8a2a);animation:mvFire .25s steps(2) infinite alternate}
+@keyframes mvFire{from{transform:translateX(-50%) scale(1,1)}to{transform:translateX(-50%) scale(.85,1.15)}}
+.mv-beams{position:absolute;left:50%;top:40%;width:160vmax;height:160vmax;margin:-80vmax;background:repeating-conic-gradient(from 0deg,rgba(255,210,63,.12) 0 4deg,transparent 4deg 14deg);opacity:0;animation:mvBeam 1s ease-out 3.4s forwards,sdFlr 40s linear 3.4s infinite}
+@keyframes mvBeam{to{opacity:1}}
+.mv-cur{position:absolute;top:0;bottom:0;width:51%;background:linear-gradient(180deg,transparent 92%,#ffd23f 92% 94%,#7a4e0a 94%),repeating-linear-gradient(90deg,#4a0a6a 0 5%,#2a0440 5% 10%);box-shadow:0 0 40px #000;z-index:3}
+.mv-cur.l{left:0}.mv-cur.r{right:0}
+.st.in .mv-cur.l{animation:mvCurL 1.5s cubic-bezier(.6,0,.3,1) .9s forwards}.st.in .mv-cur.r{animation:mvCurR 1.5s cubic-bezier(.6,0,.3,1) .9s forwards}
+@keyframes mvCurL{to{transform:translateX(-100%)}}@keyframes mvCurR{to{transform:translateX(100%)}}
+.mv-banner{position:absolute;left:50%;top:0;display:flex;flex-direction:column;align-items:center;gap:10px;padding:26px 30px 34px;transform:translate(-50%,-110%);background:linear-gradient(180deg,#3a0a5a,#1e0636);clip-path:polygon(0 0,100% 0,100% 100%,50% 86%,0 100%);border:3px solid #ffd23f;color:#ffe9a0;z-index:2}
+.mv-banner .flag{transform:scale(1.3)}.mv-banner span{margin-top:6px;font-size:18px}
+.st.in .mv-banner{animation:mvBan 2.2s ease-in-out 1.4s forwards}
+@keyframes mvBan{0%{transform:translate(-50%,-110%)}30%,75%{transform:translate(-50%,0)}100%{transform:translate(-50%,-110%)}}
+.mv-pos{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%) scale(.6);opacity:0;display:flex;flex-direction:column;align-items:center;color:#ffe9a0;text-shadow:0 0 16px rgba(255,210,63,.8)}
+.mv-pos b{font-size:min(16vh,120px);line-height:1}.mv-pos span{font-size:18px}
+.st.in .mv-pos{animation:mvPos 1.1s ease-out 2.3s forwards}
+@keyframes mvPos{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}25%,75%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.1)}}
+.mv-crown{position:absolute;left:50%;top:58%;width:min(30vh,26vw);transform:translate(-50%,calc(-100% - 90vh));filter:drop-shadow(0 0 20px rgba(255,210,63,.7));z-index:2}
+.mv-crs{width:100%;height:auto;display:block}
+.st.in .mv-crown{animation:mvCrown 1.1s cubic-bezier(.3,.6,.4,1) 3.0s forwards,mvCrOut .35s ease-in 4.2s forwards}
+@keyframes mvCrown{to{transform:translate(-50%,-100%)}}
+@keyframes mvCrOut{to{opacity:0;transform:translate(-50%,-100%) scale(1.6)}}
+.mv-flash{position:absolute;inset:0;background:#fff8e0;opacity:0;z-index:4;pointer-events:none}
+.st.in .mv-flash{animation:mvFl2 .7s ease-out 4.72s forwards}
+@keyframes mvFl2{0%{opacity:0}15%{opacity:.95}100%{opacity:0}}
+.mv-coins{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0}
+.st.in .mv-coins{animation:mvBeam .1s linear 4.75s forwards}
+.mv-coins i{position:absolute;top:-6%;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff6d0,#ffd23f 45%,#a8700c 80%);box-shadow:inset 0 0 0 2px #8a5a08;animation-name:mvCoin,mvFlip;animation-timing-function:linear,linear;animation-iteration-count:infinite,infinite}
+@keyframes mvCoin{to{top:106%}}@keyframes mvFlip{0%{transform:scaleX(1)}50%{transform:scaleX(.15)}100%{transform:scaleX(1)}}
+.mv-card{position:absolute;left:50%;top:50%;width:min(46vh,32vw);transform:translate(-50%,-30%) scale(.2);opacity:0;z-index:6;filter:drop-shadow(0 0 30px rgba(255,210,63,.6))}
+.mv-card .card{font-size:min(3vh,2.2vw)}
+.st.in .mv-card{animation:mvCard .7s cubic-bezier(.2,1.3,.4,1) 4.45s forwards}
+@keyframes mvCard{to{opacity:1;transform:translate(-50%,-55%) scale(1)}}
+.mv-seal{position:absolute;left:calc(50% + min(19vh,14vw));top:56%;width:min(14vh,11vw);aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 40% 35%,#ff5a6a,#b0102a 60%,#6a0414);box-shadow:0 0 0 6px #8a0a1e,0 6px 18px rgba(0,0,0,.6);z-index:7;opacity:0;transform:scale(2.4) rotate(-30deg)}
+.mv-seal b{font-size:min(4.4vh,3.4vw);color:#ffe9a0;letter-spacing:.06em;text-shadow:0 2px 0 #6a0414}
+.st.in .mv-seal{animation:mvSeal .35s cubic-bezier(.5,0,.7,1.4) 5.0s forwards}
+@keyframes mvSeal{to{opacity:1;transform:scale(1) rotate(-12deg)}}
+.mv-title{position:absolute;left:0;right:0;bottom:6%;display:flex;flex-direction:column;align-items:center;gap:6px;z-index:7;opacity:0}
+.mv-title b{font-size:min(6vh,44px);color:#fff;text-shadow:0 0 18px rgba(255,210,63,.7)}.mv-title span{font-size:16px;letter-spacing:.3em;color:#ffd23f}
+.st.in .mv-title{animation:mvBeam .6s ease-out 5.3s forwards}
+.card.mvx{overflow:visible;isolation:isolate}
+.mvx-h{position:absolute;inset:0;z-index:1;will-change:transform}
+.mvx-h.l{clip-path:polygon(0 0,50% 0,50% 100%,0 100%);animation:mvxL 4.8s ease-in-out infinite}
+.mvx-h.r{clip-path:polygon(50% 0,100% 0,100% 100%,50% 100%);animation:mvxR 4.8s ease-in-out infinite}
+@keyframes mvxL{0%,42%{transform:none}46%{transform:translateX(-1.5%)}54%,80%{transform:translateX(-34%)}86%{transform:translateX(1.5%)}89%,100%{transform:none}}
+@keyframes mvxR{0%,42%{transform:none}46%{transform:translateX(1.5%)}54%,80%{transform:translateX(34%)}86%{transform:translateX(-1.5%)}89%,100%{transform:none}}
+.mvx-core{position:absolute;left:-6%;right:-6%;top:-6%;bottom:2%;z-index:2;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:0;animation:mvxCore 4.8s ease-in-out infinite}
+@keyframes mvxCore{0%,45%{opacity:0;transform:translateY(34%) scale(.25)}55%{opacity:1;transform:translateY(-5%) scale(1.08)}60%,79%{opacity:1;transform:none}87%,100%{opacity:0;transform:translateY(26%) scale(.25)}}
+.mvx-tro{position:relative;height:100%;overflow:visible;filter:drop-shadow(0 0 4px #ffd23f) drop-shadow(0 0 14px #ffb000) drop-shadow(0 0 30px #b88aff);animation:mvxNeon 4.8s linear infinite}.mvx-tro .nv{stroke:#c8a0ff}.mvx-tro text{font:900 26px "PXN",sans-serif;letter-spacing:4px}@keyframes mvxNeon{0%,47%{opacity:0}48%{opacity:1}49%{opacity:.15}50.5%{opacity:1}51.5%{opacity:.35}52.5%,100%{opacity:1}}.mvw .mvx .mvx-tro{animation-delay:4.9s}
+.mvx-burst{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,#fff 0,#ffe680 18%,rgba(184,138,255,.8) 40%,transparent 66%),repeating-conic-gradient(from 0deg,rgba(255,230,140,.7) 0 6deg,transparent 6deg 18deg);-webkit-mask:radial-gradient(circle,#000 30%,transparent 70%);mask:radial-gradient(circle,#000 30%,transparent 70%);animation:sdFlr 3s linear infinite}
+.mvx-ring{position:absolute;left:50%;top:45%;width:70%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);border:.12em solid rgba(255,230,140,.9);box-shadow:0 0 .6em #ffd23f,inset 0 0 .6em #b88aff;animation:mvxRing 1s linear infinite}
+@keyframes mvxRing{from{transform:translate(-50%,-50%) scale(.6);opacity:1}to{transform:translate(-50%,-50%) scale(1.3);opacity:0}}
+.mvx-crack{position:absolute;inset:3% 0 13%;z-index:2;pointer-events:none;background:linear-gradient(#fff,#fff) no-repeat;clip-path:polygon(49.4% 0,50.6% 0,50.6% 100%,49.4% 100%);filter:drop-shadow(0 0 .3em #ffd23f);opacity:0;animation:mvxCrack 4.8s ease-in-out infinite}
+@keyframes mvxCrack{0%,36%{opacity:0}40%,46%{opacity:1}50%,100%{opacity:0}}
+.mvx-shock{position:absolute;left:50%;top:45%;width:60%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%) scale(.2);z-index:4;pointer-events:none;border:.25em solid #fff6d0;box-shadow:0 0 1em #ffd23f,0 0 2em #b88aff;opacity:0;animation:mvxShock 4.8s ease-out infinite}
+@keyframes mvxShock{0%,86%{opacity:0;transform:translate(-50%,-50%) scale(.2)}88%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(2.6)}}
+.mvx-holo{position:absolute;inset:4% 8%;z-index:2;pointer-events:none;border-radius:8%;background:linear-gradient(115deg,transparent 30%,rgba(255,120,220,.25) 40%,rgba(120,220,255,.25) 48%,rgba(255,240,150,.35) 55%,transparent 66%);background-size:300% 100%;mix-blend-mode:screen;-webkit-mask:radial-gradient(ellipse at 50% 45%,#000 35%,transparent 72%);mask:radial-gradient(ellipse at 50% 45%,#000 35%,transparent 72%);animation:mvxHolo 3.2s linear infinite}
+@keyframes mvxHolo{from{background-position:150% 0}to{background-position:-150% 0}}
+.mvx-orb{position:absolute;left:50%;top:44%;width:0;height:0;z-index:3;pointer-events:none}
+.mvx-orb i{position:absolute;width:.45em;height:.45em;margin:-.225em;border-radius:50%;background:radial-gradient(circle,#fff,#ffd23f 50%,transparent 70%);box-shadow:0 0 .5em #ffd23f;animation:mvxOrb 3.6s linear infinite}
+.mvx-orb i:nth-child(2){animation-delay:-.6s;background:radial-gradient(circle,#fff,#b88aff 50%,transparent 70%)}.mvx-orb i:nth-child(3){animation-delay:-1.2s}.mvx-orb i:nth-child(4){animation-delay:-1.8s;background:radial-gradient(circle,#fff,#ff6a8a 50%,transparent 70%)}.mvx-orb i:nth-child(5){animation-delay:-2.4s}.mvx-orb i:nth-child(6){animation-delay:-3s;background:radial-gradient(circle,#fff,#7fd8ff 50%,transparent 70%)}
+@keyframes mvxOrb{0%{transform:rotate(0) translateX(5.2em) scale(1)}25%{transform:rotate(90deg) translateX(5.2em) scale(.6)}50%{transform:rotate(180deg) translateX(5.2em) scale(1)}75%{transform:rotate(270deg) translateX(5.2em) scale(1.4)}100%{transform:rotate(360deg) translateX(5.2em) scale(1)}}
+.mvw .mvx .mvx-h.l{animation:mvxL 4.8s ease-in-out 4.9s infinite,mvxJL .4s cubic-bezier(.2,1.4,.4,1) 4.72s backwards}
+.mvw .mvx .mvx-h.r{animation:mvxR 4.8s ease-in-out 4.9s infinite,mvxJR .4s cubic-bezier(.2,1.4,.4,1) 4.72s backwards}
+@keyframes mvxJL{from{transform:translateX(-60%);opacity:0}to{transform:none;opacity:1}}@keyframes mvxInL{from{transform:translate(-160vw,-20vh) rotate(-40deg)}to{transform:none}}
+@keyframes mvxJR{from{transform:translateX(60%);opacity:0}to{transform:none;opacity:1}}@keyframes mvxInR{from{transform:translate(160vw,20vh) rotate(40deg)}to{transform:none}}
+.mvw .mvx .mvx-shock{animation:mvxShock 4.8s ease-out 4.9s infinite,mvxHit .8s ease-out 4.72s backwards}
+@keyframes mvxHit{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}8%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(5)}}
+.mvw .mvx .mvx-core,.mvw .mvx .mvx-crack{animation-delay:4.9s}
+.mvw .mvx .mvx-holo,.mvw .mvx .mvx-orb,.mvw .mvx .c-foot,.mvw .mvx .s7tn,.mvw .mvx .c-ps{animation:mvAppear .3s ease-out 4.72s both}.mvw .mvx .mvx-holo{animation:mvAppear .3s ease-out 4.72s both,mvxHolo 3.2s linear 5s infinite}
+@keyframes mvAppear{from{opacity:0}to{opacity:1}}
+.mvw .mv-card{opacity:1!important;animation:none!important;transform:translate(-50%,-55%)!important}
+.st.in .mv-room{animation:mvShake .5s linear 4.72s}
+@keyframes mvShake{0%,100%{transform:none}20%{transform:translate(-14px,6px)}40%{transform:translate(12px,-8px)}60%{transform:translate(-8px,4px)}80%{transform:translate(6px,-3px)}}
+.mv-bolt{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0}
+.st.in .mv-bolt{animation:mvBolt .6s steps(3) 4.72s}
+@keyframes mvBolt{0%,100%{opacity:0}20%,60%{opacity:1}40%{opacity:.2}}
+.mvx-pl{z-index:3!important;animation:mvxPl 4.8s ease-in-out infinite}
+@keyframes mvxPl{0%,44%{transform:none}54%,80%{transform:scale(1.05)}88%,100%{transform:none}}
+.mvw .mvx .mvx-pl{animation:mvxPl 4.8s ease-in-out 4.9s infinite,mvAppear .25s ease-out 4.72s backwards}
+.mvw{background:#04020a}.mvcv{position:absolute;inset:0;width:100%;height:100%;display:block}
+.mvi{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%) scale(.7);opacity:0;transition:opacity .25s,transform .35s cubic-bezier(.2,1.4,.3,1);pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:8px;color:#fff;text-shadow:0 0 14px #b88aff;z-index:2}
+.mvw.f1 .mvflag,.mvw.f2 .mvpos{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.mvflag .flag{transform:scale(1.5)}.mvflag span{margin-top:22px;font-size:20px}
+.mvpos b{font-size:96px;line-height:1;color:#ffe9a0;text-shadow:0 0 18px #ffd23f}.mvpos span{font-size:20px}
+.mv-title em{font-style:normal;font-size:13px;letter-spacing:.4em;color:#b88aff}
+.mvw .mv-title{bottom:5%}
 .evsoon{min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
 .evsoon b{font-family:var(--px);font-weight:700;font-size:26px;color:#ffd23f;text-shadow:0 3px 6px #062a33}
 .evsoon span{font-size:20px;color:var(--muted)}
@@ -2549,14 +2644,14 @@ button.psit{cursor:pointer}button.psit:disabled{opacity:.42;cursor:default}
 .sr6 .dais{background:radial-gradient(ellipse,#fff3c4 0 22%,#ff8a1a 46%,#3a1406 64%,transparent 70%);box-shadow:0 0 6cqw rgba(255,138,26,.8)}
 .sr6 .dais span{color:#2a0e02}
 .pkc.k-s6 .pks,.pkc.k-s6S .pks{filter:drop-shadow(0 0 .12em #ffb347) drop-shadow(0 0 .4em rgba(255,138,26,.6))}
-.card.k-s7,.card.k-s7S{--tx:#fff;clip-path:none;background:none!important;box-shadow:none!important;overflow:visible;isolation:isolate}
-.card.k-s7::after,.card.k-s7S::after,.card.k-s7::before,.card.k-s7S::before{display:none}
+.card.k-s7,.card.k-s7S,.card.k-mvpS{--tx:#fff;clip-path:none;background:none!important;box-shadow:none!important;overflow:visible;isolation:isolate}
+.card.k-s7::after,.card.k-s7S::after,.card.k-s7::before,.card.k-s7S::before,.card.k-mvpS::after,.card.k-mvpS::before{display:none}
 .card .s7svg{position:absolute;left:-5%;top:-2%;width:110%;height:auto;aspect-ratio:360/420;overflow:visible;pointer-events:none;z-index:0}
 .card.st7 .c-foot{position:absolute;left:4%;right:4%;bottom:0;z-index:2}
 .card.st7 .c-cls{display:none}
 .card.st7 .c-ps{top:auto;bottom:14%;left:-2%;z-index:3}
 .card.st7 .s7tn{position:absolute;right:2%;top:2%;z-index:2;font:800 .62em/1 "Barlow Condensed",sans-serif;letter-spacing:.08em;color:#fff;background:rgba(10,8,24,.72);padding:.25em .45em;border-radius:.3em;box-shadow:inset 0 0 0 .1em var(--s7c,#fff6)}
-.card.st7.t9 .s7tn{color:#2a1a04;background:linear-gradient(90deg,#fff,#ffe08a,#ff9ae0,#7fd8ff)}
+.card.st7.t9 .s7tn{color:#2a1a04;background:linear-gradient(90deg,#fff,#ffe08a,#ff9ae0,#7fd8ff)}.card.st7.t10 .s7tn{color:#ffe08a;background:linear-gradient(90deg,#1e0636,#5a1a9a,#1e0636);box-shadow:0 0 0 .08em #ffd23f}
 .card.st7.t8 .s7tn{color:#1a1004;background:linear-gradient(90deg,#fff3d8,#e8c47a)}
 .card.st7.t7 .s7tn{color:#1a1004;background:linear-gradient(90deg,#fff6d0,#f3c650)}
 .card.st7.t6 .s7tn{background:linear-gradient(90deg,#c8101e,#ff3b4f)}
@@ -2811,6 +2906,28 @@ button.psit{cursor:pointer}button.psit:disabled{opacity:.42;cursor:default}
 .si5 .sban span{color:transparent;background:linear-gradient(180deg,#fff6cf,#f3c650 50%,#9a6412 52%,#ffe08a);-webkit-background-clip:text;background-clip:text;font-size:5cqw}
 .st.ssp .si5 .cur{background:repeating-linear-gradient(90deg,#1a0a2a 0 1.5cqw,#3a1a5a 3.5cqw,#5a2a8a 4.5cqw,#3a1a5a 5.5cqw,#1a0a2a 7cqw)}
 .st.ssp .si5 .carpet{background:linear-gradient(90deg,#e8b84a 0 4%,#3a1a5a 4% 96%,#e8b84a 96%)}
+.mve-top{display:flex;gap:16px;align-items:center;background:radial-gradient(circle at 12% 50%,rgba(255,210,63,.18),transparent 45%),linear-gradient(120deg,#1a0a33,#0c0618)!important;border:1px solid rgba(255,210,63,.35)}
+.mve-top h3{margin:4px 0 2px;font-size:22px;color:#fff6d0}.mve-top p{margin:0 0 10px;font-size:13px}
+.mve-tro{width:78px;flex:none;filter:drop-shadow(0 0 6px #ffd23f) drop-shadow(0 0 16px #b88aff);animation:mveGlow 2.4s ease-in-out infinite}
+@keyframes mveGlow{50%{filter:drop-shadow(0 0 10px #ffd23f) drop-shadow(0 0 26px #b88aff)}}
+.mve-g{display:flex;align-items:center;gap:12px}.mve-g .pv-bar{flex:1}.mve-g b{font-size:24px;color:#ffd23f}.mve-g small{font-size:14px;color:#aaa}
+.mve-track{padding-bottom:58px!important}
+.mve-line{position:relative;height:8px;margin:18px 30px 0 14px;border-radius:4px;background:rgba(255,255,255,.1)}
+.mve-line>i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:linear-gradient(90deg,#b88aff,#ffd23f)}
+.mve-m{position:absolute;top:50%;transform:translate(-50%,-6px);display:flex;flex-direction:column;align-items:center;gap:2px;width:80px;text-align:center}
+.mve-m>i{width:16px;height:16px;border-radius:50%;background:#2a1c44;border:2px solid #6a5a8a}
+.mve-m.ok>i{background:#ffd23f;border-color:#fff6d0;box-shadow:0 0 10px #ffd23f}
+.mve-m b{font-size:13px;color:#fff}.mve-m span{font-size:11px;color:#bbb;line-height:1.2}.mve-m small{font-size:11px;color:#7fe0a0}
+.mve-m .btn{padding:2px 10px;font-size:12px}.mve-m.end span{color:#ffd23f}
+.mve-fin{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;background:linear-gradient(110deg,#3a0a2a,#1a0a33);border:1px solid rgba(255,90,170,.4);margin-bottom:12px}
+.mve-fin b{display:block;font-size:18px;color:#fff}.mve-fin span{display:block;font-size:13px;color:#ccc}
+.mve-done{padding:14px;border-radius:14px;text-align:center;background:rgba(127,224,160,.12);color:#7fe0a0;margin-bottom:12px}
+.mve-r{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,.07)}
+.mve-r b{display:block;font-size:15px}.mve-r span{display:block;font-size:12px;color:#aaa}.mve-r em{font-style:normal;color:#ffd23f;min-width:44px;text-align:right}
+.mve-r .btn{min-width:84px}
+.mve-cards{display:flex;gap:10px;flex-wrap:wrap}.mve-cards>button{width:120px;background:none;border:0;padding:0}
+.mve-h{font-size:17px;font-weight:700;margin-bottom:8px;color:#fff}.mve-h small{font-size:12px;color:#aaa;font-weight:400;margin-left:6px}
+.frmv{display:flex;gap:6px;align-items:center}.frmv select{max-width:150px}.frsmv{display:block;font-size:12px;color:#ffd23f}
 </style>
 
 <div id="root"><div id="zoomer">
@@ -2906,6 +3023,7 @@ for(const k in SEASONS){const se=SEASONS[k];CLASSES[k]={n:se.n,ko:se.ko,col:se.c
 const S7N=['','SUNSET','PATTERN','NEON','SILVER','CRYSTAL','SHATTER','ULTIMATE','ECLIPSE','LEGEND'];
 const S7L=[[9,140,['김정우','최선웅','이태린']],[8,139,['김도야','김지환']],[7,138,['신태환']],[7,137,['정현성']],[6,136,['최동아','김민준']],[6,135,['손지율','나윤오']],[5,134,['박민혁']],[5,133,['강범석','이경률','이진헌']],[4,132,['김유담','우현진']],[4,131,['한재준','이혁준','이윤재']],[3,130,['문채빈','정이루','유도원']],[3,129,['임수환','이동훈','이도건','이혁환']],[2,128,['차이정','정희건','최시우','원준섭','김동휘','이지성','서준영','구자겸','오찬립','김민욱']],[1,127,['황서인','정선재','오승민','정유근','김율','박창현']],[1,126,['이문성','신지묵','강지완','이승민','윤시우','김미서']]];
 const S7T={};for(const [t,o,l] of S7L){for(const n of l)S7T[n]=t;ROSTER.push(['s7',o,t>=6,l])}
+CLASSES.mvp={n:'F&R MVP',ko:'반대항 MVP',col:'#ffd23f',j:['#ffd23f','#1a1004']};KIND_COL.mvp='#ffd23f';KIND_COL.mvpS='#ffd23f';ROSTER.push(['mvp',145,true,['신태환']]);
 CLASSES.s7={n:'PIXEL STARS',ko:'픽셀 스타즈',col:'#7fd8ff',j:['#7fd8ff','#0a1030']};KIND_COL.s7='#7fd8ff';KIND_COL.s7S='#ffd27a';
 const EVO_PROB = [1,1,0.8,0.7,0.5,0.4,0.35,0.2,0.1,0.07];
 const EVO_MAX = 10, ENH_MAX = 100, ENH_PER = 200, NORMAL_PT = 10, PROTECT_BP = 100;
@@ -2987,7 +3105,7 @@ const FR_TEAMS=[
   ['1-6',[['김지환','G'],['오찬립','F'],['김민욱','F'],['강지완','G'],['이승민','C'],['윤시우','F'],['김미서','G'],['강범석','F']]]
 ];
 const FR_POS={};
-const UNRELEASED=new Set(['fr','rmi']);
+const UNRELEASED=new Set(['rmi']);
 const RMI_NAMES=['최선웅','이태린','김지환','김도야','김정우','신태환','박민혁','정현성','나윤오'];
 const RMI_LV=[120,125,130,135,140,145,150];
 const RMI_OLD=[120,124,128,132,136,140];
@@ -3025,7 +3143,7 @@ function buildDB(){
     const P0=DB[DB.length-1];P0.q=Math.min(0.3,qualityOf(P0.name));P0.grade=gradeOf(P0.q);P0.stats=genStats(pos,ovr,r,P0.q);
   }
   ROSTER.forEach(([cls,ovr,special,names])=>names.forEach((name,i)=>{
-    const pos=(cls==='s8'&&S8_POS[name])||((cls==='fr'||/^s[1-8]$/.test(cls))&&FR_POS[name])||PERSON_POS[name]||POS[Math.floor(hash01(name+'|pos')*3)];const pr=mulberry(hashInt(name));const look=genLook(pr);const num=1+Math.floor(pr()*55);const hr=HEIGHT[pos];const height0=Math.round(hr[0]+pr()*(hr[1]-hr[0]));
+    const pos=(cls==='s8'&&S8_POS[name])||((cls==='fr'||cls==='mvp'||/^s[1-8]$/.test(cls))&&FR_POS[name])||PERSON_POS[name]||POS[Math.floor(hash01(name+'|pos')*3)];const pr=mulberry(hashInt(name));const look=genLook(pr);const num=1+Math.floor(pr()*55);const hr=HEIGHT[pos];const height0=Math.round(hr[0]+pr()*(hr[1]-hr[0]));
     const q=qualityOf(name);const height=PERSON_INFO[name]?PERSON_INFO[name][0]:height0;DB.push({id:`${cls}${ovr}_${i}`,name,pos,cls,special,ovr,num,height,look,q,grade:gradeOf(q),stats:traitStats(name,ovr,tiltStats(name+'|'+cls,ovr,genStats(pos,ovr,mulberry(hashInt(name+'s'+cls)),q)))});
   }));
   const ownMax=k=>DB.some(q=>{const t=PERSON_TRAIT[q.name];return t&&t.maxStat&&t.maxStat.includes(k)});
@@ -3063,6 +3181,7 @@ function baseValue(p){return Math.round(baseValue0(p)*(1+(p.q||0)*0.3))}
 function baseValue0(p){
   if(p.cls==='normal')return 1000+(p.ovr-40)*200;
   if(p.cls==='rep')return Math.round(30000000*Math.pow(2,p.ovr-142));
+  if(p.cls==='mvp')return Math.round(160000000/(1+(p.q||0)*0.3));
   return Math.round(60000*Math.pow(1.32,p.ovr-123)*(p.cls==='tots'?1.2:1)*(p.special?1.6:1));
 }
 const EVO_RNG=[[1,1],[1.1,1.3],[1.3,1.7],[2,2.5],[3.5,5],[7,10],[15,25],[40,70],[100,180],[180,320],[320,600]];
@@ -3265,7 +3384,7 @@ const CSH='<i class="csh">'+[...Array(10)].map((_,i)=>`<b style="--a:${i*36+(i%2
 function cardHTML(c,opt={}){
   const p=c.name?(DBI[c.id]||c):P(c);const evo=c.evo||0,enh=c.enh||0;const o=opt.ovr??(p.ovr+3*evo);const k=kindOf(p);
   const rl=k==='rmi'?Math.max(0,RMI_LV.indexOf(p.ovr)):-1;const psl=opt.ps||(c.uid!=null&&typeof psOf==='function'?psOf(c):null);
-  if(p.cls==='s7'&&typeof s7CardHTML==='function')return s7CardHTML(c,p,o,opt,enh,evo,psl);
+  if((p.cls==='s7'||p.cls==='mvp')&&typeof s7CardHTML==='function')return s7CardHTML(c,p,o,opt,enh,evo,psl);
   const ax=ART_K.has(k);
   const h=`<div class="card k-${k}${rl>=0?' rl'+rl:''}${ax?' ax':''}">${ax?'<i class="cout"></i><i class="cart"></i>'+CSH:''}${rl>=0?'<i class="rmray"></i><i class="rmw"></i><i class="rmcr"></i><i class="rmsp"></i>':''}${psl&&psl.length?`<div class="c-ps">${psl.map(id=>psIcon(id)).join('')}</div>`:''}${k==='rep'?'<i class="crown"></i>':''}${SEA_K.has(p.cls)?seaDeco(k,p.special):''}${k==='frS'?'<b class="frc">C</b><i class="frlf"></i><i class="frsw"></i>':''}<div class="c-top"><b class="c-ovr">${o}</b><span class="c-rt"><span class="c-pos">${opt.pos||p.pos}</span><b class="c-grade g-${p.grade||'B'}">${p.grade||'B'}</b></span></div>`+
     `<img class="c-face" alt="" src="${portrait(p)}"><div class="c-name">${esc(p.name)}</div>`+
@@ -3383,8 +3502,8 @@ function vHome(){
   const slides=[
     {cls:'sl-hero',go:'play',html:`<div class="mini-art">${H?`<img class="m1" src="${H.p[1]}" alt=""><img class="m2" src="${H.p[2]}" alt=""><img class="m0" src="${H.p[0]}" alt="">`:''}</div><div class="sl-t"><b>PIXEL HOOPS 26</b><span>${new Date().getMonth()+1}월 랭크 시즌 개막</span></div>`},
     {cls:'sl-fr',go:'event',html:`<span class="x">EVENT</span><div class="sl-t"><em>FRIENDS &amp; RIVALS</em><b>2026 반대항전</b><span>[기간] 10.19 ~ 11.9 · 1학년 6개 반</span><span>[신규 시즌] F&amp;R 반별 스쿼드 공개</span></div>`},
-    {cls:'sl-s8',go:'shop',html:`<div class="sl-art s8art">${DBI['s8141_1']?cardHTML({pid:'s8141_1'}):''}</div><div class="sl-t"><em>NEW SEASON</em><b>S8 PORTAL COMING</b><span>포털 너머에서 소환되는 선수들</span><span>스페셜 OVR 139~141 · 소환 전광판</span></div>`},
-    {cls:'sl-s7',go:'shop',html:`<div class="sl-art s7art">${typeof s7Svg==='function'&&DBI['s7140_0']?s7Svg(DBI['s7140_0'],140,DBI['s7140_0'].pos,true):''}</div><div class="sl-t"><em>NEW SEASON</em><b>S7 PIXEL STARS</b><span>9등급 별카드 · SUNSET부터 LEGEND까지</span><span>별자리 완성 · 스타 승급전 이벤트</span></div>`},
+    {cls:'sl-s8',go:'shop',html:`<div class="sl-art s8art">${DBI['s8141_1']?cardHTML({pid:'s8141_1'}):''}</div><div class="sl-t"><em>NEW SEASON</em><b>PORTAL COMING</b><span>포털 너머에서 소환되는 선수들</span><span>스페셜 OVR 139~141 · 소환 전광판</span></div>`},
+    {cls:'sl-s7',go:'shop',html:`<div class="sl-art s7art">${typeof s7Svg==='function'&&DBI['s7140_0']?s7Svg(DBI['s7140_0'],140,DBI['s7140_0'].pos,true):''}</div><div class="sl-t"><em>NEW SEASON</em><b>PIXEL STARS</b><span>9등급 별카드 · SUNSET부터 LEGEND까지</span><span>별자리 완성 · 스타 승급전 이벤트</span></div>`},
     {cls:'sl-tots',go:'shop',html:`<div class="sl-art"><img src="${bodyURL(DBI['tots130_0']||cap,'#2f6bff','#ffd23f',true)}" alt=""></div><div class="sl-t"><em>TOTS</em><b>TOTS 팩</b><span>팀 오브 더 세메스터 · OVR 125~130</span></div>`},
     {cls:'sl-rep',go:'market',html:`<div class="sl-art"><img src="${bodyURL(DBI['rep143_0']||cap,'#c8102e','#ffd23f',true)}" alt=""></div><div class="sl-t"><em>REPRESENT</em><b>리프레젠트 멤버</b><span>이적시장에서 영입 · 3천만부터</span></div>`},
     {cls:'sl-mk',go:'market',html:`<div class="sl-art"><img src="${bodyURL(DBI['lunch128_1']||cap,'#ff9f43','#3a1a05',true)}" alt=""></div><div class="sl-t"><em>MARKET</em><b>이적 시장</b><span>GP로 원하는 선수를 검색해서 영입</span></div>`}
@@ -3485,7 +3604,7 @@ function vPlayers(){
   const cnt=k=>k==='ALL'?S.cards.length:S.cards.filter(c=>P(c).cls===k).length;
   return subHead('보유 선수',`<span class="cur"><i class="gp"></i>${fmt(S.gp)}</span>`)+`
     <div class="row" style="flex-wrap:wrap;gap:10px">
-      <div class="chips">${[['ALL','전체'],['rep','리프레젠트'],['s8','S8 포털'],['s7','S7 스타즈'],['s6','S6 이클립스'],['s5','S5 로열'],['s4','S4 라이벌'],['s3','S3 코스믹'],['s2','S2 미드나잇'],['s1','S1 네온'],['tots','TOTS'],['lunch','런치브레이크'],['normal','노멀']].map(x=>`<button class="${f.cls===x[0]?'on':''}" data-a="pf" data-v="cls:${x[0]}">${x[1]} ${cnt(x[0])}</button>`).join('')}</div>
+      <div class="chips">${[['ALL','전체'],['rep','리프레젠트'],['mvp','반대항 MVP'],['fr','F&amp;R'],['s8','포털 커밍'],['s7','픽셀 스타즈'],['s6','이클립스'],['s5','로열'],['s4','라이벌'],['s3','코스믹'],['s2','미드나잇'],['s1','네온'],['tots','TOTS'],['lunch','런치브레이크'],['normal','노멀']].map(x=>`<button class="${f.cls===x[0]?'on':''}" data-a="pf" data-v="cls:${x[0]}">${x[1]} ${cnt(x[0])}</button>`).join('')}</div>
       <span class="grow"></span><button class="btn sm teal" data-a="go" data-v="squad">스쿼드 편집</button></div>
     <div class="row" style="flex-wrap:wrap;gap:10px">
       <div class="chips">${['ALL',...POS].map(x=>`<button class="${f.pos===x?'on':''}" data-a="pf" data-v="pos:${x}">${x==='ALL'?'모든 포지션':x}</button>`).join('')}</div>
@@ -3683,8 +3802,9 @@ function evoMkAdj(p,evo){
 const dayF=id=>{if(fixedPrice(id))return 1;mkEnsure();return S.mk.f[id]??(0.9+0.2*hash01(id))};
 const mkDelta=id=>{if(fixedPrice(id))return 0;const f=dayF(id),pf=S.mk.pf[id]??f;return f/pf-1};
 function deltaHTML(id){const d=mkDelta(id);if(Math.abs(d)<0.0005)return '<span class="dl">-</span>';return `<span class="dl ${d>0?'up':'down'}">${d>0?'▲':'▼'}${Math.abs(d*100).toFixed(1)}%</span>`}
-function priceOf(p,evo){return Math.max(1000,Math.round(value(p,evo||0,0)*dayF(p.id)/1000)*1000)}
-function ownPrice(c){return Math.max(1000,Math.round(value(P(c),c.evo,c.enh)*dayF(P(c).id)/1000)*1000)}
+function mvpClamp(p,evo,v){if(p.cls!=='mvp')return v;const m=evoMul(p,evo||0);return Math.round(Math.max(150e6*m,Math.min(175e6*m,v))/1000)*1000}
+function priceOf(p,evo){return mvpClamp(p,evo,Math.max(1000,Math.round(value(p,evo||0,0)*dayF(p.id)/1000)*1000))}
+function ownPrice(c){return mvpClamp(P(c),c.evo,Math.max(1000,Math.round(value(P(c),c.evo,c.enh)*dayF(P(c).id)/1000)*1000))}
 function rangeOf(v){return[Math.max(1000,Math.round(v*(1-MK_LIM)/1000)*1000),Math.round(v*(1+MK_LIM)/1000)*1000]}
 const priceRange=p=>rangeOf(priceOf(p));
 const TRADE=()=>DB.filter(p=>!UNRELEASED.has(p.cls));
@@ -4099,10 +4219,10 @@ function vMarket(){
   if(UI.mtab==='rec')left=`<div class="mgrid">${recList().map(mcellDB).join('')}</div><div class="row" style="margin-top:12px"><button class="btn ghost" data-a="mrefresh">↻ 갱신</button></div>`;
   else if(UI.mtab==='watch'){const l=S.watch.map(id=>DBI[id]);left=l.length?`<div class="mgrid">${l.map(p=>mcellDB(p)).join('')}</div>`:'<div class="panel pad16 muted">관심 선수가 없어요. 선수를 누르고 관심 선수를 켜 보세요.</div>'}
   else if(UI.mtab==='own'){const f=UI.ownCls||'ALL';const l=S.cards.filter(c=>f==='ALL'||P(c).cls===f).sort((a,b)=>cardOvr(b)-cardOvr(a)||b.enh-a.enh);
-    left=`<div class="chips" style="margin-bottom:10px">${[['ALL','전체'],['rep','리프레젠트'],['s8','S8 포털'],['s7','S7 스타즈'],['s6','S6 이클립스'],['s5','S5 로열'],['s4','S4 라이벌'],['s3','S3 코스믹'],['s2','S2 미드나잇'],['s1','S1 네온'],['tots','TOTS'],['lunch','런치브레이크'],['normal','노멀']].map(x=>`<button class="${f===x[0]?'on':''}" data-a="owncls" data-v="${x[0]}">${x[1]} ${x[0]==='ALL'?S.cards.length:S.cards.filter(c=>P(c).cls===x[0]).length}</button>`).join('')}</div><div class="mgrid">${l.map(mcellOwn).join('')||'<div class="pad16 muted">선수가 없어요.</div>'}</div>`}
+    left=`<div class="chips" style="margin-bottom:10px">${[['ALL','전체'],['rep','리프레젠트'],['mvp','반대항 MVP'],['fr','F&amp;R'],['s8','포털 커밍'],['s7','픽셀 스타즈'],['s6','이클립스'],['s5','로열'],['s4','라이벌'],['s3','코스믹'],['s2','미드나잇'],['s1','네온'],['tots','TOTS'],['lunch','런치브레이크'],['normal','노멀']].map(x=>`<button class="${f===x[0]?'on':''}" data-a="owncls" data-v="${x[0]}">${x[1]} ${x[0]==='ALL'?S.cards.length:S.cards.filter(c=>P(c).cls===x[0]).length}</button>`).join('')}</div><div class="mgrid">${l.map(mcellOwn).join('')||'<div class="pad16 muted">선수가 없어요.</div>'}</div>`}
   else if(UI.mtab==='search'){
     const q=UI.sq;
-    const CLS_O=[['ALL','전체'],['rep','리프레젠트'],['s8','S8 포털'],['s7','S7 스타즈'],['s6','S6 이클립스'],['s5','S5 로열'],['s4','S4 라이벌'],['s3','S3 코스믹'],['s2','S2 미드나잇'],['s1','S1 네온'],['tots','TOTS'],['lunch','런치브레이크'],['normal','노멀']],POS_O=[['ALL','전체'],...POS.map(x=>[x,x+' · '+POS_KO[x]])],SORT_O=[['ovr','OVR 높은순'],['low','가격 낮은순'],['high','가격 높은순']];
+    const CLS_O=[['ALL','전체'],['rep','리프레젠트'],['mvp','반대항 MVP'],['fr','F&amp;R'],['s8','포털 커밍'],['s7','픽셀 스타즈'],['s6','이클립스'],['s5','로열'],['s4','라이벌'],['s3','코스믹'],['s2','미드나잇'],['s1','네온'],['tots','TOTS'],['lunch','런치브레이크'],['normal','노멀']],POS_O=[['ALL','전체'],...POS.map(x=>[x,x+' · '+POS_KO[x]])],SORT_O=[['ovr','OVR 높은순'],['low','가격 낮은순'],['high','가격 높은순']];
     left=`<div class="panel sform" data-f="search"><div class="fld"><span>선수 이름</span>${gin('sqName','이름 검색')}</div>
       <div class="fld"><span>클래스</span>${dd('sqCls',q.cls||'ALL',CLS_O,v=>{UI.sq.cls=v;runSearch()})}</div>
       <div class="fld"><span>포지션</span>${dd('sqPos',q.pos||'ALL',POS_O,v=>{UI.sq.pos=v;runSearch()})}</div>
@@ -4241,6 +4361,7 @@ function packEvo(pk){if(!pk||pk.evo==null)return 0;if(typeof pk.evo==='number')r
 const normalOf=pos=>pick(DB.filter(p=>p.cls==='normal'&&(!pos||p.pos===pos)));
 function drawPack(pk,pos){
   if(pk.np)return npDraw(pk,pos);
+  if(pk.id==='mvpk')return [pick(mvpList())];
   if(pk.id==='frp'||pk.id==='frn'||pk.id==='frs')return [frDraw(pk.id)];
   if(pk.cls==='deal'){const l=dealPool(pk,pos);const cnt={};l.forEach(p=>cnt[p.ovr]=(cnt[p.ovr]||0)+1);const w=l.map(p=>(DEAL_W[p.ovr]||5)/cnt[p.ovr]);return Array.from({length:pk.n},()=>l[wpick(w)])}
   if(pk.cls==='normal')return Array.from({length:pk.n},()=>normalOf(pos));
@@ -4516,6 +4637,7 @@ function matchRewards(prep,win,margin,forfeit,myPts){
   if(prep.kind==='story'&&win){const st=margin>=20?3:margin>=10?2:1;const s=STORY[prep.stage];const first=!S.story[prep.stage];S.story[prep.stage]=Math.max(S.story[prep.stage]||0,st);out.lines.push(`스테이지 ${prep.stage+1} ${'★'.repeat(st)}`);if(first){for(const r of s.r){if(r.t==='bp'){S.bp+=r.n;out.bp+=r.n}else{S.gp+=r.n;out.gp+=r.n}}out.lines.push('첫 클리어 보상')}}
   if(prep.kind==='train'&&!forfeit)evDone(prep.ev,out);
   if(prep.kind==='frl'&&typeof frlDone==='function')frlDone(prep,win,forfeit,out);
+  if(typeof mvpEvMatch==='function')mvpEvMatch(prep,win,forfeit,out);
   if(!forfeit&&typeof frTokGain==='function')frTokGain(prep.mode,out);
   if(prep.kind==='challenge'){const c=CHAL.find(x=>x.id===prep.chal);if(c.cond(win,margin)&&!S.chal.done[c.id]){S.chal.done[c.id]=true;out.lines.push(`챌린지 성공 · ${c.name}`);if(c.r.t==='bp'){S.bp+=c.r.n;out.bp+=c.r.n}else{S.pendingPack=c.r.id;out.lines.push(PK(c.r.id).name+' 획득')}}else out.lines.push('챌린지 실패')}
   while(S.xp>=xpNeed(S.lvl)){S.xp-=xpNeed(S.lvl);S.lvl++;S.bp+=50;S.gp+=50000;out.bp+=50;out.lines.push(`레벨 ${S.lvl} 달성! BP 50 · GP 50,000`)}
@@ -4646,7 +4768,8 @@ document.addEventListener('click',e=>{
     case'giftgo':{const c=card(+v);closeModal();if(c)showReveal([c],'관리자의 선물','#d9a43a',null,1);break}
     case'rmswpick':case'rmswp1':case'rmswp2':case'rmget':case'rmrand':case'rmup':case'rmret1':case'rmret2':case'rmctn':case'rmctpick':case'rmctgo':case'rmfanr':case'rmfans':case'rmfango':case'rmf2c':case'rmf2cgo':rmiAct(a,v);break;
     case'evtab':UI.evtab=v;render();break;
-    case'frvote':case'frvclaim':case'frc':case'frd':case'frstart':case'frplay':case'frclaim':case'frquit':case'frquitgo':case'frtk':case'frtkgo':case'frteam':case'frset':frAct(a,v);break;
+    case'frvote':case'frvclaim':case'frc':case'frd':case'frstart':case'frplay':case'frclaim':case'frquit':case'frquitgo':case'frtk':case'frtkgo':case'frteam':case'frset':case'frmvp':frAct(a,v);break;
+    case'mvatt':case'mvtk':case'mvbox':case'mvvc':case'mvms':case'mvfin':case'mvgot':mveAct(a,v);break;
     case'evcls':UI.evcls=v;render();break;
     case'rkrew':UI.rkSel=null;go('rkrew');break;
     case'rksel':UI.rkSel=+v;render();break;
@@ -4985,7 +5108,7 @@ function evoAnimate(cardEl,ok,crit,done){
 }
 const PERSON_CLASS={'최선웅':'1-2','이태린':'1-3','김지환':'1-6','김정우':'1-5','신태환':'1-3','김도야':'1-3','김민준':'1-2','박민혁':'1-1','최동아':'1-2','나윤오':'1-2','정현성':'1-2','이진헌':'1-1','김유담':'1-1','문채빈':'1-4','강범석':'1-6','우현진':'1-5','이혁환':'1-1','차이정':'1-3','한재준':'1-4','정희건':'1-1','최시우':'1-6','정이루':'1-4','원준섭':'1-2','유도원':'1-1','임수환':'1-3','김동휘':'1-2','이혁준':'1-2','이지성':'1-6','이윤재':'1-5','이동훈':'1-5','손지율':'1-1'};
 function classOf(name){if(PERSON_CLASS[name])return PERSON_CLASS[name];const h=hashInt(name+'|ban')>>>0;return '1-'+(1+h%6)}
-const KRANK={normal:0,lunch:1,fr:1,tots:2,lunchS:3,frS:3,totsS:4,rep:5,rmi:5,s1:2,s2:2,s3:2,s4:2,s5:3,s6:3,s7:3,s7S:4,s1S:4,s2S:4,s3S:4,s4S:4,s5S:4,s6S:4,s8:3,s8S:4};
+const KRANK={normal:0,lunch:1,fr:1,tots:2,lunchS:3,frS:3,totsS:4,rep:5,rmi:5,s1:2,s2:2,s3:2,s4:2,s5:3,s6:3,s7:3,s7S:4,s1S:4,s2S:4,s3S:4,s4S:4,s5S:4,s6S:4,s8:3,s8S:4,mvpS:5};
 const STAGE={
   normal:{t:'PIXEL HOOPS',s:'PLAYER PACK',c1:'#6b7a96',c2:'#141a28',acc:'#e3ebf7',fx:0},
   lunch:{t:'LUNCH BREAK',s:'SEASON',c1:'#ff9f43',c2:'#2e1206',acc:'#ffd29a',fx:1},
@@ -4996,13 +5119,13 @@ const STAGE={
   rmi:{t:'RM',s:'♛ ICON ♛',c1:'#d9a43a',c2:'#140e04',acc:'#ffe9a8',fx:3},
   fr:{t:'FRIENDS & RIVALS',s:'F&R',c1:'#1fa3c9',c2:'#062a33',acc:'#ffd23f',fx:1},
   frS:{t:'FRIENDS & RIVALS',s:'★ CAPTAIN ★',c1:'#9b5cff',c2:'#062a33',acc:'#ffd23f',fx:2},
-  s1:{t:'NEON STREET',s:'SEASON 1',big:'NEON',c1:'#ff4fd8',c2:'#1a0630',acc:'#5fe3f2',fx:1},s1S:{t:'NEON STREET',s:'★ SEASON 1 SPECIAL ★',big:'NEON',c1:'#ff4fd8',c2:'#1a0630',acc:'#5fe3f2',fx:2},
-  s2:{t:'MIDNIGHT CITY',s:'SEASON 2',big:'MIDNIGHT',c1:'#8fa2c8',c2:'#070b1c',acc:'#e8eef8',fx:1},s2S:{t:'MIDNIGHT CITY',s:'★ SEASON 2 SPECIAL ★',big:'MIDNIGHT',c1:'#c8d0e0',c2:'#070b1c',acc:'#ffffff',fx:2},
-  s3:{t:'COSMIC DREAM',s:'SEASON 3',big:'COSMIC',c1:'#2fd3c2',c2:'#120a30',acc:'#b88aff',fx:1},s3S:{t:'COSMIC DREAM',s:'★ SEASON 3 SPECIAL ★',big:'COSMIC',c1:'#2fd3c2',c2:'#120a30',acc:'#b88aff',fx:2},
-  s4:{t:'RIVAL DUEL',s:'SEASON 4',big:'RIVAL',c1:'#ff4a5a',c2:'#0a0c22',acc:'#6aa8ff',fx:1},s4S:{t:'RIVAL DUEL',s:'★ SEASON 4 SPECIAL ★',big:'RIVAL',c1:'#ff4a5a',c2:'#0a0c22',acc:'#6aa8ff',fx:2},
-  s5:{t:'ROYAL CHAMPIONS',s:'SEASON 5',big:'ROYAL',c1:'#e8b84a',c2:'#0a0804',acc:'#fff3c4',fx:2},s5S:{t:'ROYAL CHAMPIONS',s:'♛ SEASON 5 SPECIAL ♛',big:'ROYAL',c1:'#e8b84a',c2:'#0a0804',acc:'#fff3c4',fx:3},
-  s6:{t:'ECLIPSE',s:'SEASON 6',big:'ECLIPSE',c1:'#ff8a1a',c2:'#08060c',acc:'#ffe7b0',fx:2},s6S:{t:'ECLIPSE',s:'☀ SEASON 6 SPECIAL ☀',big:'ECLIPSE',c1:'#ff8a1a',c2:'#08060c',acc:'#ffe7b0',fx:3},
-  s8:{t:'PORTAL COMING',s:'SEASON 8',big:'PORTAL',c1:'#19f0ff',c2:'#04050d',acc:'#ff2e9a',fx:2},s8S:{t:'PORTAL COMING',s:'SEASON 8 SPECIAL',big:'PORTAL',c1:'#ffe14d',c2:'#04050d',acc:'#ff2e9a',fx:3}
+  s1:{t:'NEON STREET',s:'SEASON',big:'NEON',c1:'#ff4fd8',c2:'#1a0630',acc:'#5fe3f2',fx:1},s1S:{t:'NEON STREET',s:'★ SEASON SPECIAL ★',big:'NEON',c1:'#ff4fd8',c2:'#1a0630',acc:'#5fe3f2',fx:2},
+  s2:{t:'MIDNIGHT CITY',s:'SEASON',big:'MIDNIGHT',c1:'#8fa2c8',c2:'#070b1c',acc:'#e8eef8',fx:1},s2S:{t:'MIDNIGHT CITY',s:'★ SEASON SPECIAL ★',big:'MIDNIGHT',c1:'#c8d0e0',c2:'#070b1c',acc:'#ffffff',fx:2},
+  s3:{t:'COSMIC DREAM',s:'SEASON',big:'COSMIC',c1:'#2fd3c2',c2:'#120a30',acc:'#b88aff',fx:1},s3S:{t:'COSMIC DREAM',s:'★ SEASON SPECIAL ★',big:'COSMIC',c1:'#2fd3c2',c2:'#120a30',acc:'#b88aff',fx:2},
+  s4:{t:'RIVAL DUEL',s:'SEASON',big:'RIVAL',c1:'#ff4a5a',c2:'#0a0c22',acc:'#6aa8ff',fx:1},s4S:{t:'RIVAL DUEL',s:'★ SEASON SPECIAL ★',big:'RIVAL',c1:'#ff4a5a',c2:'#0a0c22',acc:'#6aa8ff',fx:2},
+  s5:{t:'ROYAL CHAMPIONS',s:'SEASON',big:'ROYAL',c1:'#e8b84a',c2:'#0a0804',acc:'#fff3c4',fx:2},s5S:{t:'ROYAL CHAMPIONS',s:'♛ SEASON SPECIAL ♛',big:'ROYAL',c1:'#e8b84a',c2:'#0a0804',acc:'#fff3c4',fx:3},
+  s6:{t:'ECLIPSE',s:'SEASON',big:'ECLIPSE',c1:'#ff8a1a',c2:'#08060c',acc:'#ffe7b0',fx:2},s6S:{t:'ECLIPSE',s:'☀ SEASON SPECIAL ☀',big:'ECLIPSE',c1:'#ff8a1a',c2:'#08060c',acc:'#ffe7b0',fx:3},
+  s8:{t:'PORTAL COMING',s:'SEASON',big:'PORTAL',c1:'#19f0ff',c2:'#04050d',acc:'#ff2e9a',fx:2},mvpS:{t:'반대항 MVP',s:'2026 FRIENDS & RIVALS',big:'MVP',c1:'#e8c25a',c2:'#071a42',acc:'#fff4c4',fx:2},s8S:{t:'PORTAL COMING',s:'SEASON SPECIAL',big:'PORTAL',c1:'#ffe14d',c2:'#04050d',acc:'#ff2e9a',fx:3}
 };
 let PO=null;
 function poEl(){let e=$('#po');if(!e){e=document.createElement('div');e.id='po';e.hidden=true;$('#zoomer').appendChild(e)}return e}
@@ -5030,7 +5153,7 @@ function poTear(){
   poT(()=>{e.classList.remove('tearing','holo','flash');poWalk(bestIdx(PO.cs))},1450);
 }
 function confettiHTML(n,cols){let h='';for(let i=0;i<n;i++){const l=Math.random()*100,d=Math.random()*2.4,du=2.2+Math.random()*2.2,c=cols[i%cols.length],w=4+Math.random()*6,r=Math.random()*360;h+=`<i style="left:${l}%;animation-delay:${d}s;animation-duration:${du}s;background:${c};width:${w}px;height:${w*0.5}px;--r:${r}deg"></i>`}return h}
-const WORLD={normal:'gym',lunch:'sun',lunchS:'sun',fr:'deco',frS:'deco',tots:'tun',totsS:'tun',rep:'hall',rmi:'icon',s1:'tun',s1S:'tun',s2:'tun',s2S:'tun',s3:'tun',s3S:'tun',s4:'tun',s4S:'tun',s5:'hall',s5S:'hall',s6:'hall',s6S:'hall',s8:'hall',s8S:'hall'};
+const WORLD={normal:'gym',lunch:'sun',lunchS:'sun',fr:'deco',frS:'deco',tots:'tun',totsS:'tun',rep:'hall',rmi:'icon',s1:'tun',s1S:'tun',s2:'tun',s2S:'tun',s3:'tun',s3S:'tun',s4:'tun',s4S:'tun',s5:'hall',s5S:'hall',s6:'hall',s6S:'hall',s8:'hall',s8S:'hall',mvpS:'hall'};
 const STATUE=[
  ['.....##.......','....####......','....####...##.','.....##...###.','....#####.##..','...########...','..##.####.....','.##..####.....','.....####.....','.....####.....','....##..##....','....##..##....','...##....##...','...##....##...','..##......##..','.###......###.'],
  ['...........##.','..........##..','.....##..##...','....####.#....','....#####.....','.....##.......','....#####.....','...######.....','..##.####.....','.##..####.....','.....####.....','....##..##....','...##....##...','..##......##..','.##.......##..','.#.........##.'],
@@ -5162,7 +5285,7 @@ function iconHTML(p){
   </div>`;
 }
 function poWalk(i){
-  if(!PO)return;PO.s8=false;if(typeof s7Walk==='function'&&P(PO.cs[i]).cls==='s7')return s7Walk(i);if(typeof s8Walk==='function'&&P(PO.cs[i]).cls==='s8')return s8Walk(i);poClear();PO.phase='walk';PO.wi=i;PO.atCard=false;PO.s7=false;
+  if(!PO)return;PO.s8=false;if(typeof mvpWalk==='function'&&P(PO.cs[i]).cls==='mvp')return mvpWalk(i);PO.mvp=false;if(typeof s7Walk==='function'&&P(PO.cs[i]).cls==='s7')return s7Walk(i);if(typeof s8Walk==='function'&&P(PO.cs[i]).cls==='s8')return s8Walk(i);poClear();PO.phase='walk';PO.wi=i;PO.atCard=false;PO.s7=false;
   const c=PO.cs[i],p=P(c),k=kindOf(p),T=STAGE[k]||STAGE.normal;const cl=classOf(p.name);const [gr,bn]=cl.split('-');
   const w=WORLD[k]||'gym',sp=T.fx>=2;
   const conf=T.fx>=1?confettiHTML(T.fx===1?26:T.fx===2?(w==='jump'?36:70):120,w==='hall'||w==='icon'?['#ffd23f','#f6d77a','#ffffff','#c9963a',w==='icon'?'#fff3c4':'#ff3b5c']:[T.c1,T.acc,'#ffffff','#c8f23a','#ff4f7b','#5fe3f2']):'';
@@ -5189,6 +5312,7 @@ function poWalk(i){
 function poCard(){
   if(PO&&PO.s7&&PO.phase==='walk'){s7Skip();return}
   if(PO&&PO.s8&&PO.phase==='walk'){s8Skip();return}
+  if(PO&&PO.mvp&&PO.phase==='walk'){mvpSkip();return}
   if(!PO||PO.phase!=='walk'||PO.atCard)return;poClear();PO.atCard=true;
   const st=poEl().querySelector('.st');if(!st)return;const k=kindOf(P(PO.cs[PO.wi]));const fx=(STAGE[k]||STAGE.normal).fx;
   st.classList.remove('s-flag','s-pos','s-logo','s-out');st.classList.add('s-card');
@@ -5238,7 +5362,7 @@ function packBuy(){
   showReveal(cs,n>1?`${name} x${n}`:name,pk.col,pk,n);
 }
 for(const [cl,pl] of FR_TEAMS)for(const [n] of pl)if(!PERSON_CLASS[n])PERSON_CLASS[n]=cl;
-const EV_TABS=[['main','메인'],['vote','투표'],['play','직접 플레이'],['token','토큰 교환소'],['sched','경기 일정'],['ovr','OVR 변동']];
+const EV_TABS=[['main','메인'],['vote','투표'],['play','직접 플레이'],['token','토큰 교환소'],['sched','경기 일정'],['ovr','OVR 변동'],['mvp','MVP 챌린지']];
 const frCardOf=n=>DB.find(p=>p.cls==='fr'&&p.name===n);
 function evCard(p){return p?`<button data-a="pdetail" data-v="db:${p.id}@0">${cardHTML({pid:p.id})}</button>`:'<div class="nd"><b>Not<br>Defined</b></div>'}
 function vEvent(){
@@ -5256,7 +5380,7 @@ function vEvent(){
       <div class="evside">
         <div class="panel pad16 evinfo"><div class="evteam">${team[0]}<small>반</small></div><div class="grow"><div style="font-size:20px">주장 ${cap?esc(cap.name):'-'} <b class="capt">C</b></div><div class="muted" style="font-size:14px">선수 ${n}명 · 주전 평균 OVR ${avg||'-'} · F&amp;R 시즌</div></div></div>
         <div class="panel pad16"><div class="h">교체</div><div class="bench evbench">${[0,1,2,3,4].map(i=>`<div class="slot">${evCard(bench[i])}</div>`).join('')}</div></div>
-        <p class="muted" style="margin:0;font-size:14px">각 반의 앞 5명이 주전이에요. 선수가 모자라면 Not Defined로 표시돼요. F&amp;R 카드는 아직 이적시장에 없어요.</p>
+        <p class="muted" style="margin:0;font-size:14px">각 반의 앞 5명이 주전이에요. 선수가 모자라면 Not Defined로 표시돼요. F&amp;R 카드는 이적시장에서 사고팔 수 있어요.</p>
       </div></div>`;
   }else body=frBody(tab);
   return subHead('2026 반대항전')+`<div class="evhead"><div><span class="evtag">FRIENDS &amp; RIVALS</span><h2>2026 반대항전</h2><p>1학년 6개 반 · 10.19 ~ 11.9</p></div></div>
@@ -5417,6 +5541,7 @@ function seaDeco(k,sp){
   if(s==='s3')return `<i class="sd sd-neb"></i><i class="sd sd-stars"></i>${sp?'<i class="sd sd-ring"></i><i class="sd sd-planet"></i><i class="sd sd-holo"></i>':''}`;
   if(s==='s4')return `<i class="sd sd-seam"></i><i class="sd sd-vs">VS</i>${sp?'<i class="sd sd-bolt"></i><i class="sd sd-fl l"></i><i class="sd sd-fl r"></i>':''}`;
   if(s==='s5')return `<i class="sd sd-bg"></i><i class="sd sd-star"></i>`;
+  if(s==='mv')return `<i class="sd sd-mvr"></i><i class="sd sd-mvi"></i><i class="sd sd-mvg"></i><i class="sd sd-mvf"></i><i class="sd sd-mvl"></i><i class="sd sd-mvs"></i>`;
   if(s==='s8')return `<i class="sd sd-pf"></i><i class="sd sd-pi"></i><i class="sd sd-pg"></i>${sp?'<i class="sd sd-pb"></i>':''}<i class="sd sd-ph"></i>${sp?'<i class="sd sd-ph2"></i><i class="sd sd-pz"></i>':''}`;
   if(s==='s6')return `<i class="sd sd-rim"></i>${sp?'<i class="sd sd-rim2"></i>':''}<i class="sd sd-in"></i>${sp?'<i class="sd sd-flare"></i>':''}<i class="sd sd-sun"></i>${sp?'<i class="sd sd-dia"></i>':''}`;
   return '';
@@ -5428,6 +5553,7 @@ function seaIntro0(k,sp){
   if(s==='s2')return `<div class="si si2"><div class="moon"></div><div class="beam a"></div><div class="beam b"></div><div class="city far"></div><div class="city near"></div><div class="rain"></div></div>`;
   if(s==='s3')return `<div class="si si3"><div class="neb"></div><div class="warp">${n(36,i=>`<i style="--a:${(i*137.5)%360}deg;--d:${((i*0.137)%1.4).toFixed(2)}s;--l:${12+(i*7)%30}cqw"></i>`)}</div><div class="pl a"></div><div class="pl b"></div></div>`;
   if(s==='s4')return `<div class="si si4"><div class="half r"><b>RED</b></div><div class="half b"><b>BLUE</b></div><div class="bolt"></div><div class="vs">VS</div></div>`;
+  if(s==='mv')return `<div class="si si-mv"><div class="dust"><i style="left:0%;animation-delay:0.00s"></i><i style="left:37%;animation-delay:0.43s"></i><i style="left:74%;animation-delay:0.86s"></i><i style="left:11%;animation-delay:1.29s"></i><i style="left:48%;animation-delay:1.72s"></i><i style="left:85%;animation-delay:2.15s"></i><i style="left:22%;animation-delay:2.58s"></i><i style="left:59%;animation-delay:3.01s"></i><i style="left:96%;animation-delay:3.44s"></i><i style="left:33%;animation-delay:3.87s"></i><i style="left:70%;animation-delay:4.30s"></i><i style="left:7%;animation-delay:4.73s"></i><i style="left:44%;animation-delay:5.16s"></i><i style="left:81%;animation-delay:5.59s"></i><i style="left:18%;animation-delay:0.02s"></i><i style="left:55%;animation-delay:0.45s"></i><i style="left:92%;animation-delay:0.88s"></i><i style="left:29%;animation-delay:1.31s"></i><i style="left:66%;animation-delay:1.74s"></i><i style="left:3%;animation-delay:2.17s"></i><i style="left:40%;animation-delay:2.60s"></i><i style="left:77%;animation-delay:3.03s"></i><i style="left:14%;animation-delay:3.46s"></i><i style="left:51%;animation-delay:3.89s"></i><i style="left:88%;animation-delay:4.32s"></i><i style="left:25%;animation-delay:4.75s"></i><i style="left:62%;animation-delay:5.18s"></i><i style="left:99%;animation-delay:5.61s"></i></div><div class="ball"></div><div class="ring"></div><div class="flare"></div><div class="mvp">MVP</div><div class="sub">2026 FRIENDS &amp; RIVALS</div></div>`;
   if(s==='s6')return `<div class="si si6"><div class="sky"></div><div class="dark"></div><div class="stars"></div><div class="cor"><i></i></div><div class="sun"></div><div class="moon"></div><div class="dia"></div><div class="arena"></div><div class="phones"></div></div>`;
   return `<div class="si si5"><div class="hall"></div><div class="cur l"></div><div class="cur r"></div><div class="chand"></div><div class="carpet"></div></div>`;
 }
@@ -5438,6 +5564,7 @@ function seaRevealHTML(k,sp){
   if(s==='s2')return `<div class="rv sr sr2"><div class="moon"></div><div class="city far"></div><div class="beam a"></div><div class="beam b"></div><div class="mtxt">MIDNIGHT<span>CITY</span></div><div class="roof"></div>${tag}<div class="dais"><span>MIDNIGHT CITY</span></div></div>`;
   if(s==='s3')return `<div class="rv sr sr3"><div class="gal"></div><div class="stars"></div><div class="orb o1"><i></i></div><div class="orb o2"><i></i></div><div class="ctxt">COSMIC DREAM</div>${tag}<div class="dais"><span>COSMIC DREAM</span></div></div>`;
   if(s==='s4')return `<div class="rv sr sr4"><div class="half r"></div><div class="half b"></div><div class="spot l"></div><div class="spot r"></div><div class="rtxt l">RIVAL</div><div class="rtxt r">DUEL</div><div class="zap"></div>${tag}<div class="dais"><span>RIVAL DUEL</span></div></div>`;
+  if(s==='mv')return `<div class="rv sr sr-mv"><div class="rays"></div><div class="glow"></div>${tag}</div>`;
   if(s==='s6')return `<div class="rv sr sr6"><div class="stars"></div><div class="ring r1"></div>${sp?'<div class="ring r2"></div><div class="prom"><i></i><i></i><i></i></div>':''}<div class="disc"></div><div class="etxt">ECLIPSE</div><div class="floor"></div><div class="emb">${n(22,i=>`<i style="left:${(i*41)%100}%;animation-delay:${((i*0.37)%3).toFixed(2)}s"></i>`)}</div>${tag}<div class="dais"><span>ECLIPSE</span></div></div>`;
   return `<div class="rv sr sr5"><div class="hall"></div><div class="rays"></div><div class="crown"></div><div class="gtxt">ROYAL<span>CHAMPIONS</span></div><div class="gold">${n(26,i=>`<i style="left:${(i*37)%100}%;animation-delay:${((i*0.29)%2.6).toFixed(2)}s"></i>`)}</div>${tag}<div class="dais"><span>ROYAL CHAMPIONS</span></div></div>`;
 }
@@ -5686,8 +5813,8 @@ const NP_PACKS=[
   {id:'daily',name:'데일리 선수 팩',n:1,bp:0,tab:'deal',free:true,col:'#c8f23a',bg:'linear-gradient(135deg,#c8f23a,#2fd3c2)',desc:'하루 1번 무료 · 선수 1명 · 최대 2진',tiers:[['normal',50],['season',35],['elite',12],['sp',3]],evo:[[0,.7],[1,.25],[2,.05]]},
   {id:'timed',n:2,get bp(){return NP_TBP[npTimedSea()]},tab:'rec',prem:true,timed:true,get name(){return '타임 리미티드 팩 · '+CLASSES[npTimedSea()].n},get col(){return CLASSES[npTimedSea()].col},get desc(){return `${CLASSES[npTimedSea()].ko} 위크 · 기간 한정 선수 2명 · 최대 4진`},tiers:[['elite',50],['sp',35],['feat',15]],evo:[[1,.15],[2,.35],[3,.35],[4,.15]]},
   {id:'psl',name:'플레이스타일 연계 팩',n:1,bp:650,tab:'ps',prem:true,psr:true,col:'#c08bff',bg:'linear-gradient(135deg,#2a0f5a,#c08bff 55%,#ffd23f)',desc:'선수 1명 + 플레이스타일 캡슐 1개 · 최대 3진',tiers:[['season',25],['elite',50],['sp',25]],evo:[[0,.2],[1,.3],[2,.3],[3,.2]]},
-  {id:'s7',name:'S7 PIXEL STARS 팩',n:1,bp:600,tab:'season',s7:true,col:'#7fd8ff',desc:'S7 별카드 선수 1명 · 9개 등급',tiers:[['t1',30],['t2',24],['t3',16],['t4',11],['t5',7.5],['t6',5.5],['t7',3.5],['t8',1.8],['t9',.7]],evo:[[0,1]]},
-  {id:'s7sel',name:'S7 스타 셀렉트 팩',n:1,bp:900,tab:'season',s7:true,col:'#ffd27a',desc:'5등급 CRYSTAL 이상 S7 선수 1명',tiers:[['t5',45],['t6',30],['t7',15],['t8',7],['t9',3]],evo:[[0,1]]},
+  {id:'s7',name:'PIXEL STARS 팩',n:1,bp:600,tab:'season',s7:true,col:'#7fd8ff',desc:'별카드 선수 1명 · 9개 등급',tiers:[['t1',30],['t2',24],['t3',16],['t4',11],['t5',7.5],['t6',5.5],['t7',3.5],['t8',1.8],['t9',.7]],evo:[[0,1]]},
+  {id:'s7sel',name:'스타 셀렉트 팩',n:1,bp:900,tab:'season',s7:true,col:'#ffd27a',desc:'5등급 CRYSTAL 이상 픽셀 스타즈 선수 1명',tiers:[['t5',45],['t6',30],['t7',15],['t8',7],['t9',3]],evo:[[0,1]]},
   ...NP_SEA.filter(s=>s!=='s7').map(s=>({id:'sel_'+s,sel:s,n:1,bp:NP_SBP[s],tab:'season',hidden:true,get name(){return '시즌 셀렉트 팩 · '+CLASSES[s].n},get col(){return CLASSES[s].col},get desc(){return CLASSES[s].ko+' 선수 1명 · 최대 3진'},tiers:[['low',40],['high',35],['elite',20],['rep',5]],evo:[[0,.3],[1,.3],[2,.25],[3,.15]]}))
 ];
 for(const x of NP_PACKS){x.np=true;x.cls='np';PACKS.push(x)}
@@ -5707,11 +5834,11 @@ function npAdRow(){const ar=typeof adReady==='function'&&adReady();return `<div 
 function npTab(tab){
   if(tab==='rec'){const t=PK('timed');const ar=typeof adReady==='function'&&adReady();
     return `${typeof saleOn==='function'&&saleOn()?saleBanner():''}<div class="sbanner" style="background:linear-gradient(110deg,#141008,${t.col} 140%)"><div class="t">TIME LIMITED <span>${esc(CLASSES[npTimedSea()].n)} 위크</span></div><div class="s">매주 월요일 0시 선수 교체</div><div class="p">[판매 종료] ${cd(npWeekEnd())}</div></div>
-      <div class="pkg">${npCard(PK('s8'),{kind:'s8S'})}${npCard(PK('s7'))}${npCard(PK('champ'))}${npCard(t,{sub:`<div class="nptime">⏱ ${cd(npWeekEnd())}</div>`})}</div>`}
+      <div class="pkg">${npCard(PK('mvpk'),{kind:'mvpS'})}${npCard(PK('s8'),{kind:'s8S'})}${npCard(PK('s7'))}${npCard(PK('champ'))}${npCard(t,{sub:`<div class="nptime">⏱ ${cd(npWeekEnd())}</div>`})}</div>`}
   if(tab==='packs')return `<div class="pkg">${['nmix','rduo','spch'].map(id=>npCard(PK(id))).join('')}</div>`;
   if(tab==='deal'){const pk=PK('daily');const ok=npDailyReady();return `<div class="pkg">${npCard(pk,{done:!ok,btn:`<button class="pkbuy ${ok?'free':''}" data-a="npdaily" ${ok?'':'disabled'}>${ok?'무료':'내일 다시'}</button>`})}</div>`}
   if(tab==='season'){const pk=PK('sel_s1');
-    return `<div class="pkh">S8 PORTAL COMING · NEW</div><div class="pkg">${npCard(PK('s8'),{kind:'s8S'})}</div><div class="pkh">S7 PIXEL STARS</div><div class="pkg">${npCard(PK('s7'))}${npCard(PK('s7sel'))}</div><div class="pkh">시즌 셀렉트</div><div class="pkg">${NP_SEA.filter(s=>s!=='s7').map(s=>npCard(PK('sel_'+s))).join('')}</div>`}
+    return `<div class="pkh">반대항 MVP · NEW</div><div class="pkg">${npCard(PK('mvpk'),{kind:'mvpS'})}</div><div class="pkh">PORTAL COMING</div><div class="pkg">${npCard(PK('s8'),{kind:'s8S'})}</div><div class="pkh">PIXEL STARS</div><div class="pkg">${npCard(PK('s7'))}${npCard(PK('s7sel'))}</div><div class="pkh">시즌 셀렉트</div><div class="pkg">${NP_SEA.filter(s=>s!=='s7').map(s=>npCard(PK('sel_'+s))).join('')}</div>`}
   if(tab==='ps')return `<div class="pkg">${npCard(PK('psl'))}</div>`;
   return '';
 }
@@ -5722,7 +5849,7 @@ function pkOvrR(pk,pos){if(pk.id==='frn'||pk.id==='frs'){const o=DB.filter(p=>p.
 const PK_SIL='<svg class="pks" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="pksg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></linearGradient></defs><path d="M50 10c10 0 17 8 17 19 0 8-3 14-7 18v4c12 3 24 9 28 16 3 6 4 16 4 33H8c0-17 1-27 4-33 4-7 16-13 28-16v-4c-4-4-7-10-7-18 0-11 7-19 17-19z" fill="url(#pksg)"/></svg>';
 function pkTile(pk,o={}){
   const k=o.kind||pkKind(pk);const r=pkOvrR(pk,o.pos);const e=pkEvoR(pk);const nm=o.name||pk.name;
-  const deco=k.startsWith('s7')?s7Bare(pk.id==='s7sel'?9:pk.id==='s7'?7:pk.timed?8:6):SEA_K.has(k.replace('S',''))?seaDeco(k,k.endsWith('S')):'';
+  const deco=k==='mvpS'?s7Bare(10):k.startsWith('s7')?s7Bare(pk.id==='s7sel'?9:pk.id==='s7'?7:pk.timed?8:6):SEA_K.has(k.replace('S',''))?seaDeco(k,k.endsWith('S')):'';
   const art=`<div class="card k-${k} pkc">${deco}${PK_SIL}<div class="pkn">${pk.n>1?'x'+pk.n:''}</div><div class="pko">${r?(r[0]===r[1]?r[0]:r[0]+'-'+r[1]):''}</div>${e&&e[1]>0?(e[0]===e[1]?`<div class="pke"><b class="hi">${e[0]}</b></div>`:`<div class="pke"><b class="lo">${e[0]}</b><i></i><b class="hi">${e[1]}</b></div>`):''}${o.done?'<div class="pkdone">✓</div>':''}</div>`;
   if(o.artOnly)return art;
   const act=o.btn||`<button class="pkbuy" data-a="${o.a||'buypack'}" data-v="${o.v||pk.id}" ${S.bp<pk.bp?'disabled':''}>${pk.bp0&&pk.bp0!==pk.bp?`<s class="pkold">${fmt(pk.bp0)}</s>`:''}<i class="bp"></i>${fmt(pk.bp)}</button>`;
@@ -5805,8 +5932,8 @@ function evClaim(i){const E=evS();i=+i;if(E.cl.includes(i)||evCount()<i+1)return
   else{save();render();openPack(PK(r.id),true)}}
 const STAR=(function(){let LITE=false;
 const C=[180,212],R=165,ROT=-7;
-const PT=[];for(let i=0;i<10;i++){const t=(i*36+ROT)*Math.PI/180,r=i%2?R*.43:R;PT.push([C[0]+r*Math.sin(t),C[1]-r*Math.cos(t)])}
-let ar=0;for(let i=0;i<10;i++){const p=PT[i],q=PT[(i+1)%10];ar+=p[0]*q[1]-q[0]*p[1]}const SG=Math.sign(ar);
+let PT=[];for(let i=0;i<10;i++){const t=(i*36+ROT)*Math.PI/180,r=i%2?R*.43:R;PT.push([C[0]+r*Math.sin(t),C[1]-r*Math.cos(t)])}
+let ar=0;for(let i=0;i<10;i++){const p=PT[i],q=PT[(i+1)%10];ar+=p[0]*q[1]-q[0]*p[1]}let SG=Math.sign(ar);
 function inset(P,d){d*=SG;const n=P.length,L=[];for(let i=0;i<n;i++){const a=P[i],b=P[(i+1)%n];let nx=b[1]-a[1],ny=-(b[0]-a[0]);const m=Math.hypot(nx,ny);nx/=m;ny/=m;L.push([a[0]-nx*d,a[1]-ny*d,b[0]-nx*d,b[1]-ny*d])}
  const o=[];for(let i=0;i<n;i++){const A=L[(i-1+n)%n],B=L[i];const den=(A[0]-A[2])*(B[1]-B[3])-(A[1]-A[3])*(B[0]-B[2]);const t=((A[0]-B[0])*(B[1]-B[3])-(A[1]-B[1])*(B[0]-B[2]))/den;o.push([A[0]+t*(A[2]-A[0]),A[1]+t*(A[3]-A[1])])}return o}
 const mkPT=(rot,rr)=>{const o=[];for(let i=0;i<10;i++){const t=(i*36+rot)*Math.PI/180,r=i%2?rr*.43:rr;o.push([C[0]+r*Math.sin(t),C[1]-r*Math.cos(t)])}return o};
@@ -5844,7 +5971,8 @@ function interior(T,id,P3){const c1=T.in[0],c2=T.in[1],a=T.in[2]||'#fff';let s=`
  if(t==='cosmos'){const R2=rng(9);for(let i=0;i<40;i++)s+=`<circle cx="${(40+R2()*280).toFixed(1)}" cy="${(60+R2()*280).toFixed(1)}" r="${(.4+R2()*1.4).toFixed(1)}" fill="#fff" opacity="${(.4+R2()*.6).toFixed(2)}"/>`;s+=`<ellipse cx="${C[0]+20}" cy="${C[1]-10}" rx="90" ry="40" fill="${a}" opacity=".22" transform="rotate(-25 ${C[0]} ${C[1]})"/>`}
  if(t==='eclipse')s+=`<circle cx="${C[0]}" cy="${C[1]-14}" r="62" fill="none" stroke="url(#${id}gold)" stroke-width="3" opacity=".9"/><circle cx="${C[0]}" cy="${C[1]-14}" r="74" fill="none" stroke="${a}" stroke-width="10" opacity=".25"/>`;
  }return s}
-function card(T,P,O){O=O||{};LITE=!!O.lite;const id='sk'+T.tier+(LITE?'l':'');const sp=T.sp;const FR=T.ribbon&&!T.ribbon.part;const BARE=!!O.bare;
+function card(T,P,O){if(!T.shape)return card0(T,P,O);const a0=PT,b0=SG;PT=T.shape;let ar2=0;for(let i=0;i<10;i++){const p=PT[i],q=PT[(i+1)%10];ar2+=p[0]*q[1]-q[0]*p[1]}SG=Math.sign(ar2);try{return card0(T,P,O)}finally{PT=a0;SG=b0}}
+function card0(T,P,O){O=O||{};LITE=!!O.lite;const id='sk'+T.tier+(LITE?'l':'');const sp=T.sp;const FR=T.ribbon&&!T.ribbon.part;const BARE=!!O.bare;
  const P0=PT,P1=inset(PT,T.w[0]),P2=inset(PT,T.w[1]),P3=inset(PT,T.w[2]);
  const OUT=inset(PT,-(T.wireGap||9));
  const body=BARE?'':bodyURL(P,T.jer[0],T.jer[1],false);
@@ -5957,6 +6085,11 @@ if(tier===8){
  html=`<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,#2a2418,#05040a 72%)"></div>`+sv(960,540,`<g id="s_r8" stroke="#e8c47a" opacity=".45">${Array.from({length:36},(_,i)=>{const a=i/36*Math.PI*2;return `<path d="M${480+Math.cos(a)*130} ${250+Math.sin(a)*130}L${480+Math.cos(a)*620} ${250+Math.sin(a)*620}" stroke-width="${i%2?1:2.5}"/>`}).join('')}</g><g fill="none" stroke="#e8c47a" opacity=".6">${[1,2,3].map(k=>`<path d="M${480-120*k} 540Q480 ${430-60*k} ${480+120*k} 540" stroke-width="1.4"/>`).join('')}</g><circle cx="480" cy="250" r="96" fill="url(#esn)"/><circle id="s_mn" cx="480" cy="250" r="94" fill="#05030a"/><g id="s_co" opacity="0"><circle cx="480" cy="250" r="102" fill="none" stroke="#fff3c4" stroke-width="5"/><circle cx="480" cy="250" r="125" fill="none" stroke="#ffb347" stroke-width="22" opacity=".35"/></g><defs><radialGradient id="esn"><stop offset="0" stop-color="#fff"/><stop offset=".7" stop-color="#ffd27a"/><stop offset="1" stop-color="#ff8a1a"/></radialGradient></defs>`);
  R2=(t,$)=>{$('#s_r8').setAttribute('transform',`rotate(${t*4} 480 250)`);$('#s_mn').setAttribute('cx',480-200+200*sm(.6,4.2,t));$('#s_co').setAttribute('opacity',sm(3.6,4.3,t))};glow='#ffcf7a';
 }
+if(tier===10){
+ html=`<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 42%,#3a0a5a,#12041f 55%,#030106 85%)"></div><div id="s_mr" style="position:absolute;left:480px;top:250px;width:1600px;height:1600px;margin:-800px;border-radius:50%;background:repeating-conic-gradient(from 0deg,#ffd23f40 0 3deg,transparent 3deg 11deg);-webkit-mask:radial-gradient(circle,#000 6%,transparent 52%);mask:radial-gradient(circle,#000 6%,transparent 52%)"></div>`+sv(960,540,`<defs><linearGradient id="smg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff6d0"/><stop offset=".5" stop-color="#ffd23f"/><stop offset="1" stop-color="#a8700c"/></linearGradient></defs><g id="s_sl" opacity=".55"><path d="M300 -20L340 -20L520 560L120 560Z" fill="#fff3c4" opacity=".18"/></g><g id="s_sr" opacity=".55"><path d="M620 -20L660 -20L840 560L440 560Z" fill="#fff3c4" opacity=".18"/></g><text id="s_mt" x="480" y="330" text-anchor="middle" font-family="PXN,sans-serif" font-weight="900" font-size="230" fill="none" stroke="url(#smg)" stroke-width="3" letter-spacing="20" opacity="0">MVP</text><g id="s_mc">${Array.from({length:90},()=>`<rect x="${(R()*960).toFixed(0)}" y="-20" width="${(4+R()*6).toFixed(0)}" height="${(8+R()*8).toFixed(0)}" fill="${['#ffd23f','#fff3c4','#b88aff','#ffffff','#e8b84a'][Math.floor(R()*5)]}" data-v="${(80+R()*160).toFixed(0)}" data-p="${(R()*560).toFixed(0)}"/>`).join('')}</g>`,'');
+ R2=(t,$)=>{$('#s_mr').style.transform=`rotate(${t*9}deg)`;$('#s_mr').style.opacity=.25+.75*sm(4.4,5.0,t);$('#s_sl').setAttribute('transform',`rotate(${Math.sin(t*0.9)*18} 320 -20)`);$('#s_sr').setAttribute('transform',`rotate(${-Math.sin(t*0.9)*18} 640 -20)`);$('#s_mt').setAttribute('opacity',(sm(3.1,3.6,t)*(1-sm(4.3,4.5,t))*.95+sm(4.6,5.2,t)*.18).toFixed(2));
+  [...document.querySelectorAll('#s_mc rect')].forEach(r=>{const v=+r.dataset.v,p=+r.dataset.p;const y=t<4.4?-30:(((t-4.4)*v+p)%580)-20;r.setAttribute('y',y.toFixed(0));r.setAttribute('transform',`rotate(${(t*120+p)%360} ${r.getAttribute('x')} ${y.toFixed(0)})`)})};glow='#ffd23f';
+}
 if(tier===9){
  html=`<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,#3a2a08,#0a0602 75%)"></div><div id="s_gr" style="position:absolute;left:480px;top:260px;width:1500px;height:1500px;margin:-750px;border-radius:50%;background:repeating-conic-gradient(from 0deg,#ffd23f55 0 4deg,transparent 4deg 12deg);-webkit-mask:radial-gradient(circle,#000 8%,transparent 55%);mask:radial-gradient(circle,#000 8%,transparent 55%)"></div>`+sv(960,540,`<path d="M-100 540L320 380H640L1060 540Z" fill="url(#wd)"/><g stroke="#3a2004" opacity=".5">${Array.from({length:14},(_,i)=>`<path d="M${320+i*24.6} 380L${-100+i*89} 540"/>`).join('')}</g><g fill="none" stroke="#fff3c4" stroke-width="2" opacity=".7"><ellipse cx="480" cy="460" rx="80" ry="22"/><path d="M380 380L330 540M580 380L630 540"/></g><g id="s_fw"></g><g id="s_cf">${Array.from({length:70},()=>{const c=['#ffd23f','#fff3c4','#3a8aff','#8fd0ff','#ff5a5a'][Math.floor(R()*5)];return `<rect x="${(R()*960).toFixed(0)}" y="0" width="7" height="7" fill="${c}" data-v="${(60+R()*120).toFixed(0)}" data-p="${(R()*600).toFixed(0)}"/>`}).join('')}</g><defs><linearGradient id="wd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c88a4a"/><stop offset="1" stop-color="#7a4a1a"/></linearGradient></defs>`);
  const FW=[[220,140,5.0],[740,120,5.3],[480,90,5.7],[150,260,6.1],[820,240,6.4]];
@@ -5967,12 +6100,14 @@ if(tier===9){
 return {html,render:R2||(()=>{}),glow};
 };
 
+S7N[10]='MVP';S7TH[10]=Object.assign({},S7TH[9],{tier:10,sp:true,seed:29,shape:[[180,52],[234,196],[310,112],[294,290],[310,342],[180,370],[50,342],[66,290],[50,112],[126,196]],met:['#6a4206','#f3c650','#fff6d0'],band:['#1e0636','#5a1a9a','#c8a0ff'],w:[12,19,22],in:['#3a0a5a','#0c0216','#ffd23f'],inType:['facet','pattern'],glow:'#ffd23f',pix:['#ffd23f','#ff4a5a','#3ae08a','#5fb8ff'],cry:['#fff6d0','#ffd23f','#7a4e0a'],glassCol:['#ff4a5a','#3ae08a','#5fb8ff'],rib:['#5a1a9a','#1e0636','#7a2ac8'],ribbon:{t:'F&R MVP',w:22,tg:'gold'},rings:0,laurel:1,holo:1,back:0,line:'gold',jer:['#ffd23f','#1e0636']});for(const p of DB)if(p.cls==='mvp')p.tier=10;
 const S7C={};
 function s7Svg(p,o,pos,lite){const k=p.id+'|'+o+'|'+pos+'|'+(lite?1:0);if(S7C[k])return S7C[k];const T=S7TH[p.tier];return S7C[k]=STAR.card(T,p,{ovr:o,pos,lite})}
 function s7Bare(t){const k='bare'+t;if(S7C[k])return S7C[k];return S7C[k]=STAR.card(S7TH[t],null,{bare:1,lite:1})}
 function s7CardHTML(c,p,o,opt,enh,evo,psl){
   const k=kindOf(p);
-  return `<div class="card k-${k} st7 t${p.tier}${opt.anim?' anim':''}">${s7Svg(p,o,opt.pos||p.pos,!opt.anim)}${psl&&psl.length?`<div class="c-ps">${psl.map(id=>psIcon(id)).join('')}</div>`:''}<b class="s7tn">${S7N[p.tier]}</b>`+
+  const mx=p.tier===10;const sv=mx?s7Bare(10):s7Svg(p,o,opt.pos||p.pos,!opt.anim);const T10=mx?S7TH[10]:null;const pl=mx?`<svg class="s7svg mvx-pl" viewBox="0 0 360 420"><image href="${bodyURL(p,T10.jer[0],T10.jer[1],false)}" x="122" y="66" width="154" height="227" style="image-rendering:pixelated"/><text x="60" y="178" font-size="48" font-weight="700" fill="#fff6d0" letter-spacing="-1" stroke="#1e0636" stroke-width="3" paint-order="stroke">${o}</text><text x="62" y="200" font-size="18" font-weight="700" fill="#fff">${opt.pos||p.pos}</text><text x="180" y="338" text-anchor="middle" font-size="22" font-weight="700" fill="#fff" stroke="#0a0614" stroke-width="3" paint-order="stroke">${esc(p.name)}</text></svg>`:'';
+  return `<div class="card k-${k} st7 t${p.tier}${opt.anim?' anim':''}${mx?' mvx':''}">${mx?`<div class="mvx-core"><i class="mvx-burst"></i><i class="mvx-ring"></i><svg class="mvx-tro" viewBox="0 0 200 280"><g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M50 38H150V88Q150 150 100 160Q50 150 50 88Z M50 54Q16 54 18 86Q22 116 58 124 M150 54Q184 54 182 86Q178 116 142 124 M100 160V198 M70 198H130L138 228H62Z M50 236H150V266H50Z" stroke="#ffd23f" stroke-width="10"/><path class="nv" d="M100 70L106 86L123 86L109 96L114 113L100 103L86 113L91 96L77 86L94 86Z" stroke-width="7"/><path d="M50 38H150V88Q150 150 100 160Q50 150 50 88Z M50 54Q16 54 18 86Q22 116 58 124 M150 54Q184 54 182 86Q178 116 142 124 M100 160V198 M70 198H130L138 228H62Z M50 236H150V266H50Z" stroke="#fff8dc" stroke-width="3"/><path d="M100 70L106 86L123 86L109 96L114 113L100 103L86 113L91 96L77 86L94 86Z" stroke="#fff" stroke-width="2.5"/></g><text x="100" y="259" text-anchor="middle" fill="#fff6d0" stroke="#c8a0ff" stroke-width="1">MVP</text></svg></div><div class="mvx-h l">${sv}</div><div class="mvx-h r">${sv}</div>${pl}<i class="mvx-crack"></i><i class="mvx-shock"></i><i class="mvx-holo"></i><div class="mvx-orb"><i></i><i></i><i></i><i></i><i></i><i></i></div>`:sv}${psl&&psl.length?`<div class="c-ps">${psl.map(id=>psIcon(id)).join('')}</div>`:''}<b class="s7tn">${S7N[p.tier]}</b>`+
     `<div class="c-foot"><span class="c-cls"></span><span class="c-tr">${traitsOf(p).map(k=>traitIcon(k)).join('')}</span><span class="c-badges">${enh?`<b class="enh">+${enh}</b>`:''}${evo?`<b class="evo ${evoTier(evo)}">${evo}</b>`:''}</span></div>${opt.tag?`<div class="tag${opt.tag==='판매 대기'?' blue':''}">${opt.tag}</div>`:''}</div>`;
 }
 const s7Col=t=>S7TH[t].glow;
@@ -5992,7 +6127,7 @@ function s7Walk(i){
    <div class="s7flag"><div class="flag c${bn}"><b>${esc(cl)}</b></div><span>${gr}학년 ${bn}반</span></div><div class="s7pos">${p.pos}</div><img class="s7logo" src="${LOGO}" alt="">
    <div class="s7cw">${svg}</div><svg class="s7ck" viewBox="0 0 360 420"><defs><filter id="ckg"><feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="${T.glow}" flood-opacity="1"/></filter></defs>${cr}</svg>
    <svg class="s7bu" viewBox="-480 -280 960 540">${bu}</svg><div class="s7fl"></div>
-   <div class="s7tt"><b>${TN}</b><span>S7 PIXEL STARS · TIER ${tier}</span></div><div class="s7tag">TIER ${tier} · ${TN}</div></div></div><button class="po-next" data-a="ponext">다음</button>`;
+   <div class="s7tt"><b>${TN}</b><span>${tier===10?'2026 FRIENDS &amp; RIVALS · MVP':'PIXEL STARS · TIER '+tier}</span></div><div class="s7tag">${tier===10?'반대항 MVP':'TIER '+tier+' · '+TN}</div></div></div><button class="po-next" data-a="ponext">다음</button>`;
   const box=e.querySelector('.s7box');const fit=()=>{const W=e.clientWidth||960,H=e.clientHeight||540;const s=Math.max(W/960,H/540);box.style.transform=`translate(-50%,-50%) scale(${s})`};fit();
   const $=s=>box.querySelector(s),cw=$('.s7cw');
   const hide=[...cw.querySelectorAll('image,text')].concat([...cw.querySelectorAll('g')].filter(g=>(g.getAttribute('transform')||'').startsWith('translate(180 366)')));
@@ -6012,7 +6147,7 @@ function s7Walk(i){
     cw.style.opacity=t<2.1?0:t<4.42?sm(2.1,2.3,t):(t<4.6?0:1);cw.style.filter=t<4.4?`brightness(${1+sm(3.6,4.4,t)*.8})`:'none';
     hide.forEach(x=>x.style.opacity=t<4.6?0:1);ems.forEach(x=>x.style.visibility=t<3.2?'hidden':'visible');
     crEl.forEach((pp,k)=>pp.setAttribute('stroke-dashoffset',(1-sm(3.25+k*.06,4.1+k*.03,t)).toFixed(3)));$('.s7ck').style.opacity=t<4.42?1:0;
-    $('.s7dk').style.opacity=tier===9?(sm(3.1,4.3,t)*.85*(1-sm(4.45,4.6,t))):tier===8?(sm(3.6,4.4,t)*.35*(1-sm(4.45,4.6,t))):sm(3.4,4.3,t)*.35*(1-sm(4.45,4.6,t));
+    $('.s7dk').style.opacity=tier>=9?(sm(3.1,4.3,t)*.85*(1-sm(4.45,4.6,t))):tier===8?(sm(3.6,4.4,t)*.35*(1-sm(4.45,4.6,t))):sm(3.4,4.3,t)*.35*(1-sm(4.45,4.6,t));
     let f=0;const ft=t-4.42;if(ft>=0)f=Math.exp(-ft*6);if(big){const f2=t-4.68;if(f2>=0)f=Math.max(f,.85*Math.exp(-f2*5))}$('.s7fl').style.opacity=f;
     const bp=clp((t-4.42)/1.4,0,1);buEl.forEach((g,k)=>{const [a,sp]=BU[k];const dd=eo(bp)*560*sp;g.setAttribute('transform',`translate(${(Math.cos(a)*dd).toFixed(1)} ${(Math.sin(a)*dd).toFixed(1)}) scale(${(.5+bp).toFixed(2)})`);g.style.opacity=bp<=0||bp>=1?0:1-bp*.8});
     $('.s7rays').style.opacity=sm(4.5,5.2,t)*.9;$('.s7rays').style.transform=`rotate(${t*8}deg)`;
@@ -6030,7 +6165,7 @@ function s7S(){if(!S.s7c||typeof S.s7c!=='object')S.s7c={lit:{},got:{},ms:[],tic
   if(!X.mig){X.mig=1;for(const c of S.cards){const p=DBI[c.pid];if(p&&p.cls==='s7')X.lit[p.tier]=1}}return X}
 let S7Q=[],S7QT=0;function s7Lit(p){if(!p||p.cls!=='s7')return;const X=s7S();if(!X.lit[p.tier]){X.lit[p.tier]=1;S7Q.push(S7N[p.tier]);clearTimeout(S7QT);S7QT=setTimeout(()=>{if(S7Q.length)toast(`별자리 · ${S7Q.length>2?S7Q.length+'개 별':S7Q.join(', ')+' 별'}이 켜졌어요`);S7Q=[]},700)}}
 const s7Count=()=>Object.keys(s7S().lit).length;
-const S7MS=[[3,'S7 시즌 팩 1개',{t:'pack',id:'s7'}],[6,'S7 스타 셀렉트 팩 1개',{t:'pack',id:'s7sel'}],[8,'LEGEND 선수 선택권',{t:'ticket'}]];
+const S7MS=[[3,'픽셀 스타즈 팩 1개',{t:'pack',id:'s7'}],[6,'스타 셀렉트 팩 1개',{t:'pack',id:'s7sel'}],[8,'LEGEND 선수 선택권',{t:'ticket'}]];
 function s7Ready(){const X=s7S();const n=s7Count();for(let t=1;t<=8;t++)if(X.lit[t]&&!X.got[t])return true;if(S7MS.some(m=>n>=m[0]&&!X.ms.includes(m[0])))return true;if(X.ticket>0)return true;if(n>=9&&!X.done)return true;return false}
 const S7POS=[[60,250],[140,190],[110,105],[215,70],[320,120],[400,60],[500,105],[560,200],[650,150]];
 function vS7Cons(){
@@ -6083,7 +6218,7 @@ function s8Walk(i){
     <div class="s8i s8pos"><b>${p.pos}</b><span>${POS_KO[p.pos]||''}</span></div>
     <div class="s8i s8logo"><img src="${LOGO}" alt=""></div>
     <div class="s8ct">SYNCHRONIZING</div>
-    <div class="s8sp"><div class="s8rar">${sp?'SPECIAL':'PORTAL COMING'}</div><div class="s8card">${cardHTML(c)}</div><h2 class="s8nm" data-t="${esc(p.name)}">${esc(p.name)}</h2><div class="s8sub">S8 PORTAL COMING · ${esc(cl)}반 · ${p.pos}</div></div>
+    <div class="s8sp"><div class="s8rar">${sp?'SPECIAL':'PORTAL COMING'}</div><div class="s8card">${cardHTML(c)}</div><h2 class="s8nm" data-t="${esc(p.name)}">${esc(p.name)}</h2><div class="s8sub">PORTAL COMING · ${esc(cl)}반 · ${p.pos}</div></div>
   </div><button class="po-next" data-a="ponext">다음</button>`;
   const st=e.querySelector('.st'),cv=st.querySelector('.s8cv'),ct=st.querySelector('.s8ct');
   const X={w:0,h:0,x:null,parts:[],rings:[],bolts:[],flash:0,shake:0,rot:[0,0,0],burst:false,splash:false,t:0,last:performance.now()};
@@ -6160,6 +6295,94 @@ function s8Walk(i){
   requestAnimationFrame(frame);
 }
 function s8Skip(){if(!PO||!PO.s8||PO.atCard)return;const X=PO.s8X;if(X&&!X.burst)PO.s8jump=PO.s8CH;else if(X&&X.burst)PO.s8jump=PO.s8CH+.6}
+function mvpWalk(i){
+  if(!PO)return;poClear();PO.phase='walk';PO.wi=i;PO.atCard=false;PO.mvp=true;PO.s7=false;PO.s8=false;
+  const c=PO.cs[i],p=P(c);const cl=classOf(p.name);const [gr,bn]=cl.split('-');
+  const e=poEl();
+  e.innerHTML=`<div class="st mvw" data-a="poskip"><canvas class="mvcv"></canvas>
+    <div class="mvi mvflag"><div class="flag c${bn}"><b>${esc(cl)}</b></div><span>${gr}학년 ${bn}반</span></div>
+    <div class="mvi mvpos"><b>${p.pos}</b><span>${POS_KO[p.pos]||''}</span></div>
+    <div class="mv-card">${cardHTML(c,{anim:1})}</div>
+    <div class="mv-title"><em>2026 FRIENDS &amp; RIVALS</em><b>${esc(p.name)}</b><span>반대항 MVP</span></div>
+  </div><button class="po-next" data-a="ponext">다음</button>`;
+  const st=e.querySelector('.st'),cv=st.querySelector('.mvcv');st.classList.add('in');
+  const X={w:0,h:0,x:null,t:0,last:performance.now(),sp:[],cf:[],rings:[],fw:[],shake:0,flash:0,hit:false,bolts:[],crowd:[]};PO.mvX=X;
+  const size=()=>{const d=Math.min(2,window.devicePixelRatio||1);X.w=st.clientWidth||960;X.h=st.clientHeight||540;cv.width=Math.round(X.w*d);cv.height=Math.round(X.h*d);X.x=cv.getContext('2d');X.x.setTransform(d,0,0,d,0,0);X.d=d};size();
+  const rnd=(a,b)=>a+Math.random()*(b-a),cl01=v=>v<0?0:v>1?1:v,sm=(a,b,t)=>{const x=cl01((t-a)/(b-a));return x*x*(3-2*x)};
+  const GOLD='255,210,63',WH='255,248,225',VI='184,138,255',PK='255,90,170',CY='110,220,255';
+  for(let k=0;k<220;k++)X.crowd.push({x:Math.random(),y:.66+Math.pow(Math.random(),.7)*.34,ph:rnd(0,6.28),f:rnd(1.5,5),c:Math.random()<.15?GOLD:Math.random()<.3?VI:WH});
+  const RB=document.createElement('canvas');{const T=' ★ 2026 FRIENDS & RIVALS ★ 반대항 MVP ★ MOST VALUABLE PLAYER ';const q=RB.getContext('2d');q.font='bold 11px sans-serif';const tw=Math.ceil(q.measureText(T).width);RB.width=tw;RB.height=14;q.font='bold 11px sans-serif';q.textBaseline='middle';q.fillStyle='#ffd23f';q.fillText(T,0,7.5)}
+  const LB=[.08,.26,.74,.92].map((u,k)=>({u,on:.15+k*.17,lit:false}));const FOG=[];for(let k=0;k<9;k++)FOG.push({u:Math.random(),y:rnd(.74,.98),r:rnd(.12,.25),v:rnd(-.02,.02)});
+  const TP=['M50 38H150V88Q150 150 100 160Q50 150 50 88Z','M50 54Q16 54 18 86Q22 116 58 124','M150 54Q184 54 182 86Q178 116 142 124','M100 160V198','M70 198H130L138 228H62Z','M50 236H150V266H50Z'].map(d=>new Path2D(d));
+  const TS=new Path2D('M100 70L106 86L123 86L109 96L114 113L100 103L86 113L91 96L77 86L94 86Z');
+  const neon=(x,paths,col,pr,a)=>{x.setLineDash(pr<1?[pr*330,4000]:[]);for(const [lw,al,cc] of [[18,.06,col],[10,.16,col],[5,.95,col],[1.8,1,WH]]){x.lineWidth=lw;x.strokeStyle=`rgba(${cc},${al*a})`;for(const q of paths)x.stroke(q)}x.setLineDash([])};
+  const spark=(x0,y0,col,n,sp,g,life)=>{for(let k=0;k<n;k++){const a=Math.random()*6.283,v=rnd(.25,1)*sp,l=rnd(.5,1)*(life||1.2);X.sp.push({x:x0,y:y0,vx:Math.cos(a)*v,vy:Math.sin(a)*v,t:l,max:l,c:col,g:g||0,w:rnd(1.2,2.6),dr:.965})}};
+  const confetti=(n,x0,y0,up)=>{for(let k=0;k<n;k++){const a=up?rnd(-2.6,-.55):rnd(0,6.283),v=up?rnd(300,900):rnd(10,60);X.cf.push({x:x0==null?rnd(0,X.w):x0,y:y0==null?-10:y0,vx:Math.cos(a)*v,vy:Math.sin(a)*v,r:rnd(0,6.28),vr:rnd(-8,8),ph:rnd(0,6.28),vp:rnd(5,12),c:[GOLD,GOLD,VI,WH,PK][Math.floor(Math.random()*5)],s:rnd(4,8)})}};
+  const firework=()=>{const fx=rnd(X.w*.1,X.w*.9),fy=rnd(X.h*.08,X.h*.38);const col=[GOLD,VI,PK,CY,WH][Math.floor(Math.random()*5)];spark(fx,fy,col,70,280,120,1.3);X.rings.push({x:fx,y:fy,r:4,v:220,t:.5,c:col,w:2})};
+  const EV=[[4.72,()=>{X.hit=true;X.flash=.75;X.shake=20;const cx=X.w/2,cy=X.h*.46;for(let k=0;k<4;k++)X.rings.push({x:cx,y:cy,r:20,v:900+k*380,t:1,c:k%2?VI:GOLD,w:7-k});spark(cx,cy,GOLD,220,1200,260,1.4);spark(cx,cy,VI,120,900,200,1.2);confetti(260,cx,cy*1.1,true);
+    for(let k=0;k<7;k++){const pts=[[cx,cy]];let a=k/7*6.283+rnd(-.3,.3),bx=cx,by=cy;for(let q=0;q<9;q++){a+=rnd(-.5,.5);const l=rnd(30,70);bx+=Math.cos(a)*l;by+=Math.sin(a)*l;pts.push([bx,by])}X.bolts.push({pts,t:.4})}
+    try{sfx('walkout');if(typeof cheer==='function'){audioInit();cheer(1.7,true)}}catch(x){}}],
+    [5.3,()=>firework()],[5.6,()=>firework()]];
+  let evI=0;const tok={};PO.mvTok=tok;PO.mvJump=null;
+  const frame=now=>{
+    if(!PO||PO.mvTok!==tok||!st.isConnected)return;
+    if(PO.mvJump!=null){X.t=Math.max(X.t,PO.mvJump);PO.mvJump=null}
+    const rdt=Math.max(0,(now-X.last)/1000);const dt=Math.min(.05,rdt);X.last=now;X.t+=Math.min(.25,rdt);const t=X.t;
+    if((st.clientWidth||960)!==X.w)size();
+    while(evI<EV.length&&t>=EV[evI][0]){EV[evI][1]();evI++}
+    st.classList.toggle('f1',t>.9&&t<1.9);st.classList.toggle('f2',t>1.9&&t<2.8);st.classList.toggle('hit',X.hit);
+    if(t>=4.9&&!PO.atCard)PO.atCard=true;
+    const x=X.x,w=X.w,h=X.h,cx=w/2,cy=h*.46,fy=h*.86;
+    x.globalCompositeOperation='source-over';x.fillStyle='rgba(5,2,14,.5)';x.fillRect(0,0,w,h);
+    x.save();if(X.shake>0){x.translate(rnd(-X.shake,X.shake),rnd(-X.shake,X.shake));X.shake=Math.max(0,X.shake-dt*40)}
+    const zm=X.hit?1+.1*Math.exp(-(t-4.72)*5):1+.14*sm(3.6,4.72,t)*sm(3.6,4.72,t);x.translate(cx,cy);x.scale(zm,zm);x.translate(-cx,-cy);
+    const bgk=X.hit?1:sm(.2,2.5,t)*.5;
+    const bg=x.createRadialGradient(cx,h*.55,0,cx,h*.55,h*.95);bg.addColorStop(0,`rgba(70,20,130,${.35*bgk})`);bg.addColorStop(.6,`rgba(30,8,70,${.25*bgk})`);bg.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=bg;x.fillRect(0,0,w,h);
+    x.globalCompositeOperation='lighter';
+    {const rk=sm(.25,.7,t);if(rk>0){const by=h*.6,bh=h*.05,sc=bh/14;x.fillStyle=`rgba(20,8,40,${.8*rk})`;x.fillRect(0,by,w,bh);x.imageSmoothingEnabled=false;x.globalAlpha=rk*(X.hit?.95:.75);const rw=RB.width*sc;let ox=-((t*70)%rw);for(;ox<w;ox+=rw)x.drawImage(RB,ox,by,rw,bh);x.globalAlpha=rk*.25;x.fillStyle='#000';for(let yy=0;yy<bh;yy+=sc)x.fillRect(0,by+yy,w,Math.max(1,sc*.35));for(let xx=0;xx<w;xx+=sc)x.fillRect(xx,by,Math.max(1,sc*.35),bh);x.globalAlpha=1;x.imageSmoothingEnabled=true;x.fillStyle=`rgba(${GOLD},${.7*rk})`;x.fillRect(0,by-1,w,1.5);x.fillRect(0,by+bh,w,1.5)}}
+    for(const L of LB){if(t<L.on)continue;if(!L.lit){L.lit=true;X.shake=Math.max(X.shake,3);spark(w*L.u,h*.05,WH,18,260,300,.6)}const age=t-L.on,a=Math.min(1,age*6)*(age<.12?1.6:1)*(X.hit?Math.max(0,1-(t-4.72)*2):t>2.8?.55:1);if(a<=0)continue;const lx=w*L.u,ly=h*.05,tx=cx,ty=fy,ang=Math.atan2(ty-ly,tx-lx),D=Math.hypot(tx-lx,ty-ly)*1.1;x.save();x.translate(lx,ly);x.rotate(ang-1.5708);const g=x.createLinearGradient(0,0,0,D);g.addColorStop(0,`rgba(${WH},${.28*a})`);g.addColorStop(1,`rgba(${VI},0)`);x.fillStyle=g;x.beginPath();x.moveTo(-8,0);x.lineTo(8,0);x.lineTo(D*.16,D);x.lineTo(-D*.16,D);x.closePath();x.fill();x.restore();const fg=x.createRadialGradient(lx,ly,0,lx,ly,40);fg.addColorStop(0,`rgba(${WH},${.9*a})`);fg.addColorStop(1,`rgba(${WH},0)`);x.fillStyle=fg;x.beginPath();x.arc(lx,ly,40,0,6.283);x.fill();x.fillStyle=`rgba(${WH},${a})`;for(let bx=0;bx<3;bx++)for(let byy=0;byy<2;byy++)x.fillRect(lx-13+bx*9,ly-7+byy*8,7,6)}
+    for(const q of FOG){q.u+=q.v*dt;if(q.u<-.3)q.u=1.3;if(q.u>1.3)q.u=-.3;const fx=q.u*w,fy2=q.y*h,R=q.r*w,g=x.createRadialGradient(fx,fy2,0,fx,fy2,R);g.addColorStop(0,`rgba(${VI},${.09*sm(0,1,t)})`);g.addColorStop(1,`rgba(${VI},0)`);x.fillStyle=g;x.fillRect(fx-R,fy2-R,R*2,R*2)}
+    for(const q of X.crowd){const a=(X.hit?.5+.5*Math.sin(t*q.f+q.ph):.35*sm(.2,1.2,t))*(.5+.5*Math.sin(t*q.f*.7+q.ph*2));if(a<=.02)continue;x.fillStyle=`rgba(${q.c},${a*.8})`;const s=1.2+(q.y-.66)*6;x.fillRect(q.x*w,q.y*h,s,s)}
+    if(X.hit){for(const [o,col,sp] of [[.08,VI,.9],[.92,VI,-.9],[.28,GOLD,1.3],[.72,GOLD,-1.3]]){const a=-1.5708+Math.sin(t*sp+o*4)*.5;x.save();x.translate(w*o,h+10);x.rotate(a+1.5708);const L=h*1.4,g=x.createLinearGradient(0,0,0,-L);g.addColorStop(0,`rgba(${col},.32)`);g.addColorStop(1,`rgba(${col},0)`);x.fillStyle=g;x.beginPath();x.moveTo(-6,0);x.lineTo(6,0);x.lineTo(L*.13,-L);x.lineTo(-L*.13,-L);x.closePath();x.fill();x.restore()}}
+    if(X.hit){x.save();x.translate(cx,cy);x.rotate(t*.12);for(let k=0;k<24;k++){x.rotate(6.283/24);const g=x.createLinearGradient(0,0,w*.7,0);g.addColorStop(0,`rgba(${k%2?GOLD:VI},.16)`);g.addColorStop(1,`rgba(${k%2?GOLD:VI},0)`);x.fillStyle=g;x.beginPath();x.moveTo(0,0);x.lineTo(w*.7,-w*.045);x.lineTo(w*.7,w*.045);x.closePath();x.fill()}x.restore()}
+    if(t>.6&&t<4.72&&Math.random()<.7){const a=rnd(0,6.283),r=w*.26;for(let k=0;k<1+Math.floor(sm(2,4.6,t)*4);k++)X.sp.push({x:cx+Math.cos(a+k)*r*rnd(.3,1),y:fy+Math.sin(a+k)*r*.2,vx:rnd(-8,8),vy:-rnd(60,180)*(1+sm(3.8,4.7,t)*2),t:1.4,max:1.4,c:Math.random()<.6?GOLD:VI,g:0,w:rnd(1.4,2.6),dr:.995})}
+    const ck=sm(.05,.9,t),rx=w*.26*(1+.04*Math.sin(t*3)),ry=rx*.2;
+    x.save();x.translate(cx,fy);x.scale(1,ry/rx);
+    x.lineWidth=3;x.strokeStyle=`rgba(${GOLD},${.85*ck})`;x.setLineDash(ck<1?[ck*rx*6.3,9999]:[]);x.beginPath();x.arc(0,0,rx,0,6.283);x.stroke();
+    x.lineWidth=2;x.strokeStyle=`rgba(${VI},${.8*ck})`;x.beginPath();x.arc(0,0,rx*.8,0,6.283);x.stroke();x.setLineDash([]);
+    x.rotate(t*.8);for(let k=0;k<24;k++){x.rotate(6.283/24);x.fillStyle=`rgba(${k%3?GOLD:WH},${.75*ck})`;x.fillRect(rx*.84,-3,k%2?10:5,6)}
+    x.rotate(-t*1.9);x.lineWidth=1.5;x.strokeStyle=`rgba(${GOLD},${.55*ck})`;x.beginPath();for(let k=0;k<=6;k++){const a=k*6.283*2/6;const px=Math.cos(a)*rx*.62,py=Math.sin(a)*rx*.62;k?x.lineTo(px,py):x.moveTo(px,py)}x.stroke();
+    const gl=x.createRadialGradient(0,0,0,0,0,rx);gl.addColorStop(0,`rgba(${VI},${.35*ck+(X.hit?.15:0)})`);gl.addColorStop(1,`rgba(${VI},0)`);x.fillStyle=gl;x.beginPath();x.arc(0,0,rx,0,6.283);x.fill();
+    x.restore();
+    const bk=X.hit?.18+.06*Math.sin(t*4):sm(.3,1.2,t)*(.45+.25*sm(3.8,4.7,t))*(t<4.72?1:0);
+    if(bk>0){const bw=w*(.06+.05*sm(3.8,4.7,t));const g=x.createLinearGradient(cx-bw,0,cx+bw,0);g.addColorStop(0,`rgba(${VI},0)`);g.addColorStop(.5,`rgba(${WH},${bk})`);g.addColorStop(1,`rgba(${VI},0)`);x.fillStyle=g;x.fillRect(cx-bw,0,bw*2,fy)}
+    if(t>2.8&&t<6.2){
+      const s=h*.7/280*(1+.06*sm(3.8,4.7,t)),pr=sm(2.8,3.7,t),fl=t<3.9&&Math.random()<.18?.25:1;
+      const sp=X.hit?sm(4.72,5.4,t)*w*.42:0,fa=X.hit?1-sm(5.2,6.1,t):1,jit=t>3.8&&!X.hit?rnd(-1,1)*sm(3.8,4.7,t)*4:0;
+      for(const side of [-1,1]){x.save();x.translate(cx+side*sp+jit,cy-10+jit);x.rotate(side*sm(4.72,5.6,t)*.35);x.scale(s,s);x.translate(-100,-150);x.beginPath();x.rect(side<0?-60:100,-40,160,360);x.clip();
+        if(t>3.8){const fk=sm(3.8,4.7,t)*fa;const g=x.createRadialGradient(100,100,0,100,100,90);g.addColorStop(0,`rgba(${WH},${.55*fk})`);g.addColorStop(.5,`rgba(${GOLD},${.25*fk})`);g.addColorStop(1,`rgba(${GOLD},0)`);x.fillStyle=g;x.fill(TP[0])}
+        neon(x,TP,GOLD,pr,fa*fl);neon(x,[TS],VI,pr,fa*fl);x.restore()}
+      if(t>4.1&&!X.hit){const k=sm(4.1,4.65,t);const L=h*.7*k;x.fillStyle=`rgba(${WH},.95)`;x.shadowColor='#fff';x.shadowBlur=16;x.fillRect(cx-1.5,cy-10-h*.33,3,L);x.shadowBlur=0}
+    }
+    if(t>3.8&&!X.hit){for(let k=0;k<10;k++){const a=Math.random()*6.283,r=rnd(.3,.6)*w,l=rnd(.35,.6);X.sp.push({x:cx+Math.cos(a)*r,y:cy+Math.sin(a)*r,vx:-Math.cos(a)*r/l,vy:-Math.sin(a)*r/l,t:l,max:l,c:Math.random()<.5?GOLD:VI,g:0,w:rnd(1.2,2.2),dr:1})}}
+    const flare=(fx,fy2,a,L)=>{if(a<=0)return;const g=x.createRadialGradient(fx,fy2,0,fx,fy2,L);g.addColorStop(0,`rgba(${WH},${a})`);g.addColorStop(.25,`rgba(${CY},${a*.35})`);g.addColorStop(1,`rgba(${VI},0)`);x.save();x.translate(fx,fy2);x.scale(1,.035);x.translate(-fx,-fy2);x.fillStyle=g;x.beginPath();x.arc(fx,fy2,L,0,6.283);x.fill();x.restore();const g2=x.createRadialGradient(fx,fy2,0,fx,fy2,L*.12);g2.addColorStop(0,`rgba(${WH},${a})`);g2.addColorStop(1,`rgba(${GOLD},0)`);x.fillStyle=g2;x.beginPath();x.arc(fx,fy2,L*.12,0,6.283);x.fill()};
+    if(t>3.3&&!X.hit)flare(cx,cy-10-h*.7/280*58,sm(3.3,4.6,t)*(.6+.3*Math.sin(t*30)),w*.5*(.5+sm(3.8,4.7,t)));
+    if(X.hit){flare(cx,cy,Math.exp(-(t-4.72)*2.2)+.22+.06*Math.sin(t*3),w*.9);if(Math.random()<dt*1.1)firework();if(Math.random()<dt*40)confetti(1)}
+    for(const q of X.sp){q.vy+=q.g*dt;q.x+=q.vx*dt;q.y+=q.vy*dt;q.vx*=q.dr;q.vy*=q.dr;q.t-=dt;const a=cl01(q.t/q.max);x.strokeStyle=`rgba(${q.c},${a})`;x.lineWidth=q.w;x.beginPath();x.moveTo(q.x,q.y);x.lineTo(q.x-q.vx*.035,q.y-q.vy*.035);x.stroke()}
+    X.sp=X.sp.filter(q=>q.t>0);if(X.sp.length>2000)X.sp.splice(0,X.sp.length-2000);
+    for(const r of X.rings){r.r+=r.v*dt;r.v*=.965;r.t-=dt*1.2;x.strokeStyle=`rgba(${r.c},${Math.max(0,r.t)})`;x.lineWidth=r.w;x.beginPath();x.arc(r.x,r.y,r.r,0,6.283);x.stroke()}X.rings=X.rings.filter(r=>r.t>0);
+    for(const b of X.bolts){x.strokeStyle=`rgba(${WH},.95)`;x.lineWidth=3;x.shadowColor='#b88aff';x.shadowBlur=16;x.beginPath();b.pts.forEach((pt,q)=>q?x.lineTo(pt[0],pt[1]):x.moveTo(pt[0],pt[1]));x.stroke();b.t-=dt}x.shadowBlur=0;X.bolts=X.bolts.filter(b=>b.t>0);
+    x.globalCompositeOperation='source-over';
+    for(const q of X.cf){q.vy+=260*dt;q.vx*=.985;q.vy*=.985;if(q.vy>90)q.vy=90;q.x+=(q.vx+Math.sin(q.ph)*30)*dt;q.y+=q.vy*dt;q.r+=q.vr*dt;q.ph+=q.vp*dt;x.save();x.translate(q.x,q.y);x.rotate(q.r);x.scale(1,Math.cos(q.ph));x.fillStyle=`rgb(${q.c})`;x.fillRect(-q.s/2,-q.s/4,q.s,q.s/2);x.restore()}
+    X.cf=X.cf.filter(q=>q.y<h+20);if(X.cf.length>500)X.cf.splice(0,X.cf.length-500);
+    x.restore();
+    if(t>5.1){const T='MOST VALUABLE PLAYER',n=T.length,fs=Math.round(Math.min(h*.05,w*.04)),sp=fs*(.55+1.6*(1-sm(5.1,6.1,t)));x.font=`900 ${fs}px PXN,sans-serif`;x.textAlign='center';x.textBaseline='middle';const ty=h*.075,tw=sp*(n-1);for(let k=0;k<n;k++){const la=sm(5.1+k*.035,5.4+k*.035,t);if(la<=0)continue;const lx=cx-tw/2+k*sp,sh=Math.max(0,1-Math.abs(((t*.45)%1.6-.3)*n-k)/3);x.fillStyle=`rgba(${sh>0?'255,255,255':GOLD},${la})`;x.shadowColor='#ffd23f';x.shadowBlur=12+sh*20;x.fillText(T[k],lx,ty+(1-la)*-20)}x.shadowBlur=0;const lw=tw*.5*sm(5.6,6.4,t);x.fillStyle=`rgba(${GOLD},.8)`;x.fillRect(cx-lw-fs,ty+fs*.85,lw*2+fs*2,2)}
+    if(X.flash>0){x.fillStyle=`rgba(255,236,250,${X.flash})`;x.fillRect(0,0,w,h);X.flash=Math.max(0,X.flash-dt*3)}
+    requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+}
+function mvpSkip(){if(!PO||!PO.mvp||PO.atCard)return;const st=poEl().querySelector('.mvw');if(st)st.classList.add('skip');PO.mvJump=4.72;PO.atCard=true}
 const MG={};
 function mgGeo(){
   if(MG.ok)return MG;
@@ -7645,7 +7868,7 @@ async function admGiveBp(){
     if(n.toLowerCase()===ONL.name.toLowerCase())onlAdmCheck();
   }catch(e){const m=(e&&e.message)||'';admMsg(/not admin/.test(m)?'관리자 권한이 없어요':/no user/.test(m)?'그 이름의 구단이 없어요':/no save/.test(m)?'그 구단은 아직 저장 기록이 없어요':/too much/.test(m)?'BP가 1,000만을 넘게 돼요':/function|schema cache|PGRST202/.test(m)?'BP 지급 SQL을 먼저 실행해 주세요':onlErr(e))}
 }
-const FR_IDS=FR_TEAMS.map(t=>t[0]);
+const FR_IDS=FR_TEAMS.map(t=>t[0]);const MVP_FIX={b1019:'신태환'};
 const FRC={};for(const [c,l] of FR_TEAMS)for(const [n] of l)FRC[n]=c;
 const FR_COL={'1-1':['#ff4d6d','#3a0d1a'],'1-2':['#3d7bff','#0d1a3a'],'1-3':['#35d0ba','#0b2b28'],'1-4':['#ffd23f','#3a2a05'],'1-5':['#b06bff','#22103a'],'1-6':['#ff8a2a','#3a1a05']};
 const FR_WIN_OVR=4;
@@ -7669,7 +7892,7 @@ const FR_SC=[
 const FR_BG=FR_SC.filter(r=>/농구/.test(r[2])).map(r=>{const m=r[2].match(/(\d)vs(\d)/);return{id:'b'+r[0].replace('-',''),d:'2026-'+r[0],lg:r[2].replace(/\s*\d+vs\d+반/,'').replace('★ ',''),a:m?'1-'+m[1]:null,b:m?'1-'+m[2]:null,fin:!m}});
 const FRG={res:{},t:0,busy:false,err:'',ch:null,sig:''};
 try{FRG.res=JSON.parse(localStorage.getItem('pxh-frr')||'{}')||{}}catch(e){FRG.res={}}
-function frGames(){return FR_BG.map(g=>{const r=FRG.res[g.id]||{};return{...g,a:r.a||g.a,b:r.b||g.b,w:(r.a||g.a)&&(r.b||g.b)?r.w||null:null,sa:r.sa??null,sb:r.sb??null}})}
+function frGames(){return FR_BG.map(g=>{const r=FRG.res[g.id]||{};return{...g,a:r.a||g.a,b:r.b||g.b,w:(r.a||g.a)&&(r.b||g.b)?r.w||null:null,sa:r.sa??null,sb:r.sb??null,mvp:MVP_FIX[g.id]||r.mvp||null}})}
 function frWins(){const w={};for(const c of FR_IDS)w[c]=0;for(const g of frGames()){if(g.w==='a'&&w[g.a]!=null)w[g.a]++;else if(g.w==='b'&&w[g.b]!=null)w[g.b]++}return w}
 function frApply(){
   const w=frWins();
@@ -7687,9 +7910,9 @@ async function frFetch(force){
   if(typeof ONL==='undefined'||!ONL.sb||FRG.busy)return;if(!force&&Date.now()-FRG.t<45000)return;
   FRG.busy=true;FRG.t=Date.now();
   try{
-    const r=await ONL.sb.from('fr_res').select('k,a,b,w,sa,sb');if(r.error)throw r.error;
+    const r=await ONL.sb.from('fr_res').select('*');if(r.error)throw r.error;
     const m={};for(const x of r.data||[])m[x.k]=x;FRG.res=m;FRG.err='';try{localStorage.setItem('pxh-frr',JSON.stringify(m))}catch(e){}
-    const w=frApply();frNotice(w);
+    if(typeof mvpSync==='function')mvpSync();const w=frApply();frNotice(w);
     const sig=JSON.stringify(m);if(sig!==FRG.sig){FRG.sig=sig;if(UI.view==='event'&&(typeof M==='undefined'||!M)&&!frTyping())render()}
   }catch(e){const m=(e&&e.message)||'';FRG.err=/relation|does not exist|schema cache|PGRST2|42P01/i.test(m)?'반대항전 결과 SQL을 먼저 실행해 주세요':'경기 결과를 불러오지 못했어요'}
   FRG.busy=false;
@@ -7771,15 +7994,16 @@ async function frAdm(a,v){
   const msg=m=>{const e=$('#frAdmMsg');if(e)e.textContent=m};
   try{
     const g=frGames().find(x=>x.id===String(v).split(':')[0]);if(!g)return;const cur=FRG.res[g.id]||{};
-    let row={k:g.id,a:cur.a||null,b:cur.b||null,w:cur.w||null,sa:cur.sa??null,sb:cur.sb??null};
+    let row={k:g.id,a:cur.a||null,b:cur.b||null,w:cur.w||null,sa:cur.sa??null,sb:cur.sb??null};if('mvp' in cur)row.mvp=cur.mvp??null;
     if(a==='frteam'){const ta=($('#frA_'+g.id)||{}).value,tb=($('#frB_'+g.id)||{}).value;if(!ta||!tb||ta===tb){msg('서로 다른 두 반을 골라 주세요');return}row.a=ta;row.b=tb;if(ta!==g.a||tb!==g.b)row.w=null}
     else if(a==='frset'){const w=String(v).split(':')[1];if(!g.a||!g.b){msg('결승 대진을 먼저 정해 주세요');return}row.w=w==='x'?null:w;
       const sa=(($('#frSa_'+g.id)||{}).value||'').trim(),sb=(($('#frSb_'+g.id)||{}).value||'').trim();row.sa=w==='x'?null:sa===''?null:Math.max(0,Math.min(999,+sa|0));row.sb=w==='x'?null:sb===''?null:Math.max(0,Math.min(999,+sb|0))}
+    else if(a==='frmvp'){const n=(($('#frM_'+g.id)||{}).value||'').trim();row.mvp=n||null}
     else return;
     msg('저장 중…');const r=await ONL.sb.from('fr_res').upsert(row);if(r.error)throw r.error;
-    toast(a==='frteam'?'결승 대진을 저장했어요':row.w?'결과 저장 · 모든 유저에게 바로 반영돼요':'결과를 지웠어요');
+    toast(a==='frmvp'?(row.mvp?`MVP ${row.mvp} 저장 · 모든 유저에게 카드가 추가돼요`:'MVP를 지웠어요'):a==='frteam'?'결승 대진을 저장했어요':row.w?'결과 저장 · 모든 유저에게 바로 반영돼요':'결과를 지웠어요');
     FRG.sig='';FRG.res[g.id]=row;frApply();await frFetch(true);render();
-  }catch(e){const m=(e&&e.message)||'';msg(/permission|policy|row-level|42501/i.test(m)?'관리자 권한이 없어요 · 반대항전 SQL을 확인해 주세요':/relation|does not exist|schema cache|PGRST2/i.test(m)?'반대항전 결과 SQL을 먼저 실행해 주세요':onlErr(e))}
+  }catch(e){const m=(e&&e.message)||'';if(/mvp/i.test(m)){msg('MVP SQL을 먼저 실행해 주세요');return}msg(/permission|policy|row-level|42501/i.test(m)?'관리자 권한이 없어요 · 반대항전 SQL을 확인해 주세요':/relation|does not exist|schema cache|PGRST2/i.test(m)?'반대항전 결과 SQL을 먼저 실행해 주세요':onlErr(e))}
 }
 function frVoteTab(){
   const F=frS();const t=frISO();const now=Date.now();
@@ -7832,15 +8056,15 @@ function frSchedTab(){
   const adm=typeof onlIsAdmin==='function'&&onlIsAdmin();
   const cell=r=>{const g=G['b'+r[0].replace('-','')];if(!g)return esc(r[2]);
     const vs=g.a&&g.b?`<span class="frsvs">${frChip(g.a)}<i>vs</i>${frChip(g.b)}</span>`:'';
-    const res=g.w?`<span class="frsres">${g.sa!=null&&g.sb!=null?g.sa+':'+g.sb+' · ':''}${frRes(g)}</span>`:'';
-    return `<small class="frslg">${esc(r[2].replace(/\s*\d+vs\d+반/,''))}</small>${vs}${res}`};
+    const res=g.w?`<span class="frsres">${g.sa!=null&&g.sb!=null?g.sa+':'+g.sb+' · ':''}${frRes(g)}</span>`:'';const mv=g.mvp?`<span class="frsmv">MVP ${esc(g.mvp)}</span>`:'';
+    return `<small class="frslg">${esc(r[2].replace(/\s*\d+vs\d+반/,''))}</small>${vs}${res}${mv}`};
   const rows=FR_SC.map(r=>`<tr class="${r[4]===1?'off':r[4]===2?'fin':''}${r[0]===t?' today':''}"><td>${r[0].replace('-','/')}</td><td>${r[1]}</td><td class="bk">${cell(r)}</td><td>${esc(r[3])}</td></tr>`).join('');
   const sel=(id,v)=>`<select id="${id}"><option value="">반</option>${FR_IDS.map(c=>`<option value="${c}" ${c===v?'selected':''}>${c}반</option>`).join('')}</select>`;
   const admBox=adm?`<div class="panel fradm"><div class="h" style="margin:0">관리자 · 농구 결과 입력</div><i id="frAdmMsg" class="aumsg"></i>
     ${frGames().map(g=>`<div class="fradr${g.d.slice(5)===t?' today':''}"><span class="fradd">${g.d.slice(5).replace('-','/')}<small>${esc(g.lg)}</small></span>
       ${g.fin?`<span class="frft">${sel('frA_'+g.id,g.a)}<i>vs</i>${sel('frB_'+g.id,g.b)}<button class="btn sm gold" data-a="frteam" data-v="${g.id}">대진 저장</button></span>`:`<span class="frft">${frChip(g.a)}<i>vs</i>${frChip(g.b)}</span>`}
       <span class="frsc"><input id="frSa_${g.id}" inputmode="numeric" maxlength="3" placeholder="점수" value="${g.sa??''}">:<input id="frSb_${g.id}" inputmode="numeric" maxlength="3" placeholder="점수" value="${g.sb??''}"></span>
-      <span class="frab"><button class="btn sm teal${g.w==='a'?' on':''}" data-a="frset" data-v="${g.id}:a">${g.a?g.a+' 승':'A 승'}</button><button class="btn sm ghost${g.w==='d'?' on':''}" data-a="frset" data-v="${g.id}:d">무</button><button class="btn sm teal${g.w==='b'?' on':''}" data-a="frset" data-v="${g.id}:b">${g.b?g.b+' 승':'B 승'}</button><button class="btn sm pink" data-a="frset" data-v="${g.id}:x">취소</button></span></div>`).join('')}
+      <span class="frab"><button class="btn sm teal${g.w==='a'?' on':''}" data-a="frset" data-v="${g.id}:a">${g.a?g.a+' 승':'A 승'}</button><button class="btn sm ghost${g.w==='d'?' on':''}" data-a="frset" data-v="${g.id}:d">무</button><button class="btn sm teal${g.w==='b'?' on':''}" data-a="frset" data-v="${g.id}:b">${g.b?g.b+' 승':'B 승'}</button><button class="btn sm pink" data-a="frset" data-v="${g.id}:x">취소</button></span>${MVP_FIX[g.id]?`<span class="frmv">MVP <b>${esc(MVP_FIX[g.id])}</b></span>`:`<span class="frmv"><select id="frM_${g.id}"><option value="">MVP 선택</option>${[g.a,g.b].filter(Boolean).flatMap(c=>((FR_TEAMS.find(x=>x[0]===c)||[0,[]])[1]).map(([n])=>`<option value="${esc(n)}" ${g.mvp===n?'selected':''}>${c} ${esc(n)}</option>`)).join('')}</select><button class="btn sm gold" data-a="frmvp" data-v="${g.id}">MVP 저장</button></span>`}</div>`).join('')}
     <p class="muted" style="margin:0;font-size:13px">결과를 누르면 모든 유저의 F&amp;R 카드 OVR이 바로 바뀌어요 (이긴 반 +${FR_WIN_OVR}) · 점수는 비워도 돼요</p></div>`:'';
   return `${FRG.err&&typeof onlIsAdmin==="function"&&onlIsAdmin()?`<p class="frerr">${esc(FRG.err)}</p>`:''}<div class="panel frsch"><div class="tblwrap"><table class="frst2"><tr><th>날짜</th><th>요일</th><th>저녁 경기 (농구)</th><th>비고</th></tr>${rows}</table></div></div>${admBox}`;
 }
@@ -7850,7 +8074,7 @@ function frOvrTab(){
     <div class="frov">${FR_IDS.map(c=>{const t=FR_TEAMS.find(x=>x[0]===c);const cap=frCardOf(t[1][0][0]);return `<div class="panel frovc" style="--c1:${FR_COL[c][0]}"><div class="frovh">${frChip(c)}<b>${w[c]}승</b><em>${w[c]?'+'+w[c]*FR_WIN_OVR:'±0'}</em></div><div class="frovk">${cap?cardHTML({pid:cap.id}):''}</div><span class="muted">${t[1].length}명</span></div>`}).join('')}</div>
     ${done.length?`<div class="h">결과 기록</div><div class="panel frhist">${done.map(g=>`<div><span>${frDay(g.d)}</span>${frChip(g.a)}<b>vs</b>${frChip(g.b)}<em>${frRes(g)}</em><i>${g.w==='d'?'변동 없음':(g.w==='a'?g.a:g.b)+'반 +'+FR_WIN_OVR}</i></div>`).join('')}</div>`:''}`;
 }
-function frBody(tab){frFetch();if(tab==='vote')return frVoteTab();if(tab==='play')return frPlayTab();if(tab==='token')return frTokTab();if(tab==='sched')return frSchedTab();if(tab==='ovr')return frOvrTab();return ''}
+function frBody(tab){frFetch();if(tab==='vote')return frVoteTab();if(tab==='play')return frPlayTab();if(tab==='token')return frTokTab();if(tab==='sched')return frSchedTab();if(tab==='ovr')return frOvrTab();if(tab==='mvp')return mvpEvTab();return ''}
 function frAct(a,v){
   if(a==='frvote')return frVote(v);if(a==='frvclaim')return frVClaim(v);
   if(a==='frc'){UI.frc=v;render();return}if(a==='frd'){UI.frd=+v;render();return}
@@ -7858,18 +8082,88 @@ function frAct(a,v){
   if(a==='frquit'){openModal(`<div class="mh"><h3>리그 포기</h3><button class="icon-btn" data-a="close">X</button></div><p>지금까지 결과가 사라지고 보상을 받을 수 없어요.</p><div class="row" style="gap:10px"><button class="btn grow ghost" data-a="close">계속하기</button><button class="btn grow pink" data-a="frquitgo">포기하기</button></div>`);return}
   if(a==='frquitgo'){frS().lg=null;save();closeModal();render();return}
   if(a==='frtk')return frTokGo(v);
-  if(a==='frteam'||a==='frset')return frAdm(a,v);
+  if(a==='frteam'||a==='frset'||a==='frmvp')return frAdm(a,v);
+}
+const MVP_G=FR_BG.map(g=>g.id);
+const MVE={a:'2026-10-20',b:'2026-11-01',goal:100,fin:80,box:150};
+const MVE_M=[[15,'pk','frn','일반 F&R 팩'],[30,'bp',300,'BP 300'],[45,'pk','frs','스페셜 F&R 팩'],[60,'pk','s8','포털 커밍 팩'],[80,'fin',0,'MVP 결승전 해금']];
+PACKS.push({id:'mvpk',name:'반대항 MVP 팩',n:1,bp:3000,cls:'mvp',nosale:true,tab:'rec',prem:true,col:'#ffd23f',desc:'반대항 MVP 선수 1명 · 0~4진',evo:[[0,.5],[1,.25],[2,.15],[3,.07],[4,.03]],oddsText:'지금까지 나온 반대항 MVP 중 1명 · 0진 50% · 1진 25% · 2진 15% · 3진 7% · 4진 3%'});
+PK_KIND.mvpk='mvpS';
+function mvpMake(k,name){
+  const id='mvp145_'+k;if(DBI[id])return DBI[id];if(!name||!FR_POS[name])return null;
+  const cls='mvp',ovr=145;const pos=FR_POS[name];const pr=mulberry(hashInt(name));const look=genLook(pr);const num=1+Math.floor(pr()*55);const hr=HEIGHT[pos];const h0=Math.round(hr[0]+pr()*(hr[1]-hr[0]));const q=qualityOf(name);
+  const p={id,name,pos,cls,special:true,ovr,num,height:PERSON_INFO[name]?PERSON_INFO[name][0]:h0,look,q,grade:gradeOf(q),stats:traitStats(name,ovr,tiltStats(name+'|'+cls,ovr,genStats(pos,ovr,mulberry(hashInt(name+'s'+cls)),q))),tier:10,iq:1};
+  if(!fastOf(name))p.stats.spd=Math.max(1,p.stats.spd-Math.max(1,Math.round(statCap(ovr)*SPD_CUT/100)));
+  DB.push(p);DBI[id]=p;return p;
+}
+function mvpSync(){
+  let st={};try{st=JSON.parse(localStorage.getItem('pxh-mvpn')||'{}')||{}}catch(e){}
+  let ch=false;MVP_G.forEach((g,k)=>{const n=MVP_FIX[g]||(FRG.res[g]||{}).mvp||st[g];if(n&&!DBI['mvp145_'+k]){if(mvpMake(k,n))ch=true}if(n&&st[g]!==n){st[g]=n;ch=true}});
+  if(ch)try{localStorage.setItem('pxh-mvpn',JSON.stringify(st))}catch(e){}
+}
+mvpSync();
+const mvpList=()=>DB.filter(p=>p.cls==='mvp');
+function mveS(){if(!S.mve)S.mve={sh:0,d:'',dm:{},cl:[],fw:0,got:0,vc:{}};const E=S.mve;const t=today();if(E.d!==t){E.d=t;E.dm={}}E.cl=E.cl||[];E.vc=E.vc||{};return E}
+function mveOn(){const t=frISO();return t>=MVE.a&&t<=MVE.b}
+function mveAdd(n,why,out){if(!mveOn()||n<=0)return 0;const E=mveS();E.sh+=n;const l=`트로피 조각 +${n} · ${why}`;if(out)out.lines.push(l);else toast(l);return n}
+function mvpEvMatch(prep,win,forfeit,out){
+  if(forfeit||!win||typeof S==='undefined')return;const E=mveS();
+  if(prep.kind==='mvpf'){E.fw=1;out.lines.push('MVP 결승전 승리! 이벤트에서 최종 보상을 받아 주세요');return}
+  if(!mveOn())return;
+  if(prep.kind==='frl'){if((E.dm.lg||0)<2){E.dm.lg=(E.dm.lg||0)+1;mveAdd(1,'F&R 리그 승리',out)}}
+  else if((E.dm.win||0)<3){E.dm.win=(E.dm.win||0)+1;mveAdd(1,'경기 승리',out)}
+}
+function mveVotes(){const F=frS(),E=mveS();return frGames().filter(g=>g.w&&F.v[g.id]&&F.v[g.id].p===g.w&&!E.vc[g.id])}
+function mveFinOpp(){const o=genOpp(142,hashInt('mvp-allstar'));o.name='반대항 올스타';return o}
+function mveAct(a,v){
+  const E=mveS();const F=frS();
+  if(a==='mvatt'){if(!mveOn()||E.dm.att)return;E.dm.att=1;mveAdd(2,'출석');try{sfx('good')}catch(e){}}
+  else if(a==='mvtk'){if(!mveOn()||E.dm.tk)return;if((F.tk||0)<3){toast('F&R 토큰이 3개 필요해요');return}F.tk-=3;E.dm.tk=1;mveAdd(1,'F&R 토큰 교환')}
+  else if(a==='mvbox'){if(!mveOn()||E.dm.bx)return;if(S.bp<MVE.box){toast(`BP가 ${MVE.box-S.bp} 모자라요`);return}S.bp-=MVE.box;E.dm.bx=1;mveAdd(3,'조각 상자')}
+  else if(a==='mvvc'){const l=mveVotes();if(!l.length||!mveOn())return;for(const g of l)E.vc[g.id]=1;mveAdd(2*l.length,`투표 적중 ${l.length}경기`)}
+  else if(a==='mvms'){const i=+v;const m=MVE_M[i];if(!m||E.cl.includes(i)||E.sh<m[0]||m[1]==='fin')return;E.cl.push(i);if(m[1]==='bp'){S.bp+=m[2];toast(m[3]+' 받았어요')}else{save();renderTop();openPack(PK(m[2]),true);return}}
+  else if(a==='mvfin'){if(E.sh<MVE.fin)return;prepMatch({kind:'mvpf',mode:'full',modeFixed:true,opp:mveFinOpp(),label:'MVP 결승전 · 반대항 올스타'});return}
+  else if(a==='mvgot'){if(E.got||!E.fw||E.sh<MVE.goal)return;E.got=1;save();renderTop();openPack(PK('mvpk'),true);return}
+  save();renderTop();render();
+}
+function mveRow(t,d,prog,btn){return `<div class="mve-r"><div class="grow"><b>${t}</b><span>${d}</span></div>${prog?`<em>${prog}</em>`:''}${btn||''}</div>`}
+function mvpEvTab(){
+  const E=mveS(),F=frS(),on=mveOn(),t=frISO();const sh=E.sh,pct=Math.min(100,sh/MVE.goal*100);
+  const st=t<MVE.a?`${MVE.a.slice(5).replace('-','/')} 시작`:t>MVE.b?'이벤트 종료 · 보상은 계속 받을 수 있어요':`~ ${MVE.b.slice(5).replace('-','/')}`;
+  const b=(ok,a,txt,cl)=>`<button class="btn sm ${cl||'gold'}" data-a="${a}" ${ok?'':'disabled'}>${txt}</button>`;
+  const vl=on?mveVotes():[];
+  const miss=[
+    mveRow('출석','매일 접속하면 조각 2개',E.dm.att?'완료':'0/1',b(on&&!E.dm.att,'mvatt',E.dm.att?'받음':'받기 +2')),
+    mveRow('경기 승리','일반·랭크·온라인 등 아무 경기 승리',`${E.dm.win||0}/3`,''),
+    mveRow('F&amp;R 리그 승리','직접 플레이 탭의 반대항전 리그 승리',`${E.dm.lg||0}/2`,''),
+    mveRow('F&amp;R 토큰 교환',`토큰 3개 → 조각 1개 · 보유 토큰 ${F.tk||0}`,E.dm.tk?'완료':'0/1',b(on&&!E.dm.tk&&(F.tk||0)>=3,'mvtk',E.dm.tk?'교환함':'교환')),
+    mveRow('투표 적중','실제 경기에서 맞힌 투표 1경기당 조각 2개',vl.length?`${vl.length}경기`:'',b(on&&vl.length>0,'mvvc',vl.length?`받기 +${vl.length*2}`:'없음','teal')),
+    mveRow('조각 상자',`BP ${MVE.box} → 조각 3개 · 할인 제외`,E.dm.bx?'완료':'0/1',b(on&&!E.dm.bx,'mvbox',E.dm.bx?'구매함':`BP ${MVE.box}`,'ghost'))
+  ].join('');
+  const ms=MVE_M.map(([n,k,x,nm],i)=>{const ok=sh>=n,got=E.cl.includes(i);return `<div class="mve-m ${ok?'ok':''} ${got?'got':''}" style="left:${n}%"><i></i><b>${n}</b><span>${nm}</span>${k==='fin'?'':ok&&!got?`<button class="btn sm gold" data-a="mvms" data-v="${i}">받기</button>`:got?'<small>받음</small>':''}</div>`}).join('');
+  const finOk=sh>=MVE.fin;
+  const fin=E.got?`<div class="mve-done">최종 보상을 받았어요</div>`
+    :`<div class="mve-fin"><div class="grow"><b>MVP 결승전</b><span>반대항 올스타 · 평균 OVR 142 · 일반 경기 · 져도 다시 도전 가능</span><span>${E.fw?'✓ 결승전 승리':finOk?'도전 가능':`조각 ${MVE.fin}개 모으면 해금`}</span></div>
+      ${E.fw?b(sh>=MVE.goal,'mvgot',sh>=MVE.goal?'최종 보상 받기':`조각 ${MVE.goal-sh}개 더`,'gold'):b(finOk,'mvfin','도전','pink')}</div>`;
+  const mv=mvpList();
+  return `<div class="panel pad16 mve-top"><div class="mve-tro"><svg viewBox="0 0 200 280"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="#ffd23f" stroke-width="12"><path d="M50 38H150V88Q150 150 100 160Q50 150 50 88Z M50 54Q16 54 18 86Q22 116 58 124 M150 54Q184 54 182 86Q178 116 142 124 M100 160V198 M70 198H130L138 228H62Z M50 236H150V266H50Z"/></g></svg></div>
+    <div class="grow"><span class="evtag">MVP TROPHY CHALLENGE</span><h3>MVP 트로피 챌린지</h3><p class="muted">${st} · 조각 ${MVE.goal}개 + 결승전 승리 → 반대항 MVP 랜덤 1명 (0~4진) · 계정당 1번</p>
+    <div class="mve-g"><div class="pv-bar big"><i style="width:${pct}%;background:linear-gradient(90deg,#b88aff,#ffd23f)"></i></div><b>${sh}<small>/${MVE.goal}</small></b></div></div></div>
+    <div class="panel pad16 mve-track"><div class="mve-h">누적 보상</div><div class="mve-line"><i style="width:${pct}%"></i>${ms}<div class="mve-m end ${sh>=MVE.goal?'ok':''}" style="left:100%"><i></i><b>${MVE.goal}</b><span>MVP 선수</span></div></div></div>
+    ${fin}
+    <div class="panel pad16 mve-list"><div class="mve-h">오늘의 미션 <small class="muted">하루 최대 8개 + 투표 적중</small></div>${miss}</div>
+    <div class="panel pad16"><div class="mve-h">지금까지 나온 MVP <small class="muted">${mv.length}명 · 경기마다 1명씩 추가</small></div><div class="mve-cards">${mv.map(p=>`<button data-a="pdetail" data-v="db:${p.id}@0">${cardHTML({pid:p.id})}</button>`).join('')}</div></div>`;
 }
 const SALE_END=new Date('2026-10-25T23:59:59').getTime();
 const SALE_FIX={s8:70,s7:70};
 const saleOn=()=>Date.now()<SALE_END;
 for(const pk of PACKS){
-  const d=Object.getOwnPropertyDescriptor(pk,'bp');if(!d)continue;const base=d.get?d.get.bind(pk):(()=>d.value);
+  if(pk.nosale)continue;const d=Object.getOwnPropertyDescriptor(pk,'bp');if(!d)continue;const base=d.get?d.get.bind(pk):(()=>d.value);
   Object.defineProperty(pk,'bp0',{get:base,configurable:true});
   Object.defineProperty(pk,'bp',{get(){const b=base();if(!(b>0)||!saleOn())return b;return SALE_FIX[pk.id]!=null?SALE_FIX[pk.id]:Math.max(1,Math.round(b*.3))},configurable:true});
 }
 function saleBanner(){
-  return `<div class="sbanner salebn"><div class="t">시험 끝! <span>주간 할인</span></div><div class="s">포털 커밍 팩 · STARS 팩 <b>70 BP</b> · 나머지 모든 팩 <b>70% 할인</b></div><div class="p">[할인 종료] ${cd(SALE_END)}</div></div>`;
+  return `<div class="sbanner salebn"><div class="t">시험 끝! <span>주간 할인</span></div><div class="s">포털 커밍 팩 · STARS 팩 <b>70 BP</b> · 나머지 모든 팩 <b>70% 할인</b> · MVP 팩 제외</div><div class="p">[할인 종료] ${cd(SALE_END)}</div></div>`;
 }
 const FEEL_K=[['acc','가속','첫 발과 최고 속도까지 붙는 속도'],['turn','방향 전환','반대로 꺾을 때 미끄러지지 않고 도는 정도'],['hand','드리블 속도','공을 잡고 달릴 때 속도 유지'],['sec','볼 키핑','몸싸움·스틸에 공을 지키는 힘'],['rel','슛 릴리스','슛 게이지가 차는 빠르기'],['mass','몸싸움','부딪힐 때 밀어내는 힘']];
 const FEEL_BODY=[['날렵',.36],['보통',.62],['탄탄',2]];
