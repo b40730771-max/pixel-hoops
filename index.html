@@ -7793,7 +7793,7 @@ function frVoteTab(){
       <div class="frvs">${opt('a',frChip(g.a))}${opt('d','<span class="frdr">무승부</span>')}${opt('b',frChip(g.b))}</div><div class="frvf">${st}</div></div>`};
   const next=frGames().find(g=>g.d>t);
   return `<div class="frinfo panel"><div><b>승부 예측</b><span>경기 당일 오후 6시 30분까지 이길 반을 골라요 (무승부 가능)</span></div><div class="frrw"><span>적중 <b>F&amp;R 팩 ×3</b></span><span>실패 <b>F&amp;R 팩 ×1</b></span></div></div>
-    ${FRG.err?`<p class="frerr">${esc(FRG.err)}</p>`:''}
+    ${FRG.err&&typeof onlIsAdmin==="function"&&onlIsAdmin()?`<p class="frerr">${esc(FRG.err)}</p>`:''}
     ${todays.length?`<div class="frvl">${todays.map(card).join('')}</div>`:`<div class="panel frnone"><b>오늘은 경기가 없어요</b><span>${next?`다음 경기 · ${frDay(next.d)} ${frChip(next.a)} vs ${frChip(next.b)}`:'경기 일정이 아직 없어요'}</span></div>`}
     ${pend.filter(g=>g.d!==t).length?`<div class="h">받지 않은 예측 보상</div><div class="frvl">${pend.filter(g=>g.d!==t).map(card).join('')}</div>`:''}`;
 }
@@ -7842,7 +7842,7 @@ function frSchedTab(){
       <span class="frsc"><input id="frSa_${g.id}" inputmode="numeric" maxlength="3" placeholder="점수" value="${g.sa??''}">:<input id="frSb_${g.id}" inputmode="numeric" maxlength="3" placeholder="점수" value="${g.sb??''}"></span>
       <span class="frab"><button class="btn sm teal${g.w==='a'?' on':''}" data-a="frset" data-v="${g.id}:a">${g.a?g.a+' 승':'A 승'}</button><button class="btn sm ghost${g.w==='d'?' on':''}" data-a="frset" data-v="${g.id}:d">무</button><button class="btn sm teal${g.w==='b'?' on':''}" data-a="frset" data-v="${g.id}:b">${g.b?g.b+' 승':'B 승'}</button><button class="btn sm pink" data-a="frset" data-v="${g.id}:x">취소</button></span></div>`).join('')}
     <p class="muted" style="margin:0;font-size:13px">결과를 누르면 모든 유저의 F&amp;R 카드 OVR이 바로 바뀌어요 (이긴 반 +${FR_WIN_OVR}) · 점수는 비워도 돼요</p></div>`:'';
-  return `${FRG.err?`<p class="frerr">${esc(FRG.err)}</p>`:''}<div class="panel frsch"><div class="tblwrap"><table class="frst2"><tr><th>날짜</th><th>요일</th><th>저녁 경기 (농구)</th><th>비고</th></tr>${rows}</table></div></div>${admBox}`;
+  return `${FRG.err&&typeof onlIsAdmin==="function"&&onlIsAdmin()?`<p class="frerr">${esc(FRG.err)}</p>`:''}<div class="panel frsch"><div class="tblwrap"><table class="frst2"><tr><th>날짜</th><th>요일</th><th>저녁 경기 (농구)</th><th>비고</th></tr>${rows}</table></div></div>${admBox}`;
 }
 function frOvrTab(){
   const w=frWins();const done=frGames().filter(g=>g.w).reverse();
