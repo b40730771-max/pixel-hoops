@@ -7284,8 +7284,11 @@ window.addEventListener('resize',()=>{if(R3.ok)setTimeout(r3Size,50)});
 const R3L={st:0};
 function r3Script(src){return new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>no(new Error(src));document.head.appendChild(s)})}
 function r3Load(){
-  if(R3L.st)return;R3L.st=1;
-  (typeof THREE!=='undefined'?Promise.resolve():r3Script('three.min.js')).then(()=>{R3L.st=2})
+  if(R3L.st===3&&R3L.m!==M){R3L.st=0;R3.fail=false}
+  if(R3L.st)return;R3L.st=1;R3L.m=M;
+  const src=['three.min.js','https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js','https://unpkg.com/three@0.149.0/build/three.min.js'];
+  const tryN=i=>typeof THREE!=='undefined'?Promise.resolve():i>=src.length?Promise.reject(new Error('3d')):r3Script(src[i]).then(()=>{if(typeof THREE==='undefined')throw new Error('3d')}).catch(()=>tryN(i+1));
+  tryN(0).then(()=>{R3L.st=2})
   .catch(()=>{R3L.st=3;R3.fail=true;try{toast('3D 화면을 불러오지 못했어요 · TV 화면으로 볼게요')}catch(e){}});
 }
 const HD={W:40,H:56,G:53};
@@ -8996,7 +8999,7 @@ function drawPlayerAt(g,p,x,y,zpx,sil,shadow){
   }
 }
 function draw(){
-  if(M&&M.view==='3d'&&typeof r3Draw==='function'&&!R3.fail){if(typeof THREE!=='undefined'&&R3L.st===2){if(r3Draw())return}else r3Load()}
+  if(M&&M.view==='3d'&&typeof r3Draw==='function'&&(!R3.fail||(R3L.st===3&&R3L.m!==M))){if(typeof THREE!=='undefined'&&R3L.st===2){if(r3Draw())return}else r3Load()}
   if(typeof R3!=='undefined'&&R3.ok)r3Show(false);
   if(M&&CTX&&G&&((M.view||'tv')==='tv'||M.view==='3d')){draw3D();return}
   if(!M||!CTX)return;const g=CTX;g.save();
