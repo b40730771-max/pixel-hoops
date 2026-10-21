@@ -3090,7 +3090,7 @@ function hashInt(str){return Math.floor(hash01(str)*1e9)}
 function statCap(ovr){return Math.max(15,100+(ovr-125)*2)}
 const PERSON_INFO = {
   '최선웅':[185,'SS'],'이태린':[182,'SS'],'김지환':[174,'S'],'김정우':[176,'S'],'신태환':[180,'S'],'김도야':[181,'S'],
-  '김민준':[188,'B'],'박민혁':[169.5,'A'],'최동아':[165,'A'],'나윤오':[165,'A'],'정현성':[177,'A'],'이진헌':[170,'B'],'김유담':[177,'B'],
+  '김민준':[188,'B'],'박민혁':[169.5,'A'],'최동아':[165,'A'],'나윤오':[165,'A'],'정현성':[177,'A'],'이진헌':[170,'B'],'김유담':[177,'B'],'최지아':[176,'B'],'한동하':[168,'A'],'임승재':[173,'C'],
   '문채빈':[183,'B'],'강범석':[178,'B'],'우현진':[168,'B'],'이혁환':[168,'C'],'차이정':[176,'C'],'한재준':[178,'A'],'정희건':[176,'C'],
   '최시우':[168.5,'C'],'정이루':[175,'B'],'원준섭':[168,'C'],'유도원':[180,'B'],'임수환':[164,'C'],'김동휘':[172,'C'],'이혁준':[182,'C'],
   '이지성':[167,'C'],'이윤재':[177,'A'],'이동훈':[176,'C'],'손지율':[174,'B'],
@@ -3098,21 +3098,21 @@ const PERSON_INFO = {
   '이도건':[192,'C'],'박창현':[177,'C'],'이문성':[180,'B'],'신지묵':[170,'B'],'오찬립':[178,'A'],'김민욱':[183,'A'],'강지완':[173,'C'],'이승민':[175,'C'],'윤시우':[175,'B'],'김미서':[169,'B']
 };
 const FR_TEAMS=[
-  ['1-1',[['박민혁','G'],['손지율','G']]],
+  ['1-1',[['박민혁','G'],['손지율','G'],['최지아','C'],['김유담','F'],['한동하','F'],['유도원','F']]],
   ['1-2',[['최선웅','C'],['정현성','F'],['최동아','F'],['나윤오','G'],['김민준','G'],['이혁준','F'],['황서인','G'],['정선재','G']]],
-  ['1-3',[['이태린','F'],['김도야','F'],['신태환','C']]],
+  ['1-3',[['이태린','F'],['김도야','F'],['신태환','C'],['문채빈','F'],['임수환','G'],['임승재','F']]],
   ['1-4',[['이경률','C'],['한재준','F'],['서준영','G'],['정이루','F'],['구자겸','G'],['오승민','C'],['정유근','G'],['김율','F']]],
   ['1-5',[['김정우','G'],['이도건','C'],['이윤재','F'],['우현진','G'],['박창현','F'],['이문성','F'],['신지묵','G'],['이동훈','F']]],
   ['1-6',[['김지환','G'],['오찬립','F'],['김민욱','F'],['강지완','G'],['이승민','C'],['윤시우','F'],['김미서','G'],['강범석','F']]]
 ];
-const FR_POS={};
+const FR_POS={};const FR_NEW=new Set(['최지아','김유담','한동하','유도원','문채빈','임수환','임승재']);const FR_GR={'김유담':'A'};
 const UNRELEASED=new Set(['rmi']);
 const RMI_NAMES=['최선웅','이태린','김지환','김도야','김정우','신태환','박민혁','정현성','나윤오'];
 const RMI_LV=[120,125,130,135,140,145,150];
 const RMI_OLD=[120,124,128,132,136,140];
 const RMI_SP={'최선웅':40,'이태린':40,'김지환':30,'김도야':30,'김정우':30,'신태환':30,'박민혁':20,'정현성':20,'나윤오':20};
 const rmiId=(name,lv)=>'rmi'+RMI_LV[lv]+'_'+RMI_NAMES.indexOf(name);
-(()=>{const cap=[],a=[],b=[];for(const [,pl] of FR_TEAMS)pl.forEach(([n,ps],i)=>{FR_POS[n]=ps;if(i===0)cap.push(n);else (['SS','S','A'].includes((PERSON_INFO[n]||[])[1])?a:b).push(n)});ROSTER.push(['fr',126,true,cap],['fr',125,false,a],['fr',124,false,b]);for(const o of RMI_LV)ROSTER.push(['rmi',o,false,RMI_NAMES])})();
+(()=>{const cap=[],a=[],b=[],la=[],lb=[];for(const [,pl] of FR_TEAMS)pl.forEach(([n,ps],i)=>{FR_POS[n]=ps;const hi=['SS','S','A'].includes(FR_GR[n]||(PERSON_INFO[n]||[])[1]);if(i===0)cap.push(n);else if(FR_NEW.has(n))(hi?la:lb).push(n);else (hi?a:b).push(n)});a.push(...la);b.push(...lb);ROSTER.push(['fr',126,true,cap],['fr',125,false,a],['fr',124,false,b]);for(const o of RMI_LV)ROSTER.push(['rmi',o,false,RMI_NAMES])})();
 const GRADE_Q = {SS:1,S:0.45,A:0.1,B:-0.3,C:-0.7};
 function qualityOf(name){const g=PERSON_INFO[name]&&PERSON_INFO[name][1];return g?GRADE_Q[g]:Math.round((hash01(name+'|q')*1.2-0.8)*100)/100}
 function gradeOf(q){return q>=0.9?'SS':q>=0.4?'S':q>=0.05?'A':q>=-0.35?'B':'C'}
@@ -3144,7 +3144,7 @@ function buildDB(){
     const P0=DB[DB.length-1];P0.q=Math.min(0.3,qualityOf(P0.name));P0.grade=gradeOf(P0.q);P0.stats=genStats(pos,ovr,r,P0.q);
   }
   ROSTER.forEach(([cls,ovr,special,names])=>names.forEach((name,i)=>{
-    const pos=(cls==='s8'&&S8_POS[name])||((cls==='fr'||cls==='mvp'||/^s[1-8]$/.test(cls))&&FR_POS[name])||PERSON_POS[name]||POS[Math.floor(hash01(name+'|pos')*3)];const pr=mulberry(hashInt(name));const look=genLook(pr);const num=1+Math.floor(pr()*55);const hr=HEIGHT[pos];const height0=Math.round(hr[0]+pr()*(hr[1]-hr[0]));
+    const pos=(cls==='s8'&&S8_POS[name])||((cls==='fr'||cls==='mvp'||(/^s[1-8]$/.test(cls)&&!FR_NEW.has(name)))&&FR_POS[name])||PERSON_POS[name]||POS[Math.floor(hash01(name+'|pos')*3)];const pr=mulberry(hashInt(name));const look=genLook(pr);const num=1+Math.floor(pr()*55);const hr=HEIGHT[pos];const height0=Math.round(hr[0]+pr()*(hr[1]-hr[0]));
     const q=qualityOf(name);const height=PERSON_INFO[name]?PERSON_INFO[name][0]:height0;DB.push({id:`${cls}${ovr}_${i}`,name,pos,cls,special,ovr,num,height,look,q,grade:gradeOf(q),stats:traitStats(name,ovr,tiltStats(name+'|'+cls,ovr,genStats(pos,ovr,mulberry(hashInt(name+'s'+cls)),q)))});
   }));
   const ownMax=k=>DB.some(q=>{const t=PERSON_TRAIT[q.name];return t&&t.maxStat&&t.maxStat.includes(k)});
@@ -5107,7 +5107,7 @@ function evoAnimate(cardEl,ok,crit,done){
   };
   run().catch(end);
 }
-const PERSON_CLASS={'최선웅':'1-2','이태린':'1-3','김지환':'1-6','김정우':'1-5','신태환':'1-3','김도야':'1-3','김민준':'1-2','박민혁':'1-1','최동아':'1-2','나윤오':'1-2','정현성':'1-2','이진헌':'1-1','김유담':'1-1','문채빈':'1-4','강범석':'1-6','우현진':'1-5','이혁환':'1-1','차이정':'1-3','한재준':'1-4','정희건':'1-1','최시우':'1-6','정이루':'1-4','원준섭':'1-2','유도원':'1-1','임수환':'1-3','김동휘':'1-2','이혁준':'1-2','이지성':'1-6','이윤재':'1-5','이동훈':'1-5','손지율':'1-1'};
+const PERSON_CLASS={'최선웅':'1-2','이태린':'1-3','김지환':'1-6','김정우':'1-5','신태환':'1-3','김도야':'1-3','김민준':'1-2','박민혁':'1-1','최동아':'1-2','나윤오':'1-2','정현성':'1-2','이진헌':'1-1','김유담':'1-1','문채빈':'1-3','강범석':'1-6','우현진':'1-5','이혁환':'1-1','차이정':'1-3','한재준':'1-4','정희건':'1-1','최시우':'1-6','정이루':'1-4','원준섭':'1-2','유도원':'1-1','임수환':'1-3','김동휘':'1-2','이혁준':'1-2','이지성':'1-6','이윤재':'1-5','이동훈':'1-5','손지율':'1-1'};
 function classOf(name){if(PERSON_CLASS[name])return PERSON_CLASS[name];const h=hashInt(name+'|ban')>>>0;return '1-'+(1+h%6)}
 const KRANK={normal:0,lunch:1,fr:1,tots:2,lunchS:3,frS:3,totsS:4,rep:5,rmi:5,s1:2,s2:2,s3:2,s4:2,s5:3,s6:3,s7:3,s7S:4,s1S:4,s2S:4,s3S:4,s4S:4,s5S:4,s6S:4,s8:3,s8S:4,mvpS:5};
 const STAGE={
