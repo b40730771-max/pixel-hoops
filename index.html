@@ -2929,6 +2929,79 @@ button.psit{cursor:pointer}button.psit:disabled{opacity:.42;cursor:default}
 .card.mvx:not(.anim) *{animation:none!important}.card.mvx:not(.anim) .mvx-orb,.card.mvx:not(.anim) .mvx-holo{display:none}
 .mve-h{font-size:17px;font-weight:700;margin-bottom:8px;color:#fff}.mve-h small{font-size:12px;color:#aaa;font-weight:400;margin-left:6px}
 .frmv{display:flex;gap:6px;align-items:center}.frmv select{max-width:150px}.frsmv{display:block;font-size:12px;color:#ffd23f}
+#intro{position:fixed;left:0;top:0;width:var(--W,100vw);height:var(--H,100vh);z-index:300;overflow:hidden;background:#000;color:#fff;container-type:size;user-select:none;-webkit-user-select:none;font-family:var(--px)}
+#intro .ai-cv{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .8s}
+#intro.s2 .ai-cv{opacity:1}
+.ai-studio,.ai-season,.ai-title{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .45s,transform .6s;pointer-events:none}
+.ai-studio{transform:scale(.94)}#intro.s0.in .ai-studio{opacity:1;transform:none}
+.ai-ball{width:9cqh;height:9cqh;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffb066,#e8641a 60%,#8a3208);box-shadow:0 0 4cqh rgba(255,140,60,.6);position:relative;animation:aiBounce 1s cubic-bezier(.3,0,.7,1) infinite alternate}
+.ai-ball::before,.ai-ball::after{content:"";position:absolute;inset:0;border-radius:50%;border:.5cqh solid #3a1406;clip-path:inset(0 46% 0 46%)}.ai-ball::after{clip-path:inset(46% 0 46% 0)}
+@keyframes aiBounce{from{transform:translateY(-3cqh)}to{transform:translateY(1cqh) scaleY(.92)}}
+.ai-studio b{margin-top:3cqh;font:400 5cqh/1 "Press Start 2P",var(--px);letter-spacing:.1em;color:#ffd23f;text-shadow:0 .5cqh 0 #7a3a06}
+.ai-studio span{margin-top:1.6cqh;font-size:2.4cqh;letter-spacing:.8em;color:#9ab}
+.ai-season{transform:translateY(3cqh)}#intro.s1 .ai-season{opacity:1;transform:none}
+.ai-season em{font-style:normal;font-size:2.6cqh;letter-spacing:.6em;color:#7fd8ff}
+.ai-season b{font-size:8cqh;letter-spacing:.05em;margin:1.5cqh 0;background:linear-gradient(90deg,#ff4f7b,#ffd23f,#7fd8ff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 2cqh rgba(255,120,160,.5))}
+.ai-season span{font-size:2.6cqh;color:#ccd}
+#intro.s2 .ai-title{opacity:1;pointer-events:auto}
+.ai-logo{position:relative;width:30cqh;height:30cqh;animation:aiLogo 1s cubic-bezier(.2,1.4,.4,1) both;overflow:hidden;border-radius:12%}
+.ai-logo img{width:100%;height:100%;image-rendering:pixelated;filter:drop-shadow(0 0 3cqh rgba(255,210,63,.55))}
+.ai-logo i{position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);background-size:250% 100%;animation:aiShine 2.6s ease-in-out .8s infinite;mix-blend-mode:screen}
+@keyframes aiLogo{from{transform:scale(2.2);opacity:0;filter:blur(8px)}to{transform:none;opacity:1;filter:none}}
+@keyframes aiShine{0%{background-position:150% 0}60%,100%{background-position:-60% 0}}
+.ai-name{margin-top:2cqh;font:400 6cqh/1 "Press Start 2P",var(--px);color:#fff;text-shadow:0 .6cqh 0 #b0306a,0 0 3cqh rgba(255,80,160,.5);text-align:center;animation:aiUp .6s ease-out .4s both}
+.ai-name small{display:block;margin-top:1.4cqh;font:700 2.6cqh/1 var(--px);letter-spacing:.5em;color:#ffd23f;text-shadow:none}
+@keyframes aiUp{from{transform:translateY(3cqh);opacity:0}to{transform:none;opacity:1}}
+.ai-load{width:min(70cqw,90cqh);margin-top:6cqh;display:flex;flex-wrap:wrap;align-items:center;gap:1.4cqh;transition:opacity .4s}
+.ai-bar{flex:1;height:1.6cqh;border-radius:1cqh;background:rgba(255,255,255,.12);overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}
+.ai-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2fd3c2,#c8f23a,#ffd23f);box-shadow:0 0 2cqh #c8f23a}
+.ai-pct{font-size:2.4cqh;color:#c8f23a;min-width:7cqh;text-align:right}
+.ai-tip{flex-basis:100%;margin:0;text-align:center;font-size:2.3cqh;color:#9ab}
+.ai-tap{position:absolute;bottom:13cqh;font-size:3.4cqh;letter-spacing:.2em;color:#fff;opacity:0;text-shadow:0 0 2cqh #7fd8ff}
+#intro.rdy .ai-load{opacity:0}#intro.rdy .ai-tap{animation:aiTap 1.3s ease-in-out infinite}
+@keyframes aiTap{0%,100%{opacity:.25}50%{opacity:1}}
+.ai-ver{position:absolute;right:3cqw;bottom:3cqh;font-size:1.9cqh;color:rgba(255,255,255,.35)}
+.ai-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+#intro.out .ai-flash{animation:aiFlash .65s ease-out forwards}#intro.out{animation:aiOut .65s ease-in forwards}
+@keyframes aiFlash{0%{opacity:0}15%{opacity:.85}100%{opacity:0}}@keyframes aiOut{0%,40%{opacity:1}100%{opacity:0}}
+#mintro{position:absolute;inset:0;z-index:60;overflow:hidden;container-type:size;color:#fff;font-family:var(--px);transition:opacity .35s;user-select:none;-webkit-user-select:none}
+#mintro.out{opacity:0}
+.mi-dim{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(10,18,50,.72),rgba(2,4,14,.94))}
+.mi-arena{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;animation:miArena 1.8s ease-out .1s both;overflow:hidden}
+.mi-arena b{font:400 9cqh/1 "Press Start 2P",var(--px);color:#fff;text-shadow:0 .7cqh 0 #1e5ad8,0 0 4cqh rgba(80,160,255,.6);margin:2.4cqh 0}
+.mi-tag{padding:.8cqh 2.4cqh;border-radius:99px;background:#ffd23f;color:#1a1004;font-size:2.6cqh;font-weight:700;letter-spacing:.06em}
+.mi-arena small{font-size:2.6cqh;color:#9ab;letter-spacing:.1em}
+.mi-sweep{position:absolute;top:0;bottom:0;width:30%;left:-40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent);animation:miSweep 1.2s ease-in-out .3s both}
+@keyframes miArena{0%{opacity:0;transform:scale(1.15)}18%{opacity:1;transform:none}82%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-4cqh)}}
+@keyframes miSweep{to{left:120%}}
+.mi-team{position:absolute;top:9cqh;width:40cqw;display:flex;flex-direction:column;gap:1.2cqh;opacity:0}
+.mi-team.l{left:4cqw;animation:miTL 2.9s cubic-bezier(.2,.9,.3,1) 1.6s both}.mi-team.r{right:4cqw;animation:miTR 2.9s cubic-bezier(.2,.9,.3,1) 1.6s both}
+@keyframes miTL{0%{opacity:0;transform:translateX(-110%)}12%{opacity:1;transform:none}88%{opacity:1;transform:none}100%{opacity:0;transform:translateX(-110%)}}
+@keyframes miTR{0%{opacity:0;transform:translateX(110%)}12%{opacity:1;transform:none}88%{opacity:1;transform:none}100%{opacity:0;transform:translateX(110%)}}
+.mi-th{display:flex;align-items:center;gap:2cqh;padding:1.6cqh 2cqh;border-radius:1.4cqh;background:linear-gradient(100deg,var(--c1),color-mix(in srgb,var(--c1) 30%,#050c20));box-shadow:0 0 3cqh color-mix(in srgb,var(--c1) 50%,transparent)}
+.mi-team.r .mi-th{flex-direction:row-reverse;text-align:right;background:linear-gradient(260deg,var(--c1),color-mix(in srgb,var(--c1) 30%,#050c20))}
+.mi-th img{width:9cqh;height:9cqh;image-rendering:pixelated}
+.mi-th b{display:block;font-size:3.6cqh;text-shadow:0 2px 0 rgba(0,0,0,.5)}.mi-th span{font-size:2.4cqh;color:rgba(255,255,255,.85)}.mi-th em{font-style:normal;color:#ffd23f;font-weight:700}
+.mi-p{display:flex;align-items:center;gap:1.6cqh;padding:.8cqh 1.8cqh;border-radius:1cqh;background:rgba(10,18,44,.85);border-left:.6cqh solid var(--c1);animation:miRow .35s ease-out both}
+.mi-team.r .mi-p{flex-direction:row-reverse;border-left:0;border-right:.6cqh solid var(--c1)}
+@keyframes miRow{from{opacity:0;transform:translateX(-4cqw)}to{opacity:1;transform:none}}
+.mi-team.r .mi-p{animation-name:miRowR}@keyframes miRowR{from{opacity:0;transform:translateX(4cqw)}to{opacity:1;transform:none}}
+.mi-pos{font-style:normal;min-width:4.4cqh;text-align:center;padding:.4cqh 0;border-radius:.6cqh;background:var(--c1);font-size:2.2cqh;font-weight:700}
+.mi-p img{width:5.6cqh;height:7.6cqh;object-fit:contain;image-rendering:pixelated}
+.mi-p b{flex:1;font-size:2.8cqh;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mi-p em{font-style:normal;font-size:3.2cqh;font-weight:700;color:#ffd23f}
+.mi-vs{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6cqw;opacity:0;animation:miVs 1.6s linear 4.4s both}
+@keyframes miVs{0%{opacity:1}88%{opacity:1}100%{opacity:0}}
+.mi-em{display:flex;flex-direction:column;align-items:center;gap:1cqh}
+.mi-em img{width:24cqh;height:24cqh;image-rendering:pixelated;filter:drop-shadow(0 0 3cqh rgba(255,255,255,.35))}
+.mi-em b{font:400 4cqh/1 "Press Start 2P",var(--px)}.mi-em span{font-size:3cqh;color:#ffd23f;font-weight:700}
+.mi-em.l{animation:miEmL .35s cubic-bezier(.6,0,1,1) 4.4s both}.mi-em.r{animation:miEmR .35s cubic-bezier(.6,0,1,1) 4.4s both}
+@keyframes miEmL{from{transform:translateX(-60cqw) rotate(-20deg)}to{transform:none}}@keyframes miEmR{from{transform:translateX(60cqw) rotate(20deg)}to{transform:none}}
+.mi-x{font:400 12cqh/1 "Press Start 2P",var(--px);color:#fff;text-shadow:0 0 3cqh #ff4f7b,0 0 6cqh #ffd23f;animation:miX .5s cubic-bezier(.2,1.6,.4,1) 4.75s both}
+@keyframes miX{from{transform:scale(3);opacity:0}to{transform:none;opacity:1}}
+.mi-vs::after{content:"";position:absolute;inset:0;background:#fff;opacity:0;animation:aiFlash .5s ease-out 4.75s both;pointer-events:none}
+.mi-tip{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:400 11cqh/1 "Press Start 2P",var(--px);color:#ffd23f;text-shadow:0 .8cqh 0 #7a3a06,0 0 4cqh rgba(255,210,63,.7);opacity:0;animation:miTip .8s cubic-bezier(.2,1.3,.4,1) 5.95s both}
+@keyframes miTip{0%{opacity:0;transform:scale(.4)}40%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:none}}
+.mi-skip{position:absolute;right:3cqw;top:3cqh;padding:1cqh 2.4cqh;border-radius:99px;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.4);color:#fff;font:600 2.4cqh var(--px)}
 </style>
 
 <div id="root"><div id="zoomer">
@@ -8196,6 +8269,67 @@ function feelTab(x){
   return `<div class="fe-top"><div class="fe-g g${F.grade}"><b>${F.grade}</b><span>체감</span></div><div class="grow"><div class="fe-body">체형 <b>${F.body}</b> · ${p.height}cm</div><p class="muted">체감은 선수마다 고유해요. 같은 OVR이라도 가속·방향 전환·드리블 손맛이 달라요. 진화·강화로 능력치가 오르면 체감도 조금 좋아져요.</p></div></div>
     <div class="fe-list">${FEEL_K.map(([k,n,d])=>{const v=Math.max(0,Math.min(1,feelPct(k,F)));return `<div class="fe-row"><div class="fe-n"><b>${n}</b><span>${d}</span></div><div class="pv-bar big"><i style="width:${Math.round(8+v*92)}%;background:${v>=.62?'var(--lime)':v>=.4?'var(--teal)':'var(--orange)'}"></i></div><em>${lab(v)}</em></div>`}).join('')}</div>`;
 }
+const INTRO_TIPS=['슛 게이지가 초록일 때 손을 떼면 성공률이 올라가요','같은 반 선수를 함께 쓰면 케미가 올라가요','반대항전 투표를 맞히면 트로피 조각을 더 받아요','진화하면 OVR이 3씩 올라가요','선수마다 체감이 달라요 · 선수 정보의 체감 탭을 확인해 보세요','MVP 챌린지 · 조각 100개와 결승전 승리로 MVP를 얻어요'];
+function introBg(cv,st){
+  const x=cv.getContext('2d');const R={t:0,last:performance.now(),dots:[],on:true};
+  for(let k=0;k<180;k++)R.dots.push({x:Math.random(),y:.6+Math.random()*.4,f:1+Math.random()*4,p:Math.random()*6.3,c:Math.random()<.2?'255,210,63':Math.random()<.3?'120,200,255':'255,255,255'});
+  const fr=now=>{if(!R.on||!st.isConnected)return;const dt=Math.min(.05,(now-R.last)/1000);R.last=now;R.t+=dt;const t=R.t;
+    const d=Math.min(2,devicePixelRatio||1),w=st.clientWidth||960,h=st.clientHeight||540;if(cv.width!==Math.round(w*d)){cv.width=Math.round(w*d);cv.height=Math.round(h*d)}x.setTransform(d,0,0,d,0,0);
+    const g=x.createLinearGradient(0,0,0,h);g.addColorStop(0,'#030614');g.addColorStop(.55,'#0b1438');g.addColorStop(1,'#140a2c');x.fillStyle=g;x.fillRect(0,0,w,h);
+    x.globalCompositeOperation='lighter';
+    for(const [o,col,s] of [[.15,'120,200,255',.7],[.85,'120,200,255',-.7],[.35,'255,210,63',1.1],[.65,'200,140,255',-1.1]]){x.save();x.translate(w*o,h+10);x.rotate(Math.sin(t*s*.6+o*5)*.45);const L=h*1.5,gg=x.createLinearGradient(0,0,0,-L);gg.addColorStop(0,`rgba(${col},.28)`);gg.addColorStop(1,`rgba(${col},0)`);x.fillStyle=gg;x.beginPath();x.moveTo(-6,0);x.lineTo(6,0);x.lineTo(L*.12,-L);x.lineTo(-L*.12,-L);x.closePath();x.fill();x.restore()}
+    for(const q of R.dots){const a=.25+.75*Math.max(0,Math.sin(t*q.f+q.p));x.fillStyle=`rgba(${q.c},${a*.7})`;const s=1+(q.y-.6)*5;x.fillRect(q.x*w,q.y*h,s,s)}
+    if(Math.random()<.25){const fx=Math.random()*w,fy=h*(.62+Math.random()*.3);const fg=x.createRadialGradient(fx,fy,0,fx,fy,14);fg.addColorStop(0,'rgba(255,255,255,.9)');fg.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=fg;x.fillRect(fx-14,fy-14,28,28)}
+    const fl=x.createLinearGradient(0,h*.82,0,h);fl.addColorStop(0,'rgba(255,170,90,0)');fl.addColorStop(1,'rgba(255,170,90,.18)');x.fillStyle=fl;x.fillRect(0,h*.82,w,h*.18);
+    x.globalCompositeOperation='source-over';requestAnimationFrame(fr)};
+  requestAnimationFrame(fr);return R;
+}
+function appIntro(){
+  return new Promise(done=>{
+    const el=document.createElement('div');el.id='intro';el.className='ai s0';
+    el.innerHTML=`<canvas class="ai-cv"></canvas>
+      <div class="ai-studio"><div class="ai-ball"></div><b>PIXEL HOOPS</b><span>STUDIO</span></div>
+      <div class="ai-season"><em>2026 SEASON</em><b>FRIENDS &amp; RIVALS</b><span>반대항전 · MVP 챌린지</span></div>
+      <div class="ai-title"><div class="ai-logo"><img src="${LOGO}" alt=""><i></i></div><div class="ai-name">PIXEL HOOPS<small>픽셀 후프스</small></div>
+        <div class="ai-load"><div class="ai-bar"><i></i></div><span class="ai-pct">0%</span><p class="ai-tip">TIP · ${INTRO_TIPS[Math.floor(Math.random()*INTRO_TIPS.length)]}</p></div>
+        <div class="ai-tap">화면을 터치하세요</div></div>
+      <div class="ai-ver">v2026.10 · © PIXEL HOOPS</div><div class="ai-flash"></div>`;
+    ($('#root')||document.body).appendChild(el);const bg=introBg(el.querySelector('.ai-cv'),el);
+    const T=[];const at=(ms,f)=>T.push(setTimeout(f,ms));let stage=0,ready=false,fin=false;
+    const title=()=>{if(stage>=2)return;stage=2;T.forEach(clearTimeout);el.className='ai s2';
+      const pc=el.querySelector('.ai-pct'),bar=el.querySelector('.ai-bar i');const t0=performance.now();
+      const step=()=>{if(fin)return;const k=Math.min(1,(performance.now()-t0)/1700),v=Math.round(100*(1-Math.pow(1-k,2.2)));bar.style.width=v+'%';pc.textContent=v+'%';if(k<1)requestAnimationFrame(step);else{ready=true;el.classList.add('rdy')}};requestAnimationFrame(step)};
+    at(150,()=>{el.className='ai s0 in'});at(1500,()=>{stage=1;el.className='ai s1'});at(3000,title);
+    const end=()=>{if(fin)return;fin=true;T.forEach(clearTimeout);el.classList.add('out');try{audioInit();sfx('walkout')}catch(e){}setTimeout(()=>{bg.on=false;el.remove();done()},650)};
+    el.addEventListener('pointerdown',()=>{if(stage<2){title();return}if(ready)end()});
+  });
+}
+function matchIntro(){
+  if(!M||!M.teams)return;const [A,B]=M.teams;const prep=M.prep||{};
+  const wasP=M.paused;M.paused=true;let chance=false;if(M.tm&&M.mode==='chance'){clearTimeout(M.tm);M.tm=null;chance=true}
+  const mt=$('#match');if(!mt)return;const old=$('#mintro');if(old)old.remove();
+  const tag=prep.label||(MODES[M.mode]?MODES[M.mode].n:'경기');
+  const fans=(8000+Math.floor(Math.random()*9000)).toLocaleString();
+  const em=t=>{try{return emblemURL(t.c1,t.c2,t.emblem||0)}catch(e){return ''}};
+  const bd=(p,t)=>{try{return bodyURL(p,t.j1||t.c1,t.j2||t.c2,false)}catch(e){return ''}};
+  const tov=t=>t.ovr||Math.round(t.players.slice(0,5).reduce((a,p)=>a+(p.ovr||0),0)/5);
+  const side=(t,s)=>`<div class="mi-team ${s}" style="--c1:${t.c1};--c2:${t.c2}"><div class="mi-th"><img src="${em(t)}" alt=""><div><b>${esc(t.name||t.abbr)}</b><span>${esc(t.abbr||'')} · OVR <em>${tov(t)}</em></span></div></div>
+    ${t.players.slice(0,5).map((p,i)=>`<div class="mi-p" style="animation-delay:${(1.9+i*.12).toFixed(2)}s"><i class="mi-pos">${p.pos||SLOTS[i]}</i><img src="${bd(p,t)}" alt=""><b>${esc(p.name)}</b><em>${p.ovr}</em></div>`).join('')}</div>`;
+  const el=document.createElement('div');el.id='mintro';el.innerHTML=`<div class="mi-dim"></div>
+    <div class="mi-arena"><span class="mi-tag">${esc(tag)}</span><b>PIXEL ARENA</b><small>관중 ${fans}명 · 실내 22°C · 2026 시즌</small><i class="mi-sweep"></i></div>
+    ${side(A,'l')}${side(B,'r')}
+    <div class="mi-vs"><div class="mi-em l"><img src="${em(A)}" alt=""><b>${esc(A.abbr||'')}</b><span>${tov(A)}</span></div><div class="mi-x">VS</div><div class="mi-em r"><img src="${em(B)}" alt=""><b>${esc(B.abbr||'')}</b><span>${tov(B)}</span></div></div>
+    <div class="mi-tip">TIP-OFF</div><button class="mi-skip">건너뛰기 ▸▸</button>`;
+  mt.appendChild(el);
+  let fin=false;const T=[];
+  const end=()=>{if(fin)return;fin=true;T.forEach(clearTimeout);el.classList.add('out');setTimeout(()=>el.remove(),350);if(!M)return;M.paused=wasP;if(chance&&!M.tm)M.tm=setTimeout(nextSlot,300)};
+  try{sfx('pack')}catch(e){}
+  T.push(setTimeout(()=>{try{sfx('walkout')}catch(e){}},4500));T.push(setTimeout(()=>{try{if(typeof cheer==='function'){audioInit();cheer(1.2,true)}}catch(e){}},5900));
+  T.push(setTimeout(end,6700));
+  el.addEventListener('pointerdown',e=>{e.stopPropagation();end()});
+}
+const startMatch0=startMatch;
+startMatch=function(prep){startMatch0(prep);if(prep&&!prep.online&&S.settings.mintro!==false)try{matchIntro()}catch(e){}};
 let AC=null;
 function audioInit(){if(AC)return;try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}
 function tone(f,d,type='square',v=0.05,f2=null,delay=0){
@@ -9238,7 +9372,7 @@ load();
 render();
 function afterBoot(){if(!S.name){if(!$('#modal').hidden)return;openOnboard();return}const egg=eggCheck();if(egg){render();showReveal([egg],'이스터에그!','#ff3b5c');toast('woonn 이스터에그 · 최선웅 리프레젠트 멤버 획득!')}else giftCheck()}
 
-if(ONL.on)onlBoot(afterBoot);else afterBoot();
+const introP=typeof appIntro==='function'?appIntro():Promise.resolve();if(ONL.on)onlBoot(()=>introP.then(afterBoot));else introP.then(afterBoot);
 if(document.fonts&&document.fonts.load)document.fonts.load('8px "Press Start 2P"').catch(()=>{});
 setInterval(()=>{if(!S.name)return;if(M){mkUpdate();checkListings();renderTop();return}checkListings();if(UI.view==='market'&&$('#modal').hidden)render()},30000);
 
